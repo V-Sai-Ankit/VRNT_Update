@@ -11,7 +11,7 @@ export function Hero() {
     offset: ["start start", "end start"]
   });
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.1, 1.3]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
@@ -46,7 +46,7 @@ export function Hero() {
             </span>
           </div>
           
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white]">
+          <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white]">
             {SITE_CONTENT.hero.title}
           </h1>
           
