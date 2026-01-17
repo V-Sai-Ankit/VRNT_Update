@@ -7,7 +7,7 @@ export function News() {
     <section id="news" className="py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 underline decoration-primary decoration-4 underline-offset-8">
             Updates & Announcements
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto rounded-full" />

@@ -24,7 +24,7 @@ export function SageSection() {
             
             <div className="p-8 md:p-12 flex flex-col justify-center bg-card">
               <span className="text-primary font-bold tracking-widest text-sm uppercase mb-2">Founder</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 underline decoration-primary decoration-4 underline-offset-8">
                 {SITE_CONTENT.sage.title}
               </h2>
               <h3 className="font-serif text-xl text-secondary mb-6 italic">

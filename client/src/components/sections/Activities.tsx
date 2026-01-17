@@ -47,7 +47,7 @@ export function Activities() {
             viewport={{ once: true }}
             className="order-1 md:order-2"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6 underline decoration-primary decoration-4 underline-offset-8">
               {SITE_CONTENT.activities.title}
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed font-serif">

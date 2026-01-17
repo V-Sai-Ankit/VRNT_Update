@@ -17,9 +17,8 @@ export function Mission() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-secondary mb-6 relative inline-block">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-secondary mb-6 relative inline-block underline decoration-primary decoration-4 underline-offset-8">
               {SITE_CONTENT.mission.title}
-              <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-primary rounded-full"></span>
             </h2>
             
             <div className="space-y-6 text-lg text-muted-foreground font-serif leading-relaxed">
