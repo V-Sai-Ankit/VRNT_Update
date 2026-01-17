@@ -12,7 +12,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Mission", href: "/#mission" },
-    { name: "Activities", href: "/#activities" },
+    { name: "Activities", href: "/activities" },
     { name: "Trustees", href: "/trustees" },
     { name: "News", href: "/news" },
     { name: "Donate", href: "/donate" },

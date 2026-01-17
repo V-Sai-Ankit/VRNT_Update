@@ -9,6 +9,7 @@ import NewsDetailPage from "./pages/news-detail";
 import TrusteesPage from "./pages/trustees";
 import ContactPage from "./pages/contact";
 import DonatePage from "./pages/donate";
+import ActivitiesPage from "@/pages/activities";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/trustees" component={TrusteesPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/donate" component={DonatePage} />
+      <Route path="/activities" component={ActivitiesPage} />
       <Route component={NotFound} />
     </Switch>
   );
