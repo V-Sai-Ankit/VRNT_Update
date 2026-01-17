@@ -30,7 +30,7 @@ export function Hero() {
             </span>
           </div>
           
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-2xl text-white underline decoration-primary decoration-4 underline-offset-8">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white]">
             {SITE_CONTENT.hero.title}
           </h1>
           
