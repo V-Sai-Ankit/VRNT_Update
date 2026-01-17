@@ -16,7 +16,7 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <section ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section ref={containerRef} className="relative h-screen flex items-start justify-center overflow-hidden">
       {/* Background Image with reveal effect */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.img
@@ -32,7 +32,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-20 text-center text-white">
+      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-32 md:pt-40">
         <motion.div
           style={ { y, opacity } }
           initial={{ opacity: 0, y: 30 }}
