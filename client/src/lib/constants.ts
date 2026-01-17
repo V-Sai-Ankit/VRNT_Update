@@ -3,7 +3,7 @@ export const SITE_CONTENT = {
     title: "Veda Rakshna Nidhi Trust",
     subtitle: "SRI GURUBYO NAMAHA. SRI VEDA VYASA NAMAHA.",
     address: "64/31, Subramaniam Street, West Mambalam, Chennai - 600 033",
-    patronage: "Sponsored by His Holiness Pujya Sri Maha Swamigal (Paramacharyal) of SRI KANCHI KAMAKOTI PEETAM, KANCHIPURAM"
+    patronage: "Run under the guidance of The Jagadguru Shankaracharyas of Moolamnaya Sarvajna Shri Kanchi Kamakoti Peetham"
   },
   hero: {
     title: "Preserving the Eternal Veda Dharma",
