@@ -1,19 +1,19 @@
 import { motion } from "framer-motion";
-import heroBg from "@assets/generated_images/vedic_scriptures_and_oil_lamp_warm_background.png";
+import headerImg from "@assets/vrnt_1768670925029.jpg";
 import { SITE_CONTENT } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-20">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroBg}
-          alt="Vedic Heritage"
-          className="w-full h-full object-cover"
+          src={headerImg}
+          alt="Veda Rakshna Nidhi Trust Header"
+          className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-background z-10" />
       </div>
 
       {/* Content */}
@@ -25,16 +25,16 @@ export function Hero() {
           className="max-w-4xl mx-auto space-y-6"
         >
           <div className="inline-block border-b-2 border-primary pb-1 mb-4">
-            <span className="font-sans text-sm md:text-base tracking-[0.2em] uppercase text-primary-foreground/90">
+            <span className="font-sans text-sm md:text-base tracking-[0.2em] uppercase text-white drop-shadow-md font-bold">
               {SITE_CONTENT.header.subtitle}
             </span>
           </div>
           
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-lg text-amber-50">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-2xl text-white">
             {SITE_CONTENT.hero.title}
           </h1>
           
-          <p className="font-serif text-lg md:text-2xl text-gray-200 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-serif text-lg md:text-2xl text-white max-w-2xl mx-auto leading-relaxed drop-shadow-lg font-medium">
             {SITE_CONTENT.hero.description}
           </p>
 
