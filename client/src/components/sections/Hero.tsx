@@ -1,24 +1,40 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import headerImg from "@assets/vrnt_1768670925029.jpg";
 import { SITE_CONTENT } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
 
 export function Hero() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
+    <section ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with reveal effect */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <motion.img
+          style={ { scale: imageScale } }
           src={headerImg}
           alt="Veda Rakshna Nidhi Trust Header"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-background z-10" />
+        <motion.div 
+          style={ { opacity } }
+          className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-background z-10" 
+        />
       </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-20 text-center text-white">
         <motion.div
+          style={ { y, opacity } }
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
