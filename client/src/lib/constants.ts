@@ -22,6 +22,18 @@ export const SITE_CONTENT = {
     title: "Trust Activities",
     description: "The Trust's main objective is the preservation of ancient Vedic education in its pristine purity. It assists institutions in establishing traditional Veda Patashalas in different regions of the country and renders financial assistance wherever needed."
   },
+  trustees: [
+    { name: "V JAYARAMAN", role: "TRUSTEE", contact: "044-24985051", email: "2020viayaraman@gmail.com", address: "FLAT NO.5, 95, LUZ CHURCH ROAD, MYLAPORE, CHENNAI-600 004" },
+    { name: "SANKARAN R", role: "TRUSTEE", contact: "9381044325", email: "r_sankaran12@hotmail.com", address: "3-A NARAYANA FLATS, NO.24, GOPALAKRISHNAN STREET, T NAGAR, CHENNAI-600 017" },
+    { name: "VISWANATHAN K", role: "TRUSTEE", contact: "9444158326", email: "MSV4041@yahoo.com", address: "FLAT NO B-3 KRISH APARTMENT, NO 77 THAMBIAH ROAD, WEST MAMBALAM, CHENNAI 600033" },
+    { name: "MAGANTY SATYANARAYANA MURTHY", role: "TRUSTEE", contact: "98493808377", email: "msmurthy@venkatramachemicals.com", address: "PLOT NO 18, APARNA ORCHIDS (NEAR NAC), KONDAPUR, HYDERABAD 500 084" },
+    { name: "SANKARANARAYANAN SWAMINATHAN", role: "TRUSTEE", contact: "9715770855", email: "2020sankaranarayanan@gmail.com", address: "NO 6/63 (679) WEST STREEET, MUDIKONDAN 609502" },
+    { name: "R RAMAKRISHNAN", role: "TRUSTEE", contact: "9844092056", email: "ram65.vidya@gmail.com", address: "86, 1 ST STAGE, GRUHALAKSHMI LAYOUT, BASAVESHWARA NAGAR, BANGALORE NORTH 560079" },
+    { name: "CHALLA VISWANATHA SASTRY", role: "SRIKARRYAM", contact: "9840720182", email: "srikaryamkanchi@gmail.com", address: "KAMATCHI AMMAN STREET, KANCHEEPURAM 631502" },
+    { name: "G VEERARAGHAVAN", role: "TREASURER/TRUSTEE", contact: "9444454732", email: "ganesanraghavan@yahoo.com", address: "FLAT A NO 85 ANUGRAKA APARTMENTS, P T RAJAN SALAI, K K NAGAR, CHENNAI 600078" },
+    { name: "S SWAMINATHAN", role: "EXECUTIVE TRUSTEE", contact: "9840189849", email: "swami.nathan6193@gmail.com", address: "1 A, ARJUN ENCLAVE, NEW NO 29, 6 TH CROSS STREET, TRUSTPURAM, KODAMBAKKAM, CHENNAI 600024" },
+    { name: "G Muralidharan", role: "TRUSTEE", contact: "9444550734", email: "", address: "No. 8, F3 - Srivadihyam, R A Puram 2nd Cross Street, R A Puram, Chennai - 600028" }
+  ],
   sage: {
     title: "MahaPeriyava",
     name: "His Holiness Sri Sri Chandrashekarendra Saraswati Swamiji",

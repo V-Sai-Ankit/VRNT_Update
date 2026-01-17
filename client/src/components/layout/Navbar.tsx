@@ -11,10 +11,11 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Mission", href: "#mission" },
-    { name: "Activities", href: "#activities" },
-    { name: "News", href: "#news" },
-    { name: "Contact", href: "#contact" },
+    { name: "Mission", href: "/#mission" },
+    { name: "Activities", href: "/#activities" },
+    { name: "Trustees", href: "/trustees" },
+    { name: "News", href: "/news" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
