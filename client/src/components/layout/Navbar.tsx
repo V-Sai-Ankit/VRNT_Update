@@ -3,6 +3,8 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { SITE_CONTENT } from "@/lib/constants";
+import acharyaImg from "@assets/acharya_1768671806078.jpg";
+import hhImg from "@assets/HH-Jayendra-Saraswathi-Swamiji_1768671806077.jpg";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,19 +20,31 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border/40 shadow-sm">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo / Title */}
-          <Link href="/" className="flex flex-col">
-            <h1 className="font-serif text-2xl md:text-3xl font-bold text-primary tracking-tight">
-              {SITE_CONTENT.header.title}
-            </h1>
-            <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest hidden md:block">
-              {SITE_CONTENT.header.subtitle}
-            </span>
+        <div className="flex items-center justify-between h-20 md:h-24">
+          {/* Logo / Title Area with Photos */}
+          <Link href="/" className="flex items-center gap-3 md:gap-6">
+            <img 
+              src={acharyaImg} 
+              alt="Acharya" 
+              className="h-12 w-12 md:h-16 md:w-16 rounded-full border-2 border-primary object-cover object-top"
+            />
+            <div className="flex flex-col text-center md:text-left">
+              <h1 className="font-serif text-lg md:text-2xl lg:text-3xl font-bold text-primary tracking-tight leading-tight">
+                {SITE_CONTENT.header.title}
+              </h1>
+              <span className="text-[8px] md:text-[10px] text-muted-foreground uppercase tracking-widest hidden sm:block">
+                {SITE_CONTENT.header.subtitle}
+              </span>
+            </div>
+            <img 
+              src={hhImg} 
+              alt="HH Jayendra Saraswathi" 
+              className="h-12 w-12 md:h-16 md:w-16 rounded-full border-2 border-primary object-cover object-top"
+            />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden lg:flex space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -43,7 +57,7 @@ export function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground focus:outline-none"
@@ -60,7 +74,7 @@ export function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-background border-b border-border"
+          className="lg:hidden bg-background border-b border-border"
         >
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             {navLinks.map((link) => (
