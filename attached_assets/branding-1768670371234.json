@@ -1,0 +1,106 @@
+{
+  "colorScheme": "dark",
+  "fonts": [
+    {
+      "family": "sans-serif",
+      "count": 54
+    },
+    {
+      "family": "Arial",
+      "count": 53
+    },
+    {
+      "family": "Helvetica",
+      "count": 53
+    },
+    {
+      "family": "Helvetica Neue",
+      "count": 3
+    },
+    {
+      "family": "Lucida Grande",
+      "count": 1
+    },
+    {
+      "family": "Lucida Sans Unicode",
+      "count": 1
+    },
+    {
+      "family": "Lucida Sans",
+      "count": 1
+    },
+    {
+      "family": "Geneva",
+      "count": 1
+    },
+    {
+      "family": "Verdana",
+      "count": 1
+    }
+  ],
+  "colors": {
+    "primary": "#2F1A1A",
+    "accent": "#7FBF4D",
+    "background": "#CED6DA",
+    "textPrimary": "#333333",
+    "link": "#7FBF4D"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Arial",
+      "heading": "Arial"
+    },
+    "fontStacks": {
+      "body": [
+        "Arial",
+        "Helvetica",
+        "sans-serif"
+      ],
+      "heading": [
+        "Arial",
+        "Helvetica",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Arial",
+        "Helvetica",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "24px",
+      "h2": "18px",
+      "body": "12px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 10,
+    "borderRadius": "2px"
+  },
+  "components": {
+    "input": {
+      "background": "#FFFFFF",
+      "textColor": "#000000",
+      "borderColor": "#DFDFDF",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": null,
+    "favicon": null,
+    "ogImage": null
+  },
+  "__framework_hints": [],
+  "confidence": {
+    "buttons": 0,
+    "colors": 0,
+    "overall": 0
+  }
+}
