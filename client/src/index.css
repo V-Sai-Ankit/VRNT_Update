@@ -46,41 +46,41 @@
 }
 
 :root {
-  /* Warm Cream / Parchment Background */
-  --background: 40 30% 96%;
+  /* Warm Gold / Parchment Background */
+  --background: 45 40% 92%;
   /* Dark Brown Text for readability */
-  --foreground: 25 20% 20%;
+  --foreground: 25 20% 15%;
 
-  /* White Card Background */
-  --card: 40 30% 98%;
-  --card-foreground: 25 20% 20%;
+  /* Golden Card Background */
+  --card: 45 35% 96%;
+  --card-foreground: 25 20% 15%;
 
-  --popover: 40 30% 98%;
-  --popover-foreground: 25 20% 20%;
+  --popover: 45 35% 96%;
+  --popover-foreground: 25 20% 15%;
 
   /* Saffron / Ochre Primary */
-  --primary: 30 80% 55%; 
+  --primary: 38 85% 50%; 
   /* White on Saffron */
-  --primary-foreground: 40 30% 98%;
+  --primary-foreground: 45 40% 98%;
 
   /* Deep Earthy Red Secondary */
-  --secondary: 10 50% 45%;
-  --secondary-foreground: 40 30% 98%;
+  --secondary: 15 60% 35%;
+  --secondary-foreground: 45 40% 98%;
 
-  /* Muted Sand/Beige */
-  --muted: 35 30% 90%;
-  --muted-foreground: 25 10% 45%;
+  /* Muted Gold/Sand */
+  --muted: 45 30% 85%;
+  --muted-foreground: 25 10% 40%;
 
-  /* Golden/Bronze Accent */
-  --accent: 35 60% 75%;
-  --accent-foreground: 25 20% 20%;
+  /* Bright Gold Accent */
+  --accent: 48 70% 80%;
+  --accent-foreground: 25 20% 15%;
 
-  --destructive: 0 60% 45%;
+  --destructive: 0 70% 40%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 30 20% 85%;
-  --input: 30 20% 85%;
-  --ring: 30 80% 55%;
+  --border: 45 25% 80%;
+  --input: 45 25% 80%;
+  --ring: 38 85% 50%;
 }
 
 .dark {
