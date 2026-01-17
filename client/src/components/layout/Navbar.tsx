@@ -15,6 +15,7 @@ export function Navbar() {
     { name: "Activities", href: "/#activities" },
     { name: "Trustees", href: "/trustees" },
     { name: "News", href: "/news" },
+    { name: "Donate", href: "/donate" },
     { name: "Contact", href: "/contact" },
   ];
 

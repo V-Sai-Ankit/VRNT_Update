@@ -34,6 +34,62 @@ export const SITE_CONTENT = {
     { name: "S SWAMINATHAN", role: "EXECUTIVE TRUSTEE", contact: "9840189849", email: "swami.nathan6193@gmail.com", address: "1 A, ARJUN ENCLAVE, NEW NO 29, 6 TH CROSS STREET, TRUSTPURAM, KODAMBAKKAM, CHENNAI 600024" },
     { name: "G Muralidharan", role: "TRUSTEE", contact: "9444550734", email: "", address: "No. 8, F3 - Srivadihyam, R A Puram 2nd Cross Street, R A Puram, Chennai - 600028" }
   ],
+  supportSchemes: [
+    {
+      title: "Hereditary Niyama Adhyana Vidyarthies (HNY)",
+      description: "A unique scheme for lifelong honorarium and monthly stipends for Vedic scholars.",
+      contribution: "Rs. 5,000 / month or Corpus Rs. 8 Lakhs"
+    },
+    {
+      title: "Sponsorship of Veda Patasalas",
+      description: "Sponsorship of Veda Patasalas in villages and semi urban locations.",
+      contribution: "Rs. 60,000 / month OR Rs. 7.20 lakhs / year"
+    },
+    {
+      title: "Vedic Awards – Parithoshikam scheme",
+      description: "Cash awards for best performing Vidyarthi and teacher on Vijayadasami day.",
+      contribution: "Rs. 10,00,000 (corpus)"
+    },
+    {
+      title: "Veda Vidyarti Sponsorship Scheme (VVSS)",
+      description: "To fund vedic education of a vidyarthi across various states.",
+      contribution: "Rs. 5,000 / month OR Rs. 60,000 / annum OR Corpus Rs. 8 Lakhs"
+    },
+    {
+      title: "Sukla Panchami Veda Sadas of HNY",
+      description: "Conducting Veda sadas at Tirupati, Vijayawada and Secunderabad.",
+      contribution: "Rs. 20,000 / month OR Rs. 2,40,000 / annum"
+    },
+    {
+      title: "Yearly janma nakshatra donation scheme (YJNDS)",
+      description: "Donation on star birthday/Date of birth. Prasadam will be sent to donors.",
+      contribution: "Rs. 1,116 every year"
+    },
+    {
+      title: "Monthly Veda Parayanam at Kanchi Mutt",
+      description: "Chatur veda parayanam at Kanchi Mutt premises on specific star days.",
+      contribution: "Rs 12,500 / month OR Rs. 1,50,000 / annum"
+    },
+    {
+      title: "One time contribution to Veda Rakshanam",
+      description: "Generic contribution for trust activities.",
+      contribution: "Rs. 5,000"
+    }
+  ],
+  bankDetails: [
+    {
+      bank: "BANK OF BARODA",
+      branch: "WEST MAMBALAM BRANCH, CHENNAI",
+      account: "05320100002089",
+      ifsc: "BARB0CHENBS"
+    },
+    {
+      bank: "INDIAN BANK",
+      branch: "WEST MAMBALAM BRANCH, CHENNAI",
+      account: "418622532",
+      ifsc: "IDIB000W005"
+    }
+  ],
   sage: {
     title: "MahaPeriyava",
     name: "His Holiness Sri Sri Chandrashekarendra Saraswati Swamiji",

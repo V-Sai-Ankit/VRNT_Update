@@ -8,6 +8,7 @@ import NewsPage from "./pages/news";
 import NewsDetailPage from "./pages/news-detail";
 import TrusteesPage from "./pages/trustees";
 import ContactPage from "./pages/contact";
+import DonatePage from "./pages/donate";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/news/:id" component={NewsDetailPage} />
       <Route path="/trustees" component={TrusteesPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/donate" component={DonatePage} />
       <Route component={NotFound} />
     </Switch>
   );
