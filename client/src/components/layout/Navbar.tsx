@@ -57,7 +57,7 @@ export function Navbar() {
                 {SITE_CONTENT.header.title}
               </h1>
               <span className="text-[8px] md:text-[10px] text-muted-foreground font-medium uppercase tracking-wider hidden sm:block">
-                (A unit of Moolamnaya Sarvajna Shri Kanchi Kamakoti Peetham)
+                (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)
               </span>
               <span className="text-[7px] md:text-[8px] text-muted-foreground uppercase tracking-widest hidden sm:block">
                 {SITE_CONTENT.header.subtitle}
