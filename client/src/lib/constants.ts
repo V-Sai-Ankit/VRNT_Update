@@ -6,7 +6,7 @@ export const SITE_CONTENT = {
     patronage: "Run under the guidance of The Jagadguru Shankaracharyas of Moolamnaya Sarvajna Shri Kanchi Kamakoti Peetham"
   },
   hero: {
-    title: "preservingTheEternalVedaDharma",
+    title: "Preserving The Eternal\nVeda Dharma",
     description: "The Vedas form the bedrock of Bharatiya Culture and Civilization. They are ANAADHI (timeless) and APAOURESHYA (divine). The Trust's mission is to protect and preserve this holy heritage.",
     cta: "Contribute Now"
   },
