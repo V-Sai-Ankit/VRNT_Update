@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { SITE_CONTENT } from "@/lib/constants";
 import { HandHeart, Building2 } from "lucide-react";
@@ -54,10 +55,12 @@ export function Activities() {
               {SITE_CONTENT.activities.description}
             </p>
             <div className="mt-8">
-              <button className="text-primary font-bold uppercase tracking-widest text-sm hover:text-secondary transition-colors flex items-center gap-2 group">
-                Support Our Activities
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </button>
+              <Link href="/donate">
+                <a className="text-primary font-bold uppercase tracking-widest text-sm hover:text-secondary transition-colors flex items-center gap-2 group cursor-pointer">
+                  Support Our Activities
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </Link>
             </div>
           </motion.div>
 

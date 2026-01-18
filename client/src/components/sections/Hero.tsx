@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { motion, useScroll, useTransform } from "framer-motion";
 import headerImg from "@assets/vrnt_1768670925029.jpg";
 import { SITE_CONTENT } from "@/lib/constants";
@@ -55,10 +56,12 @@ export function Hero() {
           </p>
 
           <div className="pt-8">
-            <button className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-sans font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-primary/20 flex items-center gap-2 mx-auto">
-              {SITE_CONTENT.hero.cta}
-              <ArrowRight size={20} />
-            </button>
+            <Link href="/donate">
+              <a className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-sans font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-primary/20 flex items-center gap-2 mx-auto w-fit cursor-pointer">
+                {SITE_CONTENT.hero.cta}
+                <ArrowRight size={20} />
+              </a>
+            </Link>
           </div>
         </motion.div>
       </div>
