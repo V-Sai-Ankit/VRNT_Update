@@ -32,7 +32,7 @@ export default function DonatePage() {
                   <Heart className="text-primary" /> Support Schemes
                 </h3>
                 <div className="grid gap-4">
-                  {SITE_CONTENT.supportSchemes?.map((scheme: any, index: number) => (
+                  {(SITE_CONTENT.supportSchemes || []).map((scheme: any, index: number) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
@@ -78,7 +78,7 @@ export default function DonatePage() {
                     <CreditCard className="text-secondary" /> Bank Details
                   </h3>
                   <div className="space-y-6">
-                    {SITE_CONTENT.bankDetails?.map((bank: any, index: number) => (
+                    {(SITE_CONTENT.bankDetails || []).map((bank: any, index: number) => (
                       <div key={index} className="space-y-2 pb-6 border-b border-border last:border-0 last:pb-0">
                         <p className="font-bold text-sm text-foreground">{bank.bank}</p>
                         <p className="text-xs text-muted-foreground uppercase">{bank.branch}</p>
