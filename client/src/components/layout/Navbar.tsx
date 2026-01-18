@@ -33,13 +33,12 @@ export function Navbar() {
         <div className="flex flex-col items-center py-4 gap-2 md:gap-4">
           {/* Photos and Title Row */}
           <div className="flex flex-col md:flex-row items-center justify-between w-full py-1 gap-2 md:gap-4">
-            {/* Left Chants - Desktop Only */}
-            <div className="hidden xl:flex flex-col items-start justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-1 min-w-[120px]">
-              <span>Jaya Jaya Shankara!</span>
-              <span>Hara Hara Shankara!</span>
-            </div>
-
             <div className="flex items-center gap-2 md:gap-3 order-2 md:order-1">
+              {/* Left Chants - Desktop Only */}
+              <div className="hidden xl:flex flex-col items-end justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[120px] mr-2">
+                <span>Jaya Jaya Shankara!</span>
+                <span>Hara Hara Shankara!</span>
+              </div>
               <Link href="/" className="shrink-0">
                 <img 
                   src={gopuramImg} 
@@ -94,12 +93,11 @@ export function Navbar() {
                   className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
-            </div>
-
-            {/* Right Chants - Desktop Only */}
-            <div className="hidden xl:flex flex-col items-end justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-1 min-w-[120px]">
-              <span>Kanchi Shankara!</span>
-              <span>Kamakoti Shankara!</span>
+              {/* Right Chants - Desktop Only */}
+              <div className="hidden xl:flex flex-col items-start justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[120px] ml-2">
+                <span>Kanchi Shankara!</span>
+                <span>Kamakoti Shankara!</span>
+              </div>
             </div>
           </div>
 
