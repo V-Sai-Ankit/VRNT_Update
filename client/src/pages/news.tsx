@@ -23,7 +23,7 @@ export default function NewsPage() {
               Updates & Announcements
             </h1>
             <p className="text-lg text-muted-foreground font-serif mt-8 mb-12 italic">
-              Latest circulars, examination results, and trust activities from Veda Rakshna Nidhi Trust.
+              Latest circulars, examination results, and trust activities from Veda Rakshana Nidhi Trust.
             </p>
 
             <div className="grid gap-6">

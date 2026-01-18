@@ -15,7 +15,7 @@ export default function TrusteesPage() {
               List of Trustees
             </h1>
             <p className="text-lg text-muted-foreground font-serif mt-8 mb-12 italic">
-              Dedicated individuals overseeing the mission of Veda Rakshna Nidhi Trust.
+              Dedicated individuals overseeing the mission of Veda Rakshana Nidhi Trust.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">

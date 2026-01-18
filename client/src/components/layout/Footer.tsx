@@ -42,7 +42,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-secondary-foreground/60">
-          <p>&copy; {new Date().getFullYear()} Veda Rakshna Nidhi Trust. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Veda Rakshana Nidhi Trust. All rights reserved.</p>
           <p>Designed with respect to Tradition.</p>
         </div>
       </div>

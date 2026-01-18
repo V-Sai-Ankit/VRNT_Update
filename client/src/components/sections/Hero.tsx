@@ -23,7 +23,7 @@ export function Hero() {
         <motion.img
           style={ { scale: imageScale } }
           src={headerImg}
-          alt="Veda Rakshna Nidhi Trust Header"
+          alt="Veda Rakshana Nidhi Trust Header"
           className="w-full h-full object-cover object-center"
         />
         <motion.div 
