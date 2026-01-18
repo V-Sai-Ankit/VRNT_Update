@@ -48,17 +48,17 @@ export function Hero() {
           </div>
           
           <h1 className="font-sans text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white] uppercase">
-            {SITE_CONTENT.hero.title}
+            {SITE_CONTENT.hero?.title}
           </h1>
           
           <p className="font-serif text-lg md:text-2xl text-white max-w-2xl mx-auto leading-relaxed drop-shadow-lg font-medium">
-            {SITE_CONTENT.hero.description}
+            {SITE_CONTENT.hero?.description}
           </p>
 
           <div className="pt-8">
             <Link href="/donate">
               <a className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-sans font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-primary/20 flex items-center gap-2 mx-auto w-fit cursor-pointer">
-                {SITE_CONTENT.hero.cta}
+                {SITE_CONTENT.hero?.cta}
                 <ArrowRight size={20} />
               </a>
             </Link>
