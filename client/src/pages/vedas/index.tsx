@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Book, Shield, Scroll } from "lucide-react";
 import { Link } from "wouter";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import {
   Accordion,
   AccordionContent,
@@ -70,47 +72,51 @@ export default function VedasPage() {
   ];
 
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-muted/30">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-16">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4">The Holy Vedas</h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Explore the timeless wisdom and the sacred mission of preserving the eternal Vedic heritage.
-          </p>
-          <div className="w-24 h-1 bg-primary mx-auto mt-6"></div>
-        </div>
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <Navbar />
+      <main className="pt-32 pb-24 bg-muted/30 min-h-[calc(100vh-80px)]">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-16">
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4">The Holy Vedas</h1>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Explore the timeless wisdom and the sacred mission of preserving the eternal Vedic heritage.
+            </p>
+            <div className="w-24 h-1 bg-primary mx-auto mt-6"></div>
+          </div>
 
-        <Accordion type="single" collapsible className="space-y-4">
-          {sections.map((section) => (
-            <AccordionItem 
-              key={section.id} 
-              value={section.id}
-              className="bg-card border rounded-xl px-6 shadow-sm overflow-hidden"
-            >
-              <AccordionTrigger className="hover:no-underline py-6">
-                <div className="flex items-center gap-4 text-left">
-                  <div className={`p-3 rounded-full bg-muted ${section.color}`}>
-                    <section.icon size={24} />
+          <Accordion type="single" collapsible className="space-y-4">
+            {sections.map((section) => (
+              <AccordionItem 
+                key={section.id} 
+                value={section.id}
+                className="bg-card border rounded-xl px-6 shadow-sm overflow-hidden"
+              >
+                <AccordionTrigger className="hover:no-underline py-6">
+                  <div className="flex items-center gap-4 text-left">
+                    <div className={`p-3 rounded-full bg-muted ${section.color}`}>
+                      <section.icon size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl font-bold text-foreground">{section.title}</h3>
+                      <p className="text-sm text-muted-foreground font-normal line-clamp-1">{section.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-display text-xl font-bold text-foreground">{section.title}</h3>
-                    <p className="text-sm text-muted-foreground font-normal line-clamp-1">{section.description}</p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="pb-6">
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {section.content}
-                </motion.div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
+                </AccordionTrigger>
+                <AccordionContent className="pb-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {section.content}
+                  </motion.div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
