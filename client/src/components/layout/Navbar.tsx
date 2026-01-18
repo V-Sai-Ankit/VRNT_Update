@@ -60,21 +60,21 @@ export function Navbar() {
               <img 
                 src={hhImg} 
                 alt="HH Jayendra Saraswathi" 
-                className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top"
+                className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top scale-125"
               />
             </Link>
             <Link href="/">
               <img 
                 src={seventyImg} 
                 alt="70th Shankaracharya" 
-                className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top"
+                className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top scale-125"
               />
             </Link>
             <Link href="/">
               <img 
                 src={seventyOneImg} 
                 alt="71st Shankaracharya" 
-                className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top"
+                className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top scale-125"
               />
             </Link>
           </div>
