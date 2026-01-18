@@ -1,12 +1,12 @@
 export const SITE_CONTENT = {
   header: {
-    title: "Veda Rakshna Nidhi Trust",
+    title: "Veda Rakshana Nidhi Trust",
     subtitle: "SRI GURUBYO NAMAHA. SRI VEDA VYASA NAMAHA.",
     address: "64/31, Subramaniam Street, West Mambalam, Chennai - 600 033",
     patronage: "Run under the guidance of The Jagadguru Shankaracharyas of Moolamnaya Sarvajna Shri Kanchi Kamakoti Peetham"
   },
   hero: {
-    title: "Preserving the Eternal Veda Dharma",
+    title: "Preserving The Eternal\nVeda Dharma",
     description: "The Vedas form the bedrock of Bharatiya Culture and Civilization. They are ANAADHI (timeless) and APAOURESHYA (divine). The Trust's mission is to protect and preserve this holy heritage.",
     cta: "Contribute Now"
   },
@@ -94,9 +94,11 @@ export const SITE_CONTENT = {
     }
   ],
   sage: {
-    title: "MahaPeriyava",
-    name: "His Holiness Sri Sri Chandrashekarendra Saraswati Swamiji",
-    description: "Popularly known as 'Sage of Kanchi' or 'Kanchi Paramacharyal', His Holiness found that the number of those dedicating themselves to the study of Vedas had diminished due to an uncertain future. He made it His Life's mission to draw the attention of society to this situation and founded the VEDA RAKSHANA NIDHI TRUST."
+    title: "Founder",
+    subtitle: "Kanchi Shankaracharya: MahaPeriyava",
+    name: "His Holiness Sri Sri Chandrashekarendra Saraswati Mahaswamiji",
+    designation: "The 68th Jagadguru Shankaracharya of Moolamnaya Sarvajna Shri Kanchi Kamakoti Peetham",
+    description: "Popularly known as 'Sage of Kanchi' or 'Kanchi Paramacharyal', His Holiness found that the number of those dedicating themselves to the study of Vedas had diminished due to an uncertain future. He made it His Life's mission to draw the attention of society to this situation and founded the VEDA RAKSHANA NIDHI TRUST (VRNT)."
   },
   news: [
     { title: "60th Year Celebration", link: "#" },

@@ -13,7 +13,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Mission />
         <Activities />
         <SageSection />
       </main>

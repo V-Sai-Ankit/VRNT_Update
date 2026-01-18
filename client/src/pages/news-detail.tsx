@@ -39,7 +39,7 @@ export default function NewsDetailPage() {
 
             <div className="prose prose-stone prose-lg max-w-none text-muted-foreground font-serif leading-relaxed mb-12">
               <p>
-                This official circular from Veda Rakshna Nidhi Trust details the upcoming {newsItem.title}. 
+                This official circular from Veda Rakshana Nidhi Trust details the upcoming {newsItem.title}. 
                 The Trust continues its mission of preserving Vedic education through regular examinations and recognition functions.
               </p>
               <p>

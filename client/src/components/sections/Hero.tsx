@@ -12,19 +12,19 @@ export function Hero() {
     offset: ["start start", "end start"]
   });
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.1, 1.3]);
+  const imageScale = 1;
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
     <section ref={containerRef} className="relative h-screen flex items-start justify-center overflow-hidden">
       {/* Background Image with reveal effect */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden pt-8">
         <motion.img
           style={ { scale: imageScale } }
           src={headerImg}
-          alt="Veda Rakshna Nidhi Trust Header"
-          className="w-full h-full object-cover object-center"
+          alt="Veda Rakshana Nidhi Trust Header"
+          className="w-full h-full object-cover object-top"
         />
         <motion.div 
           style={ { opacity } }
@@ -33,7 +33,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-32 md:pt-40">
+      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-[6.5rem] md:pt-[10.5rem]">
         <motion.div
           style={ { y, opacity } }
           initial={{ opacity: 0, y: 30 }}
@@ -47,7 +47,7 @@ export function Hero() {
             </span>
           </div>
           
-          <h1 className="font-sans text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white] uppercase">
+          <h1 className="font-sans text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white] whitespace-pre-line">
             {SITE_CONTENT.hero?.title}
           </h1>
           

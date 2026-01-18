@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
+import MissionPage from "./pages/mission";
 import NewsPage from "./pages/news";
 import NewsDetailPage from "./pages/news-detail";
 import TrusteesPage from "./pages/trustees";
@@ -15,12 +16,14 @@ import VedaRakshanam from "./pages/vedas/Rakshanam";
 import VedaVyasa from "./pages/vedas/Vyasa";
 import VedasPage from "./pages/vedas/index";
 import ParikshaPage from "./pages/pariksha";
+import SixtyYearsPage from "./pages/celebrations/sixty-years";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/mission" component={MissionPage} />
       <Route path="/news" component={NewsPage} />
       <Route path="/news/:id" component={NewsDetailPage} />
       <Route path="/trustees" component={TrusteesPage} />
@@ -32,6 +35,7 @@ function Router() {
       <Route path="/vedas/rakshanam" component={VedaRakshanam} />
       <Route path="/vedas/vyasa" component={VedaVyasa} />
       <Route path="/pariksha" component={ParikshaPage} />
+      <Route path="/celebrations/60-years" component={SixtyYearsPage} />
       <Route component={NotFound} />
     </Switch>
   );
