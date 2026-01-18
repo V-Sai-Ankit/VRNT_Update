@@ -107,7 +107,7 @@ export default function DonatePage() {
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
                 80G benefits are available for your contributions. For online contributions, kindly send an e-mail to <strong>office@vrnt.org</strong> with the details of the transfer to enable us to send receipts.
               </p>
-              <div className="flex flex-wrap justify-center gap-4 text-sm font-bold uppercase tracking-widest">
+              <div className="flex flex-wrap justify-center gap-4 text-sm font-bold tracking-widest">
                 <span className="bg-card px-4 py-2 rounded-full border border-border">80G Tax Benefits</span>
                 <span className="bg-card px-4 py-2 rounded-full border border-border">Secure Transfer</span>
                 <span className="bg-card px-4 py-2 rounded-full border border-border">Digital Receipts</span>
