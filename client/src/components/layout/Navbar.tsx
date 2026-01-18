@@ -66,11 +66,11 @@ export function Navbar() {
             </Link>
 
             <div className="flex items-center gap-1 md:gap-2">
-              <Link href="/" className="shrink-0">
+              <Link href="/" className="shrink-0 overflow-hidden rounded-full border border-primary/50 h-9 w-9 md:h-14 md:w-14">
                 <img 
                   src={hhImg} 
                   alt="HH Jayendra Saraswathi" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.7] md:scale-[2.0] [object-position:center_25%]"
+                  className="h-full w-full object-cover scale-[2.2] [object-position:center_25%] bg-background"
                 />
               </Link>
               <Link href="/" className="shrink-0">
