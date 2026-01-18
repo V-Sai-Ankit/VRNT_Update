@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button";
 import poorthiForm from "@assets/forms/POORTHY_APPL_2024.pdf";
 import varshikaForm from "@assets/forms/VARSHIKA_FORM.pdf";
+import resultsDoc from "@assets/forms/EXAMINATION_RESULTS.pdf";
 
 export default function ParikshaPage() {
   const forms = [
@@ -29,9 +30,9 @@ export default function ParikshaPage() {
       title: "Examination Results",
       description: "View and download the latest examination results.",
       icon: FileDown,
-      link: "#",
-      buttonText: "Coming Soon",
-      disabled: true
+      link: resultsDoc,
+      filename: "EXAMINATION_RESULTS.pdf",
+      buttonText: "Download Results"
     }
   ];
 
