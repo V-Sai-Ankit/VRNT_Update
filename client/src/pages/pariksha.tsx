@@ -1,25 +1,28 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FileDown, GraduationCap, ClipboardCheck } from "lucide-react";
+import { FileDown, GraduationCap, ClipboardCheck, X, Eye } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function ParikshaPage() {
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+
   const forms = [
     {
       title: "Poorthi Pariksha Application",
       description: "Application form for the final completion examination (2024).",
       icon: GraduationCap,
       link: "https://vrnt.org/form/POORTHY_APPL_2024.pdf",
-      buttonText: "Download Poorthi Form"
+      buttonText: "View / Download Poorthi Form"
     },
     {
       title: "Varshika Pariksha Form",
       description: "Annual examination form for Vedic students.",
       icon: ClipboardCheck,
       link: "https://vrnt.org/form/VARSHIKA_FORM.pdf",
-      buttonText: "Download Varshika Form"
+      buttonText: "View / Download Varshika Form"
     },
     {
       title: "Examination Results",
@@ -41,7 +44,7 @@ export default function ParikshaPage() {
               Pariksha (Examinations)
             </h1>
             <p className="text-lg text-muted-foreground font-serif mt-8 max-w-2xl mx-auto italic">
-              Download application forms and view results for Vedic examinations conducted by the Trust.
+              View application forms directly or download them for Vedic examinations conducted by the Trust.
             </p>
           </div>
 
@@ -65,15 +68,15 @@ export default function ParikshaPage() {
                     <Button 
                       className="w-full gap-2 font-bold uppercase tracking-wider text-xs"
                       disabled={form.disabled}
-                      asChild={!form.disabled}
+                      onClick={() => !form.disabled && setSelectedPdf(form.link)}
                     >
                       {form.disabled ? (
                         <span>{form.buttonText}</span>
                       ) : (
-                        <a href={form.link} target="_blank" rel="noopener noreferrer">
-                          <FileDown size={18} />
+                        <>
+                          <Eye size={18} />
                           {form.buttonText}
-                        </a>
+                        </>
                       )}
                     </Button>
                   </CardContent>
@@ -81,6 +84,40 @@ export default function ParikshaPage() {
               </motion.div>
             ))}
           </div>
+
+          <AnimatePresence>
+            {selectedPdf && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 md:p-10"
+              >
+                <div className="relative w-full h-full max-w-5xl bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+                  <div className="flex items-center justify-between p-4 border-b bg-card">
+                    <h3 className="font-display font-bold text-lg">Form Viewer</h3>
+                    <div className="flex gap-2">
+                      <Button variant="outline" size="sm" asChild>
+                        <a href={selectedPdf} download target="_blank" rel="noopener noreferrer">
+                          <FileDown size={18} className="mr-2" /> Download
+                        </a>
+                      </Button>
+                      <Button variant="ghost" size="icon" onClick={() => setSelectedPdf(null)}>
+                        <X size={24} />
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="flex-1 bg-muted">
+                    <iframe
+                      src={`${selectedPdf}#toolbar=0`}
+                      className="w-full h-full border-none"
+                      title="PDF Viewer"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <div className="mt-16 bg-card border rounded-2xl p-8 shadow-sm">
             <h3 className="font-display text-2xl font-bold mb-4 flex items-center gap-2">
