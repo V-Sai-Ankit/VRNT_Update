@@ -29,22 +29,22 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center py-4 gap-4">
           {/* Photos and Title Row */}
-          <div className="flex items-center justify-center gap-4 md:gap-8 w-full">
-            <Link href="/">
+          <div className="flex items-center justify-center gap-4 md:gap-8 w-full overflow-x-auto py-2 no-scrollbar">
+            <Link href="/" className="shrink-0">
               <img 
                 src={gopuramImg} 
                 alt="Shrimatam Gopuram" 
                 className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover scale-[1.5]"
               />
             </Link>
-            <Link href="/">
+            <Link href="/" className="shrink-0">
               <img 
                 src={asImg} 
                 alt="Adi Shankara" 
                 className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover scale-[1.5]"
               />
             </Link>
-            <Link href="/">
+            <Link href="/" className="shrink-0">
               <img 
                 src={acharyaImg} 
                 alt="Acharya" 
@@ -52,8 +52,8 @@ export function Navbar() {
               />
             </Link>
 
-            <Link href="/" className="flex flex-col items-center text-center px-4">
-              <h1 className="font-serif text-lg md:text-xl lg:text-2xl font-bold text-primary tracking-tight leading-tight">
+            <Link href="/" className="flex flex-col items-center text-center px-4 shrink-0">
+              <h1 className="font-serif text-lg md:text-xl lg:text-2xl font-bold text-primary tracking-tight leading-tight whitespace-nowrap">
                 {SITE_CONTENT.header.title}
               </h1>
               <span className="text-[8px] md:text-[10px] text-muted-foreground font-medium uppercase tracking-wider hidden sm:block">
@@ -64,21 +64,21 @@ export function Navbar() {
               </span>
             </Link>
 
-            <Link href="/">
+            <Link href="/" className="shrink-0">
               <img 
                 src={hhImg} 
                 alt="HH Jayendra Saraswathi" 
                 className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top scale-[1.5]"
               />
             </Link>
-            <Link href="/">
+            <Link href="/" className="shrink-0">
               <img 
                 src={seventyImg} 
                 alt="70th Shankaracharya" 
                 className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top scale-[1.5]"
               />
             </Link>
-            <Link href="/">
+            <Link href="/" className="shrink-0">
               <img 
                 src={seventyOneImg} 
                 alt="71st Shankaracharya" 
