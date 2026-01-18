@@ -10,6 +10,7 @@ import seventyImg from "@assets/70_1768738842434.jpg";
 import seventyOneImg from "@assets/71_1768738842433.webp";
 import gopuramImg from "@assets/Shrimatam_Gopuram_1768739079397.webp";
 import mahaPeriyavaImg from "@assets/kanchi-maha-periyava_8fb06457-0992-4c44-8818-62d49dd13efc_800_1768741594540.webp";
+import hhJayendraImg from "@assets/1374748101_jayendra_saraswati_swamigal_1768742042462.jpg";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +69,7 @@ export function Navbar() {
             <div className="flex items-center gap-1 md:gap-2">
               <Link href="/" className="shrink-0">
                 <img 
-                  src={hhImg} 
+                  src={hhJayendraImg} 
                   alt="HH Jayendra Saraswathi" 
                   className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
