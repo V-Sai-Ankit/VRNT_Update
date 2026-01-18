@@ -48,7 +48,8 @@ export function Hero() {
           </div>
           
           <h1 className="font-sans text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white] uppercase">
-            {SITE_CONTENT.hero?.title}
+            Preserving the Eternal<br />
+            Veda Dharma
           </h1>
           
           <p className="font-serif text-lg md:text-2xl text-white max-w-2xl mx-auto leading-relaxed drop-shadow-lg font-medium">
