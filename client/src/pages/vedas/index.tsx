@@ -79,7 +79,7 @@ export default function VedasPage() {
           <div className="text-center mb-16">
             <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4">The Holy Vedas</h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Explore the timeless wisdom and the sacred mission of preserving the eternal Vedic heritage.
+              Explore the timeless wisdom and the sacred mission of  preserving the eternal  Vedic heritage.
             </p>
             <div className="w-24 h-1 bg-primary mx-auto mt-6"></div>
           </div>
