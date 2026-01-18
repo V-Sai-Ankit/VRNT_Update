@@ -5,7 +5,7 @@ import { SITE_CONTENT } from "@/lib/constants";
 import { Mail, Phone, MapPin, UserCheck, Briefcase } from "lucide-react";
 
 export default function ContactPage() {
-  const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.852573215165!2d80.2229567750777!3d13.044155187278216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52665400000001%3A0xe744e45e9a4f6d4!2sVeda%20Rakshana%20Nidhi%20Trust!5e0!3m2!1sen!2sin!4v1715694850000!5m2!1sen!2sin";
+  const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.850383745237!2d80.22295677507772!3d13.04429388727806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526654019a97d9%3A0xe744e45e9a4f6d4!2sVeda%20Rakshana%20Nidhi%20Trust!5e0!3m2!1sen!2sin!4v1715694850000!5m2!1sen!2sin";
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
