@@ -7,11 +7,11 @@ export const SITE_CONTENT = {
   },
   hero: {
     title: "Preserving the Eternal Veda Dharma",
-    description: "The Vedas form the bedrock of Bharatiya Culture and Civilization. They are ANAADHI (timeless) and APAOURSHEYA (divine).",
-    cta: "Support Our Mission"
+    description: "The Vedas form the bedrock of Bharatiya Culture and Civilization. They are ANAADHI (timeless) and APAOURESHYA (divine). The Trust's mission is to protect and preserve this holy heritage.",
+    cta: "Contribute Now"
   },
   mission: {
-    title: "Our Mission",
+    title: "Our Mission & Vision",
     points: [
       "To strive every nerve to protect and preserve our holy Vedic heritage and pass it on to posterity.",
       "To protect and preserve the age-old tradition of Vedic Adhyayanam (study)."
