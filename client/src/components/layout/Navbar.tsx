@@ -16,7 +16,6 @@ export function Navbar() {
     { name: "Vedas", href: "/vedas" },
     { name: "Pariksha", href: "/pariksha" },
     { name: "Trustees", href: "/trustees" },
-    { name: "News", href: "/news" },
     { name: "Donate", href: "/donate" },
     { name: "Contact", href: "/contact" },
   ];
