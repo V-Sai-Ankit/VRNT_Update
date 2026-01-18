@@ -19,7 +19,7 @@ export default function TrusteesPage() {
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">
-              {SITE_CONTENT.trustees?.map((trustee: any, index: number) => (
+              {(SITE_CONTENT.trustees || []).map((trustee: any, index: number) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
