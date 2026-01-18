@@ -35,9 +35,8 @@ export function Navbar() {
           <div className="flex flex-col md:flex-row items-center justify-between w-full py-1 gap-2 md:gap-4">
             <div className="flex items-center gap-2 md:gap-3 order-2 md:order-1">
               {/* Left Chants - Desktop Only */}
-              <div className="hidden xl:flex flex-col items-end justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[120px] mr-2">
-                <span>Jaya Jaya Shankara!</span>
-                <span>Hara Hara Shankara!</span>
+              <div className="hidden xl:flex flex-col items-end justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[150px] mr-2">
+                <span className="whitespace-nowrap">Jaya Jaya Shankara! Hara Hara Shankara!</span>
               </div>
               <Link href="/" className="shrink-0">
                 <img 
@@ -94,9 +93,8 @@ export function Navbar() {
                 />
               </Link>
               {/* Right Chants - Desktop Only */}
-              <div className="hidden xl:flex flex-col items-start justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[120px] ml-2">
-                <span>Kanchi Shankara!</span>
-                <span>Kamakoti Shankara!</span>
+              <div className="hidden xl:flex flex-col items-start justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[150px] ml-2">
+                <span className="whitespace-nowrap">Kanchi Shankara! Kamakoti Shankara!</span>
               </div>
             </div>
           </div>
