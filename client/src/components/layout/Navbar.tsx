@@ -32,9 +32,9 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center py-4 gap-2 md:gap-4">
           {/* Photos and Title Row */}
-          <div className="flex flex-col md:flex-row items-center justify-between w-full py-1 gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between w-full py-1 gap-2 md:gap-4">
             {/* Left Chants - Desktop Only */}
-            <div className="hidden xl:flex flex-col items-center justify-center text-[#FFD700]/80 font-serif italic text-sm tracking-wide leading-tight px-2 min-w-[150px]">
+            <div className="hidden xl:flex flex-col items-start justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-1 min-w-[120px]">
               <span>Jaya Jaya Shankara!</span>
               <span>Hara Hara Shankara!</span>
             </div>
@@ -63,7 +63,7 @@ export function Navbar() {
               </Link>
             </div>
 
-            <Link href="/" className="flex flex-col items-center text-center px-1 md:px-6 shrink-0 order-1 md:order-2 flex-grow">
+            <Link href="/" className="flex flex-col items-center text-center px-1 md:px-6 shrink-0 order-1 md:order-2 flex-grow mx-2">
               <h1 className="font-sans text-xl md:text-2xl lg:text-4xl font-black text-[#FFD700] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]" style={{ fontFamily: "'Roboto', sans-serif" }}>
                 {SITE_CONTENT.header.title}
               </h1>
@@ -97,7 +97,7 @@ export function Navbar() {
             </div>
 
             {/* Right Chants - Desktop Only */}
-            <div className="hidden xl:flex flex-col items-center justify-center text-[#FFD700]/80 font-serif italic text-sm tracking-wide leading-tight px-2 min-w-[150px]">
+            <div className="hidden xl:flex flex-col items-end justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-1 min-w-[120px]">
               <span>Kanchi Shankara!</span>
               <span>Kamakoti Shankara!</span>
             </div>
