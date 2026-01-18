@@ -33,7 +33,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-24 md:pt-32">
+      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-32 md:pt-48">
         <motion.div
           style={ { y, opacity } }
           initial={{ opacity: 0, y: 30 }}
