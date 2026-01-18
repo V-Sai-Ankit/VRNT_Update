@@ -58,10 +58,10 @@ export function Navbar() {
             </div>
 
             <Link href="/" className="flex flex-col items-center text-center px-1 md:px-4 shrink-0 order-1 md:order-2">
-              <h1 className="font-sans text-lg md:text-xl lg:text-3xl font-black text-[#FFD700] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]" style={{ fontFamily: "'Roboto', sans-serif" }}>
+              <h1 className="font-sans text-xl md:text-2xl lg:text-4xl font-black text-[#FFD700] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]" style={{ fontFamily: "'Roboto', sans-serif" }}>
                 {SITE_CONTENT.header.title}
               </h1>
-              <span className="text-[8px] md:text-[10px] text-[#FFD700]/90 font-bold uppercase tracking-wider block leading-tight mt-1">
+              <span className="text-[9px] md:text-[12px] text-[#FFD700]/90 font-bold uppercase tracking-wider block leading-tight mt-1">
                 (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)
               </span>
             </Link>
