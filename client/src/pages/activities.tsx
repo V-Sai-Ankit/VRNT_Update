@@ -42,7 +42,7 @@ export default function ActivitiesPage() {
               Trust Activities
             </h1>
             <p className="text-xl text-muted-foreground font-serif leading-relaxed italic mt-8">
-              Major Initiatives of the Trust
+              MAJOR INITIATIVES OF THE TRUST
             </p>
             <p className="text-lg text-muted-foreground font-serif mt-4 leading-relaxed">
               Over the decades, the Veda Rakshana Nidhi Trust (VRNT) has undertaken several pioneering initiatives to uphold and propagate the sacred Vedic tradition in its pristine form.
