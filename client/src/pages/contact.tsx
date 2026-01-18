@@ -85,6 +85,9 @@ export default function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 className="space-y-6"
               >
+                <h3 className="font-display text-2xl font-bold flex items-center gap-2">
+                  Trust Office Location
+                </h3>
                 <div className="bg-card p-4 rounded-2xl border border-border shadow-md overflow-hidden h-[500px]">
                   <iframe
                     src={mapEmbedUrl}
