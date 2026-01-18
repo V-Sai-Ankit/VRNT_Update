@@ -31,22 +31,22 @@ export function Navbar() {
         <div className="flex flex-col items-center py-4 gap-4">
           {/* Photos and Title Row */}
           <div className="flex items-center justify-center gap-2 md:gap-4 w-full py-1">
-            <div className="flex items-center -space-x-1 md:-space-x-2">
-              <Link href="/" className="shrink-0 relative z-10">
+            <div className="flex items-center gap-1 md:gap-2">
+              <Link href="/" className="shrink-0">
                 <img 
                   src={gopuramImg} 
                   alt="Shrimatam Gopuram" 
                   className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
-              <Link href="/" className="shrink-0 relative z-30">
+              <Link href="/" className="shrink-0">
                 <img 
                   src={asImg} 
                   alt="Adi Shankara" 
                   className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
-              <Link href="/" className="shrink-0 relative z-10">
+              <Link href="/" className="shrink-0">
                 <img 
                   src={acharyaImg} 
                   alt="Acharya" 
@@ -64,22 +64,22 @@ export function Navbar() {
               </span>
             </Link>
 
-            <div className="flex items-center -space-x-1 md:-space-x-2">
-              <Link href="/" className="shrink-0 relative z-10">
+            <div className="flex items-center gap-1 md:gap-2">
+              <Link href="/" className="shrink-0">
                 <img 
                   src={hhImg} 
                   alt="HH Jayendra Saraswathi" 
                   className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
-              <Link href="/" className="shrink-0 relative z-30">
+              <Link href="/" className="shrink-0">
                 <img 
                   src={seventyImg} 
                   alt="70th Shankaracharya" 
                   className="h-9 w-9 md:h-14 md:w-14 rounded-full border-2 border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
-              <Link href="/" className="shrink-0 relative z-10">
+              <Link href="/" className="shrink-0">
                 <img 
                   src={seventyOneImg} 
                   alt="71st Shankaracharya" 
