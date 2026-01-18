@@ -96,7 +96,7 @@ export const SITE_CONTENT = {
   sage: {
     title: "Founder",
     subtitle: "Kanchi Shankaracharya: MahaPeriyava",
-    name: "His Holiness Sri Sri Chandrashekarendra Saraswati Swamiji",
+    name: "His Holiness Sri Sri Chandrashekarendra Saraswati Mahaswamiji",
     designation: "The 68th Jagadguru Shankaracharya of Moolamnaya Sarvajna Shri Kanchi Kamakoti Peetham",
     description: "Popularly known as 'Sage of Kanchi' or 'Kanchi Paramacharyal', His Holiness found that the number of those dedicating themselves to the study of Vedas had diminished due to an uncertain future. He made it His Life's mission to draw the attention of society to this situation and founded the VEDA RAKSHANA NIDHI TRUST (VRNT)."
   },
