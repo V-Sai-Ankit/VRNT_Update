@@ -19,7 +19,7 @@ export function Hero() {
   return (
     <section ref={containerRef} className="relative h-screen flex items-start justify-center overflow-hidden">
       {/* Background Image with reveal effect */}
-      <div className="absolute inset-0 z-0 overflow-hidden pt-3">
+      <div className="absolute inset-0 z-0 overflow-hidden pt-6">
         <motion.img
           style={ { scale: imageScale } }
           src={headerImg}
