@@ -6,7 +6,7 @@ import { SITE_CONTENT } from "@/lib/constants";
 import acharyaImg from "@assets/acharya_1768671806078.jpg";
 import hhImg from "@assets/HH-Jayendra-Saraswathi-Swamiji_1768671806077.jpg";
 import asImg from "@assets/AS_1768738817683.jpg";
-import seventyImg from "@assets/70_1768738842434.jpg";
+import seventyImg from "@assets/70_1768742394769.jpg";
 import seventyOneImg from "@assets/71_1768738842433.webp";
 import gopuramImg from "@assets/Shrimatam_Gopuram_1768739079397.webp";
 import mahaPeriyavaImg from "@assets/kanchi-maha-periyava_8fb06457-0992-4c44-8818-62d49dd13efc_800_1768741594540.webp";
