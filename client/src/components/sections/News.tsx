@@ -21,7 +21,7 @@ export function News() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SITE_CONTENT.news.slice(0, 3).map((item, index) => (
+          {(SITE_CONTENT.news || []).slice(0, 3).map((item, index) => (
             <Link key={index} href={`/news/${index}`}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

@@ -16,7 +16,6 @@ export default function Home() {
         <Mission />
         <Activities />
         <SageSection />
-        <News />
       </main>
       <Footer />
     </div>

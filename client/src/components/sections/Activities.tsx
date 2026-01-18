@@ -49,10 +49,10 @@ export function Activities() {
             className="order-1 md:order-2"
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6 underline decoration-primary decoration-4 underline-offset-8">
-              {SITE_CONTENT.activities.title}
+              {SITE_CONTENT.activities?.title}
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed font-serif">
-              {SITE_CONTENT.activities.description}
+              {SITE_CONTENT.activities?.description}
             </p>
             <div className="mt-8">
               <Link href="/donate">

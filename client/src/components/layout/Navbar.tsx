@@ -14,8 +14,8 @@ export function Navbar() {
     { name: "Mission", href: "/#mission" },
     { name: "Activities", href: "/activities" },
     { name: "Vedas", href: "/vedas" },
+    { name: "Pariksha", href: "/pariksha" },
     { name: "Trustees", href: "/trustees" },
-    { name: "News", href: "/news" },
     { name: "Donate", href: "/donate" },
     { name: "Contact", href: "/contact" },
   ];
@@ -49,13 +49,14 @@ export function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden lg:flex space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors uppercase tracking-wider"
               >
-                {link.name}
-              </a>
+                <a className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors uppercase tracking-wider">
+                  {link.name}
+                </a>
+              </Link>
             ))}
           </div>
 
@@ -81,14 +82,17 @@ export function Navbar() {
         >
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                className="text-base font-medium text-foreground/80 hover:text-primary"
-                onClick={() => setIsOpen(false)}
               >
-                {link.name}
-              </a>
+                <a
+                  className="text-base font-medium text-foreground/80 hover:text-primary"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </a>
+              </Link>
             ))}
           </div>
         </motion.div>

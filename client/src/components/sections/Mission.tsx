@@ -27,7 +27,7 @@ export function Mission() {
               </p>
               
               <ul className="space-y-4 mt-8">
-                {SITE_CONTENT.mission.points.map((point, i) => (
+                {(SITE_CONTENT.mission.points || []).map((point, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-1.5 p-1 bg-primary/10 rounded-full text-primary">
                        <Scroll size={16} />
