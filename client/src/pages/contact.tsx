@@ -85,9 +85,19 @@ export default function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 className="space-y-6"
               >
-                <h3 className="font-display text-2xl font-bold flex items-center gap-2">
-                  Trust Office Location
-                </h3>
+                <div className="flex justify-between items-center gap-2">
+                  <h3 className="font-display text-2xl font-bold flex items-center gap-2">
+                    Trust Office Location
+                  </h3>
+                  <a 
+                    href="https://maps.app.goo.gl/xdfx7FaqMtYeCpEB8" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-bold flex items-center gap-1"
+                  >
+                    Directions
+                  </a>
+                </div>
                 <div className="bg-card p-4 rounded-2xl border border-border shadow-md overflow-hidden h-[500px]">
                   <iframe
                     src={mapEmbedUrl}
