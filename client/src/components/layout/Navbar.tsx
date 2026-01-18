@@ -11,7 +11,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Mission", href: "/#mission" },
+    { name: "Mission", href: "/mission" },
     { name: "Activities", href: "/activities" },
     { name: "Vedas", href: "/vedas" },
     { name: "Pariksha", href: "/pariksha" },
