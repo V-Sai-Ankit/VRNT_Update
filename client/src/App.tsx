@@ -14,6 +14,7 @@ import AboutVedas from "./pages/vedas/About";
 import VedaRakshanam from "./pages/vedas/Rakshanam";
 import VedaVyasa from "./pages/vedas/Vyasa";
 import VedasPage from "./pages/vedas/index";
+import ParikshaPage from "./pages/pariksha";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/vedas/about" component={AboutVedas} />
       <Route path="/vedas/rakshanam" component={VedaRakshanam} />
       <Route path="/vedas/vyasa" component={VedaVyasa} />
+      <Route path="/pariksha" component={ParikshaPage} />
       <Route component={NotFound} />
     </Switch>
   );
