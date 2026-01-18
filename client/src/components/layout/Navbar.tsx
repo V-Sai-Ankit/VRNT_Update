@@ -33,31 +33,31 @@ export function Navbar() {
         <div className="flex flex-col items-center py-4 gap-2 md:gap-4">
           {/* Photos and Title Row */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full py-1">
-            <div className="flex items-center gap-2 md:gap-2 order-2 md:order-1">
+            <div className="flex items-center gap-2 md:gap-3 order-2 md:order-1">
               <Link href="/" className="shrink-0">
                 <img 
                   src={gopuramImg} 
                   alt="Shrimatam Gopuram" 
-                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
+                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={asImg} 
                   alt="Adi Shankara" 
-                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
+                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={mahaPeriyavaImg} 
                   alt="Kanchi Maha Periyava" 
-                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
+                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
             </div>
 
-            <Link href="/" className="flex flex-col items-center text-center px-1 md:px-4 shrink-0 order-1 md:order-2">
+            <Link href="/" className="flex flex-col items-center text-center px-1 md:px-6 shrink-0 order-1 md:order-2">
               <h1 className="font-sans text-xl md:text-2xl lg:text-4xl font-black text-[#FFD700] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]" style={{ fontFamily: "'Roboto', sans-serif" }}>
                 {SITE_CONTENT.header.title}
               </h1>
@@ -66,26 +66,26 @@ export function Navbar() {
               </span>
             </Link>
 
-            <div className="flex items-center gap-2 md:gap-2 order-3 md:order-3">
+            <div className="flex items-center gap-2 md:gap-3 order-3 md:order-3">
               <Link href="/" className="shrink-0">
                 <img 
                   src={hhJayendraImg} 
                   alt="HH Jayendra Saraswathi" 
-                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
+                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={seventyImg} 
                   alt="70th Shankaracharya" 
-                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
+                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border-2 border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={seventyOneImg} 
                   alt="71st Shankaracharya" 
-                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
+                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
             </div>
