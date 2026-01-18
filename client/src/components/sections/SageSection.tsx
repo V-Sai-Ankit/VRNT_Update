@@ -35,7 +35,7 @@ export function SageSection() {
                   {SITE_CONTENT.sage.designation}
                 </p>
                 <p className="text-muted-foreground leading-relaxed font-serif italic text-lg mb-8">
-                  "{SITE_CONTENT.sage.description}"
+                  "Popularly known as 'Sage of Kanchi' or 'Kanchi Paramacharyal', His Holiness found that the number of those dedicating themselves to the study of Vedas had diminished due to an uncertain future. He made it His Life's mission to draw the attention of society to this situation and founded the <span className="text-primary font-bold">VEDA RAKSHANA NIDHI TRUST (VRNT)</span>."
                 </p>
               </div>
               
