@@ -25,7 +25,7 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border/40 shadow-sm">
+    <nav className="fixed top-0 w-full z-50 bg-secondary text-secondary-foreground border-b border-white/10 shadow-sm">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center py-4 gap-4">
           {/* Photos and Title Row */}
@@ -35,30 +35,30 @@ export function Navbar() {
                 <img 
                   src={gopuramImg} 
                   alt="Shrimatam Gopuram" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0 relative z-30">
                 <img 
                   src={asImg} 
                   alt="Adi Shankara" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0 relative z-10">
                 <img 
                   src={acharyaImg} 
                   alt="Acharya" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
             </div>
 
             <Link href="/" className="flex flex-col items-center text-center px-1 md:px-4 shrink-0">
-              <h1 className="font-serif text-sm md:text-xl lg:text-2xl font-bold text-primary tracking-tight leading-tight whitespace-nowrap">
+              <h1 className="font-serif text-sm md:text-xl lg:text-2xl font-bold text-white tracking-tight leading-tight whitespace-nowrap">
                 {SITE_CONTENT.header.title}
               </h1>
-              <span className="text-[6px] md:text-[9px] text-muted-foreground font-medium uppercase tracking-wider hidden sm:block leading-tight">
+              <span className="text-[6px] md:text-[9px] text-secondary-foreground/80 font-medium uppercase tracking-wider hidden sm:block leading-tight">
                 (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)
               </span>
             </Link>
@@ -68,21 +68,21 @@ export function Navbar() {
                 <img 
                   src={hhImg} 
                   alt="HH Jayendra Saraswathi" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0 relative z-30">
                 <img 
                   src={seventyImg} 
                   alt="70th Shankaracharya" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border-2 border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0 relative z-10">
                 <img 
                   src={seventyOneImg} 
                   alt="71st Shankaracharya" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
             </div>
@@ -95,7 +95,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
               >
-                <a className="text-[10px] font-bold text-foreground/80 hover:text-primary transition-colors uppercase tracking-widest">
+                <a className="text-[10px] font-bold text-secondary-foreground/80 hover:text-white transition-colors uppercase tracking-widest">
                   {link.name}
                 </a>
               </Link>
@@ -104,7 +104,7 @@ export function Navbar() {
 
           {/* Mobile Menu Toggle (Simplified) */}
           <div className="lg:hidden absolute top-6 right-4">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-foreground">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-secondary-foreground">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -117,7 +117,7 @@ export function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden bg-background border-b border-border"
+          className="lg:hidden bg-secondary border-b border-white/10"
         >
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             {navLinks.map((link) => (
@@ -126,7 +126,7 @@ export function Navbar() {
                 href={link.href}
               >
                 <a
-                  className="text-base font-medium text-foreground/80 hover:text-primary"
+                  className="text-base font-medium text-secondary-foreground/80 hover:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
