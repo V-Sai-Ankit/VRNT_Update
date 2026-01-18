@@ -70,7 +70,7 @@ export function Navbar() {
                 <img 
                   src={hhImg} 
                   alt="HH Jayendra Saraswathi" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4] [object-position:center_top]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
