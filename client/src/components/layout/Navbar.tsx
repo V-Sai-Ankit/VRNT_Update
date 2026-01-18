@@ -30,59 +30,59 @@ export function Navbar() {
         <div className="flex flex-col items-center py-4 gap-4">
           {/* Photos and Title Row */}
           <div className="flex items-center justify-center gap-2 md:gap-4 w-full py-1">
-            <div className="flex items-center -space-x-2 md:-space-x-3">
+            <div className="flex items-center -space-x-1 md:-space-x-2">
               <Link href="/" className="shrink-0 relative z-30">
                 <img 
                   src={gopuramImg} 
                   alt="Shrimatam Gopuram" 
-                  className="h-8 w-8 md:h-12 md:w-12 rounded-full border border-primary object-cover bg-background"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0 relative z-20">
                 <img 
                   src={asImg} 
                   alt="Adi Shankara" 
-                  className="h-8 w-8 md:h-12 md:w-12 rounded-full border border-primary object-cover bg-background"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0 relative z-10">
                 <img 
                   src={acharyaImg} 
                   alt="Acharya" 
-                  className="h-8 w-8 md:h-12 md:w-12 rounded-full border border-primary object-cover object-top bg-background"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
             </div>
 
-            <Link href="/" className="flex flex-col items-center text-center px-2 shrink-0">
-              <h1 className="font-serif text-base md:text-xl lg:text-2xl font-bold text-primary tracking-tight leading-tight">
+            <Link href="/" className="flex flex-col items-center text-center px-1 md:px-4 shrink-0">
+              <h1 className="font-serif text-sm md:text-xl lg:text-2xl font-bold text-primary tracking-tight leading-tight whitespace-nowrap">
                 {SITE_CONTENT.header.title}
               </h1>
-              <span className="text-[7px] md:text-[9px] text-muted-foreground font-medium uppercase tracking-wider hidden sm:block leading-tight">
+              <span className="text-[6px] md:text-[9px] text-muted-foreground font-medium uppercase tracking-wider hidden sm:block leading-tight">
                 (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)
               </span>
             </Link>
 
-            <div className="flex items-center -space-x-2 md:-space-x-3">
+            <div className="flex items-center -space-x-1 md:-space-x-2">
               <Link href="/" className="shrink-0 relative z-10">
                 <img 
                   src={hhImg} 
                   alt="HH Jayendra Saraswathi" 
-                  className="h-8 w-8 md:h-12 md:w-12 rounded-full border border-primary object-cover object-top bg-background"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0 relative z-20">
                 <img 
                   src={seventyImg} 
                   alt="70th Shankaracharya" 
-                  className="h-8 w-8 md:h-12 md:w-12 rounded-full border border-primary object-cover object-top bg-background"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0 relative z-30">
                 <img 
                   src={seventyOneImg} 
                   alt="71st Shankaracharya" 
-                  className="h-8 w-8 md:h-12 md:w-12 rounded-full border border-primary object-cover object-top bg-background"
+                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
             </div>
