@@ -31,14 +31,14 @@ export function Navbar() {
           {/* Photos and Title Row */}
           <div className="flex items-center justify-center gap-2 md:gap-4 w-full py-1">
             <div className="flex items-center -space-x-1 md:-space-x-2">
-              <Link href="/" className="shrink-0 relative z-30">
+              <Link href="/" className="shrink-0 relative z-10">
                 <img 
                   src={gopuramImg} 
                   alt="Shrimatam Gopuram" 
                   className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
-              <Link href="/" className="shrink-0 relative z-20">
+              <Link href="/" className="shrink-0 relative z-30">
                 <img 
                   src={asImg} 
                   alt="Adi Shankara" 
@@ -71,14 +71,14 @@ export function Navbar() {
                   className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
-              <Link href="/" className="shrink-0 relative z-20">
+              <Link href="/" className="shrink-0 relative z-30">
                 <img 
                   src={seventyImg} 
                   alt="70th Shankaracharya" 
                   className="h-9 w-9 md:h-14 md:w-14 rounded-full border-2 border-primary object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
                 />
               </Link>
-              <Link href="/" className="shrink-0 relative z-30">
+              <Link href="/" className="shrink-0 relative z-10">
                 <img 
                   src={seventyOneImg} 
                   alt="71st Shankaracharya" 
