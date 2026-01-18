@@ -35,7 +35,10 @@ export function Navbar() {
               <h1 className="font-serif text-lg md:text-2xl lg:text-3xl font-bold text-primary tracking-tight leading-tight">
                 {SITE_CONTENT.header.title}
               </h1>
-              <span className="text-[8px] md:text-[10px] text-muted-foreground uppercase tracking-widest hidden sm:block">
+              <span className="text-[10px] md:text-[11px] text-muted-foreground font-medium uppercase tracking-wider hidden sm:block">
+                (A unit of Moolamnaya Sarvajna Shri Kanchi Kamakoti Peetham)
+              </span>
+              <span className="text-[8px] md:text-[10px] text-muted-foreground uppercase tracking-widest hidden sm:block mt-1">
                 {SITE_CONTENT.header.subtitle}
               </span>
             </div>
