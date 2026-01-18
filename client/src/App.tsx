@@ -13,6 +13,7 @@ import ActivitiesPage from "@/pages/activities";
 import AboutVedas from "./pages/vedas/About";
 import VedaRakshanam from "./pages/vedas/Rakshanam";
 import VedaVyasa from "./pages/vedas/Vyasa";
+import VedasPage from "./pages/vedas/index";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/contact" component={ContactPage} />
       <Route path="/donate" component={DonatePage} />
       <Route path="/activities" component={ActivitiesPage} />
+      <Route path="/vedas" component={VedasPage} />
       <Route path="/vedas/about" component={AboutVedas} />
       <Route path="/vedas/rakshanam" component={VedaRakshanam} />
       <Route path="/vedas/vyasa" component={VedaVyasa} />
