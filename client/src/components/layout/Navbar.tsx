@@ -30,62 +30,62 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-secondary text-secondary-foreground border-b border-white/10 shadow-sm">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center py-4 gap-4">
+        <div className="flex flex-col items-center py-4 gap-2 md:gap-4">
           {/* Photos and Title Row */}
-          <div className="flex items-center justify-center gap-2 md:gap-4 w-full py-1">
-            <div className="flex items-center gap-1 md:gap-2">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full py-1">
+            <div className="flex items-center gap-2 md:gap-2 order-2 md:order-1">
               <Link href="/" className="shrink-0">
                 <img 
                   src={gopuramImg} 
                   alt="Shrimatam Gopuram" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={asImg} 
                   alt="Adi Shankara" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={mahaPeriyavaImg} 
                   alt="Kanchi Maha Periyava" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
             </div>
 
-            <Link href="/" className="flex flex-col items-center text-center px-1 md:px-4 shrink-0">
-              <h1 className="font-sans text-sm md:text-xl lg:text-3xl font-black text-[#FFD700] tracking-tight leading-tight whitespace-nowrap drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]" style={{ fontFamily: "'Roboto', sans-serif" }}>
+            <Link href="/" className="flex flex-col items-center text-center px-1 md:px-4 shrink-0 order-1 md:order-2">
+              <h1 className="font-sans text-lg md:text-xl lg:text-3xl font-black text-[#FFD700] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]" style={{ fontFamily: "'Roboto', sans-serif" }}>
                 {SITE_CONTENT.header.title}
               </h1>
-              <span className="text-[7px] md:text-[10px] text-[#FFD700]/90 font-bold uppercase tracking-wider hidden sm:block leading-tight mt-1">
+              <span className="text-[8px] md:text-[10px] text-[#FFD700]/90 font-bold uppercase tracking-wider hidden sm:block leading-tight mt-1">
                 (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)
               </span>
             </Link>
 
-            <div className="flex items-center gap-1 md:gap-2">
+            <div className="flex items-center gap-2 md:gap-2 order-3 md:order-3">
               <Link href="/" className="shrink-0">
                 <img 
                   src={hhJayendraImg} 
                   alt="HH Jayendra Saraswathi" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={seventyImg} 
                   alt="70th Shankaracharya" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border-2 border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border-2 border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={seventyOneImg} 
                   alt="71st Shankaracharya" 
-                  className="h-9 w-9 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.3] md:scale-[1.4]"
+                  className="h-10 w-10 md:h-14 md:w-14 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
                 />
               </Link>
             </div>
