@@ -13,6 +13,7 @@ export function Navbar() {
     { name: "Home", href: "/" },
     { name: "Mission", href: "/#mission" },
     { name: "Activities", href: "/activities" },
+    { name: "Vedas", href: "/vedas" },
     { name: "Trustees", href: "/trustees" },
     { name: "News", href: "/news" },
     { name: "Donate", href: "/donate" },

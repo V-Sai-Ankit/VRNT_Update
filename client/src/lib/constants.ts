@@ -14,7 +14,10 @@ export const SITE_CONTENT = {
     title: "Our Mission & Vision",
     points: [
       "To strive every nerve to protect and preserve our holy Vedic heritage and pass it on to posterity.",
-      "To protect and preserve the age-old tradition of Vedic Adhyayanam (study)."
+      "To protect and preserve the age-old tradition of Vedic Adhyayanam ( study ).",
+      "To bring out more and more traditional Vedic Pandits, particularly in those sakhas on the verge of extinction.",
+      "To ensure that the society gets a steady stream of qualified Gurus to encourage, guide and enable Grahastas ( house holders) in their Sroutha and Smartha Karma Anushtanam as prescribed.",
+      "To inform and educate the general public about the Vedic heritage, tradition and way of life."
     ],
     detailed: "The Vedas form the bedrock of the Bharatiya Culture and Civilization and are the fountain head of all that is pure and sublime in the human way of life. Utilization of the Vedic mantras in the samskaras (Rituals) helps the spiritual growth of the individual, purifies the atmosphere and helps curtail illness and other evil effects."
   },
