@@ -24,7 +24,7 @@ export function Hero() {
           style={ { scale: imageScale } }
           src={headerImg}
           alt="Veda Rakshana Nidhi Trust Header"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-top"
         />
         <motion.div 
           style={ { opacity } }
