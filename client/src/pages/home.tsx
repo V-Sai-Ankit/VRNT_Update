@@ -27,10 +27,20 @@ export default function Home() {
                 <div className="bg-primary/20 p-2 md:p-3 rounded-full shrink-0">
                   <Award className="text-primary w-5 h-5 md:w-6 md:h-6" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <h3 className="font-display font-bold text-sm md:text-xl text-white truncate">Shasti Aptha Purti Mahotsav (60 Years)</h3>
-                  <p className="text-secondary-foreground/80 text-[10px] md:text-sm font-serif hidden sm:block">We request all certified Vidwans to register for the Diamond Jubilee celebrations.</p>
-                  <p className="text-secondary-foreground/80 text-[10px] font-serif sm:hidden truncate">Vidwan Registration Open</p>
+                  <div className="relative h-4 md:h-5 overflow-hidden">
+                    <p className="text-secondary-foreground/80 text-[10px] md:text-sm font-serif hidden sm:block">We request all certified Vidwans to register for the Diamond Jubilee celebrations.</p>
+                    <div className="sm:hidden whitespace-nowrap">
+                      <motion.p 
+                        animate={{ x: ["100%", "-100%"] }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                        className="text-secondary-foreground/80 text-[10px] font-serif inline-block"
+                      >
+                        Vidwan Registration Open - We request all certified Vidwans to register for the Diamond Jubilee celebrations.
+                      </motion.p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <Link href="/celebrations/60-years">
