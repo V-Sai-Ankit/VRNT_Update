@@ -48,6 +48,19 @@ export default function CelebrationPage() {
                     In preparation for this celebration, we are compiling the details of all Vidwans who have received certification to date. We humbly request all such Veda Vidwans to kindly fill in their details and help us in organizing this event successfully.
                   </p>
                 </div>
+              </section>
+
+              <section className="bg-card p-8 rounded-2xl border border-border shadow-sm">
+                <h2 className="font-display text-2xl font-bold mb-6 text-secondary border-b pb-2">Tamil Version</h2>
+                <div className="space-y-4 text-muted-foreground leading-relaxed font-sans">
+                  <p className="font-bold text-foreground">வேத பாடசாலை நிர்வாகிகளுக்கும் ஆசிரியர்களுக்கும், நமஸ்காரங்கள்.</p>
+                  <p>
+                    ஜகத்குரு பூஜ்யஶ்ரீ சங்கர விஜயேந்திர சரஸ்வதி சங்கராசார்ய சுவாமிகளின் பரிபூர்ண அனுகிரகமும், ஆசீர்வாதமும் பெற்று, வேத ரக்ஷண நிதி டிரஸ்ட், வேத ரக்ஷணத்திற்கு அர்ப்பணித்த 60 ஆண்டு சிறப்பான சேவையை கொண்டாடுவதில் பெருமிதம் கொள்கிறது.
+                  </p>
+                  <p>
+                    இந்த 60 ஆண்டு நிறைவை ஒட்டி, டிரஸ்ட் ஆரம்பிக்கப்பட்ட தினத்திலிருந்து தேர்ச்சி பெற்ற அனைத்து வித்வான்களையும் கௌரவிக்க திட்டமிட்டுள்ளோம்.
+                  </p>
+                </div>
 
                 <div className="mt-8 p-6 bg-primary/5 rounded-xl border border-primary/10">
                   <h3 className="font-bold mb-4 text-secondary flex items-center gap-2">
@@ -62,19 +75,6 @@ export default function CelebrationPage() {
                   >
                     Google Form Link <ExternalLink size={16} />
                   </a>
-                </div>
-              </section>
-
-              <section className="bg-card p-8 rounded-2xl border border-border shadow-sm">
-                <h2 className="font-display text-2xl font-bold mb-6 text-secondary border-b pb-2">Tamil Version</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed font-sans">
-                  <p className="font-bold text-foreground">வேத பாடசாலை நிர்வாகிகளுக்கும் ஆசிரியர்களுக்கும், நமஸ்காரங்கள்.</p>
-                  <p>
-                    ஜகத்குரு பூஜ்யஶ்ரீ சங்கர விஜயேந்திர சரஸ்வதி சங்கராசார்ய சுவாமிகளின் பரிபூர்ண அனுகிரகமும், ஆசீர்வாதமும் பெற்று, வேத ரக்ஷண நிதி டிரஸ்ட், வேத ரக்ஷணத்திற்கு அர்ப்பணித்த 60 ஆண்டு சிறப்பான சேவையை கொண்டாடுவதில் பெருமிதம் கொள்கிறது.
-                  </p>
-                  <p>
-                    இந்த 60 ஆண்டு நிறைவை ஒட்டி, டிரஸ்ட் ஆரம்பிக்கப்பட்ட தினத்திலிருந்து தேர்ச்சி பெற்ற அனைத்து வித்வான்களையும் கௌரவிக்க திட்டமிட்டுள்ளோம்.
-                  </p>
                 </div>
               </section>
             </div>
