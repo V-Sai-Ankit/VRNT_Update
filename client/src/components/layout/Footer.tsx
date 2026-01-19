@@ -2,6 +2,8 @@ import { SITE_CONTENT } from "@/lib/constants";
 import { Link } from "wouter";
 import { Mail, Phone, Smartphone, MapPin, Heart, FileText, Users, MessageSquare } from "lucide-react";
 
+import logoImg from "@assets/GridArt_20260119_192703350_1768841338839.png";
+
 export function Footer() {
   return (
     <footer className="bg-secondary text-secondary-foreground pt-16 pb-8">
@@ -9,9 +11,16 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
           <div className="lg:col-span-2">
-            <h2 className="font-display text-2xl font-bold mb-4 text-white">
-              {SITE_CONTENT.header.title}
-            </h2>
+            <div className="flex items-center gap-4 mb-4">
+              <img 
+                src={logoImg} 
+                alt="VRNT Logo" 
+                className="h-16 md:h-20 w-auto"
+              />
+              <h2 className="font-display text-2xl font-bold text-white">
+                {SITE_CONTENT.header.title}
+              </h2>
+            </div>
             <p className="text-secondary-foreground/80 mb-6 max-w-md font-serif italic">
               "{SITE_CONTENT.header.subtitle}"
             </p>
