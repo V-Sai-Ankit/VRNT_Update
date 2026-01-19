@@ -19,9 +19,19 @@ export default function VedaRakshanam() {
               "Vedo Vrikshaha Tasya Moolam hi Vip raha A ngas sakhaha Dharma Karmani Patram Tasrnan Moolo Yatnatho Rakshaneeya Chjnne Moolae Naiva Sakha na Vrikshaha"
             </div>
 
-            <p className="text-lg leading-relaxed mb-6">
-              "The Vedas" is a Vriksha (Tree), whose roots are the Vipras (Brahmins), the repository of the Vedas. The six Angas are the branches. The Karmanushtanam and the Dharmic way of life are the leaves.
-            </p>
+            <div className="space-y-6 text-lg leading-relaxed mb-12">
+              <p>
+                "The Vedas" is a Vriksha (Tree), whose roots are the Vipras (Brahmins), the repository of the Vedas. 
+                The six Angas, the auxiliary sciences, Siksha (phonetics), Vyakaranam (grammar), Chandas (metre), 
+                Niruktha (Etymology of words), Jyothisha, (Vedanga Jyotisha) and Kalpa-Sutra (texts dealing with the procedure, etc., 
+                for the performance of srouta and smartha karmas, Karmanushtana), are the branches. 
+                The Karmanushtanam and the Dharmic way of life are the leaves.
+              </p>
+              
+              <p className="font-bold border-l-4 border-primary pl-6 py-2 bg-primary/5">
+                All possible efforts, therefore, should be taken to protect and preserve the ROOTS (i.e., give all possible support to the repository of the Vedas) as, once the roots decay, there will be neither the tree nor the branches and leaves.
+              </p>
+            </div>
 
             <div className="my-12 flex justify-center">
               <img 
