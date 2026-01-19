@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion, useScroll, useTransform } from "framer-motion";
-import headerImg from "@assets/vrnt_1768670925029.jpg";
+import headerImg from "@assets/FB_IMG_1768808289933~2_1768808606506.jpg";
 import { SITE_CONTENT } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
