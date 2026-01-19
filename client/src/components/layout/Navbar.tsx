@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { SITE_CONTENT } from "@/lib/constants";
@@ -29,6 +29,18 @@ export function Navbar() {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-secondary text-secondary-foreground border-b border-white/10 shadow-sm">
+      {/* App Login Top Bar */}
+      <div className="bg-[#1a1a1a] border-b border-white/5 py-1.5">
+        <div className="container mx-auto px-4 flex justify-end">
+          <Link href="/login">
+            <a className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]">
+              <User size={12} className="text-[#FFD700]/70" />
+              App Login
+            </a>
+          </Link>
+        </div>
+      </div>
+      
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center py-4 gap-2 md:gap-4">
           {/* Photos and Title Row */}
