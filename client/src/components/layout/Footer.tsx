@@ -1,6 +1,6 @@
 import { SITE_CONTENT } from "@/lib/constants";
 import { Link } from "wouter";
-import { Mail, Phone, Smartphone, MapPin } from "lucide-react";
+import { Mail, Phone, Smartphone, MapPin, Heart, FileText, Users, MessageSquare } from "lucide-react";
 
 export function Footer() {
   return (
@@ -47,10 +47,22 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block">Quick Links</h3>
             <ul className="space-y-3 text-sm text-secondary-foreground/80">
-              <li><Link href="/donate"><a className="hover:text-white transition-colors">Donate</a></Link></li>
-              <li><Link href="/pariksha"><a className="hover:text-white transition-colors">Circulars</a></Link></li>
-              <li><Link href="/trustees"><a className="hover:text-white transition-colors">Trustees</a></Link></li>
-              <li><Link href="/contact"><a className="hover:text-white transition-colors">Contact</a></Link></li>
+              <li className="flex items-center gap-3">
+                <Heart size={16} className="text-primary/70" />
+                <Link href="/donate"><a className="hover:text-white transition-colors">Donate</a></Link>
+              </li>
+              <li className="flex items-center gap-3">
+                <FileText size={16} className="text-primary/70" />
+                <Link href="/pariksha"><a className="hover:text-white transition-colors">Circulars</a></Link>
+              </li>
+              <li className="flex items-center gap-3">
+                <Users size={16} className="text-primary/70" />
+                <Link href="/trustees"><a className="hover:text-white transition-colors">Trustees</a></Link>
+              </li>
+              <li className="flex items-center gap-3">
+                <MessageSquare size={16} className="text-primary/70" />
+                <Link href="/contact"><a className="hover:text-white transition-colors">Contact</a></Link>
+              </li>
             </ul>
           </div>
 
