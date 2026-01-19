@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { SITE_CONTENT } from "@/lib/constants";
-import { BookOpen, Scroll, GraduationCap } from "lucide-react";
+import { Scroll } from "lucide-react";
+import vedaImg from "@assets/stock_images/vedic_school_adhyaya_2284ecd8.jpg";
+import educationImg from "@assets/stock_images/vedic_school_adhyaya_dc0fc5f4.jpg";
 
 export function Mission() {
   return (
@@ -46,16 +48,24 @@ export function Mission() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
-            <div className="bg-card p-8 rounded-xl shadow-sm border border-border/50 hover:shadow-md transition-shadow hover:border-primary/30">
-              <BookOpen className="w-10 h-10 text-primary mb-4" />
-              <h3 className="font-display text-xl font-bold mb-2">Vedic Heritage</h3>
-              <p className="text-muted-foreground text-sm">Preserving the ancient texts in their pristine purity for future generations.</p>
+            <div className="bg-card rounded-xl shadow-sm border border-border/50 hover:shadow-md transition-shadow hover:border-primary/30 overflow-hidden flex flex-col">
+              <div className="h-48 overflow-hidden">
+                <img src={vedaImg} alt="Vedic Heritage" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-6">
+                <h3 className="font-display text-xl font-bold mb-2">Vedic Heritage</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">Preserving the ancient texts in their pristine purity for future generations.</p>
+              </div>
             </div>
 
-            <div className="bg-card p-8 rounded-xl shadow-sm border border-border/50 hover:shadow-md transition-shadow hover:border-primary/30 mt-0 sm:mt-12">
-              <GraduationCap className="w-10 h-10 text-secondary mb-4" />
-              <h3 className="font-display text-xl font-bold mb-2">Education</h3>
-              <p className="text-muted-foreground text-sm">Supporting Gurukula education and traditional teaching methods.</p>
+            <div className="bg-card rounded-xl shadow-sm border border-border/50 hover:shadow-md transition-shadow hover:border-primary/30 overflow-hidden flex flex-col mt-0 sm:mt-12">
+              <div className="h-48 overflow-hidden">
+                <img src={educationImg} alt="Vedic Education" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-6">
+                <h3 className="font-display text-xl font-bold mb-2">Education</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">Supporting Gurukula education and traditional teaching methods.</p>
+              </div>
             </div>
           </motion.div>
 
