@@ -48,8 +48,8 @@ export function Hero() {
           </div>
 
           <div className="mb-4">
-            <span className="font-serif text-lg md:text-xl text-primary drop-shadow-md font-bold italic">
-              Founded by Mahaperiyava
+            <span className="font-serif text-lg md:text-xl text-[#FFD700] drop-shadow-md font-bold italic">
+              As envisioned by Mahaperiyava
             </span>
           </div>
           
