@@ -29,13 +29,13 @@ export default function Home() {
                 </div>
                 <div className="min-w-0 flex-1 overflow-hidden">
                   <h3 className="font-display font-bold text-sm md:text-lg text-white truncate">Shasti Aptha Purti Mahotsav (60 Years)</h3>
-                  <div className="relative h-4 md:h-5 overflow-hidden">
+                  <div className="relative h-5 md:h-6 overflow-hidden flex items-center">
                     <p className="text-secondary-foreground/80 text-[10px] md:text-xs font-serif hidden sm:block">We request all certified Vidwans to register for the Diamond Jubilee celebrations.</p>
-                    <div className="sm:hidden whitespace-nowrap">
+                    <div className="sm:hidden whitespace-nowrap w-full">
                       <motion.p 
                         animate={{ x: ["100%", "-100%"] }}
-                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                        className="text-secondary-foreground/80 text-[10px] font-serif inline-block"
+                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                        className="text-secondary-foreground/80 text-[11px] font-serif inline-block leading-normal"
                       >
                         Vidwan Registration Open - We request all certified Vidwans to register for the Diamond Jubilee celebrations.
                       </motion.p>
