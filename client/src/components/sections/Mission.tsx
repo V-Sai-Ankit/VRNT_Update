@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { SITE_CONTENT } from "@/lib/constants";
 import { Scroll } from "lucide-react";
-import vedaImg from "@assets/stock_images/vedic_school_adhyaya_2284ecd8.jpg";
-import educationImg from "@assets/stock_images/vedic_school_adhyaya_dc0fc5f4.jpg";
+import vedaImg from "@assets/1920x1080-280220221646070599_1768823172979.png";
+import educationImg from "@assets/sankaracharya-with-students_1768823172980.webp";
 
 export function Mission() {
   return (
