@@ -46,6 +46,12 @@ export function Hero() {
               {SITE_CONTENT.header.subtitle}
             </span>
           </div>
+
+          <div className="mb-4">
+            <span className="font-serif text-lg md:text-xl text-primary drop-shadow-md font-bold italic">
+              Founded by Mahaperiyava
+            </span>
+          </div>
           
           <h1 className="font-sans text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white] whitespace-pre-line">
             {SITE_CONTENT.hero?.title}
