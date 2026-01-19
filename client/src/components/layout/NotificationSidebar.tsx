@@ -14,19 +14,11 @@ const NOTIFICATIONS = [
   },
   {
     id: 2,
-    type: "update",
-    title: "New Publications",
-    message: "New volumes of Rig Veda Bhashya are now available at the trust office.",
-    link: "/activities",
-    date: "2026-01-18"
-  },
-  {
-    id: 3,
-    type: "info",
-    title: "Trustee Meeting",
-    message: "The annual general meeting of trustees is scheduled for next month.",
-    link: "/trustees",
-    date: "2026-01-15"
+    type: "event",
+    title: "Shasti Aptha Purti Mahotsav",
+    message: "VRNT celebrates 60 glorious years. Vidwans are requested to register for the Diamond Jubilee celebrations.",
+    link: "/celebrations/60-years",
+    date: "2026-01-21"
   }
 ];
 
