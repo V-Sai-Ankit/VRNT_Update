@@ -48,7 +48,7 @@ export function Hero() {
           </div>
 
           <div className="mb-4">
-            <span className="font-serif text-lg md:text-xl text-[#FFD700] drop-shadow-md font-bold italic">
+            <span className="font-serif text-lg md:text-xl text-[#FFD700] drop-shadow-md font-bold italic" style={{ textShadow: "1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000" }}>
               As envisioned by Mahaperiyava
             </span>
           </div>
