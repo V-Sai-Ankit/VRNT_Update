@@ -24,7 +24,7 @@ const NOTIFICATIONS = [
 
 export function NotificationSidebar() {
   const [isOpen, setIsOpen] = useState(true);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
 
   if (isMinimized) {
     return (
