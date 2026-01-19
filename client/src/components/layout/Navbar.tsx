@@ -32,12 +32,15 @@ export function Navbar() {
       {/* App Login Top Bar */}
       <div className="bg-[#1a1a1a] border-b border-white/5 py-1.5">
         <div className="container mx-auto px-4 flex justify-end">
-          <Link href="/login">
-            <a className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]">
-              <User size={12} className="text-[#FFD700]/70" />
-              App Login
-            </a>
-          </Link>
+          <a 
+            href="https://www.kamakoti.org" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]"
+          >
+            <User size={12} className="text-[#FFD700]/70" />
+            App Login
+          </a>
         </div>
       </div>
       
