@@ -16,7 +16,7 @@ export default function Home() {
       <Navbar />
       <main>
         {/* Diamond Jubilee Registration Banner */}
-        <div className="pt-56 md:pt-64 bg-primary/5">
+        <div className="pt-[280px] md:pt-[340px] lg:pt-[240px] bg-primary/5">
           <div className="container mx-auto px-4 md:px-6 py-2">
             <motion.div 
               initial={{ opacity: 0, y: -20 }}

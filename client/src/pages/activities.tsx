@@ -35,7 +35,7 @@ export default function ActivitiesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />
-      <main className="pt-56 md:pt-64 pb-24">
+      <main className="pt-[280px] md:pt-[340px] lg:pt-[240px] pb-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto mb-16">
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-6 underline decoration-primary decoration-4 underline-offset-8">
