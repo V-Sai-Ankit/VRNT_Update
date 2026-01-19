@@ -43,6 +43,9 @@ export default function ContactPage() {
                         <Phone size={18} className="text-primary" /> 044-24740549
                       </p>
                       <p className="flex items-center gap-3 text-muted-foreground">
+                        <Phone size={18} className="text-primary" /> 93607 31283
+                      </p>
+                      <p className="flex items-center gap-3 text-muted-foreground">
                         <Mail size={18} className="text-primary" /> office@vrnt.org
                       </p>
                     </div>

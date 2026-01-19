@@ -23,9 +23,13 @@ export function Footer() {
             <h3 className="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block">Contact Us</h3>
             <address className="not-italic text-secondary-foreground/80 text-sm space-y-4">
               <p>{SITE_CONTENT.header.address}</p>
-              <p className="mt-4">
-                <a href="mailto:contact@vrnt.org" className="hover:text-white transition-colors">contact@vrnt.org</a>
-              </p>
+              <div className="mt-4 space-y-2">
+                <p>
+                  <a href="mailto:office@vrnt.org" className="hover:text-white transition-colors">office@vrnt.org</a>
+                </p>
+                <p>Landline: 044-24740549</p>
+                <p>Mobile: 93607 31283</p>
+              </div>
             </address>
           </div>
 
