@@ -1,5 +1,6 @@
 import { SITE_CONTENT } from "@/lib/constants";
 import { Link } from "wouter";
+import { Mail, Phone, Smartphone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -22,13 +23,23 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block">Contact Us</h3>
             <address className="not-italic text-secondary-foreground/80 text-sm space-y-4">
-              <p>{SITE_CONTENT.header.address}</p>
-              <div className="mt-4 space-y-2">
-                <p>
+              <div className="flex gap-3">
+                <MapPin size={18} className="text-primary shrink-0 mt-0.5" />
+                <p>{SITE_CONTENT.header.address}</p>
+              </div>
+              <div className="mt-4 space-y-3">
+                <div className="flex items-center gap-3">
+                  <Mail size={18} className="text-primary" />
                   <a href="mailto:office@vrnt.org" className="hover:text-white transition-colors">office@vrnt.org</a>
-                </p>
-                <p>Landline: 044-24740549</p>
-                <p>Mobile: 93607 31283</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone size={18} className="text-primary" />
+                  <p>044-24740549</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Smartphone size={18} className="text-primary" />
+                  <p>93607 31283</p>
+                </div>
               </div>
             </address>
           </div>

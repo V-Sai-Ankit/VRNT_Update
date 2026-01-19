@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SITE_CONTENT } from "@/lib/constants";
-import { Mail, Phone, MapPin, UserCheck, Briefcase } from "lucide-react";
+import { Mail, Phone, MapPin, UserCheck, Briefcase, Smartphone } from "lucide-react";
 
 export default function ContactPage() {
   const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.850383745237!2d80.22295677507772!3d13.04429388727806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526654019a97d9%3A0xe744e45e9a4f6d4!2sVeda%20Rakshana%20Nidhi%20Trust!5e0!3m2!1sen!2sin!4v1715694850000!5m2!1sen!2sin";
@@ -40,10 +40,10 @@ export default function ContactPage() {
                     </p>
                     <div className="pt-4 space-y-3">
                       <p className="flex items-center gap-3 text-muted-foreground">
-                        <Phone size={18} className="text-primary" /> 044-24740549
+                        <Phone size={18} className="text-primary" /> Landline: 044-24740549
                       </p>
                       <p className="flex items-center gap-3 text-muted-foreground">
-                        <Phone size={18} className="text-primary" /> 93607 31283
+                        <Smartphone size={18} className="text-primary" /> Mobile: 93607 31283
                       </p>
                       <p className="flex items-center gap-3 text-muted-foreground">
                         <Mail size={18} className="text-primary" /> office@vrnt.org
