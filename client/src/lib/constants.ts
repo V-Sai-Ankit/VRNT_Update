@@ -94,7 +94,7 @@ export const SITE_CONTENT = {
     }
   ],
   sage: {
-    title: "Founder",
+    title: "",
     subtitle: "Kanchi Shankaracharya: MahaPeriyava",
     name: "His Holiness Sri Sri Chandrashekarendra Saraswati Mahaswamiji",
     designation: "The 68th Jagadguru Shankaracharya of Moolamnaya Sarvajna Shri Kanchi Kamakoti Peetham",
