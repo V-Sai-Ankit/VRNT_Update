@@ -28,35 +28,16 @@ export default function TrusteesPage() {
                   className="bg-card p-6 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/10 rounded-full text-primary">
+                    <div className="p-3 bg-primary/10 rounded-full text-primary shrink-0">
                       <User size={24} />
                     </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="font-display text-xl font-bold text-foreground">
-                          {trustee.name}
-                        </h3>
-                        <span className="text-[10px] font-bold bg-secondary/10 text-secondary px-2 py-1 rounded uppercase tracking-wider">
-                          {trustee.role}
-                        </span>
-                      </div>
-                      
-                      <div className="space-y-3 mt-4 text-sm text-muted-foreground font-sans">
-                        <div className="flex items-start gap-2">
-                          <MapPin size={16} className="mt-0.5 text-primary shrink-0" />
-                          <span>{trustee.address}</span>
-                        </div>
-                        {trustee.email && (
-                          <div className="flex items-center gap-2">
-                            <Mail size={16} className="text-primary shrink-0" />
-                            <a href={`mailto:${trustee.email}`} className="hover:text-primary transition-colors">{trustee.email}</a>
-                          </div>
-                        )}
-                        <div className="flex items-center gap-2">
-                          <Phone size={16} className="text-primary shrink-0" />
-                          <span>{trustee.contact}</span>
-                        </div>
-                      </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-display text-xl font-bold text-foreground truncate">
+                        {trustee.name}
+                      </h3>
+                      <p className="text-sm font-bold text-primary uppercase tracking-wider mt-1">
+                        {trustee.role}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
