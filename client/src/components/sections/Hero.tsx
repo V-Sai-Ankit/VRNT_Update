@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion, useScroll, useTransform } from "framer-motion";
-import headerImg from "@assets/vrnt_1768670925029.jpg";
+import headerImg from "@assets/FB_IMG_1768808289933~2_1768808606506.jpg";
 import { SITE_CONTENT } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
@@ -33,7 +33,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-56 md:pt-64">
+      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-[280px] md:pt-[340px] lg:pt-[240px]">
         <motion.div
           style={ { y, opacity } }
           initial={{ opacity: 0, y: 30 }}
@@ -44,6 +44,12 @@ export function Hero() {
           <div className="inline-block border-b-2 border-primary pb-1 mb-4">
             <span className="font-sans text-sm md:text-base tracking-[0.2em] uppercase text-white drop-shadow-md font-bold">
               {SITE_CONTENT.header.subtitle}
+            </span>
+          </div>
+
+          <div className="mb-4">
+            <span className="font-serif text-lg md:text-xl text-[#FFD700] drop-shadow-md font-bold italic" style={{ textShadow: "1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000" }}>
+              As envisioned by Mahaperiyava
             </span>
           </div>
           

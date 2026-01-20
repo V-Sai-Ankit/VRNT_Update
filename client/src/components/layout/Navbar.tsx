@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { SITE_CONTENT } from "@/lib/constants";
@@ -10,6 +10,7 @@ import seventyImg from "@assets/70_1768742815509.jpg";
 import seventyOneImg from "@assets/71_1768738842433.webp";
 import gopuramImg from "@assets/Shrimatam_Gopuram_1768739079397.webp";
 import mahaPeriyavaImg from "@assets/kanchi-maha-periyava_8fb06457-0992-4c44-8818-62d49dd13efc_800_1768741594540.webp";
+import logoImg from "@assets/GridArt_20260119_192703350_1768841338839.png";
 import hhJayendraImg from "@assets/1374748101_jayendra_saraswati_swamigal_1768742042462.jpg";
 
 export function Navbar() {
@@ -29,6 +30,21 @@ export function Navbar() {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-secondary text-secondary-foreground border-b border-white/10 shadow-sm">
+      {/* App Login Top Bar */}
+      <div className="bg-[#1a1a1a] border-b border-white/5 py-1.5">
+        <div className="container mx-auto px-4 flex justify-end">
+          <a 
+            href="https://www.kamakoti.org" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]"
+          >
+            <User size={12} className="text-[#FFD700]/70" />
+            App Login
+          </a>
+        </div>
+      </div>
+      
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center py-4 gap-2 md:gap-4">
           {/* Photos and Title Row */}
@@ -62,9 +78,11 @@ export function Navbar() {
             </div>
 
             <Link href="/" className="flex flex-col items-center text-center px-1 md:px-6 shrink-0 order-1 md:order-2 flex-grow mx-2">
-              <h1 className="font-sans text-xl md:text-2xl lg:text-4xl font-black text-[#FFD700] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                {SITE_CONTENT.header.title}
-              </h1>
+              <img 
+                src={logoImg} 
+                alt="VRNT Logo" 
+                className="h-16 md:h-24 w-auto mb-2"
+              />
               <span className="text-[9px] md:text-[12px] text-[#FFD700]/90 font-bold uppercase tracking-wider block leading-tight mt-1">
                 (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)
               </span>

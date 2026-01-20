@@ -1,31 +1,19 @@
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Award, Calendar, Users, MapPin, Star } from "lucide-react";
+import { Award, Calendar, Users, MapPin, Star, ExternalLink, FileText, CheckCircle2 } from "lucide-react";
 
 export default function CelebrationPage() {
-  const highlights = [
-    {
-      title: "60 Years of Vedic Preservation",
-      description: "Celebrating six decades of unwavering commitment to protecting and propagating the sacred Vedic heritage under the divine guidance of Kanchi Kamakoti Peetham.",
-      icon: <Award className="w-8 h-8" />
-    },
-    {
-      title: "Diamond Jubilee Mahotsav",
-      description: "A grand assembly of Vedic scholars, pandits, and devotees to commemorate the milestone of our journey in Veda Rakshanam.",
-      icon: <Star className="w-8 h-8" />
-    },
-    {
-      title: "Scholar Recognition",
-      description: "Honoring distinguished Vedic scholars who have dedicated their lives to the oral tradition of Vedic chanting and education.",
-      icon: <Users className="w-8 h-8" />
-    }
+  const requirements = [
+    { text: "A copy of your VRNT Certificate", icon: <FileText className="w-5 h-5" /> },
+    { text: "One passport-size photograph", icon: <Users className="w-5 h-5" /> },
+    { text: "A copy of your Aadhaar Card", icon: <CheckCircle2 className="w-5 h-5" /> },
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />
-      <main className="pt-56 md:pt-64 pb-24">
+      <main className="pt-[280px] md:pt-[340px] lg:pt-[240px] pb-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto mb-16 text-center">
             <motion.div
@@ -36,80 +24,90 @@ export default function CelebrationPage() {
               Diamond Jubilee
             </motion.div>
             <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 text-secondary">
-              VRNT 60th Year Celebration
+              Shasti Aptha Purti Mahotsav
             </h1>
             <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
             <p className="text-xl text-muted-foreground font-serif leading-relaxed italic">
-              Commemorating 60 Years of Divine Service to the Vedas
+              Celebrating 60 glorious years of dedicated service to Veda Rakshanam
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-24">
-            {highlights.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-card p-8 rounded-2xl border border-border shadow-sm hover:shadow-md transition-all text-center"
-              >
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
-                  {item.icon}
+          <div className="max-w-5xl mx-auto grid lg:grid-cols-3 gap-8 mb-16">
+            <div className="lg:col-span-2 space-y-8">
+              <section className="bg-card p-8 rounded-2xl border border-border shadow-sm">
+                <h2 className="font-display text-2xl font-bold mb-6 text-secondary border-b pb-2">Announcement</h2>
+                <div className="space-y-4 text-muted-foreground font-serif leading-relaxed">
+                  <p className="font-bold text-foreground">Dear Veda Pāṭhaśālā Administrators and Adhyāpakas, Namaskārams.</p>
+                  <p>
+                    With the paripūrṇa anugraham and under the āśīrvādam of Jagadguru Pūjyaśrī Śaṅkara Vijayēndra Sarasvatī Śaṅkarācārya Svāmigal, the Veda Rakshana Nidhi Trust is pleased to announce the celebration of 60 glorious years of dedicated service to Veda Rakshanam.
+                  </p>
+                  <p>
+                    As part of this auspicious milestone, we propose to honour all Vidwans who have successfully passed the Trust's certification examinations since its inception.
+                  </p>
+                  <p>
+                    In preparation for this celebration, we are compiling the details of all Vidwans who have received certification to date. We humbly request all such Veda Vidwans to kindly fill in their details and help us in organizing this event successfully.
+                  </p>
                 </div>
-                <h3 className="font-display text-xl font-bold mb-4">{item.title}</h3>
-                <p className="text-muted-foreground font-serif leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+              </section>
 
-          <div className="bg-secondary text-secondary-foreground rounded-3xl p-8 md:p-16 overflow-hidden relative shadow-2xl">
-            <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 text-white">
-                  Shasti Aptha Purti Mahotsav
-                </h2>
-                <p className="text-lg text-secondary-foreground/80 font-serif leading-relaxed mb-8">
-                  The Diamond Jubilee celebrations are a testament to the vision of His Holiness MahaPeriyava. Join us in this historic milestone as we reflect on our achievements and look forward to strengthening our mission for future generations.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <Calendar className="text-primary" />
-                    <span>Grand Celebrations - 2024-2025</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <MapPin className="text-primary" />
-                    <span>Chennai & Kanchipuram</span>
-                  </div>
+              <section className="bg-card p-8 rounded-2xl border border-border shadow-sm">
+                <h2 className="font-display text-2xl font-bold mb-6 text-secondary border-b pb-2">Tamil Version</h2>
+                <div className="space-y-4 text-muted-foreground leading-relaxed font-sans">
+                  <p className="font-bold text-foreground">வேத பாடசாலை நிர்வாகிகளுக்கும் ஆசிரியர்களுக்கும், நமஸ்காரங்கள்.</p>
+                  <p>
+                    ஜகத்குரு பூஜ்யஶ்ரீ சங்கர விஜயேந்திர சரஸ்வதி சங்கராசார்ய சுவாமிகளின் பரிபூர்ண அனுகிரகமும், ஆசீர்வாதமும் பெற்று, வேத ரக்ஷண நிதி டிரஸ்ட், வேத ரக்ஷணத்திற்கு அர்ப்பணித்த 60 ஆண்டு சிறப்பான சேவையை கொண்டாடுவதில் பெருமிதம் கொள்கிறது.
+                  </p>
+                  <p>
+                    இந்த 60 ஆண்டு நிறைவை ஒட்டி, டிரஸ்ட் ஆரம்பிக்கப்பட்ட தினத்திலிருந்து தேர்ச்சி பெற்ற அனைத்து வித்வான்களையும் கௌரவிக்க திட்டமிட்டுள்ளோம்.
+                  </p>
+                </div>
+
+                <div className="mt-8 p-6 bg-primary/5 rounded-xl border border-primary/10">
+                  <h3 className="font-bold mb-4 text-secondary flex items-center gap-2">
+                    <ExternalLink size={18} className="text-primary" /> Registration Details
+                  </h3>
+                  <p className="text-sm mb-6">Please complete the registration online using the link below:</p>
+                  <a 
+                    href="https://forms.gle/yn41ZqVzk269GppNA" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-bold uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors shadow-lg"
+                  >
+                    Google Form Link <ExternalLink size={16} />
+                  </a>
+                </div>
+              </section>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-secondary text-secondary-foreground p-8 rounded-2xl shadow-xl">
+                <h3 className="font-display text-xl font-bold mb-6 text-white">Required Documents</h3>
+                <ul className="space-y-4">
+                  {requirements.map((req, i) => (
+                    <li key={i} className="flex gap-3 items-start text-sm text-secondary-foreground/80">
+                      <span className="text-primary shrink-0">{req.icon}</span>
+                      {req.text}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 pt-6 border-t border-white/10">
+                  <h4 className="font-bold text-sm mb-2 text-white italic underline">Important Notes:</h4>
+                  <ul className="space-y-3 text-xs text-secondary-foreground/70 list-disc pl-4">
+                    <li>All Vidwans who have received certification—regardless of the year—are required to register.</li>
+                    <li>Registrations received after the due date will not be considered.</li>
+                  </ul>
                 </div>
               </div>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
-                <h3 className="font-bold text-xl mb-4 text-white">Event Highlights</h3>
-                <ul className="space-y-4 text-secondary-foreground/70 font-serif">
-                  <li className="flex gap-2">
-                    <span className="text-primary font-bold">•</span>
-                    Veda Parayanam by 100+ Scholars
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-primary font-bold">•</span>
-                    Release of Commemorative Souvenir
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-primary font-bold">•</span>
-                    Special Awards for Senior Pandits
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-primary font-bold">•</span>
-                    Cultural Programs & Discourses
-                  </li>
-                </ul>
+
+              <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+                <h3 className="font-bold mb-4 flex items-center gap-2">
+                  <Calendar size={18} className="text-primary" /> Important Dates
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Details regarding the date and venue of the celebration will be announced shortly and updated on this website.
+                </p>
               </div>
             </div>
-            {/* Background Texture/Pattern */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -mr-32 -mt-32 blur-3xl opacity-50"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full -ml-32 -mb-32 blur-3xl opacity-50"></div>
           </div>
         </div>
       </main>
@@ -117,3 +115,4 @@ export default function CelebrationPage() {
     </div>
   );
 }
+

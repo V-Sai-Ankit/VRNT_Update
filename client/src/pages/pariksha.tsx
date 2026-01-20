@@ -39,7 +39,7 @@ export default function ParikshaPage() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />
-      <main className="pt-56 md:pt-64 pb-24 bg-muted/30 min-h-[calc(100vh-80px)]">
+      <main className="pt-[280px] md:pt-[340px] lg:pt-[240px] pb-24 bg-muted/30 min-h-[calc(100vh-80px)]">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-16">
             <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4 underline decoration-primary decoration-4 underline-offset-8 inline-block">

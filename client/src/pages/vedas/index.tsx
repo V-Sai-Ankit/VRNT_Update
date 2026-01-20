@@ -41,8 +41,12 @@ export default function VedasPage() {
           <div className="bg-secondary/5 p-6 rounded-xl mb-6 border-l-4 border-secondary font-serif">
             "Vedo Vrikshaha Tasya Moolam hi Vip raha A ngas sakhaha Dharma Karmani Patram Tasrnan Moolo Yatnatho Rakshaneeya Chjnne Moolae Naiva Sakha na Vrikshaha"
           </div>
-          <p>"The Vedas" is a Vriksha (Tree), whose roots are the Vipras (Brahmins), the repository of the Vedas. The six Angas are the branches. The Karmanushtanam and the Dharmic way of life are the leaves.</p>
-          <p>Verily, watering the roots only will arrest the decay of the tree and its branches. This Veda Rakshanam by the Grihastas is sought to be shown by offering the necessities of livelihood to the repositories of the Vedas.</p>
+          <p>
+            "The Vedas" is a Vriksha (Tree), whose roots are the Vipras (Brahmins), the repository of the Vedas. 
+            The six Angas, the auxiliary sciences (Siksha, Vyakaranam, Chandas, Niruktha, Jyothisha, and Kalpa-Sutra), are the branches. 
+            The Karmanushtanam and the Dharmic way of life are the leaves.
+          </p>
+          <p className="font-bold">All possible efforts, therefore, should be taken to protect and preserve the ROOTS as, once the roots decay, there will be neither the tree nor the branches and leaves.</p>
           <Link href="/vedas/rakshanam">
             <a className="inline-flex items-center text-secondary font-bold mt-4 hover:underline">View Full Article →</a>
           </Link>
@@ -74,7 +78,7 @@ export default function VedasPage() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />
-      <main className="pt-56 md:pt-64 pb-24 bg-muted/30 min-h-[calc(100vh-80px)]">
+      <main className="pt-[280px] md:pt-[340px] lg:pt-[240px] pb-24 bg-muted/30 min-h-[calc(100vh-80px)]">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-16">
             <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4">The Holy Vedas</h1>

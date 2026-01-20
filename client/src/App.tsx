@@ -18,6 +18,7 @@ import VedasPage from "./pages/vedas/index";
 import ParikshaPage from "./pages/pariksha";
 import SixtyYearsPage from "./pages/celebrations/sixty-years";
 import NotFound from "@/pages/not-found";
+import { NotificationSidebar } from "@/components/layout/NotificationSidebar";
 
 function Router() {
   return (
@@ -46,6 +47,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
+        <NotificationSidebar />
         <Router />
       </TooltipProvider>
     </QueryClientProvider>
