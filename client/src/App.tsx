@@ -17,6 +17,7 @@ import VedaVyasa from "./pages/vedas/Vyasa";
 import VedasPage from "./pages/vedas/index";
 import ParikshaPage from "./pages/pariksha";
 import SixtyYearsPage from "./pages/celebrations/sixty-years";
+import GalleryPage from "./pages/gallery";
 import NotFound from "@/pages/not-found";
 import { NotificationSidebar } from "@/components/layout/NotificationSidebar";
 
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/vedas/vyasa" component={VedaVyasa} />
       <Route path="/pariksha" component={ParikshaPage} />
       <Route path="/celebrations/60-years" component={SixtyYearsPage} />
+      <Route path="/gallery" component={GalleryPage} />
       <Route component={NotFound} />
     </Switch>
   );
