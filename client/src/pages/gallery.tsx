@@ -19,40 +19,40 @@ import sageImg from "@assets/Kanchi_shankaracharyas_1768738006479.jpg";
 
 const GALLERY_IMAGES = [
   {
+    url: asImg,
+    title: "Adi Shankaracharya",
+    category: "Peetham Founder",
+    description: "Kanchi Kamakoti Peetham established by Adi Shankaracharya (509 BCE to 477 BCE) 2500 years ago."
+  },
+  {
     url: mahaPeriyavaImg,
-    title: "Kanchi Maha Periyava",
-    category: "Founders",
-    description: "The Sage of Kanchi, His Holiness Sri Chandrashekarendra Saraswati Mahaswamiji."
+    title: "68th JAGADGURU SHANKARACHARYA",
+    category: "Kanchi Paramacharya",
+    description: "Sri Chandrashekharendra Saraswati Mahaswami Ji"
   },
   {
     url: sageImg,
-    title: "Kanchi Shankaracharyas",
-    category: "Spiritual Lineage",
-    description: "68th and 69th Kanchi Shankaracharyas in a sacred moment."
-  },
-  {
-    url: headerImg,
-    title: "Veda Rakshana Nidhi Trust",
-    category: "Activities",
-    description: "Protecting and promoting Vedic education for generations."
+    title: "69th Jagadguru Shankaracharya",
+    category: "Acharya",
+    description: "Sri Jayendra Saraswati Mahaswami Ji"
   },
   {
     url: seventyImg,
-    title: "70th Shankaracharya",
-    category: "Acharyas",
-    description: "His Holiness Sri Jayendra Saraswati Mahaswamiji."
+    title: "70th Jagadguru Shankaracharya",
+    category: "Acharya",
+    description: "Sri Shankara Saraswati Mahaswami Ji"
   },
   {
     url: seventyOneImg,
-    title: "71st Shankaracharya",
-    category: "Acharyas",
-    description: "His Holiness Sri Vijayendra Saraswati Mahaswamiji."
+    title: "71st Jagadguru Shankaracharya",
+    category: "Acharya",
+    description: "Sri Satya Chandrasekharendra Saraswathi Mahaswami Ji"
   },
   {
     url: gopuramImg,
-    title: "Shrimatam Gopuram",
-    category: "Temple",
-    description: "The majestic entrance to the Kanchi Kamakoti Peetham."
+    title: "Kanchi Kamakoti Peetham",
+    category: "Shrimatam",
+    description: "The sacred seat established by Adi Shankara 2500 years ago."
   }
 ];
 
@@ -105,7 +105,7 @@ export default function GalleryPage() {
             className="text-center mb-12"
           >
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
-              Our Gallery
+              Our Spiritual Lineage
             </h1>
             <div className="h-1 w-20 bg-[#FFD700] mx-auto mb-4" />
           </motion.div>
