@@ -22,6 +22,7 @@ export function Navbar() {
     { name: "Activities", href: "/activities" },
     { name: "Vedas", href: "/vedas" },
     { name: "VRNT 60", href: "/celebrations/60-years" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Pariksha", href: "/pariksha" },
     { name: "Trustees", href: "/trustees" },
     { name: "Donate", href: "/donate" },
