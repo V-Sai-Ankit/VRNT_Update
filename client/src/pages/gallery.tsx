@@ -40,7 +40,7 @@ const GALLERY_IMAGES = [
     url: seventyImg,
     title: "70th Jagadguru Shankaracharya",
     category: "Acharya",
-    description: "Sri Shankara Saraswati Mahaswami Ji"
+    description: "Sri Shankara Vijayendra Saraswati Mahaswami Ji"
   },
   {
     url: seventyOneImg,
