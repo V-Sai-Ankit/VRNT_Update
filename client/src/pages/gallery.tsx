@@ -3,36 +3,64 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 
+// Existing images imported from various parts of the project
+import acharyaImg from "@assets/acharya_1768671806078.jpg";
+import hhImg from "@assets/HH-Jayendra-Saraswathi-Swamiji_1768671806077.jpg";
+import asImg from "@assets/AS_1768738817683.jpg";
+import seventyImg from "@assets/70_1768742815509.jpg";
+import seventyOneImg from "@assets/71_1768738842433.webp";
+import gopuramImg from "@assets/Shrimatam_Gopuram_1768739079397.webp";
+import mahaPeriyavaImg from "@assets/kanchi-maha-periyava_8fb06457-0992-4c44-8818-62d49dd13efc_800_1768741594540.webp";
+import logoImg from "@assets/GridArt_20260119_192703350_1768841338839.png";
+import hhJayendraImg from "@assets/1374748101_jayendra_saraswati_swamigal_1768742042462.jpg";
+import headerImg from "@assets/FB_IMG_1768808289933~2_1768808606506.jpg";
+import sageImg from "@assets/Kanchi_shankaracharyas_1768738006479.jpg";
+
 const GALLERY_IMAGES = [
   {
-    url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
-    title: "Veda Pathashala",
-    category: "Education"
+    url: mahaPeriyavaImg,
+    title: "Kanchi Maha Periyava",
+    category: "Founders"
   },
   {
-    url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952",
-    title: "Community Prayer",
+    url: sageImg,
+    title: "Kanchi Shankaracharyas",
+    category: "Spiritual Lineage"
+  },
+  {
+    url: headerImg,
+    title: "Veda Rakshana Nidhi Trust",
+    category: "Activities"
+  },
+  {
+    url: seventyImg,
+    title: "70th Shankaracharya",
+    category: "Acharyas"
+  },
+  {
+    url: seventyOneImg,
+    title: "71st Shankaracharya",
+    category: "Acharyas"
+  },
+  {
+    url: gopuramImg,
+    title: "Shrimatam Gopuram",
+    category: "Temple"
+  },
+  {
+    url: asImg,
+    title: "Adi Shankara",
+    category: "History"
+  },
+  {
+    url: hhJayendraImg,
+    title: "HH Jayendra Saraswathi",
+    category: "Acharyas"
+  },
+  {
+    url: acharyaImg,
+    title: "Sri Kanchi Acharyas",
     category: "Spiritual"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1523580494863-6f3031224c94",
-    title: "Cultural Event",
-    category: "Celebration"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1529070538774-1843cb3265df",
-    title: "Yoga Session",
-    category: "Wellness"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    title: "Tech in Tradition",
-    category: "Modern"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1493612276216-ee3925520721",
-    title: "Ancient Scripts",
-    category: "Heritage"
   }
 ];
 
@@ -40,7 +68,7 @@ export default function GalleryPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-40 pb-20">
+      <main className="pt-48 pb-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -52,7 +80,7 @@ export default function GalleryPage() {
             </h1>
             <div className="h-1 w-20 bg-[#FFD700] mx-auto mb-6" />
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              A visual journey through our activities, celebrations, and the daily life at VRNT.
+              A visual journey through our heritage, activities, and the sacred lineage of Kanchi Kamakoti Peetham.
             </p>
           </motion.div>
 
@@ -69,7 +97,7 @@ export default function GalleryPage() {
                     <img
                       src={item.url}
                       alt={item.title}
-                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                       <span className="text-[#FFD700] text-xs font-bold uppercase tracking-widest mb-1">
