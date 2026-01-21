@@ -1,7 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Card, CardContent } from "@/components/ui/card";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 // Existing images imported from various parts of the project
 import acharyaImg from "@assets/acharya_1768671806078.jpg";
@@ -11,7 +13,6 @@ import seventyImg from "@assets/70_1768742815509.jpg";
 import seventyOneImg from "@assets/71_1768738842433.webp";
 import gopuramImg from "@assets/Shrimatam_Gopuram_1768739079397.webp";
 import mahaPeriyavaImg from "@assets/kanchi-maha-periyava_8fb06457-0992-4c44-8818-62d49dd13efc_800_1768741594540.webp";
-import logoImg from "@assets/GridArt_20260119_192703350_1768841338839.png";
 import hhJayendraImg from "@assets/1374748101_jayendra_saraswati_swamigal_1768742042462.jpg";
 import headerImg from "@assets/FB_IMG_1768808289933~2_1768808606506.jpg";
 import sageImg from "@assets/Kanchi_shankaracharyas_1768738006479.jpg";
@@ -20,97 +21,187 @@ const GALLERY_IMAGES = [
   {
     url: mahaPeriyavaImg,
     title: "Kanchi Maha Periyava",
-    category: "Founders"
+    category: "Founders",
+    description: "The Sage of Kanchi, His Holiness Sri Chandrashekarendra Saraswati Mahaswamiji."
   },
   {
     url: sageImg,
     title: "Kanchi Shankaracharyas",
-    category: "Spiritual Lineage"
+    category: "Spiritual Lineage",
+    description: "68th and 69th Kanchi Shankaracharyas in a sacred moment."
   },
   {
     url: headerImg,
     title: "Veda Rakshana Nidhi Trust",
-    category: "Activities"
+    category: "Activities",
+    description: "Protecting and promoting Vedic education for generations."
   },
   {
     url: seventyImg,
     title: "70th Shankaracharya",
-    category: "Acharyas"
+    category: "Acharyas",
+    description: "His Holiness Sri Jayendra Saraswati Mahaswamiji."
   },
   {
     url: seventyOneImg,
     title: "71st Shankaracharya",
-    category: "Acharyas"
+    category: "Acharyas",
+    description: "His Holiness Sri Vijayendra Saraswati Mahaswamiji."
   },
   {
     url: gopuramImg,
     title: "Shrimatam Gopuram",
-    category: "Temple"
-  },
-  {
-    url: asImg,
-    title: "Adi Shankara",
-    category: "History"
-  },
-  {
-    url: hhJayendraImg,
-    title: "HH Jayendra Saraswathi",
-    category: "Acharyas"
-  },
-  {
-    url: acharyaImg,
-    title: "Sri Kanchi Acharyas",
-    category: "Spiritual"
+    category: "Temple",
+    description: "The majestic entrance to the Kanchi Kamakoti Peetham."
   }
 ];
 
 export default function GalleryPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  };
+
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setCurrentIndex((prevIndex) => (prevIndex + newDirection + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-48 pb-20">
+      <main className="pt-40 pb-20 overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
               Our Gallery
             </h1>
-            <div className="h-1 w-20 bg-[#FFD700] mx-auto mb-6" />
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              A visual journey through our heritage, activities, and the sacred lineage of Kanchi Kamakoti Peetham.
-            </p>
+            <div className="h-1 w-20 bg-[#FFD700] mx-auto mb-4" />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {GALLERY_IMAGES.map((item, index) => (
+          <div className="relative max-w-5xl mx-auto h-[500px] md:h-[600px] group">
+            <AnimatePresence initial={false} custom={direction}>
               <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 }
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = swipePower(offset.x, velocity.x);
+                  if (swipe < -swipeConfidenceThreshold) {
+                    paginate(1);
+                  } else if (swipe > swipeConfidenceThreshold) {
+                    paginate(-1);
+                  }
+                }}
+                className="absolute inset-0 w-full h-full"
               >
-                <Card className="overflow-hidden border-none shadow-lg hover:shadow-2xl transition-all duration-300 group">
-                  <CardContent className="p-0 relative">
-                    <img
-                      src={item.url}
-                      alt={item.title}
-                      className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      <span className="text-[#FFD700] text-xs font-bold uppercase tracking-widest mb-1">
-                        {item.category}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-primary/10">
+                  <img
+                    src={GALLERY_IMAGES[currentIndex].url}
+                    alt={GALLERY_IMAGES[currentIndex].title}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-12">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <span className="text-[#FFD700] text-sm font-bold uppercase tracking-widest mb-2 block">
+                        {GALLERY_IMAGES[currentIndex].category}
                       </span>
-                      <h3 className="text-white font-serif text-xl font-bold">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <h2 className="text-white font-serif text-3xl md:text-4xl font-bold mb-3">
+                        {GALLERY_IMAGES[currentIndex].title}
+                      </h2>
+                      <p className="text-white/80 text-lg max-w-2xl font-serif italic">
+                        {GALLERY_IMAGES[currentIndex].description}
+                      </p>
+                    </motion.div>
+                  </div>
+                </div>
               </motion.div>
-            ))}
+            </AnimatePresence>
+
+            {/* Controls */}
+            <div className="absolute inset-y-0 left-4 flex items-center z-10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full bg-black/20 hover:bg-black/40 text-white border-white/20 backdrop-blur-sm h-12 w-12"
+                onClick={() => paginate(-1)}
+              >
+                <ChevronLeft className="h-8 w-8" />
+              </Button>
+            </div>
+            <div className="absolute inset-y-0 right-4 flex items-center z-10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full bg-black/20 hover:bg-black/40 text-white border-white/20 backdrop-blur-sm h-12 w-12"
+                onClick={() => paginate(1)}
+              >
+                <ChevronRight className="h-8 w-8" />
+              </Button>
+            </div>
+
+            {/* Dots */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+              {GALLERY_IMAGES.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setDirection(index > currentIndex ? 1 : -1);
+                    setCurrentIndex(index);
+                  }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    index === currentIndex 
+                      ? "bg-[#FFD700] w-8" 
+                      : "bg-white/30 hover:bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </main>
