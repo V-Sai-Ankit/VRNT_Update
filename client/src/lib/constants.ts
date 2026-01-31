@@ -11,19 +11,19 @@ export const SITE_CONTENT = {
     cta: "Contribute Now"
   },
   mission: {
-    title: "Our Mission & Vision",
+    title: "Mission & Vision",
     points: [
-      "To strive every nerve to protect and preserve our holy Vedic heritage and pass it on to posterity.",
-      "To protect and preserve the age-old tradition of Vedic Adhyayanam ( study ).",
-      "To bring out more and more traditional Vedic Pandits, particularly in those sakhas on the verge of extinction.",
-      "To ensure that the society gets a steady stream of qualified Gurus to encourage, guide and enable Grahastas ( house holders) in their Sroutha and Smartha Karma Anushtanam as prescribed.",
-      "To inform and educate the general public about the Vedic heritage, tradition and way of life."
+      "To uphold the Guru-Sishya tradition and extend educational opportunities to deserving students across linguistic and philosophical backgrounds",
+      "To ensure the survival and flourishing of Vedic knowledge through educational and financial support to Vedic scholars and institutions.",
+      "To preserve, protect, promote and disseminate Vedas in the traditional manner.",
+      "To preserve the uniqueness and distinctiveness of each branch of Vedic recitation.",
+      "To support rare Veda Shaakhas on the brink of extinction through systematic training."
     ],
-    detailed: "The Vedas form the bedrock of the Bharatiya Culture and Civilization and are the fountain head of all that is pure and sublime in the human way of life. Utilization of the Vedic mantras in the samskaras (Rituals) helps the spiritual growth of the individual, purifies the atmosphere and helps curtail illness and other evil effects."
+    detailed: "VEDA RAKSHANA NIDHI TRUST (VRNT) is a Public Charitable Trust sponsored by Kanchi Kamakoti Peetam founded in 1963 under the guidance of His Holiness Sri Sri Chandrashekarendra Saraswati Swamigal."
   },
   activities: {
     title: "Trust Activities",
-    description: "The Trust's main objective is the preservation of ancient Vedic education in its pristine purity. It assists institutions in establishing traditional Veda Patashalas in different regions of the country and renders financial assistance wherever needed."
+    description: "The Trust's main objective is the preservation of ancient Vedic education in its pristine purity. Major initiatives include Hereditary Niyama Adhyayanam (HNY), support for Rare Veda Shaakhas, Pan-India Financial Assistance, and Academic Monitoring through Varshika Examinations."
   },
   trustees: [
     { name: "S SWAMINATHAN", role: "EXECUTIVE TRUSTEE", contact: "9840189849", email: "swami.nathan6193@gmail.com", address: "1 A, ARJUN ENCLAVE, NEW NO 29, 6 TH CROSS STREET, TRUSTPURAM, KODAMBAKKAM, CHENNAI 600024" },
