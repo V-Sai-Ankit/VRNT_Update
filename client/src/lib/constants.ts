@@ -19,11 +19,22 @@ export const SITE_CONTENT = {
       "To preserve the uniqueness and distinctiveness of each branch of Vedic recitation.",
       "To support rare Veda Shaakhas on the brink of extinction through systematic training."
     ],
-    detailed: "VEDA RAKSHANA NIDHI TRUST (VRNT) is a Public Charitable Trust sponsored by Kanchi Kamakoti Peetam founded in 1963 under the guidance of His Holiness Sri Sri Chandrashekarendra Saraswati Swamigal."
+    detailed: "VEDA RAKSHANA NIDHI TRUST (VRNT) is a Public Charitable Trust sponsored by Kanchi Kamakoti Peetam founded in 1963 under the guidance of His Holiness Sri Sri Chandrashekarendra Saraswati Swamigal. Learning and teaching the Vedas through the traditional Gurukula system is not merely an academic pursuit—it is a way of life, a sacred journey that nurtures both character and intellect. In this ancient and time-honoured system, education transcends classroom boundaries and becomes an immersive spiritual discipline.",
+    shakas: [
+      "Rig - Shakala",
+      "Krishna Yajur - Thaithariyam",
+      "Shukla Yajur - Kanva",
+      "Shukla Yajur - Madhyanthina",
+      "Sama - Kouthuma",
+      "Sama - Jaimini",
+      "Sama - Ranayani",
+      "Atharva - Saunaka",
+      "Atharva - Pippalada"
+    ]
   },
   activities: {
     title: "Trust Activities",
-    description: "The Trust's main objective is the preservation of ancient Vedic education in its pristine purity. Major initiatives include Hereditary Niyama Adhyayanam (HNY), support for Rare Veda Shaakhas, Pan-India Financial Assistance, and Academic Monitoring through Varshika Examinations."
+    description: "The Trust's main objective is the preservation of ancient Vedic education in its pristine purity. Major initiatives include Hereditary Niyama Adhyayanam (HNY), support for Rare Veda Shaakhas, Pan-India Financial Assistance, Academic Monitoring through Varshika Examinations, and Final Recognition through Poorthy Examinations."
   },
   trustees: [
     { name: "S SWAMINATHAN", role: "EXECUTIVE TRUSTEE", contact: "9840189849", email: "swami.nathan6193@gmail.com", address: "1 A, ARJUN ENCLAVE, NEW NO 29, 6 TH CROSS STREET, TRUSTPURAM, KODAMBAKKAM, CHENNAI 600024" },
