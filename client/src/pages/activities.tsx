@@ -28,8 +28,20 @@ export default function ActivitiesPage() {
     {
       title: "Final Examinations and Recognition",
       icon: <Award className="w-8 h-8" />,
-      content: "At the culmination of their course, students appear for final examinations. Successful candidates are conferred with certificates of proficiency and monetary rewards, acknowledging their hard work and devotion to the Vedas."
+      content: "At the culmination of their course, students appear for the final examinations (Poorthy Exam), which serve as a comprehensive assessment of mastery. Successful candidates are conferred with certificates of proficiency and monetary rewards."
+    },
+    {
+      title: "Selection of Śūrādhyāyī",
+      icon: <GraduationCap className="w-8 h-8" />,
+      content: "A special recognition for the 'Best Vidyārthi' who demonstrates exceptional proficiency (90%+ marks) and dedication. The selection involves advanced-level competition in Mūlam, Padam, Kramam, Jaṭā, and Gānam."
     }
+  ];
+
+  const vedaShakas = [
+    { veda: "Rig Veda", shakas: ["Shakala"] },
+    { veda: "Yajur Veda", shakas: ["Krishna Yajur - Thaithariyam", "Shukla Yajur - Kanva", "Shukla Yajur - Madhyanthina"] },
+    { veda: "Sama Veda", shakas: ["Kouthuma", "Jaimini", "Ranayani"] },
+    { veda: "Atharva Veda", shakas: ["Saunaka", "Pippalada"] }
   ];
 
   return (
@@ -49,7 +61,7 @@ export default function ActivitiesPage() {
             </p>
           </div>
 
-          <div className="grid gap-8 max-w-5xl mx-auto">
+          <div className="grid gap-8 max-w-5xl mx-auto mb-20">
             {initiatives.map((item, index) => (
               <motion.div
                 key={index}
@@ -75,6 +87,30 @@ export default function ActivitiesPage() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-5xl mx-auto"
+          >
+            <h2 className="text-3xl font-serif font-bold text-primary mb-12 text-center">Veda Shaakhas We Support</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {vedaShakas.map((item, idx) => (
+                <div key={idx} className="bg-primary/5 p-6 rounded-2xl border border-primary/10">
+                  <h3 className="font-bold text-lg mb-4 text-secondary border-b border-primary/20 pb-2">{item.veda}</h3>
+                  <ul className="space-y-2">
+                    {item.shakas.map((shaka, sIdx) => (
+                      <li key={sIdx} className="text-sm text-muted-foreground font-serif flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                        {shaka}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </main>
       <Footer />
