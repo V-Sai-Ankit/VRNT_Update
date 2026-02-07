@@ -7,24 +7,25 @@ import { Shield, BookOpen, Globe, Users } from "lucide-react";
 export default function MissionPage() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
-      <Navbar />
-      <main className="pt-[280px] md:pt-[340px] lg:pt-[240px] pb-24">
-        <Mission />
-        
-        <div className="container mx-auto px-4 md:px-6 mt-20">
+      <Navbar compact />
+      <main className="pt-[100px] md:pt-[120px] pb-24">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             className="mb-24"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-12 text-center">Major Initiatives</h2>
+            <div className="text-center mb-16">
+              <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4 underline decoration-primary decoration-4 underline-offset-8 inline-block">
+                Major Initiatives
+              </h1>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-card p-8 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
                   <Users size={24} />
                 </div>
-                <h3 className="text-xl font-bold mb-4 font-serif">Hereditary Niyama Adhyayanam (HNY)</h3>
+                <h3 className="text-xl font-bold mb-4 font-serif text-primary">Hereditary Niyama Adhyayanam (HNY)</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   Reviving the hereditary mode of Vedic learning, where a father imparts the Vedas to his son, ensuring precision in pronunciation and purity in intonation.
                 </p>
@@ -33,7 +34,7 @@ export default function MissionPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
                   <Shield size={24} />
                 </div>
-                <h3 className="text-xl font-bold mb-4 font-serif">Rare Veda Shaakhas Support</h3>
+                <h3 className="text-xl font-bold mb-4 font-serif text-primary">Rare Veda Shaakhas Support</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   Establishing Pāṭhaśālās dedicated to rare Shaakhas on the brink of extinction, providing disciplined training under qualified scholars.
                 </p>
@@ -42,7 +43,7 @@ export default function MissionPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
                   <Globe size={24} />
                 </div>
-                <h3 className="text-xl font-bold mb-4 font-serif">Pan-India Assistance</h3>
+                <h3 className="text-xl font-bold mb-4 font-serif text-primary">Pan-India Assistance</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   Extending comprehensive financial support to deserving Veda Pāṭhaśālās across India, ensuring economic challenges do not hinder sacred learning.
                 </p>
@@ -51,7 +52,7 @@ export default function MissionPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
                   <BookOpen size={24} />
                 </div>
-                <h3 className="text-xl font-bold mb-4 font-serif">Academic Monitoring</h3>
+                <h3 className="text-xl font-bold mb-4 font-serif text-primary">Academic Monitoring</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   Conducting regular inspections and Varshika Pariksha to maintain academic rigor and uniformity across all affiliated institutions.
                 </p>
@@ -59,11 +60,13 @@ export default function MissionPage() {
             </div>
           </motion.div>
 
+          <Mission />
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-primary/5 rounded-3xl p-8 md:p-16 border border-primary/10 relative overflow-hidden"
+            className="bg-primary/5 rounded-3xl p-8 md:p-16 border border-primary/10 relative overflow-hidden mt-20"
           >
             <div className="absolute top-0 right-0 -mr-24 -mt-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50"></div>
             <div className="relative z-10 max-w-4xl mx-auto text-center">

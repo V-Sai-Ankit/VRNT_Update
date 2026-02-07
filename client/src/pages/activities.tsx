@@ -46,19 +46,13 @@ export default function ActivitiesPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
-      <Navbar />
-      <main className="pt-[280px] md:pt-[340px] lg:pt-[240px] pb-24">
+      <Navbar compact />
+      <main className="pt-[100px] md:pt-[120px] pb-24">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl mx-auto mb-16">
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-6 underline decoration-primary decoration-4 underline-offset-8">
+          <div className="max-w-4xl mx-auto mb-12 text-center">
+            <h1 className="font-display text-4xl md:text-5xl font-bold mb-6 underline decoration-primary decoration-4 underline-offset-8 inline-block">
               Trust Activities
             </h1>
-            <p className="text-xl text-muted-foreground font-serif leading-relaxed italic mt-8">
-              MAJOR INITIATIVES OF THE TRUST
-            </p>
-            <p className="text-lg text-muted-foreground font-serif mt-4 leading-relaxed">
-              Over the decades, the Veda Rakshana Nidhi Trust (VRNT) has undertaken several pioneering initiatives to uphold and propagate the sacred Vedic tradition in its pristine form.
-            </p>
           </div>
 
           <div className="grid gap-8 max-w-5xl mx-auto mb-20">
@@ -92,12 +86,12 @@ export default function ActivitiesPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-5xl mx-auto"
+            className="max-w-5xl mx-auto bg-primary/5 p-12 rounded-3xl border border-primary/10"
           >
             <h2 className="text-3xl font-serif font-bold text-primary mb-12 text-center">Veda Shaakhas We Support</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {vedaShakas.map((item, idx) => (
-                <div key={idx} className="bg-primary/5 p-6 rounded-2xl border border-primary/10">
+                <div key={idx} className="bg-card p-6 rounded-2xl border border-border/50 shadow-sm">
                   <h3 className="font-bold text-lg mb-4 text-secondary border-b border-primary/20 pb-2">{item.veda}</h3>
                   <ul className="space-y-2">
                     {item.shakas.map((shaka, sIdx) => (
