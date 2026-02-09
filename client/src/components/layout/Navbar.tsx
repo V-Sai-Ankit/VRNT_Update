@@ -82,11 +82,13 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
             </div>
 
             <Link href="/" className={`flex flex-col items-center text-center px-1 md:px-6 shrink-0 order-1 md:order-2 flex-grow mx-2 ${compact ? 'md:flex-row md:gap-4' : ''}`}>
-              <img 
-                src={logoImg} 
-                alt="VRNT Logo" 
-                className={`w-auto mb-2 transition-all ${compact ? 'h-8 md:h-12' : 'h-16 md:h-24'}`}
-              />
+              <div className="flex flex-col items-center">
+                <img 
+                  src={logoImg} 
+                  alt="VRNT Logo" 
+                  className={`w-auto mb-2 transition-all ${compact ? 'h-8 md:h-12' : 'h-16 md:h-24'}`}
+                />
+              </div>
               {!compact && (
                 <span className="text-[9px] md:text-[12px] text-[#FFD700]/90 font-bold uppercase tracking-wider block leading-tight mt-1">
                   (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)

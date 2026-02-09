@@ -29,9 +29,16 @@ export default function Home() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="font-display font-bold text-xl md:text-3xl text-[#FFD700] mb-2">Shasti Aptha Purti Mahotsav</h3>
-                  <p className="text-white/90 text-sm md:text-lg font-serif leading-relaxed">
-                    Celebrating 60 Years of Veda Rakshana. We cordially request all <span className="text-[#FFD700] font-bold">certified Vidwans</span> to register for the Diamond Jubilee celebrations.
-                  </p>
+                  <div className="flex flex-col gap-2">
+                    <p className="text-white/90 text-sm md:text-lg font-serif leading-relaxed">
+                      Celebrating 60 Years of Veda Rakshana. We cordially request all <span className="text-[#FFD700] font-bold">certified Vidwans</span> to register for the Diamond Jubilee celebrations.
+                    </p>
+                    <Link href="/pariksha">
+                      <a className="text-[#FFD700] hover:text-white text-sm font-bold flex items-center gap-2 transition-colors w-fit">
+                        <ExternalLink size={14} /> 2026 Poorthy Exam Registration Now Open
+                      </a>
+                    </Link>
+                  </div>
                 </div>
               </div>
               <Link href="/celebrations/60-years">
