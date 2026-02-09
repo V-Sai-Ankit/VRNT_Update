@@ -127,13 +127,13 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
           </div>
 
           {/* Desktop Nav */}
-          <div className={`hidden lg:flex space-x-6 ${compact ? 'mt-1' : ''}`}>
+          <div className={`hidden lg:flex space-x-8 ${compact ? 'mt-1' : ''}`}>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
               >
-                <a className="text-[10px] font-bold text-secondary-foreground/80 hover:text-white transition-colors uppercase tracking-widest">
+                <a className="text-[12px] font-bold text-secondary-foreground hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]">
                   {link.name}
                 </a>
               </Link>

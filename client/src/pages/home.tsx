@@ -52,7 +52,6 @@ export default function Home() {
           </div>
         </div>
         <Hero />
-        <Activities />
         <SageSection />
       </main>
       <Footer />
