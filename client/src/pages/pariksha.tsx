@@ -1,19 +1,27 @@
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FileDown, GraduationCap, ClipboardCheck, Award, BookOpen } from "lucide-react";
+import { FileDown, GraduationCap, ClipboardCheck, Award, BookOpen, ExternalLink } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export default function ParikshaPage() {
   const forms = [
     {
-      title: "Poorthi Pariksha Application",
-      description: "Application form for the final completion examination.",
+      title: "2026 Poorthy Exam Registration",
+      description: "Online registration for the 2026 Poorthy Examination.",
       icon: GraduationCap,
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSfGe_y1ErOfrNsTlb-51mu0LaL6cPXxbKv38hQFFzxecA5BrQ/viewform",
+      isExternal: true,
+      buttonText: "Register Online"
+    },
+    {
+      title: "Poorthi Pariksha Application",
+      description: "Download the application form for the final completion examination.",
+      icon: FileDown,
       link: "/forms/POORTHY_APPL_2024.pdf",
       filename: "POORTHY_APPL_2024.pdf",
-      buttonText: "Download Poorthi Form"
+      buttonText: "Download Form"
     },
     {
       title: "Varshika Pariksha Form",
@@ -21,15 +29,7 @@ export default function ParikshaPage() {
       icon: ClipboardCheck,
       link: "/forms/VARSHIKA_FORM.pdf",
       filename: "VARSHIKA_FORM.pdf",
-      buttonText: "Download Varshika Form"
-    },
-    {
-      title: "Examination Results",
-      description: "View and download the latest examination results.",
-      icon: FileDown,
-      link: "/forms/EXAMINATION_RESULTS.pdf",
-      filename: "EXAMINATION_RESULTS.pdf",
-      buttonText: "Download Results"
+      buttonText: "Download Form"
     }
   ];
 
@@ -42,8 +42,8 @@ export default function ParikshaPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
-      <Navbar />
-      <main className="pt-[280px] md:pt-[340px] lg:pt-[240px] pb-24 bg-muted/30 min-h-[calc(100vh-80px)]">
+      <Navbar compact />
+      <main className="pt-[100px] md:pt-[120px] pb-24 bg-muted/30 min-h-[calc(100vh-80px)]">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-16">
             <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4 underline decoration-primary decoration-4 underline-offset-8 inline-block">
@@ -75,10 +75,17 @@ export default function ParikshaPage() {
                       className="w-full gap-2 font-bold uppercase tracking-wider text-xs"
                       asChild
                     >
-                      <a href={form.link} download={form.filename}>
-                        <FileDown className="w-4 h-4" />
-                        {form.buttonText}
-                      </a>
+                      {form.isExternal ? (
+                        <a href={form.link} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="w-4 h-4" />
+                          {form.buttonText}
+                        </a>
+                      ) : (
+                        <a href={form.link} download={form.filename}>
+                          <FileDown className="w-4 h-4" />
+                          {form.buttonText}
+                        </a>
+                      )}
                     </Button>
                   </CardContent>
                 </Card>

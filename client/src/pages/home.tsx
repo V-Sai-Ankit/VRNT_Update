@@ -21,38 +21,35 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-secondary text-secondary-foreground rounded-xl p-2 md:p-3 border border-primary/20 shadow-lg flex items-center justify-between gap-4"
+              className="bg-primary text-primary-foreground rounded-2xl p-4 md:p-6 border-2 border-[#FFD700] shadow-[0_0_20px_rgba(255,215,0,0.3)] flex flex-col md:flex-row items-center justify-between gap-6"
             >
-              <div className="flex items-center gap-3 md:gap-4 overflow-hidden">
-                <div className="bg-primary/20 p-2 rounded-full shrink-0">
-                  <Award className="text-primary w-5 h-5 md:w-6 md:h-6" />
+              <div className="flex items-center gap-4 md:gap-6 overflow-hidden">
+                <div className="bg-[#FFD700]/20 p-3 rounded-2xl shrink-0 border border-[#FFD700]/30">
+                  <Award className="text-[#FFD700] w-8 h-8 md:w-10 md:h-10" />
                 </div>
-                <div className="min-w-0 flex-1 overflow-hidden">
-                  <h3 className="font-display font-bold text-sm md:text-lg text-white truncate">Shasti Aptha Purti Mahotsav (60 Years)</h3>
-                  <div className="relative h-5 md:h-6 overflow-hidden flex items-center">
-                    <p className="text-secondary-foreground/80 text-[10px] md:text-xs font-serif hidden sm:block">We request all certified Vidwans to register for the Diamond Jubilee celebrations.</p>
-                    <div className="sm:hidden whitespace-nowrap w-full">
-                      <motion.p 
-                        animate={{ x: ["100%", "-100%"] }}
-                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                        className="text-secondary-foreground/80 text-[11px] font-serif inline-block leading-normal"
-                      >
-                        Vidwan Registration Open - We request all certified Vidwans to register for the Diamond Jubilee celebrations.
-                      </motion.p>
-                    </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-display font-bold text-xl md:text-3xl text-[#FFD700] mb-2">Shasti Aptha Purti Mahotsav</h3>
+                  <div className="flex flex-col gap-2">
+                    <p className="text-white/90 text-sm md:text-lg font-serif leading-relaxed">
+                      Celebrating 60 Years of Veda Rakshana. We cordially request all <span className="text-[#FFD700] font-bold">certified Vidwans</span> to register for the Diamond Jubilee celebrations.
+                    </p>
+                    <Link href="/pariksha">
+                      <a className="text-[#FFD700] hover:text-white text-sm font-bold flex items-center gap-2 transition-colors w-fit">
+                        <ExternalLink size={14} /> 2026 Poorthy Exam Registration Now Open
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>
               <Link href="/celebrations/60-years">
-                <a className="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-primary-foreground px-3 py-2 md:px-5 md:py-2.5 rounded-lg font-bold uppercase tracking-wider text-[9px] md:text-[10px] hover:bg-primary/90 transition-all shadow-md whitespace-nowrap shrink-0">
-                  Register <span className="hidden xs:inline">Now</span> <ExternalLink size={12} className="md:w-[14px] md:h-[14px]" />
+                <a className="inline-flex items-center gap-2 md:gap-3 bg-[#FFD700] text-secondary px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-xs md:text-sm hover:bg-white transition-all shadow-xl whitespace-nowrap shrink-0 group">
+                  Register Now <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
                 </a>
               </Link>
             </motion.div>
           </div>
         </div>
         <Hero />
-        <Activities />
         <SageSection />
       </main>
       <Footer />

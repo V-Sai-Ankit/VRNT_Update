@@ -13,7 +13,7 @@ import mahaPeriyavaImg from "@assets/kanchi-maha-periyava_8fb06457-0992-4c44-881
 import logoImg from "@assets/GridArt_20260119_192703350_1768841338839.png";
 import hhJayendraImg from "@assets/1374748101_jayendra_saraswati_swamigal_1768742042462.jpg";
 
-export function Navbar() {
+export function Navbar({ compact = false }: { compact?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -21,7 +21,6 @@ export function Navbar() {
     { name: "Mission", href: "/mission" },
     { name: "Activities", href: "/activities" },
     { name: "Vedas", href: "/vedas" },
-    { name: "VRNT 60", href: "/celebrations/60-years" },
     { name: "Gallery", href: "/gallery" },
     { name: "Pariksha", href: "/pariksha" },
     { name: "Trustees", href: "/trustees" },
@@ -31,62 +30,70 @@ export function Navbar() {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-secondary text-secondary-foreground border-b border-white/10 shadow-sm">
-      {/* App Login Top Bar */}
-      <div className="bg-[#1a1a1a] border-b border-white/5 py-1.5">
-        <div className="container mx-auto px-4 flex justify-end">
-          <a 
-            href="https://www.kamakoti.org" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]"
-          >
-            <User size={12} className="text-[#FFD700]/70" />
-            App Login
-          </a>
+      {/* App Login Top Bar - Hidden on compact */}
+      {!compact && (
+        <div className="bg-[#1a1a1a] border-b border-white/5 py-1.5">
+          <div className="container mx-auto px-4 flex justify-end">
+            <a 
+              href="https://www.kamakoti.org" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]"
+            >
+              <User size={12} className="text-[#FFD700]/70" />
+              App Login
+            </a>
+          </div>
         </div>
-      </div>
+      )}
       
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center py-4 gap-2 md:gap-4">
+        <div className={`flex flex-col items-center gap-2 md:gap-4 ${compact ? 'py-2' : 'py-4'}`}>
           {/* Photos and Title Row */}
-          <div className="flex flex-col md:flex-row items-center justify-between w-full py-1 gap-2 md:gap-4">
+          <div className={`flex flex-col md:flex-row items-center justify-between w-full py-1 gap-2 md:gap-4 ${compact ? 'hidden md:flex' : ''}`}>
             <div className="flex items-center gap-2 md:gap-3 order-2 md:order-1">
               {/* Left Chants - Desktop Only */}
-              <div className="hidden xl:flex flex-col items-end justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[150px] mr-2">
-                <span className="whitespace-nowrap">Jaya Jaya Shankara! Hara Hara Shankara!</span>
-              </div>
+              {!compact && (
+                <div className="hidden xl:flex flex-col items-end justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[150px] mr-2">
+                  <span className="whitespace-nowrap">Jaya Jaya Shankara! Hara Hara Shankara!</span>
+                </div>
+              )}
               <Link href="/" className="shrink-0">
                 <img 
                   src={gopuramImg} 
                   alt="Shrimatam Gopuram" 
-                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
+                  className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={asImg} 
                   alt="Adi Shankara" 
-                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
+                  className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={mahaPeriyavaImg} 
                   alt="Kanchi Maha Periyava" 
-                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover bg-background scale-[1.1] md:scale-[1.4]"
+                  className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
                 />
               </Link>
             </div>
 
-            <Link href="/" className="flex flex-col items-center text-center px-1 md:px-6 shrink-0 order-1 md:order-2 flex-grow mx-2">
-              <img 
-                src={logoImg} 
-                alt="VRNT Logo" 
-                className="h-16 md:h-24 w-auto mb-2"
-              />
-              <span className="text-[9px] md:text-[12px] text-[#FFD700]/90 font-bold uppercase tracking-wider block leading-tight mt-1">
-                (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)
-              </span>
+            <Link href="/" className={`flex flex-col items-center text-center px-1 md:px-6 shrink-0 order-1 md:order-2 flex-grow mx-2 ${compact ? 'md:flex-row md:gap-4' : ''}`}>
+              <div className="flex flex-col items-center">
+                <img 
+                  src={logoImg} 
+                  alt="VRNT Logo" 
+                  className={`w-auto mb-2 transition-all ${compact ? 'h-8 md:h-12' : 'h-16 md:h-24'}`}
+                />
+              </div>
+              {!compact && (
+                <span className="text-[9px] md:text-[12px] text-[#FFD700]/90 font-bold uppercase tracking-wider block leading-tight mt-1">
+                  (A unit of Moolamnaya Sarvajna<br />Shri Kanchi Kamakoti Peetham)
+                </span>
+              )}
             </Link>
 
             <div className="flex items-center gap-2 md:gap-3 order-3 md:order-3">
@@ -94,46 +101,48 @@ export function Navbar() {
                 <img 
                   src={hhJayendraImg} 
                   alt="HH Jayendra Saraswathi" 
-                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
+                  className={`rounded-full border border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={seventyImg} 
                   alt="70th Shankaracharya" 
-                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border-2 border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
+                  className={`rounded-full border-2 border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
                 />
               </Link>
               <Link href="/" className="shrink-0">
                 <img 
                   src={seventyOneImg} 
                   alt="71st Shankaracharya" 
-                  className="h-12 w-12 md:h-16 md:w-16 rounded-full border border-primary/50 object-cover object-top bg-background scale-[1.1] md:scale-[1.4]"
+                  className={`rounded-full border border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
                 />
               </Link>
               {/* Right Chants - Desktop Only */}
-              <div className="hidden xl:flex flex-col items-start justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[150px] ml-2">
-                <span className="whitespace-nowrap">Kanchi Shankara! Kamakoti Shankara!</span>
-              </div>
+              {!compact && (
+                <div className="hidden xl:flex flex-col items-start justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[150px] ml-2">
+                  <span className="whitespace-nowrap">Kanchi Shankara! Kamakoti Shankara!</span>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex space-x-6">
+          <div className={`hidden lg:flex space-x-8 ${compact ? 'mt-1' : ''}`}>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
               >
-                <a className="text-[10px] font-bold text-secondary-foreground/80 hover:text-white transition-colors uppercase tracking-widest">
+                <a className="text-[12px] font-bold text-secondary-foreground hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]">
                   {link.name}
                 </a>
               </Link>
             ))}
           </div>
 
-          {/* Mobile Menu Toggle (Simplified) */}
-          <div className="lg:hidden absolute top-6 right-4">
+          {/* Mobile Menu Toggle */}
+          <div className={`lg:hidden absolute ${compact ? 'top-3' : 'top-6'} right-4`}>
             <button onClick={() => setIsOpen(!isOpen)} className="text-secondary-foreground">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

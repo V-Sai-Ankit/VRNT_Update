@@ -92,12 +92,12 @@ export default function GalleryPage() {
       paginate(1);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [currentIndex]);
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="pt-40 pb-20 overflow-hidden">
+      <Navbar compact />
+      <main className="pt-[100px] md:pt-[120px] pb-20 overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -163,7 +163,6 @@ export default function GalleryPage() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Controls */}
             <div className="absolute inset-y-0 left-4 flex items-center z-10">
               <Button
                 variant="ghost"
@@ -185,7 +184,6 @@ export default function GalleryPage() {
               </Button>
             </div>
 
-            {/* Dots */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
               {GALLERY_IMAGES.map((_, index) => (
                 <button
