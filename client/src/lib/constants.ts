@@ -38,7 +38,8 @@ export const SITE_CONTENT = {
   },
   trustees: [
     { name: "S SWAMINATHAN", role: "EXECUTIVE TRUSTEE", contact: "9840189849", email: "swami.nathan6193@gmail.com", address: "1 A, ARJUN ENCLAVE, NEW NO 29, 6 TH CROSS STREET, TRUSTPURAM, KODAMBAKKAM, CHENNAI 600024" },
-    { name: "CHALLA VISWANATHA SASTRY", role: "SRIKARRYAM", contact: "9840720182", email: "srikaryamkanchi@gmail.com", address: "KAMATCHI AMMAN STREET, KANCHEEPURAM 631502" },
+    { name: "CHALLA VISWANATHA SASTRY", role: "Srikaryam - Shri Kanchi Kamakoti Peetham", contact: "9840720182", email: "srikaryamkanchi@gmail.com", address: "KAMATCHI AMMAN STREET, KANCHEEPURAM 631502" },
+    { name: "ARVIND SUBRAMANIAN", role: "Manager, Shri Kanchi Kamakoti Peetham", contact: "", email: "", address: "" },
     { name: "G VEERARAGHAVAN", role: "TREASURER", contact: "9444454732", email: "ganesanraghavan@yahoo.com", address: "FLAT A NO 85 ANUGRAKA APARTMENTS, P T RAJAN SALAI, K K NAGAR, CHENNAI 600078" },
     { name: "G MURALIDHARAN", role: "TRUSTEE", contact: "9444550734", email: "", address: "No. 8, F3 - Srivadihyam, R A Puram 2nd Cross Street, R A Puram, Chennai - 600028" },
     { name: "MAGANTY SATYANARAYANA MURTHY", role: "TRUSTEE", contact: "98493808377", email: "msmurthy@venkatramachemicals.com", address: "PLOT NO 18, APARNA ORCHIDS (NEAR NAC), KONDAPUR, HYDERABAD 500 084" },
