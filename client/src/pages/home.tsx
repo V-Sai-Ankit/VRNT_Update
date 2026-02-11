@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Mission } from "@/components/sections/Mission";
 import { Activities } from "@/components/sections/Activities";
 import { Vedas } from "@/components/sections/Vedas";
+import { VedaVruksham } from "@/components/sections/VedaVruksham";
 import { SageSection } from "@/components/sections/SageSection";
 import { News } from "@/components/sections/News";
 import { Footer } from "@/components/layout/Footer";
@@ -50,6 +51,7 @@ export default function Home() {
           </div>
         </div>
         <Hero />
+        <VedaVruksham />
         <SageSection />
       </main>
       <Footer />
