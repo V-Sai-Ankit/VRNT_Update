@@ -118,5 +118,10 @@ export const SITE_CONTENT = {
     { title: "VRNT Shasti Aptha Purti Mahotsav", link: "#" },
     { title: "Sankara Jayanthi 2024 Certificate Function", link: "#" },
     { title: "Request for Contribution", link: "#" }
-  ]
+  ],
+  vedaVruksham: {
+    title: "Veda Vruksham",
+    tamil: "வேதம் ஒரு மரம் (விருட்சம்). அதன் வேர்கள் விப்ராக்கள் (வேத விற்பன்னர்கள்). ஆறு அங்கங்கள் (சீக்ஷா, வ்யாகரணம், சந்தஸ், நிருக்தம், ஜோதிஷம், கல்பம்) அதன் கிளைகள். கர்மானுஷ்டானங்களும் தர்மமும் அதன் இலைகள். வேர்களை பாதுகாப்பது மரத்தை பாதுகாப்பதாகும்.",
+    english: "The Vedas is a Vriksha (Tree), whose roots are the Vipras (scholars). The six Angas (Siksha, Vyakaranam, Chandas, Niruktha, Jyothisha, and Kalpa) are the branches. The Karmanushtanam and the Dharmic way of life are the leaves. Protecting the roots is essential to preserve the tree."
+  }
 };
