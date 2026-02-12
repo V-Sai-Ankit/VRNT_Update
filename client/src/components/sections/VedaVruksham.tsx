@@ -47,9 +47,9 @@ export const VedaVruksham = () => {
           >
             <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full -z-10 animate-pulse" />
             <img 
-              src="/images/veda-vruksha.png" 
+              src="/images/veda-vruksha-original.jpg" 
               alt="Veda Vruksham" 
-              className="w-full h-auto drop-shadow-[0_20px_50px_rgba(184,134,11,0.3)] hover:scale-105 transition-transform duration-700"
+              className="w-full h-auto drop-shadow-[0_20px_50px_rgba(184,134,11,0.3)] hover:scale-105 transition-transform duration-700 rounded-lg shadow-2xl"
             />
           </motion.div>
 
