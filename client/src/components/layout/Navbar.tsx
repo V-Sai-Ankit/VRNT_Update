@@ -51,34 +51,35 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
         <div className={`flex flex-col items-center gap-2 md:gap-4 ${compact ? 'py-2' : 'py-4'}`}>
           {/* Photos and Title Row */}
           <div className={`flex flex-col md:flex-row items-center justify-between w-full py-1 gap-2 md:gap-4 ${compact ? 'hidden md:flex' : ''}`}>
-            <div className="flex items-center gap-2 md:gap-3 order-2 md:order-1">
-              {/* Left Chants - Desktop Only */}
+            <div className="flex flex-col items-center gap-1 order-2 md:order-1">
               {!compact && (
-                <div className="hidden xl:flex flex-col items-end justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[150px] mr-2">
-                  <span className="whitespace-nowrap">Jaya Jaya Shankara! Hara Hara Shankara!</span>
+                <div className="text-[#FFD700] font-serif italic text-[10px] md:text-xs tracking-widest leading-none mb-1 opacity-90 uppercase">
+                  Jaya Jaya Shankara! Hara Hara Shankara!
                 </div>
               )}
-              <Link href="/" className="shrink-0">
-                <img 
-                  src={gopuramImg} 
-                  alt="Shrimatam Gopuram" 
-                  className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
-                />
-              </Link>
-              <Link href="/" className="shrink-0">
-                <img 
-                  src={asImg} 
-                  alt="Adi Shankara" 
-                  className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
-                />
-              </Link>
-              <Link href="/" className="shrink-0">
-                <img 
-                  src={mahaPeriyavaImg} 
-                  alt="Kanchi Maha Periyava" 
-                  className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
-                />
-              </Link>
+              <div className="flex items-center gap-2 md:gap-3">
+                <Link href="/" className="shrink-0">
+                  <img 
+                    src={gopuramImg} 
+                    alt="Shrimatam Gopuram" 
+                    className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
+                  />
+                </Link>
+                <Link href="/" className="shrink-0">
+                  <img 
+                    src={asImg} 
+                    alt="Adi Shankara" 
+                    className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
+                  />
+                </Link>
+                <Link href="/" className="shrink-0">
+                  <img 
+                    src={mahaPeriyavaImg} 
+                    alt="Kanchi Maha Periyava" 
+                    className={`rounded-full border border-primary/50 object-cover bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
+                  />
+                </Link>
+              </div>
             </div>
 
             <Link href="/" className={`flex flex-col items-center text-center px-1 md:px-6 shrink-0 order-1 md:order-2 flex-grow mx-2 ${compact ? 'md:flex-row md:gap-4' : ''}`}>
@@ -96,34 +97,35 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
               )}
             </Link>
 
-            <div className="flex items-center gap-2 md:gap-3 order-3 md:order-3">
-              <Link href="/" className="shrink-0">
-                <img 
-                  src={hhJayendraImg} 
-                  alt="HH Jayendra Saraswathi" 
-                  className={`rounded-full border border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
-                />
-              </Link>
-              <Link href="/" className="shrink-0">
-                <img 
-                  src={seventyImg} 
-                  alt="70th Shankaracharya" 
-                  className={`rounded-full border-2 border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
-                />
-              </Link>
-              <Link href="/" className="shrink-0">
-                <img 
-                  src={seventyOneImg} 
-                  alt="71st Shankaracharya" 
-                  className={`rounded-full border border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
-                />
-              </Link>
-              {/* Right Chants - Desktop Only */}
+            <div className="flex flex-col items-center gap-1 order-3 md:order-3">
               {!compact && (
-                <div className="hidden xl:flex flex-col items-start justify-center text-[#FFD700]/80 font-serif italic text-[11px] md:text-xs lg:text-sm tracking-wide leading-tight px-2 min-w-[150px] ml-2">
-                  <span className="whitespace-nowrap">Kanchi Shankara! Kamakoti Shankara!</span>
+                <div className="text-[#FFD700] font-serif italic text-[10px] md:text-xs tracking-widest leading-none mb-1 opacity-90 uppercase">
+                  Kanchi Shankara! Kamakoti Shankara!
                 </div>
               )}
+              <div className="flex items-center gap-2 md:gap-3">
+                <Link href="/" className="shrink-0">
+                  <img 
+                    src={hhJayendraImg} 
+                    alt="HH Jayendra Saraswathi" 
+                    className={`rounded-full border border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
+                  />
+                </Link>
+                <Link href="/" className="shrink-0">
+                  <img 
+                    src={seventyImg} 
+                    alt="70th Shankaracharya" 
+                    className={`rounded-full border-2 border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
+                  />
+                </Link>
+                <Link href="/" className="shrink-0">
+                  <img 
+                    src={seventyOneImg} 
+                    alt="71st Shankaracharya" 
+                    className={`rounded-full border border-primary/50 object-cover object-top bg-background transition-all ${compact ? 'h-8 w-8' : 'h-12 w-12 md:h-16 md:w-16 scale-[1.1] md:scale-[1.4]'}`}
+                  />
+                </Link>
+              </div>
             </div>
           </div>
 
