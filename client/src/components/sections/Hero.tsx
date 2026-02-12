@@ -28,48 +28,8 @@ export function Hero() {
         />
         <motion.div 
           style={ { opacity } }
-          className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-background z-10" 
+          className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background/20 z-10" 
         />
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-20 text-center text-white pt-[280px] md:pt-[340px] lg:pt-[240px]">
-        <motion.div
-          style={ { y, opacity } }
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-4xl mx-auto space-y-6"
-        >
-          <div className="inline-block border-b-2 border-primary pb-1 mb-4">
-            <span className="font-sans text-sm md:text-base tracking-[0.2em] uppercase text-white drop-shadow-md font-bold">
-              {SITE_CONTENT.header.subtitle}
-            </span>
-          </div>
-
-          <div className="mb-4">
-            <span className="font-serif text-lg md:text-xl text-[#FFD700] drop-shadow-md font-bold italic" style={{ textShadow: "1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000" }}>
-              As envisioned by Mahaperiyava
-            </span>
-          </div>
-          
-          <h1 className="font-sans text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight drop-shadow-2xl text-transparent [-webkit-text-stroke:1px_white] whitespace-pre-line">
-            {SITE_CONTENT.hero?.title}
-          </h1>
-          
-          <p className="font-serif text-lg md:text-2xl text-white max-w-2xl mx-auto leading-relaxed drop-shadow-lg font-medium">
-            {SITE_CONTENT.hero?.description}
-          </p>
-
-          <div className="pt-8">
-            <Link href="/donate">
-              <a className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-sans font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-primary/20 flex items-center gap-2 mx-auto w-fit cursor-pointer">
-                {SITE_CONTENT.hero?.cta}
-                <ArrowRight size={20} />
-              </a>
-            </Link>
-          </div>
-        </motion.div>
       </div>
 
       {/* Decorative Divider */}
