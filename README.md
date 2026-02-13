@@ -31,4 +31,4 @@ A modern, responsive frontend prototype for the Veda Rakshana Nidhi Trust, dedic
 
 ## Mission
 
-To strive every nerve to protect and preserve our holy Vedic heritage and pass it on to posterity.
+To strive to protect and preserve our holy Vedic heritage and pass it on to posterity.
