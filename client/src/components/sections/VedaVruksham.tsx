@@ -32,7 +32,7 @@ export const VedaVruksham = () => {
               <span className="absolute -top-4 left-8 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
                 Tamil
               </span>
-              <p className="text-lg md:text-xl font-serif leading-relaxed text-secondary/90 italic">
+              <p className="text-sm md:text-base font-serif leading-relaxed text-secondary/90 italic">
                 "{content.tamil}"
               </p>
             </div>
@@ -64,7 +64,7 @@ export const VedaVruksham = () => {
               <span className="absolute -top-4 right-8 lg:right-auto lg:left-8 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
                 English
               </span>
-              <p className="text-lg md:text-xl font-serif leading-relaxed text-secondary/90 italic">
+              <p className="text-sm md:text-base font-serif leading-relaxed text-secondary/90 italic">
                 "{content.english}"
               </p>
             </div>
