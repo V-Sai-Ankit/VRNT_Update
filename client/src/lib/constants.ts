@@ -121,7 +121,7 @@ export const SITE_CONTENT = {
   ],
   vedaVruksham: {
     title: "Veda Vruksham",
-    tamil: "வேதம் ஒரு மரம் (விருட்சம்). அதன் வேர்கள் விப்ராக்கள் (வேத விற்பன்னர்கள்). ஆறு அங்கங்கள் (சீக்ஷா, வ்யாகரணம், சந்தஸ், நிருக்தம், ஜோதிஷம், கல்பம்) அதன் கிளைகள். கர்மானுஷ்டானங்களும் தர்மமும் அதன் இலைகள். வேர்களை பாதுகாப்பது மரத்தை பாதுகாப்பதாகும்.",
-    english: "The Vedas is a Vriksha (Tree), whose roots are the Vipras (scholars). The six Angas (Siksha, Vyakaranam, Chandas, Niruktha, Jyothisha, and Kalpa) are the branches. The Karmanushtanam and the Dharmic way of life are the leaves. Protecting the roots is essential to preserve the tree."
+    tamil: "வேதம் ஒரு மரம்; அதில் விப்ரர்கள் (அறிவுடையோர் / பண்டிதர்கள்) வேர். மரத்தின் அங்கங்கள் கிளைகள், வேத-சாகைகள்; தர்மமும் கர்மமும் இலைகள். ஆகையால் அந்த வேரை முயற்சியுடன் பாதுகாக்க வேண்டும். வேர் துண்டிக்கப்பட்டால், கிளையும் இல்லை; மரமும் இல்லை.",
+    english: "The Vedas are a tree. The learned Brahmins (wise scholars) are its roots. Its limbs are the branches. Righteous actions (dharma and karma) are its leaves. Therefore, the roots must be protected with great care. If the root is cut, neither branches nor the tree itself can survive."
   }
 };
