@@ -26,7 +26,7 @@ export const VedaVruksham = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1 max-w-md"
+            className="flex-1 max-w-lg"
           >
             <div className="bg-primary/5 p-8 rounded-2xl border-l-4 border-primary relative">
               <span className="absolute -top-4 left-8 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
@@ -58,7 +58,7 @@ export const VedaVruksham = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1 max-w-md text-right lg:text-left"
+            className="flex-1 max-w-lg text-right lg:text-left"
           >
             <div className="bg-primary/5 p-8 rounded-2xl border-r-4 lg:border-r-0 lg:border-l-4 border-primary relative">
               <span className="absolute -top-4 right-8 lg:right-auto lg:left-8 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
