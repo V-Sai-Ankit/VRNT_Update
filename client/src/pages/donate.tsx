@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SITE_CONTENT } from "@/lib/constants";
-import { Heart, CreditCard, Building, QrCode, CheckCircle2, Copy } from "lucide-react";
+import { Heart, CreditCard, QrCode, CheckCircle2, Copy } from "lucide-react";
 import { toast } from "sonner";
+
+const donationQr = "/images/donation_qr.jpg";
 
 export default function DonatePage() {
   const copyToClipboard = (text: string) => {
@@ -65,8 +67,15 @@ export default function DonatePage() {
                   <h3 className="font-display text-2xl font-bold flex items-center gap-2 mb-6">
                     <QrCode className="text-primary" /> Quick Scan
                   </h3>
-                  <div className="bg-white p-4 rounded-xl shadow-inner mb-6 aspect-square flex items-center justify-center">
-                    <img src="https://vrnt.org/images/donation_qr.jpg" alt="Donation QR Code" className="w-full h-full object-contain" />
+                  <div className="bg-white p-4 rounded-xl shadow-inner mb-6 aspect-square flex items-center justify-center overflow-hidden">
+                    <img
+                      src={donationQr}
+                      alt="Donation QR Code"
+                      className="w-full h-full object-contain"
+                      onError={(event) => {
+                        event.currentTarget.src = "https://vrnt.org/images/donation_qr.jpg";
+                      }}
+                    />
                   </div>
                   <p className="text-xs text-center text-muted-foreground font-sans">
                     Scan this QR code using any UPI app to send your contributions directly to VRNT.
@@ -84,13 +93,13 @@ export default function DonatePage() {
                         <p className="text-xs text-muted-foreground uppercase">{bank.branch}</p>
                         <div className="flex items-center justify-between bg-muted/50 p-2 rounded mt-2">
                           <code className="text-xs font-mono">{bank.account}</code>
-                          <button onClick={() => copyToClipboard(bank.account)} className="p-1 hover:text-primary transition-colors">
+                          <button onClick={() => copyToClipboard(bank.account)} className="p-1 hover:text-primary transition-colors" data-testid={`button-copy-account-${index}`}>
                             <Copy size={14} />
                           </button>
                         </div>
                         <div className="flex items-center justify-between bg-muted/50 p-2 rounded">
                           <span className="text-[10px] font-bold text-muted-foreground uppercase">IFSC: {bank.ifsc}</span>
-                          <button onClick={() => copyToClipboard(bank.ifsc)} className="p-1 hover:text-primary transition-colors">
+                          <button onClick={() => copyToClipboard(bank.ifsc)} className="p-1 hover:text-primary transition-colors" data-testid={`button-copy-ifsc-${index}`}>
                             <Copy size={14} />
                           </button>
                         </div>
