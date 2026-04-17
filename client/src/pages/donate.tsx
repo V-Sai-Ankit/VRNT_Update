@@ -4,8 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SITE_CONTENT } from "@/lib/constants";
 import { Heart, CreditCard, QrCode, CheckCircle2, Copy } from "lucide-react";
 import { toast } from "sonner";
-
-const donationQr = "/images/donation_qr.jpg";
+import donationQr from "@assets/qr_1776443658052.jpg";
 
 export default function DonatePage() {
   const copyToClipboard = (text: string) => {
@@ -72,9 +71,6 @@ export default function DonatePage() {
                       src={donationQr}
                       alt="Donation QR Code"
                       className="w-full h-full object-contain"
-                      onError={(event) => {
-                        event.currentTarget.src = "https://vrnt.org/images/donation_qr.jpg";
-                      }}
                     />
                   </div>
                   <p className="text-xs text-center text-muted-foreground font-sans">
