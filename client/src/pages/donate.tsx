@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SITE_CONTENT } from "@/lib/constants";
 import { Heart, CreditCard, QrCode, CheckCircle2, Copy } from "lucide-react";
 import { toast } from "sonner";
-import donationQr from "@assets/qr_1776443658052.jpg";
+import donationQr from "@assets/qr_1776444153234.jpg";
 
 export default function DonatePage() {
   const copyToClipboard = (text: string) => {
