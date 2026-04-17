@@ -35,7 +35,7 @@ export default function Home() {
                     </p>
                     <Link href="/news/0">
                       <a className="text-[#FFD700] hover:text-white text-sm font-bold flex items-center gap-2 transition-colors w-fit">
-                        <ExternalLink size={14} /> Exam Results Out
+                        <ExternalLink size={14} /> Shankara Jayanti Veda pariksha 2026 results out
                       </a>
                     </Link>
                   </div>
