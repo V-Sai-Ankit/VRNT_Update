@@ -65,21 +65,14 @@ export function NotificationSidebar() {
 
                   <div className="space-y-4">
                     <h4 className="flex items-center gap-2 font-bold text-primary uppercase text-sm tracking-widest border-b border-primary/20 pb-2">
-                      <Info size={16} /> Registration
+                      <Info size={16} /> Result Link
                     </h4>
                     <a
                       href="/news/0"
                       className="flex items-center justify-center gap-3 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-all group"
                       data-testid="link-exam-results"
                     >
-                      EXAM RESULTS OUT <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </a>
-                    <a
-                      href="/news/0"
-                      className="flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 text-[#FFD700] font-bold py-4 rounded-xl border border-[#FFD700]/30 transition-all group"
-                      data-testid="link-shasti-registration"
-                    >
-                      2026 Poorthy Exam Registration Now Open <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
+                      SHANKARA JAYANTI VEDA PARIKSHA 2026 RESULTS OUT <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
 
