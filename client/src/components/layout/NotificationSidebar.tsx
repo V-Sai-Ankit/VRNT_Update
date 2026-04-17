@@ -56,23 +56,30 @@ export function NotificationSidebar() {
                 <div className="space-y-8 font-serif">
                   <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-xl">
                     <h3 className="font-display text-lg font-bold text-[#FFD700] mb-3 leading-tight">
-                      2026 Shankara Jayanti Exam Results Out
+                      Shasti Aptha Purti Mahotsav
                     </h3>
                     <p className="text-sm leading-relaxed text-white/90">
-                      The Poorthy Sankara Jayanthi 2026 exam results are now published.
+                      Celebrating 60 Years of Veda Rakshana. We cordially request all certified Vidwans to register for the Diamond Jubilee celebrations.
                     </p>
                   </div>
 
                   <div className="space-y-4">
                     <h4 className="flex items-center gap-2 font-bold text-primary uppercase text-sm tracking-widest border-b border-primary/20 pb-2">
-                      <Info size={16} /> Result Link
+                      <Info size={16} /> Registration
                     </h4>
                     <a
                       href="/news/0"
                       className="flex items-center justify-center gap-3 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-all group"
                       data-testid="link-exam-results"
                     >
-                      VIEW RESULTS <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
+                      EXAM RESULTS OUT <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </a>
+                    <a
+                      href="/news/0"
+                      className="flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 text-[#FFD700] font-bold py-4 rounded-xl border border-[#FFD700]/30 transition-all group"
+                      data-testid="link-shasti-registration"
+                    >
+                      2026 Poorthy Exam Registration Now Open <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
 
