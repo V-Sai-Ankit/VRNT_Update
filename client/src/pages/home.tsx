@@ -16,7 +16,6 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />
       <main>
-        {/* Diamond Jubilee Registration Banner */}
         <div className="pt-[280px] md:pt-[340px] lg:pt-[240px] bg-primary/5">
           <div className="container mx-auto px-4 md:px-6 py-2">
             <motion.div 
@@ -34,9 +33,9 @@ export default function Home() {
                     <p className="text-white/90 text-sm md:text-lg font-serif leading-relaxed">
                       Celebrating 60 Years of Veda Rakshana. We cordially request all <span className="text-[#FFD700] font-bold">certified Vidwans</span> to register for the Diamond Jubilee celebrations.
                     </p>
-                    <Link href="/pariksha">
+                    <Link href="/news/0">
                       <a className="text-[#FFD700] hover:text-white text-sm font-bold flex items-center gap-2 transition-colors w-fit">
-                        <ExternalLink size={14} /> 2026 Poorthy Exam Registration Now Open
+                        <ExternalLink size={14} /> Exam Results Out
                       </a>
                     </Link>
                   </div>
