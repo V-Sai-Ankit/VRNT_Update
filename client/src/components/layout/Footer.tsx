@@ -9,12 +9,11 @@ export function Footer() {
     <footer className="bg-secondary text-secondary-foreground pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
           <div className="lg:col-span-2">
             <div className="flex items-center gap-4 mb-4">
-              <img 
-                src={logoImg} 
-                alt="VRNT Logo" 
+              <img
+                src={logoImg}
+                alt="VRNT Logo"
                 className="h-16 md:h-20 w-auto"
               />
               <h2 className="font-display text-2xl font-bold text-white">
@@ -39,7 +38,7 @@ export function Footer() {
               <div className="mt-4 space-y-3">
                 <div className="flex items-center gap-3">
                   <Mail size={18} className="text-primary" />
-                  <a href="mailto:office@vrnt.org" className="hover:text-white transition-colors">office@vrnt.org</a>
+                  <a href="mailto:office@vrnt.org" className="hover:text-white transition-colors" data-testid="link-email-office">office@vrnt.org</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone size={18} className="text-primary" />
@@ -58,23 +57,22 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-secondary-foreground/80">
               <li className="flex items-center gap-3">
                 <Heart size={16} className="text-primary/70" />
-                <Link href="/donate"><a className="hover:text-white transition-colors">Donate</a></Link>
+                <Link href="/donate" className="hover:text-white transition-colors" data-testid="link-donate">Donate</Link>
               </li>
               <li className="flex items-center gap-3">
                 <FileText size={16} className="text-primary/70" />
-                <Link href="/pariksha"><a className="hover:text-white transition-colors">Circulars</a></Link>
+                <Link href="/pariksha" className="hover:text-white transition-colors" data-testid="link-circulars">Circulars</Link>
               </li>
               <li className="flex items-center gap-3">
                 <Users size={16} className="text-primary/70" />
-                <Link href="/trustees"><a className="hover:text-white transition-colors">Trustees</a></Link>
+                <Link href="/trustees" className="hover:text-white transition-colors" data-testid="link-trustees">Trustees</Link>
               </li>
               <li className="flex items-center gap-3">
                 <MessageSquare size={16} className="text-primary/70" />
-                <Link href="/contact"><a className="hover:text-white transition-colors">Contact</a></Link>
+                <Link href="/contact" className="hover:text-white transition-colors" data-testid="link-contact">Contact</Link>
               </li>
             </ul>
           </div>
-
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-secondary-foreground/60">
