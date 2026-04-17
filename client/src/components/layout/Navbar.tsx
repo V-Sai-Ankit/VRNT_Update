@@ -30,18 +30,12 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-secondary text-secondary-foreground border-b border-white/10 shadow-sm">
-      {/* App Login Top Bar - Hidden on compact */}
       {!compact && (
         <div className="bg-[#1a1a1a] border-b border-white/5 py-1.5">
           <div className="container mx-auto px-4 flex justify-end">
-            <a 
-              href="https://www.kamakoti.org" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]"
-            >
+            <a href="/news/0" className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 hover:text-[#FFD700] transition-colors uppercase tracking-[0.15em]" data-testid="link-result-banner">
               <User size={12} className="text-[#FFD700]/70" />
-              App Login
+              2026 Shankara Jayanti Result
             </a>
           </div>
         </div>
@@ -49,7 +43,6 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
       
       <div className="container mx-auto px-4 md:px-6">
         <div className={`flex flex-col items-center gap-2 md:gap-4 ${compact ? 'py-2' : 'py-4'}`}>
-          {/* Photos and Title Row */}
           <div className={`flex flex-col md:flex-row items-center justify-between w-full py-1 gap-2 md:gap-4 ${compact ? 'hidden md:flex' : ''}`}>
             <div className="flex flex-col items-center gap-1 order-2 md:order-1">
               {!compact && (
@@ -129,7 +122,6 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
             </div>
           </div>
 
-          {/* Desktop Nav */}
           <div className={`hidden lg:flex space-x-8 ${compact ? 'mt-1' : ''}`}>
             {navLinks.map((link) => (
               <Link
@@ -143,7 +135,6 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
             ))}
           </div>
 
-          {/* Mobile Menu Toggle */}
           <div className={`lg:hidden absolute ${compact ? 'top-3' : 'top-6'} right-4`}>
             <button onClick={() => setIsOpen(!isOpen)} className="text-secondary-foreground">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -152,7 +143,6 @@ export function Navbar({ compact = false }: { compact?: boolean }) {
         </div>
       </div>
 
-      {/* Mobile Nav */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
