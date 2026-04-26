@@ -50,7 +50,7 @@ export default function NewsDetailPage() {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <a 
-                href={newsItem.link} 
+                href={newsItem.download || newsItem.link} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 bg-primary text-white px-6 py-4 rounded-xl font-bold hover:bg-primary/90 transition-all transform hover:scale-[1.02] shadow-lg shadow-primary/20"
