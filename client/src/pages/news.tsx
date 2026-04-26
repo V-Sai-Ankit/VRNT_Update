@@ -53,10 +53,8 @@ export default function NewsPage() {
                         Details <ExternalLink size={16} />
                       </button>
                     </Link>
-                    <a href={item.link} target="_blank" rel="noopener noreferrer">
-                      <button className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-primary/90 transition-colors">
-                        View Document <Download size={16} />
-                      </button>
+                    <a href={item.download || item.link} download target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-primary/90 transition-colors">
+                      Download PDF <Download size={16} />
                     </a>
                   </div>
                 </motion.div>
