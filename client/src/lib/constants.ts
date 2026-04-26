@@ -113,7 +113,7 @@ export const SITE_CONTENT = {
     description: "Popularly known as 'Sage of Kanchi' or 'Kanchi Paramacharyal', His Holiness found that the number of those dedicating themselves to the study of Vedas had diminished due to an uncertain future. He made it His Life's mission to draw the attention of society to this situation and founded the VEDA RAKSHANA NIDHI TRUST (VRNT)."
   },
   news: [
-    { title: "2026 Shankara Jayanti Veda Pariksha Result", link: "/news/0" },
+    { title: "2026 Shankara Jayanti Veda Pariksha Result", link: "/news/0", download: "/docs/SJ_2026_MARK_SHEET_RESULT_pdf_1777194961207.pdf" },
     { title: "60th Year Celebration", link: "#" },
     { title: "Poorthi Pariksha Application", link: "#" },
     { title: "VRNT Shasti Aptha Purti Mahotsav", link: "#" },
