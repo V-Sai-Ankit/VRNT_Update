@@ -35,8 +35,6 @@ export default defineConfig({
       plugins: [],
     },
   },
-  // Mounts your root assets directory so Vite bundles it into the public distribution tree
-  publicDir: path.resolve(import.meta.dirname, "assets"),
   root: path.resolve(import.meta.dirname, "client"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
