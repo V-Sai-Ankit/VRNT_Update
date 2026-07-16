@@ -105,7 +105,7 @@ export default function App() {
         {/* Stationary Portal Row */}
         <div className={`shrink-0 border-b border-[#08152b] ${isMenuOpen ? 'p-3 bg-[#0b1b38]' : 'p-2 bg-[#1a365d]/50'}`}>
           <button 
-            onClick={() => setCurrentPage('exam-portal')}
+            onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
             className={`bg-[#ff7f5c] hover:bg-[#ff9173] text-[#e2e8f0] hover:text-white text-center no-underline font-sans font-bold uppercase tracking-wider rounded-md transition-all border-none cursor-pointer flex items-center justify-center w-full ${
               isMenuOpen ? 'py-2.5 text-[12px] px-4' : 'py-3.5 text-[10px] tracking-wide px-1'
             }`}
@@ -126,10 +126,7 @@ export default function App() {
             <button onClick={() => setCurrentPage('trustees')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'trustees' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Trustees</button>
             <button onClick={() => setCurrentPage('donate')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'donate' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Donate</button>
             <button onClick={() => setCurrentPage('contact')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'contact' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Contact</button>
-            
-            <a href="#" className="block text-[#b0c4de] hover:text-white hover:bg-white/5 no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md whitespace-nowrap">Patasalas</a>
-            <a href="#" className="block text-[#b0c4de] hover:text-white hover:bg-white/5 no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md whitespace-nowrap">Publications</a>
-            
+
             <button 
               onClick={() => setCurrentPage('announcements')}
               className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${

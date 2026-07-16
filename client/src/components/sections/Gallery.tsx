@@ -10,7 +10,7 @@ interface GalleryPageProps {
 
 const GALLERY_IMAGES = [
   {
-    url: "/assets/AS_1768738817683.jpg",
+    url: "/assets/1768738817683.jpg",
     title: "Adi Shankaracharya",
     category: "Peetham Founder",
     description: "Kanchi Kamakoti Peetham established by Adi Shankaracharya (509 BCE to 477 BCE) 2500 years ago."
@@ -126,25 +126,28 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
                 }}
                 className="absolute inset-0 w-full h-full"
               >
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-border/50">
+                {/* Changed background from bg-black/95 to the cream web tone bg-[#f7f4eb] and made border match your site aesthetics */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-md border border-[#222]/80 bg-[#f7f4eb]">
                   <img
                     src={GALLERY_IMAGES[currentIndex].url}
                     alt={GALLERY_IMAGES[currentIndex].title}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-12">
+                  {/* Subtle black overlay blend at the bottom edge so the overlay text contrasts perfectly */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent flex flex-col justify-end p-8 md:p-12 pointer-events-none">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
+                      className="pointer-events-auto"
                     >
                       <span className="text-[#FFD700] text-sm font-bold uppercase tracking-widest mb-2 block">
                         {GALLERY_IMAGES[currentIndex].category}
                       </span>
-                      <h2 className="text-white font-serif text-3xl md:text-4xl font-bold mb-3">
+                      <h2 className="text-white font-serif text-3xl md:text-4xl font-bold mb-3 drop-shadow-md">
                         {GALLERY_IMAGES[currentIndex].title}
                       </h2>
-                      <p className="text-white/80 text-lg max-w-2xl font-serif italic">
+                      <p className="text-white/90 text-lg max-w-2xl font-serif italic drop-shadow-xs">
                         {GALLERY_IMAGES[currentIndex].description}
                       </p>
                     </motion.div>
@@ -153,11 +156,12 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
               </motion.div>
             </AnimatePresence>
 
+            {/* Adjusted navigation buttons backdrops to look excellent with the light background */}
             <div className="absolute inset-y-0 left-4 flex items-center z-10">
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-black/20 hover:bg-black/40 text-white border-white/20 backdrop-blur-sm h-12 w-12"
+                className="rounded-full bg-[#1a365d]/80 hover:bg-[#1a365d] text-white h-12 w-12 border-none shadow-md"
                 onClick={() => paginate(-1)}
               >
                 <ChevronLeft className="h-8 w-8" />
@@ -167,7 +171,7 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-black/20 hover:bg-black/40 text-white border-white/20 backdrop-blur-sm h-12 w-12"
+                className="rounded-full bg-[#1a365d]/80 hover:bg-[#1a365d] text-white h-12 w-12 border-none shadow-md"
                 onClick={() => paginate(1)}
               >
                 <ChevronRight className="h-8 w-8" />
@@ -184,8 +188,8 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
                   }}
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     index === currentIndex 
-                      ? "bg-[#FFD700] w-8" 
-                      : "bg-white/30 hover:bg-white/50"
+                      ? "bg-[#8b2b22] w-8" 
+                      : "bg-[#1a365d]/40 hover:bg-[#1a365d]/60"
                   }`}
                 />
               ))}
