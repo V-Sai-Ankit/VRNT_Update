@@ -25,12 +25,10 @@ export default function Navbar() {
             <div className="w-full h-[165px] flex justify-center items-center overflow-hidden">
               <img src="/images/periyavar.jpg" alt="Periyavar" className="h-full object-contain rounded-md border-4 border-[#bf953f]" />
             </div>
-
           </div>
 
           {/* Centering Identity Branding Unit */}
           <div className="flex flex-col items-center justify-center gap-1 h-full bg-[#061a3a]/60 px-3 py-1 rounded-lg border border-yellow-500/20 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)]">
-            {/* Changed p-0.5 to p-0 to strip out the excess inner white spacing area */}
             <img 
               src="/images/logo.jpg" 
               alt="VRNT Logo" 
