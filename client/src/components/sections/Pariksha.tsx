@@ -25,7 +25,7 @@ export default function Pariksha({ isMenuOpen = false, isDrawerOpen = false }: P
       title: "Poorthi Pariksha Application",
       description: "Download the application form for the final completion examination.",
       icon: FileDown,
-      link: "/assets/forms/POORTHY_APPL_2024.pdf", // Served dynamically from the root assets folder via vercel rewrites
+      link: "/forms/POORTHY_APPL_2024.pdf", // Served dynamically from the root assets folder via vercel rewrites
       filename: "POORTHY_APPL_2024.pdf",
       buttonText: "Download Form"
     },
@@ -33,7 +33,7 @@ export default function Pariksha({ isMenuOpen = false, isDrawerOpen = false }: P
       title: "Varshika Pariksha Form",
       description: "Annual examination form for Vedic students.",
       icon: ClipboardCheck,
-      link: "/assets/forms/VARSHIKA_FORM.pdf", // Served dynamically from the root assets folder via vercel rewrites
+      link: "/forms/VARSHIKA_FORM.pdf", // Served dynamically from the root assets folder via vercel rewrites
       filename: "VARSHIKA_FORM.pdf",
       buttonText: "Download Form"
     }
