@@ -2,10 +2,11 @@ import React from 'react';
 
 interface NotificationSidebarProps {
   isOpen: boolean;
+  onClose: () => void;
   setCurrentPage: (page: string) => void;
 }
 
-export default function NotificationSidebar({ isOpen, setCurrentPage }: NotificationSidebarProps) {
+export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }: NotificationSidebarProps) {
   if (!isOpen) return null;
 
   const announcements = [
@@ -27,21 +28,6 @@ export default function NotificationSidebar({ isOpen, setCurrentPage }: Notifica
         type: "button",
         label: "REGISTER NOW",
         targetPage: "mahotsav"
-      }
-    },
-    {
-      type: "pariksha",
-      icon: (
-        <svg className="h-4 w-4 text-[#8b2b22] shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      ),
-      title: "Shankara Jayanti Veda Pariksha",
-      description: "The official exam valuation results for the Shankara Jayanti Veda Pariksha 2026 session have been verified and processed.",
-      action: {
-        type: "link",
-        label: "View Results Portal",
-        targetPage: "pariksha-result"
       }
     },
     {
@@ -74,7 +60,10 @@ export default function NotificationSidebar({ isOpen, setCurrentPage }: Notifica
             Announcements
           </h2>
         </div>
-        <button className="text-white/60 hover:text-white bg-transparent border-none text-lg cursor-pointer p-0 leading-none">
+        <button 
+          onClick={onClose}
+          className="text-white/60 hover:text-white bg-transparent border-none text-lg cursor-pointer p-0 leading-none"
+        >
           ✕
         </button>
       </div>

@@ -14,10 +14,11 @@ import ContactPage from './components/sections/Contact';
 import Mahotsav from './components/sections/Mahotsav';
 import ParikshaResultPage from './components/sections/ParikshaResult';
 import Announcements from './components/sections/Announcements';
-import GalleryPage from './components/sections/Gallery'
+import GalleryPage from './components/sections/Gallery';
 
 export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // 1. Menu defaults to open (true)
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = useState(true); 
   
   const [currentPage, setCurrentPage] = useState('home');
@@ -51,7 +52,7 @@ export default function App() {
         );
       case 'pariksha':
         return <Pariksha isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />;
-      case 'Gallery':
+      case 'gallery':
         return <GalleryPage isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />;
       case 'trustees':
         return <Trustees isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />;
@@ -121,14 +122,14 @@ export default function App() {
             <button onClick={() => setCurrentPage('activities')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'activities' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Activities</button>
             <button onClick={() => { setCurrentPage('vedas'); setVedasSubView('list'); }} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'vedas' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Vedas</button>
             <button onClick={() => setCurrentPage('pariksha')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'pariksha' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Pariksha</button>
-            <button onClick={() => setCurrentPage('Gallery')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'Gallery' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Gallery</button>
+            <button onClick={() => setCurrentPage('gallery')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'gallery' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Gallery</button>
             <button onClick={() => setCurrentPage('trustees')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'trustees' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Trustees</button>
             <button onClick={() => setCurrentPage('donate')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'donate' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Donate</button>
             <button onClick={() => setCurrentPage('contact')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'contact' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Contact</button>
             
-           { /* <a href="#" className="block text-[#b0c4de] hover:text-white hover:bg-white/5 no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md whitespace-nowrap">Patasalas</a>
+            <a href="#" className="block text-[#b0c4de] hover:text-white hover:bg-white/5 no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md whitespace-nowrap">Patasalas</a>
             <a href="#" className="block text-[#b0c4de] hover:text-white hover:bg-white/5 no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md whitespace-nowrap">Publications</a>
-            */}
+            
             <button 
               onClick={() => setCurrentPage('announcements')}
               className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${
@@ -143,7 +144,7 @@ export default function App() {
         )}
       </div>
 
-      {/* Floating Notification Bell */}
+      {/* Floating Notification Toggle Bell */}
       <button 
         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
         className="fixed bottom-6 right-6 bg-[#1a365d] text-white border border-[#222] cursor-pointer z-[1200] text-xl rounded-full h-14 w-14 flex items-center justify-center shadow-2xl hover:bg-[#224273] hover:scale-105 transition-all duration-200"
@@ -164,7 +165,12 @@ export default function App() {
           {renderPageContent()}
         </main>
 
-        <NotificationSidebar isOpen={isDrawerOpen} setCurrentPage={setCurrentPage} />
+        {/* 2. Added onClose capability so the X button inside works perfectly */}
+        <NotificationSidebar 
+          isOpen={isDrawerOpen} 
+          onClose={() => setIsDrawerOpen(false)}
+          setCurrentPage={setCurrentPage} 
+        />
       </div>
 
       <Footer />
