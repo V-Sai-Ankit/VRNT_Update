@@ -25,6 +25,7 @@ export default function Navbar() {
             <div className="w-full h-[165px] flex justify-center items-center overflow-hidden">
               <img src="/images/periyavar.jpg" alt="Periyavar" className="h-full object-contain rounded-md border-4 border-[#bf953f]" />
             </div>
+
           </div>
 
           {/* Centering Identity Branding Unit */}
