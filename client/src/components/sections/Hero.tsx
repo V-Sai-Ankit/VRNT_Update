@@ -1,39 +1,32 @@
-import { Link } from "wouter";
-import { motion, useScroll, useTransform } from "framer-motion";
-import headerImg from "@assets/FB_IMG_1768808289933~2_1768808606506.jpg";
-import { SITE_CONTENT } from "@/lib/constants";
-import { ArrowRight } from "lucide-react";
-import { useRef } from "react";
+import React from 'react';
 
-export function Hero() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const imageScale = 1;
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-
+export default function Hero() {
   return (
-    <section ref={containerRef} className="relative h-screen flex items-start justify-center overflow-hidden">
-      {/* Background Image with reveal effect */}
-      <div className="absolute inset-0 z-0 overflow-hidden pt-8">
-        <motion.img
-          style={ { scale: imageScale } }
-          src={headerImg}
-          alt="Veda Rakshana Nidhi Trust Header"
-          className="w-full h-full object-cover object-top"
-        />
-        <motion.div 
-          style={ { opacity } }
-          className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background/20 z-10" 
-        />
-      </div>
-
-      {/* Decorative Divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-20" />
-    </section>
+    <article className="mb-6" style={{ fontFamily: 'Georgia, serif' }}>
+      {/* Updated heading with explicit bold styling */}
+      <h2 
+        className="mb-4" 
+        style={{ 
+          fontSize: '42px', 
+          lineHeight: '1.1', 
+          color: '#8b2b22',
+          fontWeight: 'bold'
+        }}
+      >
+        Welcome to Veda Rakshana Nidhi Trust
+      </h2>
+      
+      {/* Paragraph body matching exact size, alignment, and spacing rules */}
+      <p 
+        className="text-justify m-0 drop-cap-first" 
+        style={{ 
+          fontSize: '19px', 
+          lineHeight: '1.7', 
+          color: '#171717' 
+        }}
+      >
+        Founded in 1963 under the divine guidance of His Holiness Sri Sri Chandrashekarendra Saraswati MahaSwamigal, VRNT is a Public Charitable Trust dedicated to the preservation of the Vedic oral tradition. Our mission is to ensure that the "unbroken chain" of ancient wisdom remains vibrant and resilient for future generations.
+      </p>
+    </article>
   );
 }

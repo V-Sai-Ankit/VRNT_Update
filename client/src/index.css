@@ -38,40 +38,33 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  --font-serif: "Cormorant Garamond", serif;
-  --font-sans: "Lato", sans-serif;
-  --font-display: "Martel", serif;
+  /* Exact Font Matches from Original HTML Template */
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-display: "Times New Roman", Times, serif;
   
   --radius: 0.5rem;
 }
 
 :root {
-  /* Slightly Darker Warm Gold / Parchment Background */
   --background: 45 35% 88%;
-  /* Deep Brown Text for better contrast */
   --foreground: 25 25% 12%;
 
-  /* Darker Golden Card Background */
   --card: 45 30% 92%;
   --card-foreground: 25 25% 12%;
 
   --popover: 45 30% 92%;
   --popover-foreground: 25 25% 12%;
 
-  /* Deeper Saffron / Ochre Primary */
   --primary: 35 80% 45%; 
-  /* Cream on Saffron */
   --primary-foreground: 45 30% 98%;
 
-  /* Deeper Earthy Red Secondary */
   --secondary: 15 55% 30%;
   --secondary-foreground: 45 30% 98%;
 
-  /* Muted Gold/Sand - Darker */
   --muted: 45 25% 80%;
   --muted-foreground: 25 15% 35%;
 
-  /* Rich Gold Accent */
   --accent: 48 60% 75%;
   --accent-foreground: 25 25% 12%;
 
@@ -84,7 +77,6 @@
 }
 
 .dark {
-  /* Dark mode logic if needed, keeping consistent structure */
   --background: 25 20% 15%;
   --foreground: 40 30% 90%;
 
@@ -119,9 +111,27 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    /* Main body background text using exact Georgia setup */
+    @apply font-serif antialiased bg-background text-[#171717];
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+  }
+}
+
+/* --- Traditional Newspaper Utilities --- */
+@utility border-double-3 {
+  border-style: double;
+  border-width: 3px;
+}
+
+@layer utilities {
+  .drop-cap-first::first-letter {
+    font-size: 65px;
+    float: left;
+    line-height: 0.8;
+    margin-right: 8px;
+    font-weight: bold;
+    @apply text-[#8b2b22]; /* Match the explicit dark red color from the template */
   }
 }

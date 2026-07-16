@@ -1,86 +1,82 @@
-import { motion } from "framer-motion";
-import { SITE_CONTENT } from "@/lib/constants";
+import React from 'react';
 
-export const VedaVruksham = () => {
-  const content = (SITE_CONTENT as any).vedaVruksham;
-  
-  if (!content) return null;
+interface VedaVrukshamProps {
+  isMenuOpen: boolean;
+  isDrawerOpen: boolean;
+}
+
+export default function VedaVruksham({ isMenuOpen, isDrawerOpen }: VedaVrukshamProps) {
+  const bothClosed = !isMenuOpen && !isDrawerOpen;
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-secondary underline decoration-primary decoration-4 underline-offset-8">
-            {content.title}
-          </h2>
-        </motion.div>
-
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
-          {/* Tamil Meaning */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex-1 max-w-lg"
+    <section className="mt-2 border-t border-[#222] pt-4">
+      <h3 
+        className="text-center mx-auto mb-4 transition-all duration-300"
+        style={{ 
+          fontFamily: 'Georgia, serif', 
+          fontSize: bothClosed ? '50px' : '42px', 
+          lineHeight: '1.1', 
+          color: '#8b2b22',
+          fontWeight: 'bold' 
+        }}
+      >
+        Veda Vruksham
+      </h3>
+      
+      <div className="grid grid-cols-1 xl:grid-cols-[4.5fr_10fr_4.5fr] gap-[25px] items-center mt-1 w-full">
+        {/* Sanskrit Text Card */}
+        <div className="bg-white p-[20px] border border-[#222] shadow-[3px_3px_0_#222] min-h-[280px] flex flex-col justify-center">
+          <p 
+            className="m-0 text-justify text-[#8b2b22] transition-all duration-300" 
+            style={{ 
+              fontFamily: 'Georgia, serif', 
+              /* Increased closed font size to 26px and expanded line-height to 2.1 to remove empty space */
+              fontSize: bothClosed ? '27px' : '19px', 
+              lineHeight: bothClosed ? '2.15' : '1.8' 
+            }}
           >
-            <div className="bg-primary/5 p-8 rounded-2xl border-l-4 border-primary relative">
-              <span className="absolute -top-4 left-8 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
-                Tamil
-              </span>
-              <p className="text-sm md:text-base font-serif leading-relaxed text-secondary/90 italic">
-                "{content.tamil}"
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Vruksham Image */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative shrink-0 w-full max-w-[400px] lg:max-w-[500px]"
-          >
-            <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full -z-10 animate-pulse" />
-            <img 
-              src="/images/veda-vruksha-original.jpg" 
-              alt="Veda Vruksham" 
-              className="w-full h-auto drop-shadow-[0_20px_50px_rgba(184,134,11,0.3)] hover:scale-105 transition-transform duration-700 rounded-lg shadow-2xl"
-            />
-          </motion.div>
-
-          {/* English Meaning */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex-1 max-w-lg text-right lg:text-left"
-          >
-            <div className="bg-primary/5 p-8 rounded-2xl border-r-4 lg:border-r-0 lg:border-l-4 border-primary relative">
-              <span className="absolute -top-4 right-8 lg:right-auto lg:left-8 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
-                English
-              </span>
-              <p className="text-sm md:text-base font-serif leading-relaxed text-secondary/90 italic">
-                "{content.english}"
-              </p>
-            </div>
-          </motion.div>
+            वेदो वृक्षः मूलकान्यत्र विप्राः।<br /> 
+            अङ्गाः शाखाः धर्मकर्माणि पत्रम्॥<br /> 
+            तस्मान्मूलं यत्नतो रक्षणीयं।<br /> 
+            छिन्ने मूले नैव शाखा न वृक्षः॥
+          </p>
         </div>
         
-        <motion.p 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-16 text-center text-primary font-bold text-xl md:text-2xl uppercase tracking-[0.2em] max-w-3xl mx-auto border-t border-b border-primary/20 py-6"
-        >
-          Watering the roots of the Vedic tree is necessary to arrest its decay
-        </motion.p>
+        {/* Tree Graphic Container */}
+        <div className="flex justify-center items-center w-full p-0 m-0">
+          <img 
+            src="/images/veda-vruksha-original.jpg" 
+            alt="Veda Vruksham Illustrated Diagram Viewport" 
+            className="w-full max-w-[780px] h-auto object-contain border border-[#222] p-1.5 bg-white transition-all duration-300" 
+          />
+        </div>
+        
+        {/* English Translation Card */}
+        <div className="bg-white p-[20px] border border-[#222] shadow-[3px_3px_0_#222] min-h-[280px] flex flex-col justify-center">
+          <p 
+            className="m-0 text-left text-[#171717] transition-all duration-300" 
+            style={{ 
+              fontFamily: 'Georgia, serif', 
+              /* Increased closed font size to 24px and expanded line-height to 1.95 to match the vertical footprint */
+              fontSize: bothClosed ? '26px' : '18px', 
+              lineHeight: bothClosed ? '2' : '1.7' 
+            }}
+          >
+            The Vedas are a tree. The learned Brahmins (wise scholars) are its roots. Its limbs are the branches. Righteous actions (dharma and karma) are its leaves. Therefore, the roots must be protected with great care. If the root is cut, neither branches nor the tree itself can survive.
+          </p>
+        </div>
+      </div>
+      
+      {/* Bottom Motto Banner */}
+      <div 
+        className="text-center border-y-4 border-double border-[#222] py-[15px] mt-8 uppercase tracking-[1.5px] text-[#8b2b22] font-bold transition-all duration-300"
+        style={{ 
+          fontFamily: 'Georgia, serif', 
+          fontSize: bothClosed ? '20px' : '16px' 
+        }}
+      >
+        Watering the roots of the Vedic tree is necessary to arrest its decay
       </div>
     </section>
   );
-};
+}
