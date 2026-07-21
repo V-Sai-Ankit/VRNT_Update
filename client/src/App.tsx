@@ -13,21 +13,33 @@ import DonatePage from './components/sections/Donate';
 import ContactPage from './components/sections/Contact';
 import Mahotsav from './components/sections/Mahotsav';
 import ParikshaResultPage from './components/sections/ParikshaResult';
-import Announcements from './components/sections/Announcements';
+import Announcement from './components/sections/Announcement';
 import GalleryPage from './components/sections/Gallery';
 import History from './components/sections/History';
 
 export default function App() {
-  // 1. Menu defaults to open (true)
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = useState(true); 
   
   const [currentPage, setCurrentPage] = useState('home');
   const [vedasSubView, setVedasSubView] = useState('list');
+  const [announcementSubView, setAnnouncementSubView] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
+
+  const handleNavigate = (page: string) => {
+    if (page === 'poorthy-circular') {
+      setCurrentPage('announcements');
+      setAnnouncementSubView('poorthy-sept');
+    } else {
+      if (page === 'announcements') {
+        setAnnouncementSubView(null);
+      }
+      setCurrentPage(page);
+    }
+  };
 
   const renderPageContent = () => {
     switch (currentPage) {
@@ -66,9 +78,17 @@ export default function App() {
       case 'mahotsav':
         return <Mahotsav isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />;
       case 'pariksha-result':
-        return <ParikshaResultPage isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} setCurrentPage={setCurrentPage} />;
+        return <ParikshaResultPage isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} setCurrentPage={handleNavigate} />;
       case 'announcements':
-        return <Announcements isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} setCurrentPage={setCurrentPage} />;
+        return (
+          <Announcement 
+            isMenuOpen={isMenuOpen} 
+            isDrawerOpen={isDrawerOpen} 
+            setCurrentPage={handleNavigate} 
+            subView={announcementSubView}
+            setSubView={setAnnouncementSubView}
+          />
+        );
       default:
         return (
           <>
@@ -88,13 +108,12 @@ export default function App() {
 
       <Navbar />
 
-      {/* Unified Sidebar Container */}
+      {/* Sidebar Navigation */}
       <div 
         className={`fixed left-0 top-[200px] z-[1200] flex flex-col items-stretch bg-[#0e2245] border border-[#08152b] shadow-lg rounded-r-md overflow-hidden transition-all duration-300 ease-out ${
           isMenuOpen ? 'w-[220px]' : 'w-[88px]'
         }`}
       >
-        {/* Top Header Row containing Menu Trigger Toggle Button */}
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className={`bg-[#1a365d] text-white border-none border-b border-[#08152b] cursor-pointer flex items-center justify-center gap-2 font-sans font-bold uppercase transition-all duration-300 w-full shrink-0 ${
@@ -105,7 +124,6 @@ export default function App() {
           <span>MENU</span>
         </button>
         
-        {/* Stationary Portal Row */}
         <div className={`shrink-0 border-b border-[#08152b] ${isMenuOpen ? 'p-3 bg-[#0b1b38]' : 'p-2 bg-[#1a365d]/50'}`}>
           <button 
             onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
@@ -117,22 +135,21 @@ export default function App() {
           </button>
         </div>
         
-        {/* Scrollable Links Row Container */}
         {isMenuOpen ? (
           <div className="flex flex-col gap-1.5 p-3 overflow-y-auto no-scrollbar max-h-[calc(100vh-320px)] flex-grow">
-            <button onClick={() => setCurrentPage('home')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'home' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Home</button>
-            <button onClick={() => setCurrentPage('mission')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'mission' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Mission</button>
-            <button onClick={() => setCurrentPage('activities')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'activities' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Activities</button>
-            <button onClick={() => { setCurrentPage('vedas'); setVedasSubView('list'); }} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'vedas' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Vedas</button>
-            <button onClick={() => setCurrentPage('pariksha')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'pariksha' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Pariksha</button>
-            <button onClick={() => setCurrentPage('gallery')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'gallery' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Gallery</button>
-            <button onClick={() => setCurrentPage('history')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'history' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>History</button>
-            <button onClick={() => setCurrentPage('trustees')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'trustees' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Trustees</button>
-            <button onClick={() => setCurrentPage('donate')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'donate' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Donate</button>
-            <button onClick={() => setCurrentPage('contact')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'contact' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Contact</button>
+            <button onClick={() => handleNavigate('home')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'home' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Home</button>
+            <button onClick={() => handleNavigate('mission')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'mission' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Mission</button>
+            <button onClick={() => handleNavigate('activities')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'activities' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Activities</button>
+            <button onClick={() => { handleNavigate('vedas'); setVedasSubView('list'); }} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'vedas' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Vedas</button>
+            <button onClick={() => handleNavigate('pariksha')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'pariksha' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Pariksha</button>
+            <button onClick={() => handleNavigate('gallery')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'gallery' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Gallery</button>
+            <button onClick={() => handleNavigate('history')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'history' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>History</button>
+            <button onClick={() => handleNavigate('trustees')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'trustees' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Trustees</button>
+            <button onClick={() => handleNavigate('donate')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'donate' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Donate</button>
+            <button onClick={() => handleNavigate('contact')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${currentPage === 'contact' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Contact</button>
 
             <button 
-              onClick={() => setCurrentPage('announcements')}
+              onClick={() => handleNavigate('announcements')}
               className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${
                 currentPage === 'announcements' ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'
               }`}
@@ -145,7 +162,6 @@ export default function App() {
         )}
       </div>
 
-      {/* Floating Notification Toggle Bell */}
       <button 
         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
         className="fixed bottom-6 right-6 bg-[#1a365d] text-white border border-[#222] cursor-pointer z-[1200] text-xl rounded-full h-14 w-14 flex items-center justify-center shadow-2xl hover:bg-[#224273] hover:scale-105 transition-all duration-200"
@@ -153,7 +169,6 @@ export default function App() {
         🔔
       </button>
 
-      {/* Workspace Wrapper */}
       <div 
         className="flex transition-all duration-300 ease-in-out pl-[19px]"
         style={{ 
@@ -169,7 +184,7 @@ export default function App() {
         <NotificationSidebar 
           isOpen={isDrawerOpen} 
           onClose={() => setIsDrawerOpen(false)}
-          setCurrentPage={setCurrentPage} 
+          setCurrentPage={handleNavigate} 
         />
       </div>
 

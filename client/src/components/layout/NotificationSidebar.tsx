@@ -42,7 +42,7 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
       action: {
         type: "link",
         label: "View Exam Details",
-        targetPage: "#"
+        targetPage: "poorthy-circular"
       }
     }
   ];
@@ -52,7 +52,6 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
       className="fixed top-[200px] right-0 w-[380px] bottom-0 bg-[#8b2b22] border-l border-[#bf953f]/30 z-[1100] flex flex-col p-4 shadow-2xl animate-fade-in-right overflow-y-auto no-scrollbar"
       style={{ height: 'calc(100vh - 200px)' }}
     >
-      {/* Sidebar Header Title Container */}
       <div className="flex items-center justify-between border-b border-[#bf953f]/20 pb-3 mb-4">
         <div className="flex items-center gap-2">
           <span className="text-lg">🔔</span>
@@ -68,14 +67,12 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
         </button>
       </div>
 
-      {/* Stacked Cards Section Layout */}
       <div className="flex flex-col gap-4">
         {announcements.map((item, idx) => (
           <div 
             key={idx} 
             className="bg-white border border-[#bf953f]/30 rounded-xl p-4 flex flex-col gap-3 shadow-md"
           >
-            {/* Header Area */}
             <div className="flex items-start gap-2.5">
               {item.icon}
               <h3 className="font-serif font-bold text-base m-0 leading-snug tracking-wide text-[#8b2b22]">
@@ -83,12 +80,10 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
               </h3>
             </div>
 
-            {/* Description Paragraph Block */}
             <p className="font-serif text-sm text-gray-700 m-0 leading-relaxed font-normal">
               {item.description}
             </p>
 
-            {/* Action Trigger Elements */}
             {item.action.type === "button" ? (
               <button 
                 onClick={() => setCurrentPage(item.action.targetPage)}
@@ -98,11 +93,7 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
               </button>
             ) : (
               <button 
-                onClick={() => {
-                  if (item.action.targetPage !== '#') {
-                    setCurrentPage(item.action.targetPage);
-                  }
-                }}
+                onClick={() => setCurrentPage(item.action.targetPage)}
                 className="text-[#bf953f] hover:text-[#a37a24] bg-transparent border-none p-0 font-sans font-bold text-xs tracking-wide no-underline hover:underline flex items-center gap-1.5 mt-1 self-start cursor-pointer"
               >
                 <span>↗</span> {item.action.label}
