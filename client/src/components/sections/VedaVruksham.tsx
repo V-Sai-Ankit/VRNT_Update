@@ -45,7 +45,7 @@ export default function VedaVruksham({ isMenuOpen, isDrawerOpen }: VedaVrukshamP
         {/* Tree Graphic Container */}
         <div className="flex justify-center items-center w-full p-0 m-0">
           <img 
-            src="/images/veda-vruksha-original.jpg" 
+            src="/images/veda-vruksha-original-new.JPG" 
             alt="Veda Vruksham Illustrated Diagram Viewport" 
             className="w-full max-w-[780px] h-auto object-contain border border-[#222] p-1.5 bg-white transition-all duration-300" 
           />
