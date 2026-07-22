@@ -1,16 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { FileDown, GraduationCap, ClipboardCheck, Award, BookOpen, ExternalLink } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+// Import sub-page components
+import VaarshikaPage from "../../pages/vaarshika";
+import PoorthyPage from "../../pages/poorthy";
+import SanskritPage from "../../pages/sanskrit";
+
 interface ParikshaProps {
   isMenuOpen?: boolean;
   isDrawerOpen?: boolean;
+  subView?: string | null;
+  setSubView?: (view: string | null) => void;
 }
 
-export default function Pariksha({ isMenuOpen = false, isDrawerOpen = false }: ParikshaProps) {
+export default function Pariksha({ 
+  isMenuOpen = false, 
+  isDrawerOpen = false,
+  subView: externalSubView,
+  setSubView: externalSetSubView
+}: ParikshaProps) {
   const expanded = !isMenuOpen && !isDrawerOpen;
+  const [internalSubView, setInternalSubView] = useState<string | null>(null);
+
+  const activeSubView = externalSubView !== undefined ? externalSubView : internalSubView;
+
+  const handleSetSubView = (view: string | null) => {
+    if (externalSetSubView) {
+      externalSetSubView(view);
+    } else {
+      setInternalSubView(view);
+    }
+  };
 
   const forms = [
     {
@@ -25,7 +48,7 @@ export default function Pariksha({ isMenuOpen = false, isDrawerOpen = false }: P
       title: "Poorthi Pariksha Application",
       description: "Download the application form for the final completion examination.",
       icon: FileDown,
-      link: "/assets/forms/POORTHY_APPL_2024.pdf", // Served dynamically from the root assets folder via vercel rewrites
+      link: "/assets/forms/POORTHY_APPL_2024.pdf",
       filename: "POORTHY_APPL_2024.pdf",
       buttonText: "Download Form"
     },
@@ -33,32 +56,97 @@ export default function Pariksha({ isMenuOpen = false, isDrawerOpen = false }: P
       title: "Varshika Pariksha Form",
       description: "Annual examination form for Vedic students.",
       icon: ClipboardCheck,
-      link: "/assets/forms/VARSHIKA_FORM.pdf", // Served dynamically from the root assets folder via vercel rewrites
+      link: "/assets/forms/VARSHIKA_FORM.pdf",
       filename: "VARSHIKA_FORM.pdf",
       buttonText: "Download Form"
     }
   ];
 
-  const poorthyLevels = [
-    { veda: "Rig Veda", levels: ["Moolam", "Padam–Kramam", "Ghanam", "Lakshanam"] },
-    { veda: "Yajur Veda", levels: ["Padam–Kramam", "Ghanam", "Lakshanam"] },
-    { veda: "Sama Veda", levels: ["Poorva Bhagam", "Uttara Bhagam"] },
-    { veda: "Atharva Veda", levels: ["Moolam level"] }
-  ];
+  // Render Sub-Views
+  if (activeSubView === 'varshikam') {
+    return <VaarshikaPage expanded={expanded} onBack={() => handleSetSubView(null)} />;
+  }
 
+  if (activeSubView === 'poorthy') {
+    return <PoorthyPage expanded={expanded} onBack={() => handleSetSubView(null)} />;
+  }
+
+  if (activeSubView === 'sanskrit') {
+    return <SanskritPage expanded={expanded} onBack={() => handleSetSubView(null)} />;
+  }
+
+  // Main Pariksha Overview Page
   return (
     <div className={`min-h-screen bg-background text-foreground font-sans transition-all duration-300 ${expanded ? 'p-6' : 'p-0'}`}>
       <main className="pt-[20px] pb-24 min-h-[calc(100vh-80px)]">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-16">
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4 underline decoration-primary decoration-4 underline-offset-8 inline-block">
+          <div className="text-center mb-10">
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-3 underline decoration-primary decoration-4 underline-offset-8 inline-block">
               Pariksha (Examinations)
             </h1>
-            <p className="text-lg text-muted-foreground font-serif mt-8 max-w-2xl mx-auto italic">
+            <p className="text-lg text-muted-foreground font-serif mt-4 max-w-2xl mx-auto italic">
               Academic rigor is maintained through regular inspections and assessments to preserve traditional standards.
             </p>
           </div>
 
+          {/* Premium Formatted Vertical Stack */}
+          <div className="flex flex-col gap-6 mb-12">
+            {/* Varshikam Examination Card */}
+            <div className="bg-[#fcfaf7] border-2 border-[#d6c5a0] rounded-2xl p-6 md:p-7 shadow-md hover:shadow-lg transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="space-y-2">
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+                  Varshikam Examination
+                </h2>
+                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                  Annual on-site examination conducted at Paatashalas by Pareekshādhikāris to assess student progress and traditional Sampradāyam practices.
+                </p>
+              </div>
+              <Button 
+                onClick={() => handleSetSubView('varshikam')}
+                className="bg-[#b4892c] hover:bg-[#967122] text-white font-bold uppercase tracking-wider text-xs px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none"
+              >
+                Read Details <ExternalLink className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Poorthy Examination Card */}
+            <div className="bg-[#fcfaf7] border-2 border-[#d6c5a0] rounded-2xl p-6 md:p-7 shadow-md hover:shadow-lg transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="space-y-2">
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+                  Poorthy Examination
+                </h2>
+                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                  The landmark final graduation examination marking the culmination of years of rigorous Adhyayanam across all Vedas.
+                </p>
+              </div>
+              <Button 
+                onClick={() => handleSetSubView('poorthy')}
+                className="bg-[#7a2219] hover:bg-[#922d23] text-white font-bold uppercase tracking-wider text-xs px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none"
+              >
+                Read Details <ExternalLink className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Sanskrit Proficiency Card */}
+            <div className="bg-[#fcfaf7] border-2 border-[#d6c5a0] rounded-2xl p-6 md:p-7 shadow-md hover:shadow-lg transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="space-y-2">
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+                  Sanskrit Proficiency
+                </h2>
+                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                  Prescribed levels of Sanskrit qualification conducted by Chittoor Samskrutha Sabha corresponding to each Veda Shaakha.
+                </p>
+              </div>
+              <Button 
+                onClick={() => handleSetSubView('sanskrit')}
+                className="bg-[#b4892c] hover:bg-[#967122] text-white font-bold uppercase tracking-wider text-xs px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none"
+              >
+                Read Details <ExternalLink className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Registration & Application Forms Cards */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {forms.map((form, index) => (
               <motion.div
@@ -103,53 +191,7 @@ export default function Pariksha({ isMenuOpen = false, isDrawerOpen = false }: P
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-card border rounded-2xl p-8 shadow-sm">
-              <h3 className="font-display text-2xl font-bold mb-6 text-primary border-b pb-4 flex items-center gap-2">
-                <GraduationCap className="text-primary" /> Poorthy Examination
-              </h3>
-              <p className="text-muted-foreground font-serif leading-relaxed mb-6">
-                The final graduation examination marks the culmination of years of rigorous Adhyayanam. Certification levels:
-              </p>
-              <div className="grid grid-cols-2 gap-6 text-sm font-serif">
-                {poorthyLevels.map((item, idx) => (
-                  <div key={idx} className="space-y-2">
-                    <p className="font-bold text-secondary">{item.veda}</p>
-                    <ul className="list-disc pl-4 text-xs space-y-1">
-                      {item.levels.map((level, lIdx) => (
-                        <li key={lIdx}>{level}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-card border rounded-2xl p-8 shadow-sm">
-              <h3 className="font-display text-2xl font-bold mb-6 text-primary border-b pb-4 flex items-center gap-2">
-                <BookOpen className="text-primary" /> Sanskrit Proficiency
-              </h3>
-              <p className="text-muted-foreground font-serif leading-relaxed mb-6">
-                Students must complete Sanskrit exams by Chittoor Samskrutha Sabha corresponding to their Veda study:
-              </p>
-              <div className="space-y-3 text-sm font-serif">
-                <div className="flex justify-between border-b border-border/50 pb-1">
-                  <span className="font-medium">Moolam</span>
-                  <span className="font-bold text-secondary italic">Parichaya</span>
-                </div>
-                <div className="flex justify-between border-b border-border/50 pb-1">
-                  <span className="font-medium">Kramam / Poorva Bhagam</span>
-                  <span className="font-bold text-secondary italic">Abhijñā</span>
-                </div>
-                <div className="flex justify-between border-b border-border/50 pb-1">
-                  <span className="font-medium">Ghanam / Uttara Bhagam</span>
-                  <span className="font-bold text-secondary italic">Vichakshana</span>
-                </div>
-              </div>
-              <p className="mt-4 text-xs text-muted-foreground italic">Linguistic depth complements Vedic mastery for true spiritual insight.</p>
-            </div>
-          </div>
-
+          {/* Śūrādhyāyī Selection Criteria */}
           <div className="bg-card border rounded-2xl p-8 shadow-sm mb-12">
             <h3 className="font-display text-2xl font-bold mb-6 text-primary border-b pb-4 flex items-center gap-2">
               <Award className="text-primary" /> Selection of Śūrādhyāyī
@@ -181,6 +223,7 @@ export default function Pariksha({ isMenuOpen = false, isDrawerOpen = false }: P
             </div>
           </div>
 
+          {/* Instructions List */}
           <div className="bg-card border rounded-2xl p-8 shadow-sm">
             <h3 className="font-display text-2xl font-bold mb-4 flex items-center gap-2">
               <ClipboardCheck className="text-primary" /> Examination Instructions
