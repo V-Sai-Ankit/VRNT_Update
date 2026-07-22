@@ -116,7 +116,7 @@ export default function Announcement({
             onClick={() => handleDownload("/assets/announcement/poorthy_exam_circular.pdf")}
             className="bg-[#b4892c] hover:bg-[#967122] text-white font-sans font-bold text-xs tracking-wider py-2 px-4 rounded-lg shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer border-none"
           >
-            Download PDF <span>↓</span>
+            Download Poorthy Exam Circular <span>↓</span>
           </button>
         </div>
 

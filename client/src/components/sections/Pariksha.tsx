@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
-import { FileDown, GraduationCap, ClipboardCheck, Award, BookOpen, ExternalLink } from "lucide-react";
+import { FileDown, GraduationCap, ClipboardCheck, Award, ExternalLink } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -89,65 +89,8 @@ export default function Pariksha({
             </p>
           </div>
 
-          {/* Premium Formatted Vertical Stack */}
-          <div className="flex flex-col gap-6 mb-12">
-            {/* Varshikam Examination Card */}
-            <div className="bg-[#fcfaf7] border-2 border-[#d6c5a0] rounded-2xl p-6 md:p-7 shadow-md hover:shadow-lg transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div className="space-y-2">
-                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
-                  Varshikam Examination
-                </h2>
-                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
-                  Annual on-site examination conducted at Paatashalas by Pareekshādhikāris to assess student progress and traditional Sampradāyam practices.
-                </p>
-              </div>
-              <Button 
-                onClick={() => handleSetSubView('varshikam')}
-                className="bg-[#b4892c] hover:bg-[#967122] text-white font-bold uppercase tracking-wider text-xs px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none"
-              >
-                Read Details <ExternalLink className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Poorthy Examination Card */}
-            <div className="bg-[#fcfaf7] border-2 border-[#d6c5a0] rounded-2xl p-6 md:p-7 shadow-md hover:shadow-lg transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div className="space-y-2">
-                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
-                  Poorthy Examination
-                </h2>
-                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
-                  The landmark final graduation examination marking the culmination of years of rigorous Adhyayanam across all Vedas.
-                </p>
-              </div>
-              <Button 
-                onClick={() => handleSetSubView('poorthy')}
-                className="bg-[#7a2219] hover:bg-[#922d23] text-white font-bold uppercase tracking-wider text-xs px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none"
-              >
-                Read Details <ExternalLink className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Sanskrit Proficiency Card */}
-            <div className="bg-[#fcfaf7] border-2 border-[#d6c5a0] rounded-2xl p-6 md:p-7 shadow-md hover:shadow-lg transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div className="space-y-2">
-                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
-                  Sanskrit Proficiency
-                </h2>
-                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
-                  Prescribed levels of Sanskrit qualification conducted by Chittoor Samskrutha Sabha corresponding to each Veda Shaakha.
-                </p>
-              </div>
-              <Button 
-                onClick={() => handleSetSubView('sanskrit')}
-                className="bg-[#b4892c] hover:bg-[#967122] text-white font-bold uppercase tracking-wider text-xs px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none"
-              >
-                Read Details <ExternalLink className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-
-          {/* Registration & Application Forms Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {/* 1. REGISTRATION & APPLICATION FORMS CARDS */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             {forms.map((form, index) => (
               <motion.div
                 key={index}
@@ -191,7 +134,64 @@ export default function Pariksha({
             ))}
           </div>
 
-          {/* Śūrādhyāyī Selection Criteria */}
+          {/* 2. UNIFIED SINGLE BLOCK CONTAINER FOR EXAMINATIONS */}
+          <div className="bg-[#fcfaf7] border-2 border-[#d6c5a0] rounded-2xl shadow-md overflow-hidden mb-16">
+            {/* Varshikam Examination */}
+            <div className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-[#d6c5a0]/40 transition-colors hover:bg-[#f9f5ee]">
+              <div className="space-y-3">
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+                  Varshikam Examination
+                </h2>
+                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                  Annual on-site examination conducted at Paatashalas by Pareekshādhikāris to assess student progress and traditional Sampradāyam practices.
+                </p>
+              </div>
+              <Button 
+                onClick={() => handleSetSubView('varshikam')}
+                className="bg-[#b4892c] hover:bg-[#967122] text-white font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none shadow-sm"
+              >
+                Read Details <ExternalLink className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Poorthy Examination */}
+            <div className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-[#d6c5a0]/40 transition-colors hover:bg-[#f9f5ee]">
+              <div className="space-y-3">
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+                  Poorthy Examination
+                </h2>
+                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                  The landmark final graduation examination marking the culmination of years of rigorous Adhyayanam across all Vedas.
+                </p>
+              </div>
+              <Button 
+                onClick={() => handleSetSubView('poorthy')}
+                className="bg-[#7a2219] hover:bg-[#922d23] text-white font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none shadow-sm"
+              >
+                Read Details <ExternalLink className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Sanskrit Proficiency */}
+            <div className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-colors hover:bg-[#f9f5ee]">
+              <div className="space-y-3">
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+                  Sanskrit Proficiency
+                </h2>
+                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                  Prescribed levels of Sanskrit qualification conducted by Chittoor Samskrutha Sabha corresponding to each Veda Shaakha.
+                </p>
+              </div>
+              <Button 
+                onClick={() => handleSetSubView('sanskrit')}
+                className="bg-[#b4892c] hover:bg-[#967122] text-white font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none shadow-sm"
+              >
+                Read Details <ExternalLink className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* 3. ŚŪRĀDHYĀYĪ SELECTION CRITERIA */}
           <div className="bg-card border rounded-2xl p-8 shadow-sm mb-12">
             <h3 className="font-display text-2xl font-bold mb-6 text-primary border-b pb-4 flex items-center gap-2">
               <Award className="text-primary" /> Selection of Śūrādhyāyī
@@ -223,7 +223,7 @@ export default function Pariksha({
             </div>
           </div>
 
-          {/* Instructions List */}
+          {/* 4. INSTRUCTIONS LIST */}
           <div className="bg-card border rounded-2xl p-8 shadow-sm">
             <h3 className="font-display text-2xl font-bold mb-4 flex items-center gap-2">
               <ClipboardCheck className="text-primary" /> Examination Instructions

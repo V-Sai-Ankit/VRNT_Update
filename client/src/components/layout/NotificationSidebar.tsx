@@ -9,7 +9,36 @@ interface NotificationSidebarProps {
 export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }: NotificationSidebarProps) {
   if (!isOpen) return null;
 
+  // Swapped order: Poorthy Exam comes FIRST
   const announcements = [
+    {
+      type: "poorthy",
+      icon: (
+        <svg className="h-4 w-4 text-[#8b2b22] shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      ),
+      title: "Poorthy Exam September",
+      description: "Important update regarding schedules, registration parameters, and venue assignments for the upcoming Poorthy Examination scheduled for September 2026.",
+      actions: [
+        {
+          type: "internal-link",
+          label: "View Exam Details",
+          targetPage: "poorthy-circular"
+        },
+        {
+          type: "external-link",
+          label: "Register Online for Poorthy Exam",
+          url: "https://docs.google.com/forms/d/e/1FAIpQLSfGe_y1ErOfrNsTlb-51mu0LaL6cPXxbKv38hQFFzxecA5BrQ/viewform"
+        },
+        {
+          type: "download-link",
+          label: "Download Application Form",
+          url: "/assets/forms/POORTHY_APPL_2024.pdf",
+          filename: "POORTHY_APPL_2024.pdf"
+        }
+      ]
+    },
     {
       type: "mahotsav",
       icon: (
@@ -24,26 +53,13 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
           <span className="underline decoration-[#bf953f]/60 cursor-pointer font-semibold text-[#bf953f]">certified Vidwans</span> to register for the Diamond Jubilee celebrations.
         </>
       ),
-      action: {
-        type: "button",
-        label: "REGISTER NOW",
-        targetPage: "mahotsav"
-      }
-    },
-    {
-      type: "poorthy",
-      icon: (
-        <svg className="h-4 w-4 text-[#8b2b22] shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      ),
-      title: "Poorthy Exam September",
-      description: "Important update regarding schedules, registration parameters, and venue assignments for the upcoming Poorthy Examination scheduled for September 2026.",
-      action: {
-        type: "link",
-        label: "View Exam Details",
-        targetPage: "poorthy-circular"
-      }
+      actions: [
+        {
+          type: "button",
+          label: "REGISTER NOW",
+          targetPage: "mahotsav"
+        }
+      ]
     }
   ];
 
@@ -84,21 +100,63 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
               {item.description}
             </p>
 
-            {item.action.type === "button" ? (
-              <button 
-                onClick={() => setCurrentPage(item.action.targetPage)}
-                className="w-full bg-[#8b2b22] hover:bg-[#9c3a30] text-white font-sans font-bold text-xs tracking-wider text-center py-2.5 rounded-md shadow-xs mt-1 transition-colors flex items-center justify-center gap-1 uppercase cursor-pointer border-none"
-              >
-                {item.action.label} <span className="text-[10px]">↗</span>
-              </button>
-            ) : (
-              <button 
-                onClick={() => setCurrentPage(item.action.targetPage)}
-                className="text-[#bf953f] hover:text-[#a37a24] bg-transparent border-none p-0 font-sans font-bold text-xs tracking-wide no-underline hover:underline flex items-center gap-1.5 mt-1 self-start cursor-pointer"
-              >
-                <span>↗</span> {item.action.label}
-              </button>
-            )}
+            {/* Actions Section */}
+            <div className="flex flex-col gap-2 pt-1 border-t border-gray-100">
+              {item.actions.map((act, actionIdx) => {
+                if (act.type === "button") {
+                  return (
+                    <button 
+                      key={actionIdx}
+                      onClick={() => setCurrentPage(act.targetPage!)}
+                      className="w-full bg-[#8b2b22] hover:bg-[#9c3a30] text-white font-sans font-bold text-xs tracking-wider text-center py-2.5 rounded-md shadow-xs mt-1 transition-colors flex items-center justify-center gap-1 uppercase cursor-pointer border-none"
+                    >
+                      {act.label} <span className="text-[10px]">↗</span>
+                    </button>
+                  );
+                }
+
+                if (act.type === "internal-link") {
+                  return (
+                    <button 
+                      key={actionIdx}
+                      onClick={() => setCurrentPage(act.targetPage!)}
+                      className="text-[#8b2b22] hover:text-[#9c3a30] bg-transparent border-none p-0 font-sans font-bold text-sm tracking-wide no-underline hover:underline flex items-center gap-1.5 self-start cursor-pointer text-left transition-colors"
+                    >
+                      <span>↗</span> {act.label}
+                    </button>
+                  );
+                }
+
+                if (act.type === "external-link") {
+                  return (
+                    <a 
+                      key={actionIdx}
+                      href={act.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#8b2b22] hover:text-[#9c3a30] font-sans font-bold text-sm tracking-wide no-underline hover:underline flex items-center gap-1.5 self-start cursor-pointer transition-colors"
+                    >
+                      <span>↗</span> {act.label}
+                    </a>
+                  );
+                }
+
+                if (act.type === "download-link") {
+                  return (
+                    <a 
+                      key={actionIdx}
+                      href={act.url}
+                      download={act.filename}
+                      className="text-[#8b2b22] hover:text-[#9c3a30] font-sans font-bold text-sm tracking-wide no-underline hover:underline flex items-center gap-1.5 self-start cursor-pointer transition-colors"
+                    >
+                      <span>↗</span> {act.label}
+                    </a>
+                  );
+                }
+
+                return null;
+              })}
+            </div>
           </div>
         ))}
       </div>
