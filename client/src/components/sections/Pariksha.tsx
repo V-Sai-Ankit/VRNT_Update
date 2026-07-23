@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from "framer-motion";
-import { FileDown, GraduationCap, ClipboardCheck, Award, ExternalLink } from "lucide-react";
+import { FileDown, GraduationCap, ClipboardCheck, Award, ExternalLink, Play } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -14,6 +14,110 @@ interface ParikshaProps {
   isDrawerOpen?: boolean;
   subView?: string | null;
   setSubView?: (view: string | null) => void;
+}
+
+// Custom Hover Video Card Component
+interface VideoCardProps {
+  video: {
+    id: string;
+    title: string;
+    description: string;
+    link: string;
+    previewUrl?: string; // Short 10s MP4 snippet URL
+  };
+}
+
+function HoverVideoCard({ video }: VideoCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {
+        // Autoplay may be blocked if sound isn't muted
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  return (
+    <a
+      href={video.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group bg-[#f7f2e8] border border-[#d8caae] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col no-underline cursor-pointer"
+    >
+      <div className="relative aspect-video w-full overflow-hidden bg-black/10">
+        {/* Static YouTube Image Thumbnail */}
+        <img 
+          src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`} 
+          alt={video.title} 
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
+            isHovered && video.previewUrl ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+
+        {/* 10-Second Preview MP4 Video (plays on hover) */}
+        {video.previewUrl ? (
+          <video
+            ref={videoRef}
+            src={video.previewUrl}
+            muted
+            loop
+            playsInline
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+              isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ) : (
+          /* Fallback iframe embed when no local preview clip is supplied */
+          isHovered && (
+            <iframe
+              src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1&controls=0&start=30&end=40&loop=1&playlist=${video.id}`}
+              title={video.title}
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              allow="autoplay; encrypted-media"
+            />
+          )
+        )}
+
+        {/* Play Overlay Icon (Hidden on Hover) */}
+        <div className={`absolute inset-0 bg-black/25 transition-opacity duration-300 flex items-center justify-center ${
+          isHovered ? 'opacity-0' : 'opacity-100'
+        }`}>
+          <div className="w-12 h-12 rounded-full bg-[#7a2219] text-white flex items-center justify-center shadow-md pl-0.5">
+            <Play className="w-5 h-5 fill-white" />
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 flex flex-col justify-between flex-1">
+        <div>
+          <h3 className="font-serif font-bold text-base md:text-lg text-[#7a2219] group-hover:text-[#b38600] transition-colors m-0 mb-2 line-clamp-2">
+            {video.title}
+          </h3>
+          <p className="font-serif text-xs md:text-sm text-[#4a3f35] m-0 leading-relaxed line-clamp-2">
+            {video.description}
+          </p>
+        </div>
+        <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-[#b38600] uppercase tracking-wider">
+          <span>Click here to watch</span>
+          <ExternalLink className="w-3.5 h-3.5" />
+        </div>
+      </div>
+    </a>
+  );
 }
 
 export default function Pariksha({ 
@@ -59,6 +163,34 @@ export default function Pariksha({
       link: "/assets/forms/VARSHIKA_FORM.pdf",
       filename: "VARSHIKA_FORM.pdf",
       buttonText: "Download Form"
+    }
+  ];
+
+  // YouTube Videos List
+  const youtubeVideos = [
+    {
+      id: "pF9TUaTG_n0",
+      title: "VRNT Certificate Distribution to Vidyarthis",
+      description: "Certificate Distribution to Vidyarthis graduating from Veda Patashalas by Sri Kanchi Kamakoti Peetam.",
+      link: "https://www.youtube.com/live/pF9TUaTG_n0?si=eDxYhBz7oRn9j4WO"
+    },
+    {
+      id: "rKnuLhiS-wU",
+      title: "Varshika Veda Poorti Pariksha - Certificate Distribution",
+      description: "Live ceremony of Varshika Veda Poorti Pariksha certificate distribution conducted by Veda Rakshana Nidhi Trust.",
+      link: "https://www.youtube.com/live/rKnuLhiS-wU?si=VcruBZqyzL2DWzjH"
+    },
+    {
+      id: "WbWkUncbHLo",
+      title: "Anugraha Bashan & VRNT Certificate Distribution",
+      description: "Anugraha Bashan of Kanchi Acharyal and VRNT Certificate Distribution live at Skandagiri Camp.",
+      link: "https://www.youtube.com/live/WbWkUncbHLo?si=z8t32OKsvah6VxXb"
+    },
+    {
+      id: "eIzOqHUiCEA",
+      title: "VRNT Poorthi Pariksha Certificate Function",
+      description: "VRNT Poorthi Pariksha Certificate Function live from Orikkai on Vijayadasami day.",
+      link: "https://www.youtube.com/live/eIzOqHUiCEA?si=XPSOXNCXlgcXP7ql"
     }
   ];
 
@@ -134,60 +266,63 @@ export default function Pariksha({
             ))}
           </div>
 
-          {/* 2. UNIFIED SINGLE BLOCK CONTAINER FOR EXAMINATIONS */}
-          <div className="bg-[#fcfaf7] border-2 border-[#d6c5a0] rounded-2xl shadow-md overflow-hidden mb-16">
+          {/* 2. CLEAN LIGHT CREAM CARDS */}
+          <div className="flex flex-col gap-5 mb-12">
             {/* Varshikam Examination */}
-            <div className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-[#d6c5a0]/40 transition-colors hover:bg-[#f9f5ee]">
-              <div className="space-y-3">
-                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+            <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-xl p-6 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between gap-4">
+              <div>
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] mb-2 m-0">
                   Varshikam Examination
                 </h2>
-                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                <p className="font-serif text-sm md:text-base text-[#4a3f35] m-0 leading-relaxed font-medium">
                   Annual on-site examination conducted at Paatashalas by Pareekshādhikāris to assess student progress and traditional Sampradāyam practices.
                 </p>
               </div>
-              <Button 
+              <button 
                 onClick={() => handleSetSubView('varshikam')}
-                className="bg-[#b4892c] hover:bg-[#967122] text-white font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none shadow-sm"
+                className="self-end bg-[#b38600] hover:bg-[#8b2b22] text-white font-sans font-bold text-xs tracking-wider uppercase py-2.5 px-5 rounded-md transition-colors duration-200 flex items-center gap-2 border-none cursor-pointer shadow-xs"
               >
-                Read Details <ExternalLink className="w-4 h-4" />
-              </Button>
+                <span>Read Details</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </button>
             </div>
 
             {/* Poorthy Examination */}
-            <div className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-[#d6c5a0]/40 transition-colors hover:bg-[#f9f5ee]">
-              <div className="space-y-3">
-                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+            <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-xl p-6 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between gap-4">
+              <div>
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] mb-2 m-0">
                   Poorthy Examination
                 </h2>
-                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                <p className="font-serif text-sm md:text-base text-[#4a3f35] m-0 leading-relaxed font-medium">
                   The landmark final graduation examination marking the culmination of years of rigorous Adhyayanam across all Vedas.
                 </p>
               </div>
-              <Button 
+              <button 
                 onClick={() => handleSetSubView('poorthy')}
-                className="bg-[#7a2219] hover:bg-[#922d23] text-white font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none shadow-sm"
+                className="self-end bg-[#7a2219] hover:bg-[#962d23] text-white font-sans font-bold text-xs tracking-wider uppercase py-2.5 px-5 rounded-md transition-colors duration-200 flex items-center gap-2 border-none cursor-pointer shadow-xs"
               >
-                Read Details <ExternalLink className="w-4 h-4" />
-              </Button>
+                <span>Read Details</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </button>
             </div>
 
             {/* Sanskrit Proficiency */}
-            <div className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-colors hover:bg-[#f9f5ee]">
-              <div className="space-y-3">
-                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+            <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-xl p-6 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between gap-4">
+              <div>
+                <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] mb-2 m-0">
                   Sanskrit Proficiency
                 </h2>
-                <p className="text-sm md:text-base text-gray-700 font-serif m-0 leading-relaxed max-w-2xl">
+                <p className="font-serif text-sm md:text-base text-[#4a3f35] m-0 leading-relaxed font-medium">
                   Prescribed levels of Sanskrit qualification conducted by Chittoor Samskrutha Sabha corresponding to each Veda Shaakha.
                 </p>
               </div>
-              <Button 
+              <button 
                 onClick={() => handleSetSubView('sanskrit')}
-                className="bg-[#b4892c] hover:bg-[#967122] text-white font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shrink-0 border-none shadow-sm"
+                className="self-end bg-[#b38600] hover:bg-[#8b2b22] text-white font-sans font-bold text-xs tracking-wider uppercase py-2.5 px-5 rounded-md transition-colors duration-200 flex items-center gap-2 border-none cursor-pointer shadow-xs"
               >
-                Read Details <ExternalLink className="w-4 h-4" />
-              </Button>
+                <span>Read Details</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
 
@@ -224,7 +359,7 @@ export default function Pariksha({
           </div>
 
           {/* 4. INSTRUCTIONS LIST */}
-          <div className="bg-card border rounded-2xl p-8 shadow-sm">
+          <div className="bg-card border rounded-2xl p-8 shadow-sm mb-16">
             <h3 className="font-display text-2xl font-bold mb-4 flex items-center gap-2">
               <ClipboardCheck className="text-primary" /> Examination Instructions
             </h3>
@@ -235,6 +370,23 @@ export default function Pariksha({
               <li>Pareekshādhikāris (examiners) personally visit Paatashalas for Varshikam assessments.</li>
             </ul>
           </div>
+
+          {/* 5. YOUTUBE VIDEO HIGHLIGHTS WITH HOVER PREVIEW */}
+          <div>
+            <div className="border-b border-[#d8caae]/80 pb-3 mb-6 flex items-center gap-2">
+              <span className="text-2xl">📹</span>
+              <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+                Certificate Distribution Videos
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {youtubeVideos.map((video) => (
+                <HoverVideoCard key={video.id} video={video} />
+              ))}
+            </div>
+          </div>
+
         </div>
       </main>
     </div>
