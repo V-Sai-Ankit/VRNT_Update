@@ -20,8 +20,8 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
           <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
       ),
-      title: "Poorthy Exam September",
-      description: "Important update regarding schedules, registration parameters, and venue assignments for the upcoming Poorthy Examination scheduled for September 2026.",
+      title: "Vijaya Dasami Poorthy Exam (September)",
+      description: "Important update regarding schedules, registration parameters, and venue assignments for the upcoming Vijaya Dasami Poorthy Examination scheduled for September 2026.",
       actions: [
         {
           type: "internal-link",
@@ -48,7 +48,7 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
         </svg>
       ),
-      title: "Shasti Aptha Purti Mahotsav",
+      title: "Shashtyabda Poorthy Mahotsav",
       description: (
         <>
           Celebrating 60 Years of Veda Rakshana. We cordially request all{" "}

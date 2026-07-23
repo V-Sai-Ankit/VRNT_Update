@@ -33,7 +33,7 @@ export default function Announcement({
   const logs = [
     {
       id: "poorthy-sept",
-      title: "Poorthy Pariksha Application",
+      title: "Vijaya Dasami Poorthy Exam (September)",
       date: "Published in 2026",
       type: "calendar",
       route: "poorthy-circular",
@@ -57,7 +57,7 @@ export default function Announcement({
     },
     {
       id: "vrnt-mahotsav",
-      title: "VRNT Shasti Aptha Purti Mahotsav",
+      title: "VRNT Shashtyabda Poorty Mahotsav",
       date: "Published in 2026",
       type: "document",
       route: "mahotsav",
@@ -122,7 +122,7 @@ export default function Announcement({
 
         <section className="border-b-2 border-[#b4892c] pb-4">
           <h1 className="font-serif font-bold text-3xl md:text-4xl text-[#8b2b22] m-0">
-            Poorthy Pariksha Application - September 2026 Circular
+            Vijaya Dasami Poorthy Exam Application (September) 2026 Circular
           </h1>
           <p className="text-sm font-sans text-gray-500 mt-1 mb-0">
             Published in 2026 • Official Notification from Veda Rakshana Nidhi Trust

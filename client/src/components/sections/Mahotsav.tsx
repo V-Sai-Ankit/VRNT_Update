@@ -10,7 +10,7 @@ export default function MahotsavPage() {
           Diamond Jubilee
         </span>
         <h2 className="font-serif font-bold text-[#8b2b22] text-3xl md:text-5xl m-0 tracking-wide mt-1">
-          Shasti Aptha Purti Mahotsav
+          Shashtyabda Poorthy Mahotsav
         </h2>
         <div className="w-24 h-1 bg-[#bf953f] mt-1 rounded-full" />
         <p className="italic text-gray-600 font-serif text-base md:text-lg mt-2">
