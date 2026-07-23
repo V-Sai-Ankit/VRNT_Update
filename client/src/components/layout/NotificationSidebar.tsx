@@ -1,12 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface NotificationSidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  setCurrentPage: (page: string) => void;
 }
 
-export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }: NotificationSidebarProps) {
+export default function NotificationSidebar({ isOpen, onClose }: NotificationSidebarProps) {
+  const navigate = useNavigate();
+
   if (!isOpen) return null;
 
   // Swapped order: Poorthy Exam comes FIRST
@@ -24,7 +26,7 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
         {
           type: "internal-link",
           label: "View Exam Details",
-          targetPage: "poorthy-circular"
+          targetPath: "/pariksha?view=poorthy"
         },
         {
           type: "external-link",
@@ -50,18 +52,31 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
       description: (
         <>
           Celebrating 60 Years of Veda Rakshana. We cordially request all{" "}
-          <span className="underline decoration-[#bf953f]/60 cursor-pointer font-semibold text-[#bf953f]">certified Vidwans</span> to register for the Diamond Jubilee celebrations.
+          <span 
+            onClick={() => {
+              navigate('/mahotsav');
+              onClose();
+            }}
+            className="underline decoration-[#bf953f]/60 cursor-pointer font-semibold text-[#bf953f]"
+          >
+            certified Vidwans
+          </span> to register for the Diamond Jubilee celebrations.
         </>
       ),
       actions: [
         {
           type: "button",
           label: "REGISTER NOW",
-          targetPage: "mahotsav"
+          targetPath: "/mahotsav"
         }
       ]
     }
   ];
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    onClose();
+  };
 
   return (
     <aside 
@@ -107,7 +122,7 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
                   return (
                     <button 
                       key={actionIdx}
-                      onClick={() => setCurrentPage(act.targetPage!)}
+                      onClick={() => handleNavigate(act.targetPath!)}
                       className="w-full bg-[#8b2b22] hover:bg-[#9c3a30] text-white font-sans font-bold text-xs tracking-wider text-center py-2.5 rounded-md shadow-xs mt-1 transition-colors flex items-center justify-center gap-1 uppercase cursor-pointer border-none"
                     >
                       {act.label} <span className="text-[10px]">↗</span>
@@ -119,7 +134,7 @@ export default function NotificationSidebar({ isOpen, onClose, setCurrentPage }:
                   return (
                     <button 
                       key={actionIdx}
-                      onClick={() => setCurrentPage(act.targetPage!)}
+                      onClick={() => handleNavigate(act.targetPath!)}
                       className="text-[#8b2b22] hover:text-[#9c3a30] bg-transparent border-none p-0 font-sans font-bold text-sm tracking-wide no-underline hover:underline flex items-center gap-1.5 self-start cursor-pointer text-left transition-colors"
                     >
                       <span>↗</span> {act.label}
