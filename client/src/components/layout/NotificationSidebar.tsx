@@ -26,7 +26,7 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
         {
           type: "internal-link",
           label: "View Exam Details",
-          targetPath: "/pariksha?view=poorthy"
+          targetPath: "/announcements?view=poorthy-sept"
         },
         {
           type: "external-link",
@@ -54,8 +54,7 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
           Celebrating 60 Years of Veda Rakshana. We cordially request all{" "}
           <span 
             onClick={() => {
-              navigate('/mahotsav');
-              onClose();
+              handleNavigate('/mahotsav');
             }}
             className="underline decoration-[#bf953f]/60 cursor-pointer font-semibold text-[#bf953f]"
           >
@@ -75,7 +74,9 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
 
   const handleNavigate = (path: string) => {
     navigate(path);
-    onClose();
+    // Forces React Router / SearchParams listeners to update subpage view state
+    window.dispatchEvent(new Event('popstate'));
+    // Removed onClose() here so sidebar remains open
   };
 
   return (

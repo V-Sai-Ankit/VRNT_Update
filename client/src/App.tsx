@@ -32,7 +32,7 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Handle special navigation logic (e.g., poorthy-circular -> /announcements?view=poorthy-sept)
+  // Handle special navigation logic
   const handleNavigate = (page: string) => {
     if (page === 'poorthy-circular') {
       navigate('/announcements?view=poorthy-sept');
@@ -86,7 +86,7 @@ export default function App() {
         </div>
         
         {isMenuOpen ? (
-          <div className="flex flex-col gap-1.5 p-3 overflow-y-auto no-scrollbar max-h-[calc(100vh-320px)] flex-grow">
+          <div className="flex flex-col gap-1.5 p-3 pb-6 overflow-y-auto no-scrollbar max-h-[calc(100vh-280px)] flex-grow">
             <button onClick={() => handleNavigate('home')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('home') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Home</button>
             <button onClick={() => handleNavigate('mission')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('mission') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Mission</button>
             <button onClick={() => handleNavigate('activities')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('activities') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Activities</button>
@@ -97,7 +97,6 @@ export default function App() {
             <button onClick={() => handleNavigate('trustees')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('trustees') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Trustees</button>
             <button onClick={() => handleNavigate('donate')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('donate') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Donate</button>
             <button onClick={() => handleNavigate('contact')} className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('contact') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Contact</button>
-
             <button 
               onClick={() => handleNavigate('announcements')}
               className={`block text-left w-full no-underline py-2.5 px-4 font-sans font-bold text-sm rounded-md cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${
@@ -168,7 +167,6 @@ export default function App() {
                 setSubView={(val) => setSearchParams(val ? { view: val } : {})}
               />
             } />
-            {/* Catch-all fallback route */}
             <Route path="*" element={
               <>
                 <Hero />
