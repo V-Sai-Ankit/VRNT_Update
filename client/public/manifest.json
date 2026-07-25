@@ -1,0 +1,16 @@
+{
+  "short_name": "VRNT",
+  "name": "Veda Rakshana Nidhi Trust",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#8b2b22",
+  "theme_color": "#8b2b22",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 interface NotificationSidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  setCurrentPage?: (page: string) => void;
 }
 
 export default function NotificationSidebar({ isOpen, onClose }: NotificationSidebarProps) {
@@ -11,7 +12,16 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
 
   if (!isOpen) return null;
 
-  // Swapped order: Poorthy Exam comes FIRST
+  // Handles internal navigation & closes drawer ONLY on mobile viewports (<1024px)
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    window.dispatchEvent(new Event('popstate'));
+    
+    if (window.innerWidth < 1024) {
+      onClose();
+    }
+  };
+
   const announcements = [
     {
       type: "poorthy",
@@ -53,9 +63,7 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
         <>
           Celebrating 60 Years of Veda Rakshana. We cordially request all{" "}
           <span 
-            onClick={() => {
-              handleNavigate('/mahotsav');
-            }}
+            onClick={() => handleNavigate('/mahotsav')}
             className="underline decoration-[#bf953f]/60 cursor-pointer font-semibold text-[#bf953f]"
           >
             certified Vidwans
@@ -72,17 +80,10 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
     }
   ];
 
-  const handleNavigate = (path: string) => {
-    navigate(path);
-    // Forces React Router / SearchParams listeners to update subpage view state
-    window.dispatchEvent(new Event('popstate'));
-    // Removed onClose() here so sidebar remains open
-  };
-
   return (
     <aside 
-      className="fixed top-[200px] right-0 w-[380px] bottom-0 bg-[#8b2b22] border-l border-[#bf953f]/30 z-[1100] flex flex-col p-4 shadow-2xl animate-fade-in-right overflow-y-auto no-scrollbar"
-      style={{ height: 'calc(100vh - 200px)' }}
+      className="fixed top-[210px] sm:top-[240px] lg:top-[200px] right-0 w-[300px] sm:w-[380px] max-w-[85vw] bg-[#8b2b22] border-l-2 border-[#bf953f]/60 z-[1400] flex flex-col p-4 shadow-2xl transition-all duration-300 ease-in-out overflow-y-auto no-scrollbar"
+      style={{ height: 'calc(100vh - 210px)' }}
     >
       <div className="flex items-center justify-between border-b border-[#bf953f]/20 pb-3 mb-4">
         <div className="flex items-center gap-2">
@@ -93,13 +94,14 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
         </div>
         <button 
           onClick={onClose}
-          className="text-white/60 hover:text-white bg-transparent border-none text-lg cursor-pointer p-0 leading-none"
+          className="text-white/80 hover:text-white bg-transparent border-none text-xl cursor-pointer p-1 leading-none"
+          aria-label="Close Announcements"
         >
           ✕
         </button>
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 pb-12">
         {announcements.map((item, idx) => (
           <div 
             key={idx} 
