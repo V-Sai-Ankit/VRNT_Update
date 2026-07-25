@@ -7,7 +7,8 @@ import {
   Sparkles, 
   Images, 
   ChevronLeft, 
-  ChevronRight 
+  ChevronRight,
+  ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -17,8 +18,23 @@ interface PoorthyProps {
 }
 
 export default function PoorthyPage({ expanded, onBack }: PoorthyProps) {
-  // Current active slide index for the main gallery
-  const [currentIdx, setCurrentIdx] = useState<number>(0);
+  // State for Gallery 1: March 5, 2026 (VRNT-POORTHY-SJ26)
+  const [currentIdxG1, setCurrentIdxG1] = useState<number>(0);
+
+  // State for Gallery 2: August 31, 2025 (VRNT-VJ-EXAMS-SEP-2025)
+  const [currentIdxG2, setCurrentIdxG2] = useState<number>(0);
+
+  // State for Gallery 3: September 11–14, 2024 (VRNT VIJAYADASAMI EXAMS)
+  const [currentIdxG3, setCurrentIdxG3] = useState<number>(0);
+
+  // State for Gallery 4: March 15–17, 2024 (VRNT POORTHI EXAM)
+  const [currentIdxG4, setCurrentIdxG4] = useState<number>(0);
+
+  // State for Gallery 5: September 22–24, 2023 (VRNT POORTHI EXAMS)
+  const [currentIdxG5, setCurrentIdxG5] = useState<number>(0);
+
+  // State for Gallery 6: August 13–16, 2022 (VRNT Poorthy Exams)
+  const [currentIdxG6, setCurrentIdxG6] = useState<number>(0);
 
   const poorthyLevels = [
     { veda: "Rig Veda", levels: ["Moolam", "Padam–Kramam", "Ghanam", "Lakshanam"], note: "Separate examination for Athreya Brahmanam as well" },
@@ -27,41 +43,76 @@ export default function PoorthyPage({ expanded, onBack }: PoorthyProps) {
     { veda: "Atharva Veda", levels: ["Moolam level"] }
   ];
 
-  // Exact 17 file paths fetched directly from your local public directory
-  const imagePaths = [
-    "/poorthy/IMG20220814070144.jpg",
-    "/poorthy/IMG20220814070154.jpg",
-    "/poorthy/IMG20220814070346.jpg",
-    "/poorthy/IMG20220814070350.jpg",
-    "/poorthy/IMG20220814090011.jpg",
-    "/poorthy/IMG20220814090029.jpg",
-    "/poorthy/IMG20220814090102.jpg",
-    "/poorthy/IMG20220814090120.jpg",
-    "/poorthy/IMG20220814090141.jpg",
-    "/poorthy/IMG20220814090203.jpg",
-    "/poorthy/IMG20220814094026.jpg",
-    "/poorthy/IMG20220814094035.jpg",
-    "/poorthy/IMG20220814094102.jpg",
-    "/poorthy/IMG20220814094727.jpg",
-    "/poorthy/IMG20220814094851.jpg",
-    "/poorthy/IMG20220814095008.jpg",
-    "/poorthy/IMG20220814095119.jpg"
+  // --- 1. MARCH 5, 2026 (first gallery) ---
+  const g1ImagePaths = [
+    "/poorthy/first gallery/IMG_20260305_111546869_HDR.jpg",
+    "/poorthy/first gallery/IMG_20260305_111559214_HDR.jpg",
+    "/poorthy/first gallery/IMG_20260305_111609657_HDR.jpg"
   ];
+  const g1SlideBgImage = "/poorthy/first gallery/IMG_20260305_111617178_HDR.jpg";
+  const g1TotalSlides = g1ImagePaths.length + 1;
 
-  const totalPhotos = imagePaths.length;
+  // --- 2. AUGUST 31, 2025 (second gallery) ---
+  const g2ImagePaths = [
+    "/poorthy/second gallery/20250831_093953.jpg",
+    "/poorthy/second gallery/20250831_094001.jpg",
+    "/poorthy/second gallery/20250831_101817.jpg",
+    "/poorthy/second gallery/IMG_20250831_093631544_HDR.jpg",
+    "/poorthy/second gallery/IMG_20250831_093640112_HDR.jpg"
+  ];
+  const g2SlideBgImage = "/poorthy/second gallery/IMG_20250831_093917757_HDR.jpg";
+  const g2TotalSlides = g2ImagePaths.length + 1;
 
-  const handleNext = () => {
-    setCurrentIdx((prev) => (prev + 1) % totalPhotos);
-  };
+  // --- 3. SEPTEMBER 11–14, 2024 (third gallery) ---
+  const g3ImagePaths = [
+    "/poorthy/third gallery/20240911_085056.jpg",
+    "/poorthy/third gallery/20240911_092454.jpg",
+    "/poorthy/third gallery/20240911_092832.jpg",
+    "/poorthy/third gallery/IMG-20240911-WA0021.jpg",
+    "/poorthy/third gallery/IMG20240911085759.jpg"
+  ];
+  const g3SlideBgImage = "/poorthy/third gallery/IMG20240911085805.jpg";
+  const g3TotalSlides = g3ImagePaths.length + 1;
 
-  const handlePrev = () => {
-    setCurrentIdx((prev) => (prev - 1 + totalPhotos) % totalPhotos);
-  };
+  // --- 4. MARCH 15–17, 2024 (fourth gallery) ---
+  const g4ImagePaths = [
+    "/poorthy/fourth gallery/IMG-20240316-WA0033.jpg",
+    "/poorthy/fourth gallery/IMG20240315095416.jpg",
+    "/poorthy/fourth gallery/IMG20240315101639.jpg",
+    "/poorthy/fourth gallery/IMG20240315101735.jpg",
+    "/poorthy/fourth gallery/IMG20240315101739.jpg"
+  ];
+  const g4SlideBgImage = "/poorthy/fourth gallery/IMG20240316100506.jpg";
+  const g4TotalSlides = g4ImagePaths.length + 1;
+
+  // --- 5. SEPTEMBER 22–24, 2023 (fifth gallery) ---
+  const g5ImagePaths = [
+    "/poorthy/fifth gallery/IMG-20230924-WA0066.jpg",
+    "/poorthy/fifth gallery/IMG-20230924-WA0069.jpg",
+    "/poorthy/fifth gallery/IMG-20230924-WA0073.jpg",
+    "/poorthy/fifth gallery/IMG-20230924-WA0076.jpg",
+    "/poorthy/fifth gallery/IMG-20230924-WA0077.jpg"
+  ];
+  const g5SlideBgImage = "/poorthy/fifth gallery/IMG-20230924-WA0079.jpg";
+  const g5TotalSlides = g5ImagePaths.length + 1;
+
+  // --- 6. AUGUST 13–16, 2022 (sixth gallery) ---
+  const g6ImagePaths = [
+    "/poorthy/sixth gallery/IMG20220814094026.jpg",
+    "/poorthy/sixth gallery/IMG20220814070154.jpg",
+    "/poorthy/sixth gallery/IMG20220814070346.jpg",
+    "/poorthy/sixth gallery/IMG20220814090120.jpg",
+    "/poorthy/sixth gallery/IMG20220814095008.jpg"
+  ];
+  const g6SlideBgImage = "/poorthy/sixth gallery/IMG20220814090029.jpg";
+  const g6TotalSlides = g6ImagePaths.length + 1;
 
   return (
     <div className={`min-h-screen bg-background text-foreground font-sans transition-all duration-300 ${expanded ? 'p-6' : 'p-0'}`}>
       <main className="pt-[20px] pb-24 min-h-[calc(100vh-80px)]">
         <div className="container mx-auto px-4 max-w-4xl">
+          
+          {/* Back Button */}
           <div className="mb-6">
             <Button 
               onClick={onBack}
@@ -128,19 +179,544 @@ export default function PoorthyPage({ expanded, onBack }: PoorthyProps) {
             </p>
           </motion.div>
 
-          {/* SINGLE CONSOLIDATED PHOTO GALLERY SECTION */}
-          <div className="space-y-6">
+          {/* ALL PHOTO GALLERIES CONTAINER (DESCENDING ORDER) */}
+          <div className="space-y-10">
             <div className="border-b border-[#d8caae] pb-3 flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <Images className="w-7 h-7 text-[#7a2219]" />
                 <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
-                  Poorthy Examination Photo Archives
+                  Poorthy Examination Photos
                 </h2>
               </div>
             </div>
 
+            {/* ==================== 1. MARCH 5, 2026 ==================== */}
             <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
-              {/* Album Header */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#d8caae]">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <ImageIcon className="w-5 h-5 text-[#7a2219]" />
+                    <h3 className="font-serif font-bold text-xl md:text-2xl text-[#7a2219] m-0">
+                      VRNT-POORTHY-SJ26 (March 5, 2026)
+                    </h3>
+                  </div>
+                  <p className="font-serif text-sm text-[#4a3f35] m-0 flex items-center gap-2 mt-1">
+                    <Sparkles className="w-4 h-4 text-[#b38600]" />
+                    Official Photography — <span className="font-bold text-[#b38600]">March 5, 2026</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative w-full aspect-16/10 md:aspect-16/9 rounded-2xl overflow-hidden bg-black/90 shadow-md group">
+                <AnimatePresence mode="wait">
+                  {currentIdxG1 < 3 ? (
+                    <motion.img
+                      key={currentIdxG1}
+                      src={g1ImagePaths[currentIdxG1]}
+                      alt={`VRNT-POORTHY-SJ26 Photo ${currentIdxG1 + 1}`}
+                      initial={{ opacity: 0.3, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0.3, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = g1ImagePaths[0];
+                      }}
+                    />
+                  ) : (
+                    <motion.div
+                      key="g1-google-photos-slide"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center overflow-hidden"
+                    >
+                      <img 
+                        src={g1SlideBgImage} 
+                        alt="Background preview" 
+                        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.35] blur-[2px] scale-105"
+                      />
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="p-3.5 bg-[#7a2219] text-white rounded-2xl mb-3 shadow-xl border border-white/20">
+                          <Images className="w-8 h-8 md:w-10 md:h-10" />
+                        </div>
+                        <h3 className="font-serif font-bold text-xl md:text-3xl text-white drop-shadow-md m-0 mb-2">
+                          View Complete Photo Album
+                        </h3>
+                        <p className="font-serif text-sm md:text-base text-slate-200 max-w-md m-0 mb-6 drop-shadow">
+                          Access all high-resolution event photographs for VRNT-POORTHY-SJ26 on Google Photos.
+                        </p>
+                        <a
+                          href="https://photos.app.goo.gl/44zvTt67hd1FnXQw5"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="no-underline inline-flex items-center gap-2.5 bg-[#ff7f5c] hover:bg-[#ff9173] text-white font-sans font-bold text-sm md:text-base py-3 px-6 rounded-xl shadow-2xl transition-all hover:scale-105 active:scale-95"
+                        >
+                          <span>Open Google Photos Album</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 md:p-6 flex items-end justify-between text-white pointer-events-none z-10">
+                  <div>
+                    <p className="font-serif text-xs md:text-sm text-white/90 m-0 font-medium">
+                      {currentIdxG1 < 3 ? `Photo ${currentIdxG1 + 1} of 3` : 'Album Link'}
+                    </p>
+                  </div>
+                  <div className="hidden sm:flex gap-1.5 items-center pointer-events-auto py-1">
+                    {Array.from({ length: g1TotalSlides }).map((_, dotIdx) => (
+                      <div 
+                        key={dotIdx}
+                        onClick={() => setCurrentIdxG1(dotIdx)}
+                        className={`h-2 rounded-full cursor-pointer transition-all ${
+                          dotIdx === currentIdxG1 ? 'w-6 bg-[#b38600]' : 'w-2 bg-white/50 hover:bg-white'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setCurrentIdxG1((prev) => (prev - 1 + g1TotalSlides) % g1TotalSlides)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={() => setCurrentIdxG1((prev) => (prev + 1) % g1TotalSlides)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* ==================== 2. AUGUST 31, 2025 ==================== */}
+            <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#d8caae]">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <ImageIcon className="w-5 h-5 text-[#7a2219]" />
+                    <h3 className="font-serif font-bold text-xl md:text-2xl text-[#7a2219] m-0">
+                      VRNT-VJ-EXAMS-SEP-2025 (Aug 31, 2025)
+                    </h3>
+                  </div>
+                  <p className="font-serif text-sm text-[#4a3f35] m-0 flex items-center gap-2 mt-1">
+                    <Sparkles className="w-4 h-4 text-[#b38600]" />
+                    Official Photography — <span className="font-bold text-[#b38600]">August 31, 2025</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative w-full aspect-16/10 md:aspect-16/9 rounded-2xl overflow-hidden bg-black/90 shadow-md group">
+                <AnimatePresence mode="wait">
+                  {currentIdxG2 < 5 ? (
+                    <motion.img
+                      key={currentIdxG2}
+                      src={g2ImagePaths[currentIdxG2]}
+                      alt={`VRNT-VJ-EXAMS-SEP-2025 Photo ${currentIdxG2 + 1}`}
+                      initial={{ opacity: 0.3, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0.3, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = g2ImagePaths[0];
+                      }}
+                    />
+                  ) : (
+                    <motion.div
+                      key="g2-google-photos-slide"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center overflow-hidden"
+                    >
+                      <img 
+                        src={g2SlideBgImage} 
+                        alt="Background preview" 
+                        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.35] blur-[2px] scale-105"
+                      />
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="p-3.5 bg-[#7a2219] text-white rounded-2xl mb-3 shadow-xl border border-white/20">
+                          <Images className="w-8 h-8 md:w-10 md:h-10" />
+                        </div>
+                        <h3 className="font-serif font-bold text-xl md:text-3xl text-white drop-shadow-md m-0 mb-2">
+                          View Complete Photo Album
+                        </h3>
+                        <p className="font-serif text-sm md:text-base text-slate-200 max-w-md m-0 mb-6 drop-shadow">
+                          Access all high-resolution event photographs for VRNT-VJ-EXAMS-SEP-2025 on Google Photos.
+                        </p>
+                        <a
+                          href="https://photos.app.goo.gl/11bg4sbZFyTom2zH9"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="no-underline inline-flex items-center gap-2.5 bg-[#ff7f5c] hover:bg-[#ff9173] text-white font-sans font-bold text-sm md:text-base py-3 px-6 rounded-xl shadow-2xl transition-all hover:scale-105 active:scale-95"
+                        >
+                          <span>Open Google Photos Album</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 md:p-6 flex items-end justify-between text-white pointer-events-none z-10">
+                  <div>
+                    <p className="font-serif text-xs md:text-sm text-white/90 m-0 font-medium">
+                      {currentIdxG2 < 5 ? `Photo ${currentIdxG2 + 1} of 5` : 'Album Link'}
+                    </p>
+                  </div>
+                  <div className="hidden sm:flex gap-1.5 items-center pointer-events-auto py-1">
+                    {Array.from({ length: g2TotalSlides }).map((_, dotIdx) => (
+                      <div 
+                        key={dotIdx}
+                        onClick={() => setCurrentIdxG2(dotIdx)}
+                        className={`h-2 rounded-full cursor-pointer transition-all ${
+                          dotIdx === currentIdxG2 ? 'w-6 bg-[#b38600]' : 'w-2 bg-white/50 hover:bg-white'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setCurrentIdxG2((prev) => (prev - 1 + g2TotalSlides) % g2TotalSlides)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={() => setCurrentIdxG2((prev) => (prev + 1) % g2TotalSlides)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* ==================== 3. SEPTEMBER 11–14, 2024 ==================== */}
+            <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#d8caae]">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <ImageIcon className="w-5 h-5 text-[#7a2219]" />
+                    <h3 className="font-serif font-bold text-xl md:text-2xl text-[#7a2219] m-0">
+                      VRNT VIJAYADASAMI EXAMS SEP 11-14, 2024 (Sept 11–14, 2024)
+                    </h3>
+                  </div>
+                  <p className="font-serif text-sm text-[#4a3f35] m-0 flex items-center gap-2 mt-1">
+                    <Sparkles className="w-4 h-4 text-[#b38600]" />
+                    Official Photography — <span className="font-bold text-[#b38600]">September 11–14, 2024</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative w-full aspect-16/10 md:aspect-16/9 rounded-2xl overflow-hidden bg-black/90 shadow-md group">
+                <AnimatePresence mode="wait">
+                  {currentIdxG3 < 5 ? (
+                    <motion.img
+                      key={currentIdxG3}
+                      src={g3ImagePaths[currentIdxG3]}
+                      alt={`VRNT VIJAYADASAMI EXAMS SEP 11-14, 2024 Photo ${currentIdxG3 + 1}`}
+                      initial={{ opacity: 0.3, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0.3, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = g3ImagePaths[0];
+                      }}
+                    />
+                  ) : (
+                    <motion.div
+                      key="g3-google-photos-slide"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center overflow-hidden"
+                    >
+                      <img 
+                        src={g3SlideBgImage} 
+                        alt="Background preview" 
+                        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.35] blur-[2px] scale-105"
+                      />
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="p-3.5 bg-[#7a2219] text-white rounded-2xl mb-3 shadow-xl border border-white/20">
+                          <Images className="w-8 h-8 md:w-10 md:h-10" />
+                        </div>
+                        <h3 className="font-serif font-bold text-xl md:text-3xl text-white drop-shadow-md m-0 mb-2">
+                          View Complete Photo Album
+                        </h3>
+                        <p className="font-serif text-sm md:text-base text-slate-200 max-w-md m-0 mb-6 drop-shadow">
+                          Access all high-resolution event photographs for VRNT VIJAYADASAMI EXAMS SEP 11-14, 2024 on Google Photos.
+                        </p>
+                        <a
+                          href="https://photos.app.goo.gl/H1WVEG18PUxkorTA7"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="no-underline inline-flex items-center gap-2.5 bg-[#ff7f5c] hover:bg-[#ff9173] text-white font-sans font-bold text-sm md:text-base py-3 px-6 rounded-xl shadow-2xl transition-all hover:scale-105 active:scale-95"
+                        >
+                          <span>Open Google Photos Album</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 md:p-6 flex items-end justify-between text-white pointer-events-none z-10">
+                  <div>
+                    <p className="font-serif text-xs md:text-sm text-white/90 m-0 font-medium">
+                      {currentIdxG3 < 5 ? `Photo ${currentIdxG3 + 1} of 5` : 'Album Link'}
+                    </p>
+                  </div>
+                  <div className="hidden sm:flex gap-1.5 items-center pointer-events-auto py-1">
+                    {Array.from({ length: g3TotalSlides }).map((_, dotIdx) => (
+                      <div 
+                        key={dotIdx}
+                        onClick={() => setCurrentIdxG3(dotIdx)}
+                        className={`h-2 rounded-full cursor-pointer transition-all ${
+                          dotIdx === currentIdxG3 ? 'w-6 bg-[#b38600]' : 'w-2 bg-white/50 hover:bg-white'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setCurrentIdxG3((prev) => (prev - 1 + g3TotalSlides) % g3TotalSlides)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={() => setCurrentIdxG3((prev) => (prev + 1) % g3TotalSlides)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* ==================== 4. MARCH 15–17, 2024 ==================== */}
+            <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#d8caae]">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <ImageIcon className="w-5 h-5 text-[#7a2219]" />
+                    <h3 className="font-serif font-bold text-xl md:text-2xl text-[#7a2219] m-0">
+                      VRNT POORTHI EXAM 15-17TH MARCH 2024 (March 15–17, 2024)
+                    </h3>
+                  </div>
+                  <p className="font-serif text-sm text-[#4a3f35] m-0 flex items-center gap-2 mt-1">
+                    <Sparkles className="w-4 h-4 text-[#b38600]" />
+                    Official Photography — <span className="font-bold text-[#b38600]">March 15–17, 2024</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative w-full aspect-16/10 md:aspect-16/9 rounded-2xl overflow-hidden bg-black/90 shadow-md group">
+                <AnimatePresence mode="wait">
+                  {currentIdxG4 < 5 ? (
+                    <motion.img
+                      key={currentIdxG4}
+                      src={g4ImagePaths[currentIdxG4]}
+                      alt={`VRNT POORTHI EXAM 15-17TH MARCH 2024 Photo ${currentIdxG4 + 1}`}
+                      initial={{ opacity: 0.3, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0.3, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = g4ImagePaths[0];
+                      }}
+                    />
+                  ) : (
+                    <motion.div
+                      key="g4-google-photos-slide"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center overflow-hidden"
+                    >
+                      <img 
+                        src={g4SlideBgImage} 
+                        alt="Background preview" 
+                        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.35] blur-[2px] scale-105"
+                      />
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="p-3.5 bg-[#7a2219] text-white rounded-2xl mb-3 shadow-xl border border-white/20">
+                          <Images className="w-8 h-8 md:w-10 md:h-10" />
+                        </div>
+                        <h3 className="font-serif font-bold text-xl md:text-3xl text-white drop-shadow-md m-0 mb-2">
+                          View Complete Photo Album
+                        </h3>
+                        <p className="font-serif text-sm md:text-base text-slate-200 max-w-md m-0 mb-6 drop-shadow">
+                          Access all high-resolution event photographs for VRNT POORTHI EXAM 15-17TH MARCH 2024 on Google Photos.
+                        </p>
+                        <a
+                          href="https://photos.app.goo.gl/F1mBKjiHR8aBsRRHA"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="no-underline inline-flex items-center gap-2.5 bg-[#ff7f5c] hover:bg-[#ff9173] text-white font-sans font-bold text-sm md:text-base py-3 px-6 rounded-xl shadow-2xl transition-all hover:scale-105 active:scale-95"
+                        >
+                          <span>Open Google Photos Album</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 md:p-6 flex items-end justify-between text-white pointer-events-none z-10">
+                  <div>
+                    <p className="font-serif text-xs md:text-sm text-white/90 m-0 font-medium">
+                      {currentIdxG4 < 5 ? `Photo ${currentIdxG4 + 1} of 5` : 'Album Link'}
+                    </p>
+                  </div>
+                  <div className="hidden sm:flex gap-1.5 items-center pointer-events-auto py-1">
+                    {Array.from({ length: g4TotalSlides }).map((_, dotIdx) => (
+                      <div 
+                        key={dotIdx}
+                        onClick={() => setCurrentIdxG4(dotIdx)}
+                        className={`h-2 rounded-full cursor-pointer transition-all ${
+                          dotIdx === currentIdxG4 ? 'w-6 bg-[#b38600]' : 'w-2 bg-white/50 hover:bg-white'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setCurrentIdxG4((prev) => (prev - 1 + g4TotalSlides) % g4TotalSlides)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={() => setCurrentIdxG4((prev) => (prev + 1) % g4TotalSlides)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* ==================== 5. SEPTEMBER 22–24, 2023 ==================== */}
+            <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#d8caae]">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <ImageIcon className="w-5 h-5 text-[#7a2219]" />
+                    <h3 className="font-serif font-bold text-xl md:text-2xl text-[#7a2219] m-0">
+                      VRNT POORTHI EXAMS 22-24 SEP 2023 (Sept 22–24, 2023)
+                    </h3>
+                  </div>
+                  <p className="font-serif text-sm text-[#4a3f35] m-0 flex items-center gap-2 mt-1">
+                    <Sparkles className="w-4 h-4 text-[#b38600]" />
+                    Official Photography — <span className="font-bold text-[#b38600]">September 22–24, 2023</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative w-full aspect-16/10 md:aspect-16/9 rounded-2xl overflow-hidden bg-black/90 shadow-md group">
+                <AnimatePresence mode="wait">
+                  {currentIdxG5 < 5 ? (
+                    <motion.img
+                      key={currentIdxG5}
+                      src={g5ImagePaths[currentIdxG5]}
+                      alt={`VRNT POORTHI EXAMS 22-24 SEP 2023 Photo ${currentIdxG5 + 1}`}
+                      initial={{ opacity: 0.3, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0.3, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = g5ImagePaths[0];
+                      }}
+                    />
+                  ) : (
+                    <motion.div
+                      key="g5-google-photos-slide"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center overflow-hidden"
+                    >
+                      <img 
+                        src={g5SlideBgImage} 
+                        alt="Background preview" 
+                        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.35] blur-[2px] scale-105"
+                      />
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="p-3.5 bg-[#7a2219] text-white rounded-2xl mb-3 shadow-xl border border-white/20">
+                          <Images className="w-8 h-8 md:w-10 md:h-10" />
+                        </div>
+                        <h3 className="font-serif font-bold text-xl md:text-3xl text-white drop-shadow-md m-0 mb-2">
+                          View Complete Photo Album
+                        </h3>
+                        <p className="font-serif text-sm md:text-base text-slate-200 max-w-md m-0 mb-6 drop-shadow">
+                          Access all high-resolution event photographs for VRNT POORTHI EXAMS 22-24 SEP 2023 on Google Photos.
+                        </p>
+                        <a
+                          href="https://photos.app.goo.gl/frSGh8xZv4XdrjDo9"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="no-underline inline-flex items-center gap-2.5 bg-[#ff7f5c] hover:bg-[#ff9173] text-white font-sans font-bold text-sm md:text-base py-3 px-6 rounded-xl shadow-2xl transition-all hover:scale-105 active:scale-95"
+                        >
+                          <span>Open Google Photos Album</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 md:p-6 flex items-end justify-between text-white pointer-events-none z-10">
+                  <div>
+                    <p className="font-serif text-xs md:text-sm text-white/90 m-0 font-medium">
+                      {currentIdxG5 < 5 ? `Photo ${currentIdxG5 + 1} of 5` : 'Album Link'}
+                    </p>
+                  </div>
+                  <div className="hidden sm:flex gap-1.5 items-center pointer-events-auto py-1">
+                    {Array.from({ length: g5TotalSlides }).map((_, dotIdx) => (
+                      <div 
+                        key={dotIdx}
+                        onClick={() => setCurrentIdxG5(dotIdx)}
+                        className={`h-2 rounded-full cursor-pointer transition-all ${
+                          dotIdx === currentIdxG5 ? 'w-6 bg-[#b38600]' : 'w-2 bg-white/50 hover:bg-white'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setCurrentIdxG5((prev) => (prev - 1 + g5TotalSlides) % g5TotalSlides)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={() => setCurrentIdxG5((prev) => (prev + 1) % g5TotalSlides)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* ==================== 6. AUGUST 13–16, 2022 ==================== */}
+            <div className="bg-[#f7f2e8] border border-[#d8caae] rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#d8caae]">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
@@ -156,67 +732,94 @@ export default function PoorthyPage({ expanded, onBack }: PoorthyProps) {
                 </div>
               </div>
 
-              {/* DIRECT INLINE CAROUSEL CONTAINER */}
               <div className="relative w-full aspect-16/10 md:aspect-16/9 rounded-2xl overflow-hidden bg-black/90 shadow-md group">
                 <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentIdx}
-                    src={imagePaths[currentIdx]}
-                    alt={`Poorthy Exam Photo ${currentIdx + 1}`}
-                    initial={{ opacity: 0.3, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0.3, scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/poorthy/IMG20220814070144.jpg";
-                    }}
-                  />
+                  {currentIdxG6 < 5 ? (
+                    <motion.img
+                      key={currentIdxG6}
+                      src={g6ImagePaths[currentIdxG6]}
+                      alt={`Poorthy Exam Photo ${currentIdxG6 + 1}`}
+                      initial={{ opacity: 0.3, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0.3, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = g6ImagePaths[0];
+                      }}
+                    />
+                  ) : (
+                    <motion.div
+                      key="g6-google-photos-slide"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center overflow-hidden"
+                    >
+                      <img 
+                        src={g6SlideBgImage} 
+                        alt="Background preview" 
+                        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.35] blur-[2px] scale-105"
+                      />
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="p-3.5 bg-[#7a2219] text-white rounded-2xl mb-3 shadow-xl border border-white/20">
+                          <Images className="w-8 h-8 md:w-10 md:h-10" />
+                        </div>
+                        <h3 className="font-serif font-bold text-xl md:text-3xl text-white drop-shadow-md m-0 mb-2">
+                          View Complete Photo Album
+                        </h3>
+                        <p className="font-serif text-sm md:text-base text-slate-200 max-w-md m-0 mb-6 drop-shadow">
+                          Access all high-resolution event photographs and recordings on Google Photos.
+                        </p>
+                        <a
+                          href="https://photos.app.goo.gl/6TZHbiBZ7B8fiPFM7"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="no-underline inline-flex items-center gap-2.5 bg-[#ff7f5c] hover:bg-[#ff9173] text-white font-sans font-bold text-sm md:text-base py-3 px-6 rounded-xl shadow-2xl transition-all hover:scale-105 active:scale-95"
+                        >
+                          <span>Open Google Photos Album</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
                 </AnimatePresence>
 
-                {/* Gradient Overlay with Photo Counter Only */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 md:p-6 flex items-end justify-between text-white">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 md:p-6 flex items-end justify-between text-white pointer-events-none z-10">
                   <div>
                     <p className="font-serif text-xs md:text-sm text-white/90 m-0 font-medium">
-                      Photo {currentIdx + 1} of {totalPhotos}
+                      {currentIdxG6 < 5 ? `Photo ${currentIdxG6 + 1} of 5` : 'Album Link'}
                     </p>
                   </div>
-
-                  {/* Slide Indicator Dots */}
-                  <div className="hidden sm:flex gap-1.5 items-center max-w-[220px] overflow-x-auto py-1">
-                    {imagePaths.map((_, dotIdx) => (
+                  <div className="hidden sm:flex gap-1.5 items-center pointer-events-auto py-1">
+                    {Array.from({ length: g6TotalSlides }).map((_, dotIdx) => (
                       <div 
                         key={dotIdx}
-                        onClick={() => setCurrentIdx(dotIdx)}
+                        onClick={() => setCurrentIdxG6(dotIdx)}
                         className={`h-2 rounded-full cursor-pointer transition-all ${
-                          dotIdx === currentIdx 
-                            ? 'w-6 bg-[#b38600]' 
-                            : 'w-2 bg-white/50 hover:bg-white'
+                          dotIdx === currentIdxG6 ? 'w-6 bg-[#b38600]' : 'w-2 bg-white/50 hover:bg-white'
                         }`}
                       />
                     ))}
                   </div>
                 </div>
 
-                {/* Navigation Arrow - Left */}
                 <button
-                  onClick={handlePrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20"
-                  aria-label="Previous photo"
+                  onClick={() => setCurrentIdxG6((prev) => (prev - 1 + g6TotalSlides) % g6TotalSlides)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
-
-                {/* Navigation Arrow - Right */}
                 <button
-                  onClick={handleNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20"
-                  aria-label="Next photo"
+                  onClick={() => setCurrentIdxG6((prev) => (prev + 1) % g6TotalSlides)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer border border-white/20 z-20"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
               </div>
             </div>
+
           </div>
 
         </div>

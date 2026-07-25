@@ -75,7 +75,7 @@ export default function ContactPage({ isMenuOpen, isDrawerOpen }: ContactProps) 
           <div className="flex justify-between items-center">
             <h3 className="font-serif font-bold text-xl text-[#171717] m-0">Trust Office Location</h3>
             <a 
-              href="https://maps.google.com" 
+              href="https://maps.app.goo.gl/uRMQWW2WJeBHzRmx5" 
               target="_blank" 
               rel="noreferrer" 
               className="text-[#bf953f] font-sans text-xs font-bold uppercase tracking-wider no-underline hover:underline flex items-center gap-1"
@@ -88,7 +88,7 @@ export default function ContactPage({ isMenuOpen, isDrawerOpen }: ContactProps) 
             <div className="absolute inset-2 bg-[#e5e3df] rounded-xl flex items-center justify-center border border-gray-300 shadow-inner">
               <div className="absolute top-4 left-4 z-10">
                 <a 
-                  href="https://maps.google.com" 
+                  href="https://maps.app.goo.gl/uRMQWW2WJeBHzRmx5" 
                   target="_blank" 
                   rel="noreferrer" 
                   className="bg-white border border-gray-300 font-sans text-xs font-semibold px-3 py-1.5 rounded shadow-sm text-blue-600 no-underline hover:bg-gray-50 flex items-center gap-1"

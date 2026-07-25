@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface GalleryPageProps {
@@ -9,41 +9,92 @@ interface GalleryPageProps {
 }
 
 const GALLERY_IMAGES = [
+  // --- SPIRITUAL LINEAGE ACHARYAS ---
   {
     url: "/assets/1768738817683.jpg",
     title: "Adi Shankaracharya",
     category: "Peetham Founder",
-    description: "Kanchi Kamakoti Peetham established by Adi Shankaracharya (509 BCE to 477 BCE) 2500 years ago."
+    description: "Kanchi Kamakoti Peetham established by Adi Shankaracharya (509 BCE to 477 BCE) 2500 years ago.",
+    albumUrl: null
   },
   {
     url: "/assets/kanchi-maha-periyava_8fb06457-0992-4c44-8818-62d49dd13efc_800_1768741594540.webp",
     title: "68th JAGADGURU SHANKARACHARYA",
     category: "Kanchi Paramacharya",
-    description: "Sri Chandrashekharendra Saraswati Mahaswami Ji"
+    description: "Sri Chandrashekharendra Saraswati Mahaswami Ji",
+    albumUrl: null
   },
   {
     url: "/assets/Kanchi_shankaracharyas_1768738006479.jpg",
     title: "69th Jagadguru Shankaracharya",
     category: "Acharya",
-    description: "Sri Jayendra Saraswati Mahaswami Ji"
+    description: "Sri Jayendra Saraswati Mahaswami Ji",
+    albumUrl: null
   },
   {
     url: "/assets/70_1768742815509.jpg",
     title: "70th Jagadguru Shankaracharya",
     category: "Acharya",
-    description: "Sri Shankara Vijayendra Saraswati Mahaswami Ji"
+    description: "Sri Shankara Vijayendra Saraswati Mahaswami Ji",
+    albumUrl: null
   },
   {
     url: "/assets/71_1768738842433.webp",
     title: "71st Jagadguru Shankaracharya",
     category: "Acharya",
-    description: "Sri Satya Chandrasekharendra Saraswathi Mahaswami Ji"
+    description: "Sri Satya Chandrasekharendra Saraswathi Mahaswami Ji",
+    albumUrl: null
   },
   {
     url: "/assets/Shrimatam_Gopuram_1768739079397.webp",
     title: "Kanchi Kamakoti Peetham",
     category: "Shrimatam",
-    description: "The sacred seat established by Adi Shankara 2500 years ago."
+    description: "The sacred seat established by Adi Shankara 2500 years ago.",
+    albumUrl: null
+  },
+
+  // --- POORTHY EXAMINATION GALLERIES ---
+  {
+    url: "/poorthy/first gallery/IMG_20260305_111546869_HDR.jpg",
+    title: "VRNT-POORTHY-SJ26",
+    category: "March 5, 2026",
+    description: "Official examination proceedings and sabha sessions for VRNT-POORTHY-SJ26.",
+    albumUrl: "https://photos.app.goo.gl/44zvTt67hd1FnXQw5"
+  },
+  {
+    url: "/poorthy/second gallery/20250831_093953.jpg",
+    title: "VRNT-VJ-EXAMS-SEP-2025",
+    category: "August 31, 2025",
+    description: "Vijayadasami Poorthy oral examinations and Vidyaarthi assessments.",
+    albumUrl: "https://photos.app.goo.gl/11bg4sbZFyTom2zH9"
+  },
+  {
+    url: "/poorthy/third gallery/20240911_085056.jpg",
+    title: "VRNT VIJAYADASAMI EXAMS SEP 11-14, 2024",
+    category: "September 11–14, 2024",
+    description: "Annual Vijayadasami examinations across multiple Veda Shaakhas.",
+    albumUrl: "https://photos.app.goo.gl/H1WVEG18PUxkorTA7"
+  },
+  {
+    url: "/poorthy/fourth gallery/IMG-20240316-WA0033.jpg",
+    title: "VRNT POORTHI EXAM 15-17TH MARCH 2024",
+    category: "March 15–17, 2024",
+    description: "Spring Poorthy examination sessions supervised by senior Veda Panditas.",
+    albumUrl: "https://photos.app.goo.gl/F1mBKjiHR8aBsRRHA"
+  },
+  {
+    url: "/poorthy/fifth gallery/IMG-20230924-WA0066.jpg",
+    title: "VRNT POORTHI EXAMS 22-24 SEP 2023",
+    category: "September 22–24, 2023",
+    description: "Rigorous oral recitations and completion assessments.",
+    albumUrl: "https://photos.app.goo.gl/frSGh8xZv4XdrjDo9"
+  },
+  {
+    url: "/poorthy/sixth gallery/IMG20220814094026.jpg",
+    title: "VRNT Poorthy Exams (Aug 13–16, 2022)",
+    category: "August 13–16, 2022",
+    description: "Veda Rakshana Nidhi Trust graduation examinations and Parithoshikam.",
+    albumUrl: "https://photos.app.goo.gl/6TZHbiBZ7B8fiPFM7"
   }
 ];
 
@@ -82,7 +133,7 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
   useEffect(() => {
     const timer = setInterval(() => {
       paginate(1);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
   }, [currentIndex]);
 
@@ -93,10 +144,10 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
           
           <div className="text-center mb-16">
             <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4 underline decoration-primary decoration-4 underline-offset-8 inline-block">
-              Our Spiritual Lineage
+              Our Spiritual Lineage & Photo Gallery
             </h1>
             <p className="text-lg text-muted-foreground font-serif mt-8 max-w-2xl mx-auto italic">
-              Honoring the unbroken chain of Acharyas preserving traditional Vedic wisdom.
+              Honoring the unbroken chain of Acharyas and preserving traditional Vedic wisdom.
             </p>
           </div>
 
@@ -126,42 +177,67 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
                 }}
                 className="absolute inset-0 w-full h-full"
               >
-                {/* Changed background from bg-black/95 to the cream web tone bg-[#f7f4eb] and made border match your site aesthetics */}
                 <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-md border border-[#222]/80 bg-[#f7f4eb]">
                   <img
                     src={GALLERY_IMAGES[currentIndex].url}
                     alt={GALLERY_IMAGES[currentIndex].title}
                     className="w-full h-full object-contain"
+                    onError={(e) => {
+                      // Silently handle broken image links gracefully
+                      const target = e.target as HTMLImageElement;
+                      if (target.src !== GALLERY_IMAGES[0].url) {
+                        target.src = GALLERY_IMAGES[0].url;
+                      }
+                    }}
                   />
-                  {/* Subtle black overlay blend at the bottom edge so the overlay text contrasts perfectly */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent flex flex-col justify-end p-8 md:p-12 pointer-events-none">
+
+                  {/* BOTTOM OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6 md:p-10 pointer-events-none">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
-                      className="pointer-events-auto"
+                      className="pointer-events-auto flex flex-col md:flex-row md:items-end justify-between gap-4"
                     >
-                      <span className="text-[#FFD700] text-sm font-bold uppercase tracking-widest mb-2 block">
-                        {GALLERY_IMAGES[currentIndex].category}
-                      </span>
-                      <h2 className="text-white font-serif text-3xl md:text-4xl font-bold mb-3 drop-shadow-md">
-                        {GALLERY_IMAGES[currentIndex].title}
-                      </h2>
-                      <p className="text-white/90 text-lg max-w-2xl font-serif italic drop-shadow-xs">
-                        {GALLERY_IMAGES[currentIndex].description}
-                      </p>
+                      {/* Left Side Heading & Info */}
+                      <div className="max-w-xl">
+                        <span className="text-[#FFD700] text-xs md:text-sm font-bold uppercase tracking-widest mb-1 block">
+                          {GALLERY_IMAGES[currentIndex].category}
+                        </span>
+                        <h2 className="text-white font-serif text-2xl md:text-3xl font-bold mb-1.5 drop-shadow-md">
+                          {GALLERY_IMAGES[currentIndex].title}
+                        </h2>
+                        <p className="text-white/90 text-sm md:text-base font-serif italic drop-shadow-xs m-0 line-clamp-2">
+                          {GALLERY_IMAGES[currentIndex].description}
+                        </p>
+                      </div>
+
+                      {/* Right Side Google Photos Link Button */}
+                      {GALLERY_IMAGES[currentIndex].albumUrl && (
+                        <div className="shrink-0">
+                          <a
+                            href={GALLERY_IMAGES[currentIndex].albumUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="no-underline inline-flex items-center gap-2 bg-[#ff7f5c] hover:bg-[#ff9173] text-white font-sans font-bold text-xs md:text-sm py-2.5 px-4 rounded-xl shadow-lg transition-all hover:scale-105 active:scale-95"
+                          >
+                            <span>For More Images</span>
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </div>
+                      )}
                     </motion.div>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Adjusted navigation buttons backdrops to look excellent with the light background */}
+            {/* Navigation Controls */}
             <div className="absolute inset-y-0 left-4 flex items-center z-10">
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-[#1a365d]/80 hover:bg-[#1a365d] text-white h-12 w-12 border-none shadow-md"
+                className="rounded-full bg-[#1a365d]/80 hover:bg-[#1a365d] text-white h-12 w-12 border-none shadow-md cursor-pointer"
                 onClick={() => paginate(-1)}
               >
                 <ChevronLeft className="h-8 w-8" />
@@ -171,14 +247,15 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-[#1a365d]/80 hover:bg-[#1a365d] text-white h-12 w-12 border-none shadow-md"
+                className="rounded-full bg-[#1a365d]/80 hover:bg-[#1a365d] text-white h-12 w-12 border-none shadow-md cursor-pointer"
                 onClick={() => paginate(1)}
               >
                 <ChevronRight className="h-8 w-8" />
               </Button>
             </div>
 
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {/* Pagination Indicators */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 max-w-[90%] overflow-x-auto py-1">
               {GALLERY_IMAGES.map((_, index) => (
                 <button
                   key={index}
@@ -186,10 +263,10 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
                     setDirection(index > currentIndex ? 1 : -1);
                     setCurrentIndex(index);
                   }}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer shrink-0 ${
                     index === currentIndex 
                       ? "bg-[#8b2b22] w-8" 
-                      : "bg-[#1a365d]/40 hover:bg-[#1a365d]/60"
+                      : "bg-[#1a365d]/40 hover:bg-[#1a365d]/70 w-2.5"
                   }`}
                 />
               ))}
