@@ -22,24 +22,44 @@ import History from './components/sections/History';
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Standard breakpoint check for Mobile (<1024px)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
 
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Track screen resize for desktop vs mobile rendering
+  // Scroll listener strictly active for mobile viewports
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth < 1024 && window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Track screen resize & orientation
   useEffect(() => {
     const handleResize = () => {
       const mobileCheck = window.innerWidth < 1024;
       setIsMobile(mobileCheck);
+
       if (!mobileCheck) {
-        setIsMenuOpen(true);
+        setIsScrolled(false);
+        setIsMenuOpen(true); // Open menu drawer by default on desktop
       }
     };
 
     window.addEventListener('resize', handleResize);
     handleResize(); // Initial check
+
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -74,16 +94,19 @@ export default function App() {
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      <Navbar />
+      {/* Navbar receives scroll state only on mobile */}
+      <Navbar isScrolled={isMobile && isScrolled} />
 
       {/* ------------------------------------------------------------- */}
       {/* 1. MOBILE SIDEBAR (< 1024px)                                  */}
       {/* ------------------------------------------------------------- */}
       {isMobile ? (
         <aside 
-          className={`fixed left-0 z-[1300] flex flex-col items-stretch bg-[#0e2245] border-r border-[#bf953f]/40 shadow-2xl transition-all duration-300 ease-out 
-            top-[210px] sm:top-[240px] h-[calc(100vh-210px)] sm:h-[calc(100vh-240px)]
-            ${isMenuOpen ? 'w-[120px]' : 'w-[44px]'}`}
+          className={`fixed left-0 z-[1300] flex flex-col items-stretch bg-[#0e2245] border-r border-[#bf953f]/40 shadow-2xl transition-all duration-500 ease-in-out ${
+            isScrolled
+              ? 'top-[60px] h-[calc(100vh-60px)]'
+              : 'top-[160px] sm:top-[190px] h-[calc(100vh-160px)] sm:h-[calc(100vh-190px)]'
+          } ${isMenuOpen ? 'w-[120px]' : 'w-[44px]'}`}
         >
           {/* Toggle Button Header */}
           <button 
@@ -91,30 +114,37 @@ export default function App() {
             className="w-full bg-[#08152b] hover:bg-[#132c54] text-[#fcf6ba] border-b border-[#bf953f]/30 py-2 px-1 flex items-center justify-center gap-1.5 font-sans font-bold uppercase transition-all duration-200 cursor-pointer shrink-0"
             aria-label="Toggle Menu"
           >
-            <span className="text-xs">{isMenuOpen ? '☰' : '☰'}</span>
+            <span className="text-xs">{isMenuOpen ? '✕' : '☰'}</span>
             {isMenuOpen && <span className="text-[10px] tracking-wider">MENU</span>}
           </button>
 
-          {/* Closed State for MENU */}
+          {/* Closed State for MENU (Letter-by-Letter Vertical Stack) */}
           {!isMenuOpen && (
-            <div className="flex-grow flex flex-col items-center justify-start gap-3 py-2 select-none">
+            <div className="flex-grow flex flex-col items-center justify-start gap-3 py-2 select-none px-0.5">
               <div 
                 onClick={() => setIsMenuOpen(true)}
-                className="cursor-pointer text-[#fcf6ba]/80 hover:text-[#fcf6ba] transition-colors py-1 px-0.5 text-center"
+                className="cursor-pointer text-[#fcf6ba]/90 hover:text-[#fcf6ba] transition-colors text-center"
               >
-                <span className="text-[9px] font-sans font-bold tracking-tight uppercase block leading-none">
+                <span className="text-[9px] font-sans font-extrabold tracking-tight uppercase block leading-none">
                   MENU
                 </span>
               </div>
 
-              {/* Vertical Letter-by-Letter LOGIN HERE */}
+              {/* Letter-by-Letter Vertical LOGIN HERE Button */}
               <button 
                 onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
-                className="bg-[#ff7f5c] hover:bg-[#ff9173] text-white border-none rounded px-1.5 py-2 text-[8px] leading-[1.1] font-sans font-extrabold uppercase cursor-pointer shadow transition-all flex flex-col items-center justify-center text-center tracking-normal"
+                className="bg-[#ff7f5c] hover:bg-[#ff9173] text-white border-none rounded px-1.5 py-2 text-[9px] leading-[1.1] font-sans font-black uppercase cursor-pointer shadow-md transition-all flex flex-col items-center justify-center text-center tracking-normal active:scale-95"
               >
-                <span>L</span><span>O</span><span>G</span><span>I</span><span>N</span>
-                <span className="my-1 text-[5px] opacity-0">-</span>
-                <span>H</span><span>E</span><span>R</span><span>E</span>
+                <span>L</span>
+                <span>O</span>
+                <span>G</span>
+                <span>I</span>
+                <span>N</span>
+                <span className="my-1 text-[4px] opacity-0">-</span>
+                <span>H</span>
+                <span>E</span>
+                <span>R</span>
+                <span>E</span>
               </button>
             </div>
           )}
@@ -125,13 +155,13 @@ export default function App() {
               <div className="shrink-0 border-b border-[#08152b] p-1.5 bg-[#0b1b38]">
                 <button 
                   onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
-                  className="bg-[#ff7f5c] hover:bg-[#ff9173] text-[#e2e8f0] hover:text-white text-center no-underline font-sans font-bold uppercase rounded py-1 text-[9px] px-1 transition-all border-none cursor-pointer flex items-center justify-center w-full"
+                  className="bg-[#ff7f5c] hover:bg-[#ff9173] text-[#e2e8f0] hover:text-white text-center no-underline font-sans font-bold uppercase rounded py-1.5 text-[10px] px-1 transition-all border-none cursor-pointer flex items-center justify-center w-full shadow"
                 >
                   Login Here
                 </button>
               </div>
               
-              <div className="flex flex-col gap-0.5 p-1 pb-6 overflow-y-auto no-scrollbar max-h-[calc(100vh-280px)] flex-grow">
+              <div className="flex flex-col gap-0.5 p-1 pb-6 overflow-y-auto no-scrollbar max-h-[calc(100vh-140px)] flex-grow">
                 <button onClick={() => handleNavigate('home')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('home') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Home</button>
                 <button onClick={() => handleNavigate('mission')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('mission') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Mission</button>
                 <button onClick={() => handleNavigate('activities')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('activities') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Activities</button>
@@ -149,7 +179,7 @@ export default function App() {
         </aside>
       ) : (
         /* ------------------------------------------------------------- */
-        /* 2. DESKTOP SIDEBAR (>= 1024px) - Larger Typography & Spacing  */
+        /* 2. DESKTOP SIDEBAR (>= 1024px) - Completely Static           */
         /* ------------------------------------------------------------- */
         <aside 
           className={`fixed left-0 z-[1300] flex flex-col items-stretch bg-[#0e2245] border-r border-[#bf953f]/40 shadow-2xl transition-all duration-300 ease-out 
@@ -165,7 +195,7 @@ export default function App() {
             <span className="text-xs tracking-wider">MENU</span>
           </button>
 
-          {/* CLOSED STATE: Elongated full-width Login Here button with larger text */}
+          {/* CLOSED STATE */}
           {!isMenuOpen ? (
             <div className="flex-grow flex items-start justify-center pt-2.5 p-1.5 select-none w-full box-border">
               <button 
@@ -176,7 +206,7 @@ export default function App() {
               </button>
             </div>
           ) : (
-            /* OPEN STATE: Login Button + Full Directory with larger text */
+            /* OPEN STATE */
             <>
               <div className="shrink-0 border-b border-[#08152b] p-2 bg-[#0b1b38]">
                 <button 
@@ -208,17 +238,21 @@ export default function App() {
       {/* Floating Notification Bell Button */}
       <button 
         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-        className="fixed bottom-6 right-6 bg-[#1a365d] text-white border border-[#222] cursor-pointer z-[1200] text-lg md:text-xl rounded-full h-12 w-12 md:h-14 md:w-14 flex items-center justify-center shadow-2xl hover:bg-[#224273] hover:scale-105 transition-all duration-200"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#1a365d] text-white border border-[#222] cursor-pointer z-[1200] text-base md:text-xl rounded-full h-10 w-10 md:h-14 md:w-14 flex items-center justify-center shadow-2xl hover:bg-[#224273] hover:scale-105 transition-all duration-200"
       >
         🔔
       </button>
 
       {/* Main Page Content Wrapper */}
       <div 
-        className={`w-full max-w-[1440px] mx-auto box-border transition-all duration-300 ease-in-out ${
+        className={`w-full max-w-[1440px] mx-auto box-border transition-all duration-500 ease-in-out ${
           isMobile 
-            ? (isMenuOpen ? 'pt-[210px] sm:pt-[240px] pl-[124px] pr-2' : 'pt-[210px] sm:pt-[240px] pl-[48px] pr-2')
-            : (isMenuOpen ? 'pt-[200px] pl-[220px] pr-0' : 'pt-[200px] pl-[88px] pr-0')
+            ? (isMenuOpen 
+                ? (isScrolled ? 'pt-[70px] pl-[124px] pr-2' : 'pt-[170px] sm:pt-[200px] pl-[124px] pr-2') 
+                : (isScrolled ? 'pt-[70px] pl-[48px] pr-2' : 'pt-[170px] sm:pt-[200px] pl-[48px] pr-2'))
+            : (isMenuOpen 
+                ? 'pt-[200px] pl-[220px] pr-0' 
+                : 'pt-[200px] pl-[88px] pr-0')
         }`}
         style={{ 
           paddingRight: !isMobile ? (isDrawerOpen ? '398px' : '19px') : undefined
