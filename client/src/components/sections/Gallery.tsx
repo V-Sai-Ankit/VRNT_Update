@@ -25,7 +25,7 @@ const GALLERY_IMAGES = [
     albumUrl: null
   },
   {
-    url: "/assets/Kanchi_shankaracharyas_1768738006479.jpg",
+    url: "/assets/jayendra_saraswathi.jpg",
     title: "69th Jagadguru Shankaracharya",
     category: "Acharya",
     description: "Sri Jayendra Saraswati Mahaswami Ji",

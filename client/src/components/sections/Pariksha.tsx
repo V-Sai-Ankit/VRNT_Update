@@ -168,30 +168,31 @@ export default function Pariksha({
 
   // YouTube Videos List
   const youtubeVideos = [
-    {
-      id: "pF9TUaTG_n0",
-      title: "VRNT Certificate Distribution to Vidyarthis",
-      description: "Certificate Distribution to Vidyarthis graduating from Veda Patashalas by Sri Kanchi Kamakoti Peetam.",
-      link: "https://www.youtube.com/live/pF9TUaTG_n0?si=eDxYhBz7oRn9j4WO"
-    },
+    
     {
       id: "rKnuLhiS-wU",
-      title: "Varshika Veda Poorti Pariksha - Certificate Distribution",
+      title: "Varshika Veda Poorti Pariksha - Certificate Distribution (21 April 2026)",
       description: "Live ceremony of Varshika Veda Poorti Pariksha certificate distribution conducted by Veda Rakshana Nidhi Trust.",
       link: "https://www.youtube.com/live/rKnuLhiS-wU?si=VcruBZqyzL2DWzjH"
     },
     {
       id: "WbWkUncbHLo",
-      title: "Anugraha Bashan & VRNT Certificate Distribution",
+      title: "Anugraha Bashan & VRNT Certificate Distribution (4 May 2022)",
       description: "Anugraha Bashan of Kanchi Acharyal and VRNT Certificate Distribution live at Skandagiri Camp.",
       link: "https://www.youtube.com/live/WbWkUncbHLo?si=z8t32OKsvah6VxXb"
     },
     {
       id: "eIzOqHUiCEA",
-      title: "VRNT Poorthi Pariksha Certificate Function",
+      title: "VRNT Poorthi Pariksha Certificate Function (15 Oct 2021)",
       description: "VRNT Poorthi Pariksha Certificate Function live from Orikkai on Vijayadasami day.",
       link: "https://www.youtube.com/live/eIzOqHUiCEA?si=XPSOXNCXlgcXP7ql"
-    }
+    },
+    {
+      id: "pF9TUaTG_n0",
+      title: "VRNT Certificate Distribution to Vidyarthis (15 Sept 2021)",
+      description: "Certificate Distribution to Vidyarthis graduating from Veda Patashalas by Sri Kanchi Kamakoti Peetam.",
+      link: "https://www.youtube.com/live/pF9TUaTG_n0?si=eDxYhBz7oRn9j4WO"
+    },
   ];
 
   // Render Sub-Views
