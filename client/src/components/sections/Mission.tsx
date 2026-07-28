@@ -1,15 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-interface MissionPageProps {
+interface MissionProps {
   isMenuOpen: boolean;
   isDrawerOpen: boolean;
+  setCurrentPage?: (page: string) => void;
 }
 
-export default function MissionPage({ isMenuOpen, isDrawerOpen }: MissionPageProps) {
+export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: MissionProps) {
+  const navigate = useNavigate();
   const bothClosed = !isMenuOpen && !isDrawerOpen;
 
+  const handleNavigateToView = (view: string) => {
+    const targetPath = `/initiatives?view=${view}`;
+    if (setCurrentPage) {
+      setCurrentPage('initiatives');
+    }
+    navigate(targetPath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="w-full flex flex-col gap-10 pb-10">
+    <div className="w-full flex flex-col gap-10 pb-12 text-[#111111] font-serif">
       
       {/* SECTION 1: Mission & Vision Core Intro */}
       <section className="mt-2 border-t border-[#222] pt-6">
@@ -54,12 +66,12 @@ export default function MissionPage({ isMenuOpen, isDrawerOpen }: MissionPagePro
                 <div key={idx} className="flex items-start gap-3">
                   <span className="text-[#bf953f] text-xl mt-0.5">📜</span>
                   <p 
-                    className="m-0 text-justify"
+                    className="m-0 text-justify font-medium"
                     style={{ 
                       fontFamily: 'Georgia, serif', 
                       fontSize: bothClosed ? '19px' : '16px', 
                       lineHeight: '1.6',
-                      color: '#4a4a4a'
+                      color: '#111111'
                     }}
                   >
                     {text}
@@ -71,91 +83,139 @@ export default function MissionPage({ isMenuOpen, isDrawerOpen }: MissionPagePro
 
           {/* Right Block: Side Cards Stack */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-6 w-full xl:mt-14">
-            {/* Card 1 */}
             <div className="bg-[#fcfaf2] p-5 border border-[#222] shadow-[3px_3px_0_#222] flex flex-col gap-4 rounded-md">
               <div className="w-full h-[180px] overflow-hidden rounded border border-gray-300">
                 <img src="/images/vedic-heritage.png" alt="Vedic Heritage" className="w-full h-full object-cover" />
               </div>
               <h4 className="m-0 font-bold font-serif text-xl text-[#8b2b22]">Vedic Heritage</h4>
-              <p className="m-0 font-serif text-sm text-[#4a4a4a] leading-relaxed">Preserving the ancient texts in their pristine purity for future generations.</p>
+              <p className="m-0 font-serif text-sm text-[#111111] font-semibold leading-relaxed">Preserving the ancient texts in their pristine purity for future generations.</p>
             </div>
 
-            {/* Card 2 */}
             <div className="bg-[#fcfaf2] p-5 border border-[#222] shadow-[3px_3px_0_#222] flex flex-col gap-4 rounded-md">
               <div className="w-full h-[180px] overflow-hidden rounded border border-gray-300">
                 <img src="/images/education.jpg" alt="Education" className="w-full h-full object-cover" />
               </div>
               <h4 className="m-0 font-bold font-serif text-xl text-[#8b2b22]">Education</h4>
-              <p className="m-0 font-serif text-sm text-[#4a4a4a] leading-relaxed">Supporting Gurukula education and traditional teaching methods.</p>
+              <p className="m-0 font-serif text-sm text-[#111111] font-semibold leading-relaxed">Supporting Gurukula education and traditional teaching methods.</p>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* SECTION 2: Major Initiatives Grid Container */}
-      <section className="border-t border-[#222] pt-8 mt-4">
+      {/* SECTION 2: Major Initiatives */}
+      <section className="border-t-2 border-[#222] pt-8 mt-2">
         <h3 
           className="text-center mx-auto mb-8 font-bold border-b-2 border-double border-[#8b2b22] pb-2 max-w-max"
           style={{ 
             fontFamily: 'Georgia, serif', 
-            fontSize: bothClosed ? '44px' : '38px', 
+            fontSize: bothClosed ? '44px' : '36px', 
             color: '#8b2b22'
           }}
         >
-          Major Initiatives
+          Major Initiatives of the Trust
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-  {[
-    {
-      icon: "👥",
-      title: "Hereditary Niyama Adhyanam (HNY)",
-      desc: "Reviving the hereditary mode of Vedic learning, where a father imparts the Vedas to his son, ensuring precision in pronunciation and purity in intonation."
-    },
-    {
-      icon: "🛡️",
-      title: "Rare Veda Shaakhas Support",
-      desc: "Establishing Pathashalas dedicated to rare Shaakhas on the brink of extinction, providing disciplined training under qualified scholars."
-    },
-    {
-      icon: "🌐",
-      title: "Pan-India Assistance",
-      desc: "Extending comprehensive financial support to deserving Veda Pathashalas across India, ensuring economic challenges do not hinder sacred learning."
-    },
-    {
-      icon: "📖",
-      title: "Academic Monitoring",
-      desc: "Conducting regular inspections and Varshika Pariksha to maintain academic rigor and uniformity across all affiliated institutions."
-    }
-  ].map((item, idx) => (
-    <div key={idx} className="bg-[#f7f4eb] border border-[#222] p-6 rounded-xl flex flex-col gap-4 items-start shadow-sm hover:shadow-md transition-shadow">
-      <div className="bg-[#fffdf9] border border-[#e5dcc6] rounded-lg p-3 text-2xl shadow-inner">
-        {item.icon}
-      </div>
-      
-      {/* Increased Title: Dynamically scales up to 22px when panels are closed, 18px otherwise */}
-      <h4 
-        className="font-serif font-bold text-[#8b2b22] m-0 leading-snug min-h-[56px] flex items-center transition-all duration-300"
-        style={{ fontSize: bothClosed ? '22px' : '18px' }}
-      >
-        {item.title}
-      </h4>
-      
-      {/* Increased Description: Dynamically scales up to 16px when panels are closed, 14px otherwise */}
-      <p 
-        className="font-serif text-[#4a4a4a] leading-relaxed m-0 text-justify transition-all duration-300"
-        style={{ fontSize: bothClosed ? '16px' : '14px' }}
-      >
-        {item.desc}
-      </p>
-    </div>
-  ))}
-</div>
+        <div className="grid grid-cols-1 gap-6 w-full">
+          
+          {/* 1. Supporting all Available Veda Shakhas */}
+          <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 sm:p-8 rounded-xl flex flex-col gap-4 shadow-[4px_4px_0_#222]">
+            <div className="flex items-center gap-4 border-b border-[#bf953f]/40 pb-3">
+              <span className="text-3xl bg-[#fffdf9] p-2.5 rounded-lg border border-[#bf953f]">📜</span>
+              <h4 
+                className="font-serif font-bold text-[#8b2b22] m-0" 
+                style={{ fontSize: bothClosed ? '26px' : '22px' }}
+              >
+                Supporting all Available Veda Shakhas
+              </h4>
+            </div>
+            
+            <p 
+              className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
+              style={{ fontSize: bothClosed ? '20px' : '17px' }}
+            >
+              Our traditional scriptures and historical references indicate that there were once more than a thousand Veda shakhas (branches or recensions) in existence across different regions and lineages. These shakhas represented diverse methods of preserving, reciting, and interpreting the Vedic knowledge, each with its own unique style, pronunciation, and textual variations. However, over the passage of time, due to various social, cultural, and historical changes, a significant number of these shakhas have been lost or are no longer actively practiced.{" "}
+              
+              {/* Route to /initiatives?view=shakhas */}
+              <button 
+                onClick={() => handleNavigateToView('shakhas')}
+                className="inline-flex items-center gap-1 text-[#8b2b22] font-bold underline decoration-[#bf953f] hover:text-[#b32417] transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-serif"
+              >
+                Read More Deatails ↗
+              </button>
+            </p>
+          </div>
+
+          {/* 2. Hereditary Niyama Adhyayanam (HNY) Scheme */}
+          <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 sm:p-8 rounded-xl flex flex-col gap-4 shadow-[4px_4px_0_#222]">
+            <div className="flex items-center gap-4 border-b border-[#bf953f]/40 pb-3">
+              <span className="text-3xl bg-[#fffdf9] p-2.5 rounded-lg border border-[#bf953f]">👥</span>
+              <h4 
+                className="font-serif font-bold text-[#8b2b22] m-0" 
+                style={{ fontSize: bothClosed ? '26px' : '22px' }}
+              >
+                Hereditary Niyama Adhyayanam (HNY) Scheme
+              </h4>
+            </div>
+            <p 
+              className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
+              style={{ fontSize: bothClosed ? '20px' : '17px' }}
+            >
+              This unique initiative revives and sustains the hereditary mode of Vedic learning, in which a father imparts the Vedas to his son within the family lineage. Known as the Hereditary Niyama Adhyayanam (HNY) scheme, it upholds the disciplined study of the Vedas as a sacred familial duty, where the father assumes the role of Guru and the son becomes the Śishya.{" "}
+
+              {/* Route to /initiatives?view=hny */}
+              <button 
+                onClick={() => handleNavigateToView('hny')}
+                className="inline-flex items-center gap-1 text-[#8b2b22] font-bold underline decoration-[#bf953f] hover:text-[#b32417] transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-serif"
+              >
+                Read More Deatails ↗
+              </button>
+            </p>
+          </div>
+
+          {/* 3. Support for Rare Veda Shaakhas */}
+          <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 sm:p-8 rounded-xl flex flex-col gap-4 shadow-[4px_4px_0_#222]">
+            <div className="flex items-center gap-4 border-b border-[#bf953f]/40 pb-3">
+              <span className="text-3xl bg-[#fffdf9] p-2.5 rounded-lg border border-[#bf953f]">🛡️</span>
+              <h4 
+                className="font-serif font-bold text-[#8b2b22] m-0" 
+                style={{ fontSize: bothClosed ? '26px' : '22px' }}
+              >
+                Support for Rare Veda Shaakhas
+              </h4>
+            </div>
+            <p 
+              className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
+              style={{ fontSize: bothClosed ? '20px' : '17px' }}
+            >
+              Certain branches (<em>śākhās</em>) of the Vedas are now on the brink of extinction due to a dwindling number of practitioners. Recognizing this urgent need, VRNT has established and supported Veda Pāṭhaśālās dedicated to these rare Shaakhas. These institutions provide an environment where students can undergo systematic and disciplined training under the guidance of qualified scholars, thereby ensuring the revival and sustenance of endangered Vedic recensions.
+            </p>
+          </div>
+
+          {/* 4. Pan-India Financial Assistance */}
+          <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 sm:p-8 rounded-xl flex flex-col gap-4 shadow-[4px_4px_0_#222]">
+            <div className="flex items-center gap-4 border-b border-[#bf953f]/40 pb-3">
+              <span className="text-3xl bg-[#fffdf9] p-2.5 rounded-lg border border-[#bf953f]">🌐</span>
+              <h4 
+                className="font-serif font-bold text-[#8b2b22] m-0" 
+                style={{ fontSize: bothClosed ? '26px' : '22px' }}
+              >
+                Pan-India Financial Assistance
+              </h4>
+            </div>
+            <p 
+              className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
+              style={{ fontSize: bothClosed ? '20px' : '17px' }}
+            >
+              The Trust extends comprehensive financial assistance to deserving Veda Pāṭhaśālās across India. Such assistance enables institutions in even the most remote areas to maintain high standards of Vedic education, ensuring that economic challenges do not hinder the pursuit of this sacred learning.
+            </p>
+          </div>
+
+        </div>
       </section>
 
       {/* SECTION 3: Maha Periyava's Message Quote Panel */}
-      <section className="mt-4 bg-[#f4ebd4]/40 border border-[#222]/60 rounded-2xl p-8 md:p-12 text-center shadow-inner max-w-[1100px] mx-auto w-full">
+      <section className="mt-2 bg-[#f4ebd4]/60 border-2 border-[#222]/60 rounded-2xl p-8 md:p-12 text-center shadow-inner max-w-[1100px] mx-auto w-full">
         <h4 
           className="m-0 font-bold mb-6 font-serif text-[#8b2b22]"
           style={{ fontSize: bothClosed ? '32px' : '28px' }}
@@ -164,7 +224,7 @@ export default function MissionPage({ isMenuOpen, isDrawerOpen }: MissionPagePro
         </h4>
         
         <blockquote 
-          className="m-0 mx-auto italic font-medium text-center text-[#171717] max-w-[900px] mb-6"
+          className="m-0 mx-auto italic font-bold text-center text-[#111111] max-w-[900px] mb-6"
           style={{ 
             fontFamily: 'Georgia, serif',
             fontSize: bothClosed ? '26px' : '21px',
@@ -175,7 +235,7 @@ export default function MissionPage({ isMenuOpen, isDrawerOpen }: MissionPagePro
         </blockquote>
         
         <p 
-          className="m-0 font-serif text-center text-[#555] mx-auto max-w-[800px]"
+          className="m-0 font-serif text-center text-[#333333] font-semibold mx-auto max-w-[800px]"
           style={{ 
             fontSize: bothClosed ? '17px' : '14px',
             lineHeight: '1.6'

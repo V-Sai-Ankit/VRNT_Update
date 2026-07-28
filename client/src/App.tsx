@@ -7,6 +7,7 @@ import NotificationSidebar from './components/layout/NotificationSidebar';
 import Hero from './components/sections/Hero';
 import VedaVruksham from './components/sections/VedaVruksham';
 import Mission from './components/sections/Mission';
+import InitiativesPage from './pages/initiatives'; // Imported Initiatives Page
 import Activities from './components/sections/Activities';
 import VedasPage from './components/sections/Vedas';
 import Pariksha from './components/sections/Pariksha';
@@ -114,7 +115,7 @@ export default function App() {
             className="w-full bg-[#08152b] hover:bg-[#132c54] text-[#fcf6ba] border-b border-[#bf953f]/30 py-2 px-1 flex items-center justify-center gap-1.5 font-sans font-bold uppercase transition-all duration-200 cursor-pointer shrink-0"
             aria-label="Toggle Menu"
           >
-            <span className="text-xs">{isMenuOpen ? '✕' : '☰'}</span>
+            <span className="text-xs">{isMenuOpen ? '☰' : '☰'}</span>
             {isMenuOpen && <span className="text-[10px] tracking-wider">MENU</span>}
           </button>
 
@@ -266,7 +267,25 @@ export default function App() {
                 <VedaVruksham isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />
               </>
             } />
-            <Route path="/mission" element={<Mission isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
+            <Route 
+              path="/mission" 
+              element={
+                <Mission 
+                  isMenuOpen={isMenuOpen} 
+                  isDrawerOpen={isDrawerOpen} 
+                  setCurrentPage={handleNavigate} 
+                />
+              } 
+            />
+            <Route 
+              path="/initiatives" 
+              element={
+                <InitiativesPage 
+                  isMenuOpen={isMenuOpen} 
+                  isDrawerOpen={isDrawerOpen} 
+                />
+              } 
+            />
             <Route path="/activities" element={<Activities isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
             <Route path="/vedas" element={
               <VedasPage 

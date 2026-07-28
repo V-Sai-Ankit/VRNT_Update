@@ -23,7 +23,7 @@ export default function SanskritPage({ expanded, onBack }: SanskritProps) {
   return (
     <div className={`min-h-screen bg-background text-foreground font-sans transition-all duration-300 ${expanded ? 'p-6' : 'p-0'}`}>
       <main className="pt-[20px] pb-24 min-h-[calc(100vh-80px)]">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-5xl">
           <div className="mb-6">
             <Button 
               onClick={onBack}
@@ -38,9 +38,10 @@ export default function SanskritPage({ expanded, onBack }: SanskritProps) {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-card border rounded-2xl p-6 md:p-10 shadow-sm"
+            className="bg-card border rounded-2xl p-6 md:p-10 shadow-sm space-y-8"
           >
-            <div className="border-b pb-6 mb-8">
+            {/* Header Banner */}
+            <div className="border-b pb-6">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2.5 bg-primary/10 rounded-xl text-primary">
                   <BookOpen className="w-6 h-6" />
@@ -54,18 +55,35 @@ export default function SanskritPage({ expanded, onBack }: SanskritProps) {
               </p>
             </div>
 
-            <article className="flex flex-col gap-6 text-foreground font-serif leading-relaxed text-base md:text-lg mb-8">
-              <p className="m-0">
-                In accordance with the Trust’s objective to promote comprehensive Vedic education, every <em className="italic font-semibold text-secondary">Vidyaarthi</em> is required to attain a sound knowledge of Sanskrit, the foundational language of the Vedas. To ensure this, students must successfully complete the various levels of Sanskrit examinations conducted by the <strong className="text-secondary font-sans font-semibold">Chittoor Samskrutha Sabha</strong>, which serves as the recognized academic body for assessing Sanskrit proficiency.
-              </p>
+            {/* Grid pairing text with the Sanskrit examination image */}
+            <div className="grid grid-cols-1 xl:grid-cols-[6fr_5fr] gap-8 items-center">
+              <article className="flex flex-col gap-6 text-foreground font-serif leading-relaxed text-base md:text-lg">
+                <p className="m-0 text-justify">
+                  In accordance with the Trust’s objective to promote comprehensive Vedic education, every <em className="italic font-semibold text-secondary">Vidyaarthi</em> is required to attain a sound knowledge of Sanskrit, the foundational language of the Vedas. To ensure this, students must successfully complete the various levels of Sanskrit examinations conducted by the <strong className="text-secondary font-sans font-semibold">Chittoor Samskrutha Sabha</strong>, which serves as the recognized academic body for assessing Sanskrit proficiency.
+                </p>
 
-              <p className="m-0">
-                The prescribed levels of Sanskrit qualification corresponding to each Veda Shaakha and stage of study are as follows:
-              </p>
-            </article>
+                <p className="m-0 text-justify">
+                  The prescribed levels of Sanskrit qualification corresponding to each Veda Shaakha and stage of study are detailed below.
+                </p>
+              </article>
+
+              {/* Sanskrit Examination Image Card */}
+              <div className="bg-[#fcfaf2] border-2 border-[#222] p-3 rounded-xl shadow-[4px_4px_0_#222] flex flex-col items-center">
+                <div className="w-full overflow-hidden rounded-lg border border-[#222]">
+                  <img 
+                    src="/assets/sanskrit.jpg" 
+                    alt="Sanskrit Examination under Chittoor Samskrutha Sabha" 
+                    className="w-full h-auto object-cover max-h-[380px]"
+                  />
+                </div>
+                <p className="mt-3 text-xs sm:text-sm font-bold text-[#8b2b22] text-center font-serif m-0">
+                  Vidyārthīs undergoing oral & written evaluation for Sanskrit Proficiency
+                </p>
+              </div>
+            </div>
 
             {/* Structured Table */}
-            <div className="overflow-x-auto mb-8 rounded-xl border border-border/80 shadow-xs">
+            <div className="overflow-x-auto rounded-xl border border-border/80 shadow-xs">
               <table className="w-full text-left border-collapse font-serif text-sm md:text-base">
                 <thead>
                   <tr className="bg-primary/10 border-b border-border/80 text-secondary font-display font-bold">
@@ -86,7 +104,7 @@ export default function SanskritPage({ expanded, onBack }: SanskritProps) {
               </table>
             </div>
 
-            <p className="text-foreground font-serif leading-relaxed text-base md:text-lg m-0 border-t pt-6">
+            <p className="text-foreground font-serif leading-relaxed text-base md:text-lg m-0 border-t pt-6 text-justify">
               These examinations ensure that Vidyaarthis not only master the Vedic recitations but also gain the linguistic depth necessary to understand the meaning, grammar, and structure of the sacred texts they study. Sanskrit proficiency thus complements Vedic learning, reinforcing both intellectual understanding and spiritual insight.
             </p>
           </motion.div>

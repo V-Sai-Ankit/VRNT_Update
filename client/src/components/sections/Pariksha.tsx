@@ -168,7 +168,6 @@ export default function Pariksha({
 
   // YouTube Videos List
   const youtubeVideos = [
-    
     {
       id: "rKnuLhiS-wU",
       title: "Varshika Veda Poorti Pariksha - Certificate Distribution (21 April 2026)",
@@ -327,44 +326,79 @@ export default function Pariksha({
             </div>
           </div>
 
-          {/* 3. ŚŪRĀDHYĀYĪ SELECTION CRITERIA */}
-          <div className="bg-card border rounded-2xl p-8 shadow-sm mb-12">
-            <h3 className="font-display text-2xl font-bold mb-6 text-primary border-b pb-4 flex items-center gap-2">
-              <Award className="text-primary" /> Selection of Śūrādhyāyī
+          {/* 3. ŚŪRĀDHYĀYĪ SELECTION SECTION */}
+          <section className="bg-[#f7f2e8] border border-[#d8caae] p-6 sm:p-10 rounded-2xl shadow-sm mb-12 space-y-6">
+            <h3 className="font-serif text-2xl sm:text-3xl md:text-3xl font-bold text-[#7a2219] border-b border-[#d8caae] pb-4 m-0 flex items-center gap-3">
+              <Award className="text-[#7a2219] w-8 h-8 shrink-0" /> Selection of the Best Vidyārthi (Śūrādhyāyī)
             </h3>
-            <p className="text-muted-foreground font-serif leading-relaxed mb-6">
-              A prestigious distinction awarded to the "Best Vidyārthi" who demonstrates exceptional proficiency and dedication.
-            </p>
-            <div className="grid md:grid-cols-2 gap-8 text-sm font-serif">
-              <div className="space-y-4">
-                <div className="bg-primary/5 p-4 rounded-xl border border-primary/10">
-                  <p className="font-bold text-secondary mb-2 uppercase tracking-wider text-xs">Eligibility Criteria</p>
-                  <ul className="list-disc pl-4 space-y-2 text-xs">
-                    <li>Minimum 90% marks in the Gānāntham examination.</li>
-                    <li>Cleared Gānāntham between 2 and 4 years prior.</li>
-                    <li>Comprehensive understanding of Lakṣaṇam and Prātiśākhya.</li>
-                  </ul>
-                </div>
+            
+            <div className="space-y-4 text-justify font-serif text-base sm:text-lg md:text-xl leading-relaxed text-[#4a3f35]">
+              <p className="m-0">
+                In pursuit of academic excellence and to uphold the highest standards of Vedic scholarship, the Trust has instituted a special recognition titled <strong>“Śūrādhyāyī”</strong>, awarded to the Best Vidyārthi. This distinction is conferred upon a student who demonstrates exceptional proficiency, depth of understanding, and unwavering dedication to the Vedic tradition.
+              </p>
+              <p className="m-0">
+                The Śūrādhyāyī selection is a prestigious blend of examination and competition, designed to identify students who exemplify mastery, discipline, and the spirit of Adhyayanam at its finest.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 pt-2 font-serif">
+              <div className="bg-[#fffdf9] border border-[#d8caae] p-6 rounded-xl space-y-4">
+                <p className="font-bold text-[#7a2219] m-0 uppercase tracking-wider text-sm sm:text-base border-b border-[#d8caae]/60 pb-2">
+                  Eligibility Criteria
+                </p>
+                <ul className="space-y-3 text-sm sm:text-base text-[#4a3f35] list-none p-0 m-0">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7a2219] font-bold text-sm mt-1">▲</span>
+                    <span>Minimum 90% marks in the Gānāntham examination.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7a2219] font-bold text-sm mt-1">▲</span>
+                    <span>Cleared Gānāntham between 2 and 4 years prior.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7a2219] font-bold text-sm mt-1">▲</span>
+                    <span>Comprehensive understanding of Lakṣaṇam and Prātiśākhya.</span>
+                  </li>
+                </ul>
               </div>
-              <div className="space-y-4">
-                <div className="bg-secondary/5 p-4 rounded-xl border border-secondary/10">
-                  <p className="font-bold text-secondary mb-2 uppercase tracking-wider text-xs">Examination Format</p>
-                  <ul className="list-disc pl-4 space-y-2 text-xs">
-                    <li>Recitation in Mūlam, Padam, Kramam, Jaṭā, and Gānam.</li>
-                    <li>High-standard challenging questions from Saṃhitā and Brāhmaṇa.</li>
-                    <li>Minimum 10 minutes of continuous, flawless recitation.</li>
-                  </ul>
-                </div>
+
+              <div className="bg-[#fffdf9] border border-[#d8caae] p-6 rounded-xl space-y-4">
+                <p className="font-bold text-[#7a2219] m-0 uppercase tracking-wider text-sm sm:text-base border-b border-[#d8caae]/60 pb-2">
+                  Examination Format
+                </p>
+                <ul className="space-y-3 text-sm sm:text-base text-[#4a3f35] list-none p-0 m-0">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7a2219] font-bold text-sm mt-1">▲</span>
+                    <span>Recitation in Mūlam, Padam, Kramam, Jaṭā, and Gānam.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7a2219] font-bold text-sm mt-1">▲</span>
+                    <span>High-standard challenging questions from Saṁhitā and Brāhmaṇa.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7a2219] font-bold text-sm mt-1">▲</span>
+                    <span>Minimum 10 minutes of continuous, flawless recitation.</span>
+                  </li>
+                </ul>
               </div>
             </div>
-          </div>
+
+            <div className="bg-[#fffdf9] border border-[#b38600]/50 p-6 rounded-xl space-y-3 font-serif">
+              <h4 className="text-lg sm:text-xl font-bold text-[#7a2219] m-0 flex items-center gap-2">
+                <span>🏅</span> Recognition
+              </h4>
+              <p className="m-0 text-justify text-sm sm:text-base md:text-lg leading-relaxed text-[#4a3f35]">
+                Only one outstanding Vidyārthi will be selected and honored with the title <strong>“Śūrādhyāyī”</strong>, making it a singular and highly prestigious distinction. The award symbolizes not only academic excellence but also dedication to the sacred duty of preserving and transmitting the Vedic heritage in its most authentic form.
+              </p>
+            </div>
+          </section>
 
           {/* 4. INSTRUCTIONS LIST */}
-          <div className="bg-card border rounded-2xl p-8 shadow-sm mb-16">
-            <h3 className="font-display text-2xl font-bold mb-4 flex items-center gap-2">
-              <ClipboardCheck className="text-primary" /> Examination Instructions
+          <div className="bg-[#f7f2e8] border border-[#d8caae] p-6 sm:p-10 rounded-2xl shadow-sm mb-16 space-y-4">
+            <h3 className="font-serif text-2xl sm:text-3xl md:text-3xl font-bold text-[#7a2219] border-b border-[#d8caae] pb-4 m-0 flex items-center gap-3">
+              <ClipboardCheck className="text-[#7a2219] w-8 h-8 shrink-0" /> Examination Instructions
             </h3>
-            <ul className="space-y-3 text-muted-foreground font-serif list-disc pl-5 leading-relaxed">
+            <ul className="space-y-3 text-[#4a3f35] font-serif list-disc pl-5 leading-relaxed text-base sm:text-lg">
               <li>Candidates must submit the filled application forms before the specified deadline.</li>
               <li>Students must study their Sva-Śākhā (ancestral Vedic branch) exclusively.</li>
               <li>Maintaining the Śikhā (traditional tuft) as prescribed by Sampradāyam is mandatory.</li>
@@ -374,9 +408,9 @@ export default function Pariksha({
 
           {/* 5. YOUTUBE VIDEO HIGHLIGHTS WITH HOVER PREVIEW */}
           <div>
-            <div className="border-b border-[#d8caae]/80 pb-3 mb-6 flex items-center gap-2">
-              <span className="text-2xl">📹</span>
-              <h2 className="font-serif font-bold text-2xl md:text-3xl text-[#7a2219] m-0">
+            <div className="border-b border-[#d8caae]/80 pb-4 mb-6 flex items-center gap-3">
+              <span className="text-3xl">📹</span>
+              <h2 className="font-serif font-bold text-2xl sm:text-3xl md:text-3xl text-[#7a2219] m-0">
                 Certificate Distribution Videos
               </h2>
             </div>
