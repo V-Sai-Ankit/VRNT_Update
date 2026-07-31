@@ -1,12 +1,119 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { Play, ExternalLink } from "lucide-react";
 
 interface HistoryProps {
   isMenuOpen: boolean;
   isDrawerOpen: boolean;
 }
 
+interface VideoCardProps {
+  video: {
+    id: string;
+    title: string;
+    description: string;
+    link: string;
+    previewUrl?: string;
+  };
+}
+
+function HoverVideoCard({ video }: VideoCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  return (
+    <a
+      href={video.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group bg-[#f7f4eb] border border-[#d8caae] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col no-underline cursor-pointer"
+    >
+      <div className="relative aspect-video w-full overflow-hidden bg-black/10">
+        <img 
+          src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`} 
+          alt={video.title} 
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
+            isHovered && video.previewUrl ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+
+        {video.previewUrl ? (
+          <video
+            ref={videoRef}
+            src={video.previewUrl}
+            muted
+            loop
+            playsInline
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+              isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ) : (
+          isHovered && (
+            <iframe
+              src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1&controls=0&start=30&end=40&loop=1&playlist=${video.id}`}
+              title={video.title}
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              allow="autoplay; encrypted-media"
+            />
+          )
+        )}
+
+        <div className={`absolute inset-0 bg-black/25 transition-opacity duration-300 flex items-center justify-center ${
+          isHovered ? 'opacity-0' : 'opacity-100'
+        }`}>
+          <div className="w-12 h-12 rounded-full bg-[#8b2b22] text-white flex items-center justify-center shadow-md pl-0.5">
+            <Play className="w-5 h-5 fill-white" />
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 flex flex-col justify-between flex-1">
+        <div>
+          <h3 className="font-serif font-bold text-base md:text-lg text-[#8b2b22] group-hover:text-[#b4892c] transition-colors m-0 mb-2 line-clamp-2">
+            {video.title}
+          </h3>
+          <p className="font-serif text-xs md:text-sm text-[#4a3f35] m-0 leading-relaxed line-clamp-2">
+            {video.description}
+          </p>
+        </div>
+        <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-[#b4892c] uppercase tracking-wider">
+          <span>Click here to watch</span>
+          <ExternalLink className="w-3.5 h-3.5" />
+        </div>
+      </div>
+    </a>
+  );
+}
+
 export default function History({ isMenuOpen, isDrawerOpen }: HistoryProps) {
   const [activeProfile, setActiveProfile] = useState<string | null>(null);
+
+  const historyVideos = [
+    {
+      id: "CoOogXw-1_c",
+      title: "Experience with Mahaperiyava - Full VRNT History & Peetathipathi Selection",
+      description: "Smt. Parvati Jayaraman shares profound insights and experiences regarding the full history of Veda Rakshana Nidhi Trust and Mahaperiyava.",
+      link: "https://youtu.be/CoOogXw-1_c?si=Hz_6LSs9KKCzFHbv"
+    }
+  ];
 
   const historyProfiles = [
     {
@@ -125,7 +232,7 @@ export default function History({ isMenuOpen, isDrawerOpen }: HistoryProps) {
               </div>
             </div>
 
-            {/* Bottom Miracle Showcase Panel - Seamlessly stretches layout footprint */}
+            {/* Bottom Miracle Showcase Panel */}
             {selected.miracle && (
               <div className="bg-[#fffdf9] border-l-4 border-[#bf953f] p-6 mt-4 rounded-r-lg shadow-2xs flex flex-col lg:flex-row gap-6 items-center w-full">
                 <div className="flex-grow w-full">
@@ -146,6 +253,22 @@ export default function History({ isMenuOpen, isDrawerOpen }: HistoryProps) {
                 </div>
               </div>
             )}
+
+            {/* History Video Highlights */}
+            <div className="mt-8 pt-6 border-t border-gray-300">
+              <div className="border-b border-[#d8caae]/80 pb-3 mb-6 flex items-center gap-3">
+                <span className="text-3xl">📹</span>
+                <h3 className="font-serif font-bold text-xl sm:text-2xl text-[#8b2b22] m-0">
+                  Videos
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {historyVideos.map((video) => (
+                  <HoverVideoCard key={video.id} video={video} />
+                ))}
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -192,6 +315,21 @@ export default function History({ isMenuOpen, isDrawerOpen }: HistoryProps) {
             </button>
           </div>
         ))}
+      </div>
+
+      {/* Video Highlights in Overview */}
+      <div className="w-full max-w-4xl mx-auto px-2 mt-4">
+        <div className="border-b border-[#d8caae]/80 pb-3 mb-6 flex items-center gap-3">
+          <span className="text-3xl">📹</span>
+          <h2 className="font-serif font-bold text-2xl sm:text-3xl text-[#8b2b22] m-0">
+            Videos
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {historyVideos.map((video) => (
+            <HoverVideoCard key={video.id} video={video} />
+          ))}
+        </div>
       </div>
     </div>
   );

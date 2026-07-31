@@ -45,15 +45,7 @@ export default function Announcement({
       date: "Published in 2026",
       type: "calendar",
       route: "pariksha-result",
-      pdfUrl: null
-    },
-    {
-      id: "mahotsav-60",
-      title: "60th Year Celebration",
-      date: "Published in 2026",
-      type: "document",
-      route: "mahotsav",
-      pdfUrl: null
+      pdfUrl: "/docs/SJ_2026_MARK_SHEET_RESULT_pdf_1777194961207.pdf"
     },
     {
       id: "vrnt-mahotsav",
@@ -91,9 +83,10 @@ export default function Announcement({
 
   const handleDownload = (pdfUrl: string | null) => {
     if (pdfUrl) {
+      const fileName = pdfUrl.split('/').pop() || 'download.pdf';
       const link = document.createElement('a');
       link.href = pdfUrl;
-      link.download = 'poorthy_exam_circular.pdf';
+      link.download = fileName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

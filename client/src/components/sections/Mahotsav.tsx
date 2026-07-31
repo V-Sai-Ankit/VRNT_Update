@@ -1,14 +1,28 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { ExternalLink, FileText, CheckCircle2, Calendar, Users } from "lucide-react";
+import { ExternalLink, FileText, CheckCircle2, Calendar, Users, ArrowLeft } from "lucide-react";
 
 interface CelebrationPageProps {
   isMenuOpen?: boolean;
   isDrawerOpen?: boolean;
+  setCurrentPage?: (page: string) => void;
 }
 
-export default function CelebrationPage({ isMenuOpen = false, isDrawerOpen = false }: CelebrationPageProps) {
+export default function CelebrationPage({ 
+  isMenuOpen = false, 
+  isDrawerOpen = false,
+  setCurrentPage 
+}: CelebrationPageProps) {
   const bothClosed = !isMenuOpen && !isDrawerOpen;
+
+  const handleBackNavigation = () => {
+    if (setCurrentPage) {
+      setCurrentPage('announcements');
+    } else {
+      // Fallback navigation if setCurrentPage prop isn't passed by parent
+      window.history.back();
+    }
+  };
 
   const requirements = [
     { text: "A copy of your VRNT Certificate", icon: <FileText className="w-5 h-5" /> },
@@ -19,6 +33,17 @@ export default function CelebrationPage({ isMenuOpen = false, isDrawerOpen = fal
   return (
     <div className="w-full flex flex-col gap-8 pb-12 font-serif text-[#111111]">
       
+      {/* Top Navigation Link - Always Visible */}
+      <div className="mt-2">
+        <button 
+          onClick={handleBackNavigation}
+          className="bg-transparent border-none text-[#b4892c] hover:text-[#967122] font-serif italic text-base flex items-center gap-2 cursor-pointer p-0"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Announcements</span>
+        </button>
+      </div>
+
       {/* Page Title Header Section */}
       <section className="mt-2 border-t border-[#222]/20 pt-6 text-center">
         <div className="inline-block bg-[#8b2b22]/10 text-[#8b2b22] px-4 py-1.5 rounded-full font-sans font-bold text-xs mb-4 uppercase tracking-widest">
@@ -124,7 +149,7 @@ export default function CelebrationPage({ isMenuOpen = false, isDrawerOpen = fal
         {/* Right Column: Required Documents & Important Dates */}
         <div className="w-full lg:w-[35%] flex flex-col gap-6">
           
-          {/* Required Documents Panel (Deep Maroon/Brown Theme) */}
+          {/* Required Documents Panel */}
           <div className="bg-[#541b15] text-[#f7f4eb] p-6 rounded-2xl shadow-md space-y-4 border border-[#8b2b22]/30">
             <h3 className="font-serif font-bold text-xl text-[#FFD700] border-b border-white/20 pb-2 m-0">
               Required Documents

@@ -8,6 +8,34 @@ interface ParikshaResultProps {
 
 export default function ParikshaResultPage({ isMenuOpen, isDrawerOpen, setCurrentPage }: ParikshaResultProps) {
   const expanded = !isMenuOpen && !isDrawerOpen;
+  const pdfUrl = "/docs/SJ_2026_MARK_SHEET_RESULT_pdf_1777194961207.pdf";
+
+  const handleDownload = () => {
+    const fileName = pdfUrl.split('/').pop() || 'SJ_2026_MARK_SHEET_RESULT.pdf';
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '2026 Shankara Jayanti Veda Pariksha Result',
+          text: 'Check out the 2026 Shankara Jayanti Veda Pariksha Result from Veda Rakshana Nidhi Trust.',
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
 
   return (
     <div className={`w-full flex flex-col gap-6 pb-12 transition-all duration-300 ${expanded ? 'p-6' : 'p-0'}`}>
@@ -15,10 +43,10 @@ export default function ParikshaResultPage({ isMenuOpen, isDrawerOpen, setCurren
       {/* Back Navigation Bar Links */}
       <div className="mt-2">
         <button 
-          onClick={() => setCurrentPage('home')}
+          onClick={() => setCurrentPage('announcements')}
           className="bg-transparent border-none text-[#b4892c] hover:text-[#967122] font-serif italic text-base flex items-center gap-2 cursor-pointer p-0"
         >
-          ← Back to News
+          ← Back to Announcements
         </button>
       </div>
 
@@ -49,11 +77,17 @@ export default function ParikshaResultPage({ isMenuOpen, isDrawerOpen, setCurren
 
         {/* Action Button Strip Row Container */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-          <button className="bg-[#b4892c] hover:bg-[#967122] text-white font-sans font-bold text-sm tracking-wider py-3.5 px-6 rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer border-none">
+          <button 
+            onClick={handleDownload}
+            className="bg-[#b4892c] hover:bg-[#967122] text-white font-sans font-bold text-sm tracking-wider py-3.5 px-6 rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer border-none"
+          >
             <span>📥</span> Download PDF
           </button>
           
-          <button className="bg-[#e5dec9]/60 hover:bg-[#e5dec9] text-gray-800 font-sans font-bold text-sm tracking-wider py-3.5 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer border-none border border-gray-300/40">
+          <button 
+            onClick={handleShare}
+            className="bg-[#e5dec9]/60 hover:bg-[#e5dec9] text-gray-800 font-sans font-bold text-sm tracking-wider py-3.5 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer border-none border border-gray-300/40"
+          >
             <span>🔗</span> Share Update
           </button>
         </div>

@@ -192,6 +192,12 @@ export default function Pariksha({
       description: "Certificate Distribution to Vidyarthis graduating from Veda Patashalas by Sri Kanchi Kamakoti Peetam.",
       link: "https://www.youtube.com/live/pF9TUaTG_n0?si=eDxYhBz7oRn9j4WO"
     },
+    {
+      id: "8GXQnGOty-c",
+      title: "Jagadguru's Anugraha Bhashanam - VRNT Awards Ceremony (11 Oct 2019)",
+      description: "Anugraha Bhashanam by Pujyashree Shankara Vijayendra Sarasvati Shankaracharya Swamigal at the VRNT annual event.",
+      link: "https://youtu.be/8GXQnGOty-c?si=ohxhgZOIEy16dFbC"
+    },
   ];
 
   // Render Sub-Views
