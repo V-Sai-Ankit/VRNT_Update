@@ -94,13 +94,13 @@ export const SITE_CONTENT = {
   bankDetails: [
     {
       bank: "BANK OF BARODA",
-      branch: "WEST MAMBALAM BRANCH, CHENNAI",
+      branch: "WEST MAMBALAM BRANCH, CHENNAI 600033 ",
       account: "05320100002089",
       ifsc: "BARB0CHENBS"
     },
     {
       bank: "INDIAN BANK",
-      branch: "WEST MAMBALAM BRANCH, CHENNAI",
+      branch: "WEST MAMBALAM BRANCH, CHENNAI 600033",
       account: "418622532",
       ifsc: "IDIB000W005"
     }

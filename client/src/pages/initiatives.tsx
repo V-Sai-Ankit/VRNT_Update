@@ -11,7 +11,7 @@ export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = fal
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  // Active view driven directly from URL query param (?view=shakhas or ?view=hny)
+  // Active view driven directly from URL query param (?view=shakhas, ?view=hny, or ?view=sampradayam)
   const activeView = searchParams.get('view') || 'shakhas';
 
   const shakhaData = [
@@ -152,6 +152,94 @@ export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = fal
                 Guru-Shishya Parampara: Father imparting Vedic recitation to his son
               </p>
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* SECTION 3: Focus on Sampradāyam */}
+      {activeView === 'sampradayam' && (
+        <section className="border-t-2 border-[#222] pt-4 space-y-8">
+          <h1 
+            className="text-left font-bold border-b-2 border-[#bf953f]/40 pb-3 mb-8 transition-all duration-300"
+            style={{ 
+              fontFamily: 'Georgia, serif', 
+              fontSize: bothClosed ? '44px' : '36px', 
+              lineHeight: '1.2', 
+              color: '#8b2b22'
+            }}
+          >
+            Focus on Sampradāyam
+          </h1>
+
+          {/* Introductory Text */}
+          <div className="flex flex-col gap-5 text-justify font-serif text-[#111111] leading-relaxed">
+            <p className="m-0 font-medium" style={{ fontSize: bothClosed ? '20px' : '17px' }}>
+              As per the sacred guidance of His Holiness, the Trust emphasizes that Vidyārthīs (students) must not only pursue Adhyayanam (Vedic study) but also adhere to Sampradāyam—the traditional code of conduct and way of life that forms the foundation of Vedic learning. True Vedic education encompasses both intellectual study and disciplined living in accordance with Dharma.
+            </p>
+          </div>
+
+          {/* The Gurukula System Highlight Block (Orange Theme) */}
+          <div className="bg-[#fff8f0] border-2 border-[#f97316]/60 p-6 sm:p-8 rounded-xl shadow-[4px_4px_0_#ea580c] space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#c2410c] font-serif m-0 border-b border-[#f97316]/30 pb-3">
+              The Gurukula System: A Sacred Journey
+            </h2>
+            <p className="m-0 font-medium text-[#111111] leading-relaxed" style={{ fontSize: bothClosed ? '19px' : '16px' }}>
+              The Gurukula system is not merely academic; it is a sacred journey designed to build character and spiritual maturity alongside scholarship.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-sm sm:text-base font-serif">
+              <div className="bg-[#ffffff] border border-[#fdba74] p-4 rounded-lg flex items-start gap-3 shadow-2xs">
+                <span className="text-[#ea580c] text-xs shrink-0 mt-1">▲</span>
+                <span><strong>Early Discipline:</strong> Students (śiṣyas) begin as early as six years of age.</span>
+              </div>
+              <div className="bg-[#ffffff] border border-[#fdba74] p-4 rounded-lg flex items-start gap-3 shadow-2xs">
+                <span className="text-[#ea580c] text-xs shrink-0 mt-1">▲</span>
+                <span><strong>Immersive Learning:</strong> Living with the Guru, students engage in 8 to 10 hours of daily recitation.</span>
+              </div>
+              <div className="bg-[#ffffff] border border-[#fdba74] p-4 rounded-lg flex items-start gap-3 shadow-2xs">
+                <span className="text-[#ea580c] text-xs shrink-0 mt-1">▲</span>
+                <span><strong>Character Building:</strong> The system instills humility, devotion, and self-control.</span>
+              </div>
+              <div className="bg-[#ffffff] border border-[#fdba74] p-4 rounded-lg flex items-start gap-3 shadow-2xs">
+                <span className="text-[#ea580c] text-xs shrink-0 mt-1">▲</span>
+                <span><strong>Oral Assessment:</strong> Evaluation is entirely oral, requiring flawless precision in pronunciation (śikṣā) and intonation (svara).</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 3 Pillars - Stacked Vertically (One Below the Other) */}
+          <div className="flex flex-col gap-6 font-serif pt-2 w-full">
+            
+            {/* Pillar 1: Gurukula Vāsam */}
+            <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 rounded-xl shadow-[4px_4px_0_#222] space-y-3 w-full">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#8b2b22] m-0 border-b border-[#bf953f]/40 pb-2">
+                Gurukula Vāsam
+              </h3>
+              <p className="text-base sm:text-lg leading-relaxed text-[#111111] text-justify mt-3 m-0 font-medium">
+                In keeping with ancient tradition, Vidyārthīs are expected to reside with their Guru in the Gurukula and engage in full-time Adhyayanam. Living away from one’s family under the guidance of the Guru is considered a form of Tapas (austerity). The young Vidyārthīs who live this life of discipline undertake this Tapas, which profoundly shapes their character and spiritual maturity.
+              </p>
+            </div>
+
+            {/* Pillar 2: Śikhāvān */}
+            <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 rounded-xl shadow-[4px_4px_0_#222] space-y-3 w-full">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#8b2b22] m-0 border-b border-[#bf953f]/40 pb-2">
+                Śikhāvān (Wearing the Śikhā)
+              </h3>
+              <p className="text-base sm:text-lg leading-relaxed text-[#111111] text-justify mt-3 m-0 font-medium">
+                Every Vidyārthī is expected to maintain a Śikhā (tuft of hair), which is an essential mark of identity and discipline prescribed in the Dharmashāstras. The Śikhā is not merely symbolic—it represents purity, dedication to Vedic study, and commitment to the spiritual ideals of the Gurukula.
+              </p>
+            </div>
+
+            {/* Pillar 3: Sva-Śākhā Adhyayanam */}
+            <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 rounded-xl shadow-[4px_4px_0_#222] space-y-3 w-full">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#8b2b22] m-0 border-b border-[#bf953f]/40 pb-2">
+                Sva-Śākhā Adhyayanam
+              </h3>
+              <p className="text-base sm:text-lg leading-relaxed text-[#111111] text-justify mt-3 m-0 font-medium">
+                The term Sva-Śākhā refers to the Vedic branch belonging to one’s ancestral lineage. According to tradition, every Brahmin is expected to study the Vedas, beginning with the Śākhā specific to his family. Only after attaining proficiency in his own Śākhā may a student proceed to learn other branches, preserving lineage purity unbroken.
+              </p>
+            </div>
+
           </div>
         </section>
       )}

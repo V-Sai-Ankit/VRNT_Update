@@ -7,6 +7,7 @@ interface ContactProps {
 
 export default function ContactPage({ isMenuOpen, isDrawerOpen }: ContactProps) {
   const bothClosed = !isMenuOpen && !isDrawerOpen;
+  const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.850383745237!2d80.22295677507772!3d13.04429388727806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526654019a97d9%3A0xe744e45e9a4f6d4!2sVeda%20Rakshana%20Nidhi%20Trust!5e0!3m2!1sen!2sin!4v1715694850000!5m2!1sen!2sin";
 
   return (
     <div className="w-full flex flex-col gap-8 pb-12">
@@ -64,18 +65,18 @@ export default function ContactPage({ isMenuOpen, isDrawerOpen }: ContactProps) 
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-[#bf953f] font-bold">✉️</span>
-                <span className="text-[#8b2b22] hover:underline cursor-pointer">office@vrnt.org</span>
+                <span className="text-[#8b2b22] hover:underline cursor-pointer">Email: office@vrnt.org</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right Side: Trust Office Location Map Mock Frame */}
+        {/* Right Side: Trust Office Location Google Maps Embed */}
         <div className="flex flex-col gap-3 w-full">
           <div className="flex justify-between items-center">
             <h3 className="font-serif font-bold text-xl text-[#171717] m-0">Trust Office Location</h3>
             <a 
-              href="https://maps.app.goo.gl/uRMQWW2WJeBHzRmx5" 
+              href="https://maps.app.goo.gl/xdfx7FaqMtYeCpEB8" 
               target="_blank" 
               rel="noreferrer" 
               className="text-[#bf953f] font-sans text-xs font-bold uppercase tracking-wider no-underline hover:underline flex items-center gap-1"
@@ -84,30 +85,20 @@ export default function ContactPage({ isMenuOpen, isDrawerOpen }: ContactProps) 
             </a>
           </div>
 
-          <div className="bg-[#f7f4eb] border border-[#222]/80 rounded-2xl p-2 relative shadow-2xs h-[280px] w-full overflow-hidden flex items-center justify-center">
-            <div className="absolute inset-2 bg-[#e5e3df] rounded-xl flex items-center justify-center border border-gray-300 shadow-inner">
-              <div className="absolute top-4 left-4 z-10">
-                <a 
-                  href="https://maps.app.goo.gl/uRMQWW2WJeBHzRmx5" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="bg-white border border-gray-300 font-sans text-xs font-semibold px-3 py-1.5 rounded shadow-sm text-blue-600 no-underline hover:bg-gray-50 flex items-center gap-1"
-                >
-                  Open in Maps
-                </a>
-              </div>
-              
-              <div className="w-full h-full opacity-40 relative font-sans text-[10px] text-gray-500 font-bold pointer-events-none">
-                <div className="absolute top-12 left-1/4 border-l border-gray-400 h-48 transform rotate-12" />
-                <div className="absolute top-24 left-0 border-t border-gray-400 w-full" />
-                <div className="absolute top-40 left-0 border-t border-gray-400 w-full" />
-                <div className="absolute top-16 left-12">Subramaniam Street</div>
-                <div className="absolute top-32 left-36">West Mambalam</div>
-                <div className="absolute bottom-8 right-16 text-red-500 text-base">📍 VRNT Office</div>
-              </div>
-            </div>
+          <div className="bg-[#f7f4eb] border border-[#222]/80 rounded-2xl p-2 relative shadow-2xs h-[350px] w-full overflow-hidden flex flex-col items-center justify-between">
+            <iframe
+              src={mapEmbedUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Google Maps Location"
+              className="rounded-xl w-full h-full"
+            ></iframe>
             
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 font-serif text-[11px] italic text-gray-500 bg-[#f7f4eb]/90 px-3 py-0.5 rounded-full border border-gray-200">
+            <div className="mt-2 font-serif text-[11px] italic text-gray-600 bg-[#f7f4eb] px-3 py-0.5 rounded-full border border-gray-200 shadow-2xs">
               Located in the heart of West Mambalam, Chennai.
             </div>
           </div>
@@ -131,7 +122,7 @@ export default function ContactPage({ isMenuOpen, isDrawerOpen }: ContactProps) 
               G Veeraraghavan
             </h4>
             <p className="text-xs text-gray-600 mt-2 mb-3 leading-relaxed">
-              Flat A NO 85 Anugraha<br />
+              Flat A NO 85 Anugraka<br />
               Apartments, P T Rajan Salai, K K<br />
               Nagar, Chennai - 600078.
             </p>

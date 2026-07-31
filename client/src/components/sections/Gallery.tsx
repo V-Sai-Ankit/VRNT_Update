@@ -95,6 +95,15 @@ const GALLERY_IMAGES = [
     category: "August 13–16, 2022",
     description: "Veda Rakshana Nidhi Trust graduation examinations and Parithoshikam.",
     albumUrl: "https://photos.app.goo.gl/6TZHbiBZ7B8fiPFM7"
+  },
+
+  // --- RECENT EVENT ---
+  {
+    url: "/assets/vrnt_1768670925029.jpg",
+    title: "Veda Rakshana Nidhi Trust Sabha",
+    category: "Vedic Event",
+    description: "Sacred gatherings and Vidwat Sabha proceedings organized under VRNT.",
+    albumUrl: null
   }
 ];
 
@@ -183,7 +192,6 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
                     alt={GALLERY_IMAGES[currentIndex].title}
                     className="w-full h-full object-contain"
                     onError={(e) => {
-                      // Silently handle broken image links gracefully
                       const target = e.target as HTMLImageElement;
                       if (target.src !== GALLERY_IMAGES[0].url) {
                         target.src = GALLERY_IMAGES[0].url;

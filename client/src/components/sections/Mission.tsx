@@ -106,7 +106,7 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
       {/* SECTION 2: Major Initiatives */}
       <section className="border-t-2 border-[#222] pt-8 mt-2">
         <h3 
-          className="text-center mx-auto mb-8 font-bold border-b-2 border-double border-[#8b2b22] pb-2 max-w-max"
+          className="text-center mx-auto mb-4 font-bold border-b-2 border-double border-[#8b2b22] pb-2 max-w-max"
           style={{ 
             fontFamily: 'Georgia, serif', 
             fontSize: bothClosed ? '44px' : '36px', 
@@ -115,6 +115,14 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
         >
           Major Initiatives of the Trust
         </h3>
+
+        {/* Intro Paragraph */}
+        <p 
+          className="m-0 font-serif text-justify text-[#111111] leading-relaxed font-medium mb-8 max-w-5xl mx-auto px-1"
+          style={{ fontSize: bothClosed ? '20px' : '17px' }}
+        >
+          Over the decades, the Veda Rakshana Nidhi Trust (VRNT) has undertaken several pioneering initiatives to uphold and propagate the sacred Vedic tradition in its pristine form. Each initiative reflects the Trust’s unwavering commitment to <em>Veda Rakshanam</em> — the preservation, teaching, and practice of the Vedas as a living heritage.
+        </p>
 
         <div className="grid grid-cols-1 gap-6 w-full">
           
@@ -134,14 +142,13 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
               className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
               style={{ fontSize: bothClosed ? '20px' : '17px' }}
             >
-              Our traditional scriptures and historical references indicate that there were once more than a thousand Veda shakhas (branches or recensions) in existence across different regions and lineages. These shakhas represented diverse methods of preserving, reciting, and interpreting the Vedic knowledge, each with its own unique style, pronunciation, and textual variations. However, over the passage of time, due to various social, cultural, and historical changes, a significant number of these shakhas have been lost or are no longer actively practiced.{" "}
+              Our traditional scriptures and historical references indicate that there were once more than a thousand Veda shakhas (branches or recensions) in existence across different regions and lineages. These shakhas represented diverse methods of preserving, reciting, and interpreting the Vedic knowledge...{" "}
               
-              {/* Route to /initiatives?view=shakhas */}
               <button 
                 onClick={() => handleNavigateToView('shakhas')}
                 className="inline-flex items-center gap-1 text-[#8b2b22] font-bold underline decoration-[#bf953f] hover:text-[#b32417] transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-serif"
               >
-                Read More Deatails ↗
+                Read More Details ↗
               </button>
             </p>
           </div>
@@ -161,19 +168,44 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
               className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
               style={{ fontSize: bothClosed ? '20px' : '17px' }}
             >
-              This unique initiative revives and sustains the hereditary mode of Vedic learning, in which a father imparts the Vedas to his son within the family lineage. Known as the Hereditary Niyama Adhyayanam (HNY) scheme, it upholds the disciplined study of the Vedas as a sacred familial duty, where the father assumes the role of Guru and the son becomes the Śishya.{" "}
+              This unique initiative revives and sustains the hereditary mode of Vedic learning, in which a father imparts the Vedas to his son within the family lineage. Known as the Hereditary Niyama Adhyayanam (HNY) scheme, it upholds the disciplined study of the Vedas as a sacred familial duty...{" "}
 
-              {/* Route to /initiatives?view=hny */}
               <button 
                 onClick={() => handleNavigateToView('hny')}
                 className="inline-flex items-center gap-1 text-[#8b2b22] font-bold underline decoration-[#bf953f] hover:text-[#b32417] transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-serif"
               >
-                Read More Deatails ↗
+                Read More Details ↗
               </button>
             </p>
           </div>
 
-          {/* 3. Support for Rare Veda Shaakhas */}
+          {/* 3. Focus on Sampradāyam */}
+          <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 sm:p-8 rounded-xl flex flex-col gap-4 shadow-[4px_4px_0_#222]">
+            <div className="flex items-center gap-4 border-b border-[#bf953f]/40 pb-3">
+              <span className="text-3xl bg-[#fffdf9] p-2.5 rounded-lg border border-[#bf953f]">🪔</span>
+              <h4 
+                className="font-serif font-bold text-[#8b2b22] m-0" 
+                style={{ fontSize: bothClosed ? '26px' : '22px' }}
+              >
+                Focus on Sampradāyam
+              </h4>
+            </div>
+            <p 
+              className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
+              style={{ fontSize: bothClosed ? '20px' : '17px' }}
+            >
+              As per the sacred guidance of His Holiness, the Trust emphasizes that Vidyārthīs must not only pursue Adhyayanam (Vedic study) but also adhere to Sampradāyam—the traditional code of conduct including Gurukula Vāsam, Śikhāvān, and Sva-Śākhā Adhyayanam...{" "}
+
+              <button 
+                onClick={() => handleNavigateToView('sampradayam')}
+                className="inline-flex items-center gap-1 text-[#8b2b22] font-bold underline decoration-[#bf953f] hover:text-[#b32417] transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-serif"
+              >
+                Read More Details ↗
+              </button>
+            </p>
+          </div>
+
+          {/* 4. Support for Rare Veda Shaakhas */}
           <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 sm:p-8 rounded-xl flex flex-col gap-4 shadow-[4px_4px_0_#222]">
             <div className="flex items-center gap-4 border-b border-[#bf953f]/40 pb-3">
               <span className="text-3xl bg-[#fffdf9] p-2.5 rounded-lg border border-[#bf953f]">🛡️</span>
@@ -188,11 +220,11 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
               className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
               style={{ fontSize: bothClosed ? '20px' : '17px' }}
             >
-              Certain branches (<em>śākhās</em>) of the Vedas are now on the brink of extinction due to a dwindling number of practitioners. Recognizing this urgent need, VRNT has established and supported Veda Pāṭhaśālās dedicated to these rare Shaakhas. These institutions provide an environment where students can undergo systematic and disciplined training under the guidance of qualified scholars, thereby ensuring the revival and sustenance of endangered Vedic recensions.
+              Certain branches (<em>śākhās</em>) of the Vedas are now on the brink of extinction due to a dwindling number of practitioners. Recognizing this urgent need, VRNT has established and supported Veda Pāṭhaśālās dedicated to these rare Shaakhas.
             </p>
           </div>
 
-          {/* 4. Pan-India Financial Assistance */}
+          {/* 5. Pan-India Financial Assistance */}
           <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 sm:p-8 rounded-xl flex flex-col gap-4 shadow-[4px_4px_0_#222]">
             <div className="flex items-center gap-4 border-b border-[#bf953f]/40 pb-3">
               <span className="text-3xl bg-[#fffdf9] p-2.5 rounded-lg border border-[#bf953f]">🌐</span>
@@ -207,7 +239,7 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
               className="font-serif text-[#111111] font-medium leading-relaxed m-0 text-justify" 
               style={{ fontSize: bothClosed ? '20px' : '17px' }}
             >
-              The Trust extends comprehensive financial assistance to deserving Veda Pāṭhaśālās across India. Such assistance enables institutions in even the most remote areas to maintain high standards of Vedic education, ensuring that economic challenges do not hinder the pursuit of this sacred learning.
+              The Trust extends comprehensive financial assistance to deserving Veda Pāṭhaśālās across India. Such assistance enables institutions in even the most remote areas to maintain high standards of Vedic education.
             </p>
           </div>
 

@@ -131,7 +131,7 @@ export default function DonatePage({ isMenuOpen, isDrawerOpen }: DonatePageProps
             
             <div className="bg-white p-4 border border-gray-300 rounded-xl shadow-inner mb-4 w-[220px] h-[220px] flex items-center justify-center overflow-hidden">
               <img
-                src="/assets/qr_1776444153234.jpg"
+                src="/assets/qr-code.jpg"
                 alt="Donation QR Code"
                 className="w-full h-full object-contain"
               />

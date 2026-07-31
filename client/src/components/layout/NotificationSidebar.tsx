@@ -72,6 +72,11 @@ export default function NotificationSidebar({ isOpen, onClose }: NotificationSid
       ),
       actions: [
         {
+          type: "internal-link",
+          label: "View More Details",
+          targetPath: "/mahotsav"
+        },
+        {
           type: "button",
           label: "REGISTER NOW",
           targetPath: "/mahotsav"
