@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import { motion } from "framer-motion";
 import { FileDown, GraduationCap, ClipboardCheck, Award, ExternalLink, Play } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
@@ -131,13 +131,41 @@ export default function Pariksha({
 
   const activeSubView = externalSubView !== undefined ? externalSubView : internalSubView;
 
+  // Managed navigation that preserves scroll state
   const handleSetSubView = (view: string | null) => {
-    if (externalSetSubView) {
-      externalSetSubView(view);
+    if (view) {
+      // 1. Save scroll position before opening sub-view
+      sessionStorage.setItem('pariksha_scroll_pos', window.scrollY.toString());
+      
+      // Update view
+      if (externalSetSubView) {
+        externalSetSubView(view);
+      } else {
+        setInternalSubView(view);
+      }
+
+      // 2. Scroll to top for the sub-view page
+      window.scrollTo(0, 0);
     } else {
-      setInternalSubView(view);
+      // Return back to main list
+      if (externalSetSubView) {
+        externalSetSubView(null);
+      } else {
+        setInternalSubView(null);
+      }
     }
   };
+
+  // Restore scroll position when returning to main overview page
+  useLayoutEffect(() => {
+    if (!activeSubView) {
+      const savedPos = sessionStorage.getItem('pariksha_scroll_pos');
+      if (savedPos !== null) {
+        window.scrollTo(0, parseInt(savedPos, 10));
+        sessionStorage.removeItem('pariksha_scroll_pos');
+      }
+    }
+  }, [activeSubView]);
 
   const forms = [
     {

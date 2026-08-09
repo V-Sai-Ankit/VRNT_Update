@@ -4,15 +4,29 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 interface InitiativesPageProps {
   isMenuOpen?: boolean;
   isDrawerOpen?: boolean;
+  overrideView?: string | null;
+  onBack?: () => void;
 }
 
-export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = false }: InitiativesPageProps) {
+export default function InitiativesPage({ 
+  isMenuOpen = false, 
+  isDrawerOpen = false,
+  overrideView,
+  onBack 
+}: InitiativesPageProps) {
   const bothClosed = !isMenuOpen && !isDrawerOpen;
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  // Active view driven directly from URL query param (?view=shakhas, ?view=hny, or ?view=sampradayam)
-  const activeView = searchParams.get('view') || 'shakhas';
+  const activeView = overrideView || searchParams.get('view') || 'shakhas';
+
+  const handleBackClick = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      navigate('/mission');
+    }
+  };
 
   const shakhaData = [
     {
@@ -45,13 +59,10 @@ export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = fal
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-col gap-6 text-[#111111] font-serif">
       
-      {/* Top Navigation: Back to Mission */}
+      {/* Top Navigation: Back Button */}
       <div className="w-full pt-2">
         <button
-          onClick={() => {
-            navigate('/mission');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onClick={handleBackClick}
           className="inline-flex items-center gap-2 text-[#8b2b22] font-bold font-serif text-sm sm:text-base border border-[#bf953f]/60 bg-[#fcfaf2] px-4 py-1.5 rounded-md hover:bg-[#8b2b22] hover:text-white transition-all cursor-pointer shadow-sm"
         >
           <span>←</span> Back to Mission Page
@@ -171,14 +182,12 @@ export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = fal
             Focus on Sampradāyam
           </h1>
 
-          {/* Introductory Text */}
           <div className="flex flex-col gap-5 text-justify font-serif text-[#111111] leading-relaxed">
             <p className="m-0 font-medium" style={{ fontSize: bothClosed ? '20px' : '17px' }}>
               As per the sacred guidance of His Holiness, the Trust emphasizes that Vidyārthīs (students) must not only pursue Adhyayanam (Vedic study) but also adhere to Sampradāyam—the traditional code of conduct and way of life that forms the foundation of Vedic learning. True Vedic education encompasses both intellectual study and disciplined living in accordance with Dharma.
             </p>
           </div>
 
-          {/* The Gurukula System Highlight Block (Orange Theme) */}
           <div className="bg-[#fff8f0] border-2 border-[#f97316]/60 p-6 sm:p-8 rounded-xl shadow-[4px_4px_0_#ea580c] space-y-4">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#c2410c] font-serif m-0 border-b border-[#f97316]/30 pb-3">
               The Gurukula System: A Sacred Journey
@@ -207,10 +216,7 @@ export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = fal
             </div>
           </div>
 
-          {/* 3 Pillars - Stacked Vertically (One Below the Other) */}
           <div className="flex flex-col gap-6 font-serif pt-2 w-full">
-            
-            {/* Pillar 1: Gurukula Vāsam */}
             <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 rounded-xl shadow-[4px_4px_0_#222] space-y-3 w-full">
               <h3 className="text-xl sm:text-2xl font-bold text-[#8b2b22] m-0 border-b border-[#bf953f]/40 pb-2">
                 Gurukula Vāsam
@@ -220,7 +226,6 @@ export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = fal
               </p>
             </div>
 
-            {/* Pillar 2: Śikhāvān */}
             <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 rounded-xl shadow-[4px_4px_0_#222] space-y-3 w-full">
               <h3 className="text-xl sm:text-2xl font-bold text-[#8b2b22] m-0 border-b border-[#bf953f]/40 pb-2">
                 Śikhāvān (Wearing the Śikhā)
@@ -230,7 +235,6 @@ export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = fal
               </p>
             </div>
 
-            {/* Pillar 3: Sva-Śākhā Adhyayanam */}
             <div className="bg-[#fcfaf2] border-2 border-[#222] p-6 rounded-xl shadow-[4px_4px_0_#222] space-y-3 w-full">
               <h3 className="text-xl sm:text-2xl font-bold text-[#8b2b22] m-0 border-b border-[#bf953f]/40 pb-2">
                 Sva-Śākhā Adhyayanam
@@ -239,7 +243,6 @@ export default function InitiativesPage({ isMenuOpen = false, isDrawerOpen = fal
                 The term Sva-Śākhā refers to the Vedic branch belonging to one’s ancestral lineage. According to tradition, every Brahmin is expected to study the Vedas, beginning with the Śākhā specific to his family. Only after attaining proficiency in his own Śākhā may a student proceed to learn other branches, preserving lineage purity unbroken.
               </p>
             </div>
-
           </div>
         </section>
       )}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useLayoutEffect } from 'react';
+import InitiativesPage from '../../pages/initiatives';
 
 interface MissionProps {
   isMenuOpen: boolean;
@@ -7,18 +7,46 @@ interface MissionProps {
   setCurrentPage?: (page: string) => void;
 }
 
-export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: MissionProps) {
-  const navigate = useNavigate();
+export default function Mission({ isMenuOpen, isDrawerOpen }: MissionProps) {
   const bothClosed = !isMenuOpen && !isDrawerOpen;
+  const [activeSubView, setActiveSubView] = useState<string | null>(null);
 
-  const handleNavigateToView = (view: string) => {
-    const targetPath = `/initiatives?view=${view}`;
-    if (setCurrentPage) {
-      setCurrentPage('initiatives');
+  // Manage scroll position internally just like Pariksha.tsx
+  const handleSetSubView = (view: string | null) => {
+    if (view) {
+      // Save current scroll position before opening details
+      sessionStorage.setItem('mission_scroll_pos', window.scrollY.toString());
+      setActiveSubView(view);
+      window.scrollTo(0, 0);
+    } else {
+      setActiveSubView(null);
     }
-    navigate(targetPath);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // Restore saved scroll position when returning to Mission overview
+  useLayoutEffect(() => {
+    if (!activeSubView) {
+      const savedPos = sessionStorage.getItem('mission_scroll_pos');
+      if (savedPos !== null) {
+        window.scrollTo(0, parseInt(savedPos, 10));
+        sessionStorage.removeItem('mission_scroll_pos');
+      }
+    }
+  }, [activeSubView]);
+
+  // If a sub-view is active, render Initiatives directly inside Mission
+  if (activeSubView) {
+    return (
+      <div className="w-full">
+        <InitiativesPage 
+          isMenuOpen={isMenuOpen} 
+          isDrawerOpen={isDrawerOpen} 
+          overrideView={activeSubView}
+          onBack={() => handleSetSubView(null)} 
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col gap-10 pb-12 text-[#111111] font-serif">
@@ -116,7 +144,6 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
           Major Initiatives of the Trust
         </h3>
 
-        {/* Intro Paragraph */}
         <p 
           className="m-0 font-serif text-justify text-[#111111] leading-relaxed font-medium mb-8 max-w-5xl mx-auto px-1"
           style={{ fontSize: bothClosed ? '20px' : '17px' }}
@@ -145,7 +172,7 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
               Our traditional scriptures and historical references indicate that there were once more than a thousand Veda shakhas (branches or recensions) in existence across different regions and lineages. These shakhas represented diverse methods of preserving, reciting, and interpreting the Vedic knowledge...{" "}
               
               <button 
-                onClick={() => handleNavigateToView('shakhas')}
+                onClick={() => handleSetSubView('shakhas')}
                 className="inline-flex items-center gap-1 text-[#8b2b22] font-bold underline decoration-[#bf953f] hover:text-[#b32417] transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-serif"
               >
                 Read More Details ↗
@@ -171,7 +198,7 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
               This unique initiative revives and sustains the hereditary mode of Vedic learning, in which a father imparts the Vedas to his son within the family lineage. Known as the Hereditary Niyama Adhyayanam (HNY) scheme, it upholds the disciplined study of the Vedas as a sacred familial duty...{" "}
 
               <button 
-                onClick={() => handleNavigateToView('hny')}
+                onClick={() => handleSetSubView('hny')}
                 className="inline-flex items-center gap-1 text-[#8b2b22] font-bold underline decoration-[#bf953f] hover:text-[#b32417] transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-serif"
               >
                 Read More Details ↗
@@ -197,7 +224,7 @@ export default function Mission({ isMenuOpen, isDrawerOpen, setCurrentPage }: Mi
               As per the sacred guidance of His Holiness, the Trust emphasizes that Vidyārthīs must not only pursue Adhyayanam (Vedic study) but also adhere to Sampradāyam—the traditional code of conduct including Gurukula Vāsam, Śikhāvān, and Sva-Śākhā Adhyayanam...{" "}
 
               <button 
-                onClick={() => handleNavigateToView('sampradayam')}
+                onClick={() => handleSetSubView('sampradayam')}
                 className="inline-flex items-center gap-1 text-[#8b2b22] font-bold underline decoration-[#bf953f] hover:text-[#b32417] transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-serif"
               >
                 Read More Details ↗

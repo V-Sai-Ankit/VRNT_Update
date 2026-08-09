@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
@@ -7,7 +7,7 @@ import NotificationSidebar from './components/layout/NotificationSidebar';
 import Hero from './components/sections/Hero';
 import VedaVruksham from './components/sections/VedaVruksham';
 import Mission from './components/sections/Mission';
-import InitiativesPage from './pages/initiatives'; // Imported Initiatives Page
+import InitiativesPage from './pages/initiatives';
 import Activities from './components/sections/Activities';
 import VedasPage from './components/sections/Vedas';
 import Pariksha from './components/sections/Pariksha';
@@ -64,13 +64,30 @@ export default function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Scroll to top on route change
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  // Smart Scroll Management: Resets to top on explicit refresh, restores position on back-navigation
+  useLayoutEffect(() => {
+    const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+    const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
+
+    if (isReload) {
+      // Clear position cache for current path on manual refresh and force scroll to top
+      sessionStorage.removeItem(`scroll_${location.pathname}`);
+      window.scrollTo(0, 0);
+    } else {
+      const savedPos = sessionStorage.getItem(`scroll_${location.pathname}`);
+      if (savedPos !== null) {
+        window.scrollTo(0, parseInt(savedPos, 10));
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }
   }, [location.pathname]);
 
-  // Handle navigation
+  // Handle navigation & save scroll state
   const handleNavigate = (page: string) => {
+    // Store current scroll position for current path before navigating away
+    sessionStorage.setItem(`scroll_${location.pathname}`, window.scrollY.toString());
+
     if (page === 'poorthy-circular') {
       navigate('/announcements?view=poorthy-sept');
     } else if (page === 'home') {
@@ -119,7 +136,7 @@ export default function App() {
             {isMenuOpen && <span className="text-[10px] tracking-wider">MENU</span>}
           </button>
 
-          {/* Closed State for MENU (Letter-by-Letter Vertical Stack) */}
+          {/* Closed State for MENU */}
           {!isMenuOpen && (
             <div className="flex-grow flex flex-col items-center justify-start gap-3 py-2 select-none px-0.5">
               <div 
@@ -131,7 +148,6 @@ export default function App() {
                 </span>
               </div>
 
-              {/* Letter-by-Letter Vertical LOGIN HERE Button */}
               <button 
                 onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
                 className="bg-[#ff7f5c] hover:bg-[#ff9173] text-white border-none rounded px-1.5 py-2 text-[9px] leading-[1.1] font-sans font-black uppercase cursor-pointer shadow-md transition-all flex flex-col items-center justify-center text-center tracking-normal active:scale-95"
@@ -180,7 +196,7 @@ export default function App() {
         </aside>
       ) : (
         /* ------------------------------------------------------------- */
-        /* 2. DESKTOP SIDEBAR (>= 1024px) - Completely Static           */
+        /* 2. DESKTOP SIDEBAR (>= 1024px)                                */
         /* ------------------------------------------------------------- */
         <aside 
           className={`fixed left-0 z-[1300] flex flex-col items-stretch bg-[#0e2245] border-r border-[#bf953f]/40 shadow-2xl transition-all duration-300 ease-out 
@@ -301,7 +317,13 @@ export default function App() {
             <Route path="/trustees" element={<Trustees isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
             <Route path="/donate" element={<DonatePage isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
             <Route path="/contact" element={<ContactPage isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
-            <Route path="/mahotsav" element={<Mahotsav isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
+            <Route path="/mahotsav" element={
+              <Mahotsav 
+                isMenuOpen={isMenuOpen} 
+                isDrawerOpen={isDrawerOpen} 
+                setCurrentPage={handleNavigate}
+              />
+            } />
             <Route path="/pariksha-result" element={
               <ParikshaResultPage 
                 isMenuOpen={isMenuOpen} 

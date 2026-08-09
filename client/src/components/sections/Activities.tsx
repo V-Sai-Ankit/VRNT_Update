@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 interface ActivitiesProps {
@@ -14,14 +14,27 @@ export default function Activities({ isMenuOpen, isDrawerOpen }: ActivitiesProps
   // Active view driven directly from URL query param (?view=final-exams)
   const activeView = searchParams.get('view');
 
+  // Restore scroll position when returning back to main Activities overview page
+  useLayoutEffect(() => {
+    if (!activeView) {
+      const savedPos = sessionStorage.getItem('activities_scroll_pos');
+      if (savedPos !== null) {
+        window.scrollTo(0, parseInt(savedPos, 10));
+        sessionStorage.removeItem('activities_scroll_pos');
+      }
+    }
+  }, [activeView]);
+
   const handleNavigateToView = (viewName: string) => {
+    // Save current scroll position before leaving
+    sessionStorage.setItem('activities_scroll_pos', window.scrollY.toString());
+
     navigate(`/activities?view=${viewName}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToMain = () => {
     navigate('/activities');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -237,7 +250,7 @@ export default function Activities({ isMenuOpen, isDrawerOpen }: ActivitiesProps
                   </div>
                 </div>
 
-                {/* Stacked vertically in 1 column (one below the other) */}
+                {/* Stacked vertically in 1 column */}
                 <div className="grid grid-cols-1 gap-4">
                   <div className="bg-[#fffdf9] border border-[#bf953f]/40 p-4 rounded-lg shadow-2xs flex items-center gap-3">
                     <span className="text-[#8b2b22] font-bold text-lg leading-none">•</span>
@@ -264,7 +277,7 @@ export default function Activities({ isMenuOpen, isDrawerOpen }: ActivitiesProps
                   </div>
                 </div>
 
-                {/* Sub-Card: Shatabhishak Nakshetra Sabha (Round bullet for title, triangles inside) */}
+                {/* Sub-Card: Shatabhishak Nakshetra Sabha */}
                 <div className="bg-[#fffdf9] border-2 border-[#bf953f]/60 p-5 sm:p-6 rounded-xl space-y-4">
                   <div className="border-b border-[#bf953f]/30 pb-3 flex items-start gap-2.5">
                     <span className="text-[#8b2b22] font-bold text-2xl leading-none mt-0.5">•</span>
