@@ -1,9 +1,8 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { Play, ExternalLink, Calendar, Award, ChevronLeft, ChevronRight } from "lucide-react";
+import { Helmet } from "@/lib/seo";
 
 interface HistoryProps {
-  isMenuOpen?: boolean;
-  isDrawerOpen?: boolean;
   subView?: string | null;
   setSubView?: (view: string | null) => void;
 }
@@ -45,12 +44,13 @@ function HoverVideoCard({ video }: VideoCardProps) {
       rel="noopener noreferrer"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group bg-[#f7f4eb] border border-[#d8caae] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col no-underline cursor-pointer"
+      className="group bg-surface border border-border rounded-xl overflow-hidden shadow-soft hover:shadow-lifted transition-all duration-300 flex flex-col no-underline cursor-pointer"
     >
       <div className="relative aspect-video w-full overflow-hidden bg-black/10">
-        <img 
-          src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`} 
-          alt={video.title} 
+        <img
+          src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+          alt={`Video thumbnail: ${video.title}`}
+          loading="lazy"
           className={`w-full h-full object-cover transition-opacity duration-300 ${
             isHovered && video.previewUrl ? 'opacity-0' : 'opacity-100'
           }`}
@@ -81,22 +81,22 @@ function HoverVideoCard({ video }: VideoCardProps) {
         <div className={`absolute inset-0 bg-black/25 transition-opacity duration-300 flex items-center justify-center ${
           isHovered ? 'opacity-0' : 'opacity-100'
         }`}>
-          <div className="w-12 h-12 rounded-full bg-[#8b2b22] text-white flex items-center justify-center shadow-md pl-0.5">
-            <Play className="w-5 h-5 fill-white" />
+          <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-soft pl-0.5">
+            <Play className="w-5 h-5 fill-current" />
           </div>
         </div>
       </div>
 
       <div className="p-4 flex flex-col justify-between flex-1">
         <div>
-          <h3 className="font-serif font-bold text-base md:text-lg text-[#8b2b22] group-hover:text-[#b4892c] transition-colors m-0 mb-2 line-clamp-2">
+          <h3 className="font-serif font-bold text-base md:text-lg text-primary group-hover:text-accent-strong transition-colors m-0 mb-2 line-clamp-2">
             {video.title}
           </h3>
-          <p className="font-serif text-xs md:text-sm text-[#4a3f35] m-0 leading-relaxed line-clamp-2">
+          <p className="font-serif text-xs md:text-sm text-muted-foreground m-0 leading-relaxed line-clamp-2">
             {video.description}
           </p>
         </div>
-        <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-[#b4892c] uppercase tracking-wider">
+        <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-accent-strong uppercase tracking-wider">
           <span>Click here to watch</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </div>
@@ -105,9 +105,7 @@ function HoverVideoCard({ video }: VideoCardProps) {
   );
 }
 
-export default function History({ 
-  isMenuOpen = false, 
-  isDrawerOpen = false,
+export default function History({
   subView: externalSubView,
   setSubView: externalSetSubView
 }: HistoryProps) {
@@ -121,7 +119,7 @@ export default function History({
     if (view) {
       // 1. Save scroll position before opening sub-view
       sessionStorage.setItem('history_scroll_pos', window.scrollY.toString());
-      
+
       // Update view
       if (externalSetSubView) {
         externalSetSubView(view);
@@ -214,32 +212,37 @@ export default function History({
   -------------------------------------------------------------------------- */
   if (activeSubView === 'jubilee') {
     return (
-      <div className="w-full flex flex-col gap-6 pb-12 pt-4 font-serif text-[#171717]">
-        <button 
+      <div className="mx-auto max-w-wide w-full flex flex-col gap-6 px-4 py-10 sm:px-6 sm:py-14 font-serif text-foreground">
+        <Helmet
+          title="Golden Jubilee Celebration Circular"
+          description="The official Golden Jubilee (50 Years) invitation circular published by Veda Rakshana Nidhi Trust."
+        />
+        <button
           onClick={() => handleSetSubView(null)}
-          className="self-start text-xs font-serif italic text-[#b4892c] hover:underline flex items-center gap-1 transition-all cursor-pointer bg-transparent border-none p-0"
+          className="self-start min-h-9 text-xs font-serif italic text-accent-strong hover:underline flex items-center gap-1 transition-all cursor-pointer bg-transparent border-none p-0"
         >
           <span>← Back to History</span>
         </button>
 
         <div>
-          <h1 className="text-2xl md:text-4xl font-bold text-[#8b2b22] m-0 leading-tight">
+          <h1 className="text-2xl md:text-4xl font-bold text-primary m-0 leading-tight">
             Golden Jubilee Celebration (50 Years) Circular
           </h1>
-          <p className="text-xs md:text-sm font-serif text-[#705844] mt-2 mb-0">
+          <p className="text-xs md:text-sm font-serif text-muted-foreground mt-2 mb-0">
             Published for 50th Year Celebrations · Official Document from Veda Rakshana Nidhi Trust
           </p>
         </div>
 
-        <div className="w-full bg-[#fbf8f0] border border-[#d8caae] rounded-2xl p-4 md:p-10 shadow-xs flex flex-col items-center">
-          <h3 className="font-serif font-bold text-lg md:text-xl text-[#8b2b22] mb-6 text-center">
+        <div className="w-full bg-surface border border-border rounded-2xl p-4 md:p-10 shadow-soft flex flex-col items-center">
+          <h2 className="font-serif font-bold text-lg md:text-xl text-primary mb-6 text-center">
             Official Invitation Document
-          </h3>
+          </h2>
 
-          <div className="w-full max-w-3xl bg-white border-4 double border-[#b4892c]/60 rounded-xl p-3 md:p-6 shadow-sm flex flex-col items-center">
-            <img 
-              src="/history/Golden jublee.jpg" 
-              alt="Golden Jubilee Invitation Circular" 
+          <div className="w-full max-w-3xl bg-background border-4 double border-accent/60 rounded-xl p-3 md:p-6 shadow-soft flex flex-col items-center">
+            <img
+              src="/history/Golden jublee.jpg"
+              alt="Golden Jubilee Invitation Circular"
+              loading="lazy"
               className="w-full h-auto object-contain rounded"
               onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
             />
@@ -254,50 +257,55 @@ export default function History({
   -------------------------------------------------------------------------- */
   if (activeSubView === 'achievements') {
     return (
-      <div className="w-full flex flex-col gap-6 pb-12 pt-4 font-serif text-[#171717]">
-        <button 
+      <div className="mx-auto max-w-wide w-full flex flex-col gap-6 px-4 py-10 sm:px-6 sm:py-14 font-serif text-foreground">
+        <Helmet
+          title="Trust Achievements & Honors Circular"
+          description="Photo record of the honor presented to Veda Rakshana Nidhi Trust by Sri Bhandarakeri Mutt, Karnataka, at Raichur."
+        />
+        <button
           onClick={() => handleSetSubView(null)}
-          className="self-start text-xs font-serif italic text-[#b4892c] hover:underline flex items-center gap-1 transition-all cursor-pointer bg-transparent border-none p-0"
+          className="self-start min-h-9 text-xs font-serif italic text-accent-strong hover:underline flex items-center gap-1 transition-all cursor-pointer bg-transparent border-none p-0"
         >
           <span>← Back to History</span>
         </button>
 
         <div>
-          <h1 className="text-2xl md:text-4xl font-bold text-[#8b2b22] m-0 leading-tight">
+          <h1 className="text-2xl md:text-4xl font-bold text-primary m-0 leading-tight">
             Trust Achievements & Honors Circular
           </h1>
-          <p className="text-sm md:text-base font-serif text-[#4a3f35] font-medium mt-2.5 mb-1 leading-relaxed">
+          <p className="text-sm md:text-base font-serif text-foreground/90 font-medium mt-2.5 mb-1 leading-relaxed">
             Award given to VRNT by Sri Bhandarakeri Mutt Karnataka at Raichur. Rec'd on our behalf by Ganesha Ghanapaty and Ghanapaty Bhat.
           </p>
-          <p className="text-xs md:text-sm font-serif text-[#705844] m-0">
+          <p className="text-xs md:text-sm font-serif text-muted-foreground m-0">
             Historic milestone document {currentAchieveIndex + 1} of {achievementImages.length}
           </p>
         </div>
 
-        <div className="w-full bg-[#fbf8f0] border border-[#d8caae] rounded-2xl p-4 md:p-8 shadow-xs flex flex-col items-center gap-6">
-          <h3 className="font-serif font-bold text-lg md:text-xl text-[#8b2b22] mb-1 text-center">
+        <div className="w-full bg-surface border border-border rounded-2xl p-4 md:p-8 shadow-soft flex flex-col items-center gap-6">
+          <h2 className="font-serif font-bold text-lg md:text-xl text-primary mb-1 text-center">
             Honor Presentation Record
-          </h3>
+          </h2>
 
-          <div className="relative w-full max-w-4xl bg-white border-4 double border-[#b4892c]/60 rounded-xl p-3 md:p-6 shadow-sm flex items-center justify-center min-h-[420px]">
-            <img 
-              src={achievementImages[currentAchieveIndex]} 
-              alt={`Achievement Photo ${currentAchieveIndex + 1}`} 
-              className="max-w-full max-h-[75vh] object-contain rounded shadow-xs"
+          <div className="relative w-full max-w-4xl bg-background border-4 double border-accent/60 rounded-xl p-3 md:p-6 shadow-soft flex items-center justify-center min-h-[420px]">
+            <img
+              src={achievementImages[currentAchieveIndex]}
+              alt={`Photo ${currentAchieveIndex + 1} of ${achievementImages.length} from the Trust achievements and honors ceremony at Sri Bhandarakeri Mutt, Raichur`}
+              loading="lazy"
+              className="max-w-full max-h-[75vh] object-contain rounded shadow-soft"
               onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
             />
 
-            <button 
+            <button
               onClick={handlePrevAchievement}
-              className="absolute left-3 md:left-6 bg-[#8b2b22]/90 hover:bg-[#8b2b22] text-white p-3 rounded-full shadow-lg transition-all cursor-pointer"
-              aria-label="Previous image"
+              className="absolute left-3 md:left-6 min-h-11 min-w-11 flex items-center justify-center bg-primary/90 hover:bg-primary text-primary-foreground p-3 rounded-full shadow-lifted transition-all cursor-pointer"
+              aria-label="Previous achievement photo"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            <button 
+            <button
               onClick={handleNextAchievement}
-              className="absolute right-3 md:right-6 bg-[#8b2b22]/90 hover:bg-[#8b2b22] text-white p-3 rounded-full shadow-lg transition-all cursor-pointer"
-              aria-label="Next image"
+              className="absolute right-3 md:right-6 min-h-11 min-w-11 flex items-center justify-center bg-primary/90 hover:bg-primary text-primary-foreground p-3 rounded-full shadow-lifted transition-all cursor-pointer"
+              aria-label="Next achievement photo"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -308,11 +316,18 @@ export default function History({
               <button
                 key={idx}
                 onClick={() => setCurrentAchieveIndex(idx)}
-                className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all p-0.5 bg-white cursor-pointer shrink-0 ${
-                  currentAchieveIndex === idx ? 'border-[#8b2b22] scale-105 shadow-md' : 'border-gray-300 opacity-60 hover:opacity-100'
+                aria-label={`Show achievement photo ${idx + 1} of ${achievementImages.length}`}
+                aria-current={currentAchieveIndex === idx}
+                className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all p-0.5 bg-background cursor-pointer shrink-0 ${
+                  currentAchieveIndex === idx ? 'border-primary scale-105 shadow-soft' : 'border-border opacity-60 hover:opacity-100'
                 }`}
               >
-                <img src={imgUrl} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover rounded" />
+                <img
+                  src={imgUrl}
+                  alt=""
+                  loading="lazy"
+                  className="w-full h-full object-cover rounded"
+                />
               </button>
             ))}
           </div>
@@ -329,63 +344,70 @@ export default function History({
     if (!selected) return null;
 
     return (
-      <div className="w-full flex flex-col gap-6 pb-12 pt-4 font-serif text-[#171717]">
-        <button 
+      <div className="mx-auto max-w-wide w-full flex flex-col gap-6 px-4 py-10 sm:px-6 sm:py-14 font-serif text-foreground">
+        <Helmet
+          title={`${selected.title} — Vedic History Profile`}
+          description="The life and Vedic service of Sri Annadurai Iyengar, honored by Sri Mahaperiyava with the title Veda Rakshamani."
+        />
+        <button
           onClick={() => handleSetSubView(null)}
-          className="self-start text-xs font-serif italic text-[#b4892c] hover:underline flex items-center gap-1 transition-all cursor-pointer bg-transparent border-none p-0"
+          className="self-start min-h-9 text-xs font-serif italic text-accent-strong hover:underline flex items-center gap-1 transition-all cursor-pointer bg-transparent border-none p-0"
         >
           <span>← Back to History List</span>
         </button>
 
-        <div className="w-full bg-[#fbf8f0] border border-[#d8caae] p-6 md:p-10 rounded-xl shadow-xs flex flex-col gap-8 mt-2">
-          <div className="w-full flex flex-col md:flex-row gap-8 items-center border-b border-gray-300 pb-6">
-            <div className="bg-white p-3 border-2 border-[#b4892c]/50 rounded-lg shadow-sm w-48 h-56 shrink-0 overflow-hidden flex items-center justify-center">
-              <img 
-                src={selected.image} 
-                alt={selected.title} 
+        <div className="w-full bg-surface border border-border p-6 md:p-10 rounded-xl shadow-soft flex flex-col gap-8 mt-2">
+          <div className="w-full flex flex-col md:flex-row gap-8 items-center border-b border-border pb-6">
+            <div className="bg-background p-3 border-2 border-accent/50 rounded-lg shadow-soft w-48 h-56 shrink-0 overflow-hidden flex items-center justify-center">
+              <img
+                src={selected.image}
+                alt={`Portrait of ${selected.title}, ${selected.subtitle}`}
+                loading="lazy"
                 className="w-full h-full object-contain rounded"
                 onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
               />
             </div>
             <div className="flex-grow text-center md:text-left">
-              <span className="text-xs font-sans text-[#b4892c] font-bold uppercase tracking-wider mb-1 block">{selected.subtitle}</span>
-              <h2 className="text-[#8b2b22] font-bold text-2xl md:text-3xl m-0 leading-tight">{selected.title}</h2>
-              <p className="text-base md:text-lg leading-relaxed text-justify mt-4 m-0 text-gray-800">
+              <span className="text-xs font-sans text-accent-strong font-bold uppercase tracking-wider mb-1 block">{selected.subtitle}</span>
+              <h1 className="text-primary font-bold text-2xl md:text-3xl m-0 leading-tight">{selected.title}</h1>
+              <p className="text-base md:text-lg leading-relaxed text-justify mt-4 m-0 text-foreground/90">
                 {selected.introduction}
               </p>
             </div>
           </div>
 
           <div className="w-full flex flex-col gap-6">
-            <h3 className="text-sm uppercase font-sans tracking-wider text-[#b4892c] font-bold m-0">
+            <h2 className="text-sm uppercase font-sans tracking-wider text-accent-strong font-bold m-0">
               வாழ்வின் முக்கிய சிறப்பம்சங்கள்:
-            </h3>
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white/90 p-5 rounded-lg border border-gray-200 shadow-3xs flex flex-col gap-3">
-                <strong className="text-[#8b2b22] text-lg border-b border-gray-100 pb-1.5">{selected.highlights[0].label}</strong>
-                <p className="text-sm text-gray-700 leading-relaxed m-0 text-justify">{selected.highlights[0].text}</p>
+              <div className="bg-surface p-5 rounded-lg border border-border shadow-soft flex flex-col gap-3">
+                <strong className="text-primary text-lg border-b border-border pb-1.5">{selected.highlights[0].label}</strong>
+                <p className="text-sm text-foreground/90 leading-relaxed m-0 text-justify">{selected.highlights[0].text}</p>
               </div>
 
-              <div className="bg-white/90 p-5 rounded-lg border border-gray-200 shadow-3xs flex flex-col gap-3">
-                <strong className="text-[#8b2b22] text-lg border-b border-gray-100 pb-1.5">{selected.highlights[1].label}</strong>
-                <p className="text-sm text-gray-700 leading-relaxed m-0 text-justify">{selected.highlights[1].text}</p>
+              <div className="bg-surface p-5 rounded-lg border border-border shadow-soft flex flex-col gap-3">
+                <strong className="text-primary text-lg border-b border-border pb-1.5">{selected.highlights[1].label}</strong>
+                <p className="text-sm text-foreground/90 leading-relaxed m-0 text-justify">{selected.highlights[1].text}</p>
               </div>
             </div>
 
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch my-2">
-              <div className="bg-white p-3 border border-gray-300 rounded-lg shadow-2xs flex items-center justify-center overflow-hidden max-h-[300px]">
-                <img 
-                  src="/history/IMG-20260716-WA0008.jpg" 
-                  alt="Sri Mahaperiyava context" 
+              <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex items-center justify-center overflow-hidden max-h-[300px]">
+                <img
+                  src="/history/IMG-20260716-WA0008.jpg"
+                  alt="Photograph of Sri Mahaperiyava accompanying the account of Sri Annadurai Iyengar's Vedic service"
+                  loading="lazy"
                   className="w-full h-full object-cover rounded"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               </div>
-              <div className="bg-white p-3 border border-gray-300 rounded-lg shadow-2xs flex items-center justify-center overflow-hidden max-h-[300px]">
-                <img 
-                  src="/history/IMG-20260716-WA0009.jpg" 
-                  alt="Sri Mahaperiyava discourse" 
+              <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex items-center justify-center overflow-hidden max-h-[300px]">
+                <img
+                  src="/history/IMG-20260716-WA0009.jpg"
+                  alt="Photograph of Sri Mahaperiyava giving a discourse, accompanying the account of Sri Annadurai Iyengar's Vedic service"
+                  loading="lazy"
                   className="w-full h-full object-cover rounded"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
@@ -393,31 +415,32 @@ export default function History({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white/90 p-5 rounded-lg border border-gray-200 shadow-3xs flex flex-col gap-3">
-                <strong className="text-[#8b2b22] text-lg border-b border-gray-100 pb-1.5">{selected.highlights[2].label}</strong>
-                <p className="text-sm text-gray-700 leading-relaxed m-0 text-justify">{selected.highlights[2].text}</p>
+              <div className="bg-surface p-5 rounded-lg border border-border shadow-soft flex flex-col gap-3">
+                <strong className="text-primary text-lg border-b border-border pb-1.5">{selected.highlights[2].label}</strong>
+                <p className="text-sm text-foreground/90 leading-relaxed m-0 text-justify">{selected.highlights[2].text}</p>
               </div>
 
-              <div className="bg-white/90 p-5 rounded-lg border border-gray-200 shadow-3xs flex flex-col gap-3">
-                <strong className="text-[#8b2b22] text-lg border-b border-gray-100 pb-1.5">{selected.highlights[3].label}</strong>
-                <p className="text-sm text-gray-700 leading-relaxed m-0 text-justify">{selected.highlights[3].text}</p>
+              <div className="bg-surface p-5 rounded-lg border border-border shadow-soft flex flex-col gap-3">
+                <strong className="text-primary text-lg border-b border-border pb-1.5">{selected.highlights[3].label}</strong>
+                <p className="text-sm text-foreground/90 leading-relaxed m-0 text-justify">{selected.highlights[3].text}</p>
               </div>
             </div>
 
             {selected.miracle && (
-              <div className="bg-[#fffdf9] border-l-4 border-[#bf953f] p-6 mt-4 rounded-r-lg shadow-2xs flex flex-col lg:flex-row gap-6 items-center w-full">
+              <div className="bg-surface border-l-4 border-accent p-6 mt-4 rounded-r-lg shadow-soft flex flex-col lg:flex-row gap-6 items-center w-full">
                 <div className="flex-grow w-full">
-                  <h4 className="text-xs font-sans font-bold uppercase tracking-wider text-[#8b2b22] mb-2.5">
+                  <h3 className="text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2.5">
                     பெரியவாளின் மகிமை:
-                  </h4>
-                  <p className="text-base leading-relaxed text-justify italic m-0 text-gray-800">
+                  </h3>
+                  <p className="text-base leading-relaxed text-justify italic m-0 text-foreground/90">
                     {selected.miracle}
                   </p>
                 </div>
-                <div className="w-40 h-40 bg-white p-1.5 border border-gray-300 rounded-lg shrink-0 overflow-hidden shadow-2xs flex items-center justify-center">
-                  <img 
-                    src="/history/IMG-20260716-WA0011.jpg" 
-                    alt="Divine miracle context" 
+                <div className="w-40 h-40 bg-background p-1.5 border border-border rounded-lg shrink-0 overflow-hidden shadow-soft flex items-center justify-center">
+                  <img
+                    src="/history/IMG-20260716-WA0011.jpg"
+                    alt="Photograph of Sri Mahaperiyava accompanying the account of his blessing to Sri Annadurai Iyengar"
+                    loading="lazy"
                     className="w-full h-full object-cover rounded"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
@@ -434,40 +457,46 @@ export default function History({
      4. MAIN HISTORY OVERVIEW PAGE
   -------------------------------------------------------------------------- */
   return (
-    <div className="w-full flex flex-col gap-8 pb-12 pt-4 font-serif">
-      <section className="text-center border-b border-gray-200 pb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#8b2b22] mb-2 uppercase tracking-wide">
+    <div className="mx-auto max-w-wide w-full flex flex-col gap-8 px-4 py-10 sm:px-6 sm:py-14 font-serif">
+      <Helmet
+        title="History"
+        description="The founding story of Veda Rakshana Nidhi Trust, its Vedic champions, Golden Jubilee celebration, and honors received in service of Vedic preservation."
+      />
+      <section className="text-center border-b border-border pb-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2 uppercase tracking-wide">
           History
         </h1>
-        <div className="w-24 h-1 bg-[#bf953f] mx-auto mt-2 rounded-full" />
+        <div className="w-24 h-1 bg-accent mx-auto mt-2 rounded-full" />
       </section>
 
       {/* Profiles Cards */}
-      <div className="flex items-center justify-center w-full px-2">
+      <div className="flex flex-col items-center w-full px-2 gap-4">
+        <h2 className="sr-only">Vedic Champions of the Trust</h2>
         {historyProfiles.map((profile) => (
-          <div 
+          <div
             key={profile.id}
-            className="bg-[#fbf8f0] border border-[#d8caae] rounded-xl p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow max-w-[480px] w-full"
+            className="bg-surface border border-border rounded-xl p-6 flex flex-col justify-between shadow-soft hover:shadow-lifted transition-shadow max-w-[480px] w-full"
           >
             <div className="flex gap-5 items-start">
-              <div className="w-24 h-28 bg-white border border-[#d8caae] rounded-lg shrink-0 overflow-hidden p-1 flex items-center justify-center shadow-3xs">
-                <img 
-                  src={profile.image} 
-                  alt={profile.title} 
+              <div className="w-24 h-28 bg-background border border-border rounded-lg shrink-0 overflow-hidden p-1 flex items-center justify-center shadow-soft">
+                <img
+                  src={profile.image}
+                  alt={`Portrait of ${profile.title}, ${profile.subtitle}`}
+                  loading="lazy"
                   className="w-full h-full object-contain"
                   onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
                 />
               </div>
               <div className="flex flex-col">
-                <h3 className="text-[#8b2b22] font-bold text-lg m-0 leading-snug">{profile.title}</h3>
-                <span className="text-[11px] font-sans font-bold text-[#b4892c] uppercase tracking-wider mt-1 block">({profile.subtitle})</span>
-                <p className="text-gray-600 text-xs md:text-sm mt-3 line-clamp-3 text-justify leading-relaxed m-0">{profile.previewText}</p>
+                <h3 className="text-primary font-bold text-lg m-0 leading-snug">{profile.title}</h3>
+                <span className="text-[11px] font-sans font-bold text-accent-strong uppercase tracking-wider mt-1 block">({profile.subtitle})</span>
+                <p className="text-muted-foreground text-xs md:text-sm mt-3 line-clamp-3 text-justify leading-relaxed m-0">{profile.previewText}</p>
               </div>
             </div>
 
             <button
               onClick={() => handleSetSubView('annadurai')}
-              className="mt-6 w-full text-center bg-[#1a365d] hover:bg-[#224273] text-white text-xs font-sans font-bold uppercase py-2.5 rounded-lg transition-colors border-none cursor-pointer tracking-widest shadow-3xs"
+              className="mt-6 w-full min-h-11 text-center bg-secondary hover:bg-secondary/90 text-secondary-foreground text-xs font-sans font-bold uppercase py-2.5 rounded-lg transition-colors border-none cursor-pointer tracking-widest shadow-soft"
             >
               Read Full History →
             </button>
@@ -475,87 +504,91 @@ export default function History({
         ))}
       </div>
 
-      {/* 🏛️ History of Events Section */}
+      {/* History of Events Section */}
       <div className="w-full max-w-4xl mx-auto px-2 mt-4 flex flex-col gap-6">
-        <div className="border-b border-[#d8caae]/80 pb-3 mb-2 flex items-center gap-3">
-          <span className="text-3xl">🏛️</span>
-          <h2 className="font-serif font-bold text-2xl sm:text-3xl text-[#8b2b22] m-0">
+        <div className="border-b border-border pb-3 mb-2 flex items-center gap-3">
+          <span className="text-3xl" aria-hidden="true">🏛️</span>
+          <h2 className="font-serif font-bold text-2xl sm:text-3xl text-primary m-0">
             History of Events
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          
+
           {/* 1. Golden Jubilee Card */}
-          <div className="bg-[#fbf8f0] border border-[#d8caae] rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+          <div className="bg-surface border border-border rounded-xl p-6 shadow-soft hover:shadow-lifted transition-shadow flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <Calendar className="w-5 h-5 text-[#b4892c]" />
-                <h3 className="font-serif font-bold text-xl text-[#8b2b22] m-0">
+                <Calendar className="w-5 h-5 text-accent-strong" />
+                <h3 className="font-serif font-bold text-xl text-primary m-0">
                   Golden Jubilee Celebration
                 </h3>
               </div>
-              
-              <div 
+
+              <button
+                type="button"
                 onClick={() => handleSetSubView('jubilee')}
-                className="w-full h-52 bg-white border border-gray-300 rounded-lg overflow-hidden mb-4 flex items-center justify-center p-2 cursor-pointer group hover:border-[#b4892c] transition-all shadow-2xs"
+                className="w-full h-52 bg-background border border-border rounded-lg overflow-hidden mb-4 flex items-center justify-center p-2 cursor-pointer group hover:border-accent transition-all shadow-soft"
               >
-                <img 
-                  src="/history/Golden jublee.jpg" 
-                  alt="Golden Jubilee Celebration" 
+                <img
+                  src="/history/Golden jublee.jpg"
+                  alt="Golden Jubilee Celebration circular preview"
+                  loading="lazy"
                   className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
                   onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
                 />
-              </div>
+              </button>
 
-              <p className="font-serif text-sm text-[#4a3f35] leading-relaxed text-justify m-0">
+              <p className="font-serif text-sm text-muted-foreground leading-relaxed text-justify m-0">
                 Celebration of 50 glorious years of dedicated service in preserving and fostering the Vedic heritage and traditions.
               </p>
             </div>
 
             <button
               onClick={() => handleSetSubView('jubilee')}
-              className="mt-6 w-full text-center bg-[#1a365d] hover:bg-[#224273] text-white text-xs font-sans font-bold uppercase py-2.5 rounded-lg transition-colors border-none cursor-pointer tracking-widest shadow-3xs"
+              className="mt-6 w-full min-h-11 text-center bg-secondary hover:bg-secondary/90 text-secondary-foreground text-xs font-sans font-bold uppercase py-2.5 rounded-lg transition-colors border-none cursor-pointer tracking-widest shadow-soft"
             >
               View Full Circular →
             </button>
           </div>
 
           {/* 2. Achievements Card */}
-          <div className="bg-[#fbf8f0] border border-[#d8caae] rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+          <div className="bg-surface border border-border rounded-xl p-6 shadow-soft hover:shadow-lifted transition-shadow flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <Award className="w-5 h-5 text-[#b4892c]" />
-                  <h3 className="font-serif font-bold text-xl text-[#8b2b22] m-0">
+                  <Award className="w-5 h-5 text-accent-strong" />
+                  <h3 className="font-serif font-bold text-xl text-primary m-0">
                     Achievements
                   </h3>
                 </div>
-                <span className="text-xs font-sans text-[#b4892c] font-bold">
+                <span className="text-xs font-sans text-accent-strong font-bold">
                   7 Photos
                 </span>
               </div>
-              
-              <div 
+
+              <button
+                type="button"
                 onClick={() => handleSetSubView('achievements')}
-                className="w-full h-52 bg-white border border-gray-300 rounded-lg overflow-hidden mb-4 flex items-center justify-center p-2 cursor-pointer group hover:border-[#b4892c] transition-all shadow-2xs"
+                className="w-full h-52 bg-background border border-border rounded-lg overflow-hidden mb-4 flex items-center justify-center p-2 cursor-pointer group hover:border-accent transition-all shadow-soft"
               >
-                <img 
-                  src={achievementImages[0]} 
-                  alt="Achievements Preview" 
+                <img
+                  src={achievementImages[0]}
+                  alt="Preview photo from the Trust achievements and honors ceremony at Sri Bhandarakeri Mutt, Raichur"
+                  loading="lazy"
                   className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
                   onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
                 />
-              </div>
+              </button>
 
-              <p className="font-serif text-sm text-[#4a3f35] leading-relaxed text-justify m-0">
+              <p className="font-serif text-sm text-muted-foreground leading-relaxed text-justify m-0">
                 Award given to VRNT by Sri Bhandarakeri Mutt Karnataka at Raichur. Rec'd on our behalf by Ganesha Ghanapaty and Ghanapaty Bhat.
               </p>
             </div>
 
             <button
               onClick={() => handleSetSubView('achievements')}
-              className="mt-6 w-full text-center bg-[#1a365d] hover:bg-[#224273] text-white text-xs font-sans font-bold uppercase py-2.5 rounded-lg transition-colors border-none cursor-pointer tracking-widest shadow-3xs"
+              className="mt-6 w-full min-h-11 text-center bg-secondary hover:bg-secondary/90 text-secondary-foreground text-xs font-sans font-bold uppercase py-2.5 rounded-lg transition-colors border-none cursor-pointer tracking-widest shadow-soft"
             >
               View Full Circular →
             </button>
@@ -564,11 +597,11 @@ export default function History({
         </div>
       </div>
 
-      {/* 📹 Videos Section */}
+      {/* Videos Section */}
       <div className="w-full max-w-4xl mx-auto px-2 mt-4">
-        <div className="border-b border-[#d8caae]/80 pb-3 mb-6 flex items-center gap-3">
-          <span className="text-3xl">📹</span>
-          <h2 className="font-serif font-bold text-2xl sm:text-3xl text-[#8b2b22] m-0">
+        <div className="border-b border-border pb-3 mb-6 flex items-center gap-3">
+          <span className="text-3xl" aria-hidden="true">📹</span>
+          <h2 className="font-serif font-bold text-2xl sm:text-3xl text-primary m-0">
             Videos
           </h2>
         </div>

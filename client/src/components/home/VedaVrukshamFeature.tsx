@@ -12,7 +12,7 @@ export default function VedaVrukshamFeature() {
     <section className="border-b border-border py-12 sm:py-16">
       <div className="mx-auto max-w-wide px-4 sm:px-6">
         <div className="text-center">
-          <p className="mb-2 font-sans text-xs font-bold uppercase tracking-wider text-accent">
+          <p className="mb-2 font-sans text-xs font-bold uppercase tracking-wider text-accent-strong">
             Our Guiding Metaphor
           </p>
           <h2 className="font-serif text-2xl font-bold text-primary sm:text-3xl">

@@ -12,11 +12,11 @@ export default function ContactSummary() {
 
         <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
           <div className="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-5 text-center shadow-soft">
-            <MapPin className="h-5 w-5 text-accent" aria-hidden="true" />
+            <MapPin className="h-5 w-5 text-accent-strong" aria-hidden="true" />
             <p className="text-sm leading-relaxed text-foreground/90">{SITE_CONTENT.header.address}</p>
           </div>
           <div className="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-5 text-center shadow-soft">
-            <Phone className="h-5 w-5 text-accent" aria-hidden="true" />
+            <Phone className="h-5 w-5 text-accent-strong" aria-hidden="true" />
             <a href="tel:04424740549" className="text-sm font-semibold text-foreground hover:underline">
               044-24740549
             </a>
@@ -25,7 +25,7 @@ export default function ContactSummary() {
             </a>
           </div>
           <div className="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-5 text-center shadow-soft">
-            <Mail className="h-5 w-5 text-accent" aria-hidden="true" />
+            <Mail className="h-5 w-5 text-accent-strong" aria-hidden="true" />
             <a href="mailto:office@vrnt.org" className="text-sm font-semibold text-foreground hover:underline">
               office@vrnt.org
             </a>

@@ -18,11 +18,11 @@ export default function AnnouncementTeaser() {
     <section className="border-b border-border bg-accent/10">
       <div className="mx-auto max-w-wide px-4 py-6 sm:px-6">
         <div className="flex flex-col items-start gap-4 rounded-lg border border-accent/40 bg-surface p-5 shadow-soft sm:flex-row sm:items-center">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent-strong">
             <Bell className="h-5 w-5" aria-hidden="true" />
           </div>
           <div className="flex-1">
-            <p className="font-sans text-xs font-bold uppercase tracking-wider text-accent">Announcement</p>
+            <p className="font-sans text-xs font-bold uppercase tracking-wider text-accent-strong">Announcement</p>
             <h2 className="font-serif text-lg font-bold text-primary">{featured.title}</h2>
             <p className="mt-1 text-sm leading-relaxed text-foreground/80">{featured.summary}</p>
           </div>

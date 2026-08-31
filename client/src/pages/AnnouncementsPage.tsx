@@ -119,9 +119,9 @@ export default function AnnouncementsPage() {
             <div className="flex items-center gap-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
                 {item.actions.some((a) => a.type === "download-link") ? (
-                  <FileText className="h-5 w-5 text-accent" aria-hidden="true" />
+                  <FileText className="h-5 w-5 text-accent-strong" aria-hidden="true" />
                 ) : (
-                  <Calendar className="h-5 w-5 text-accent" aria-hidden="true" />
+                  <Calendar className="h-5 w-5 text-accent-strong" aria-hidden="true" />
                 )}
               </div>
               <div>

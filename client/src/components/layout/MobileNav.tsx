@@ -5,6 +5,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { PRIMARY_NAV, DONATE_LINK, LOGIN_URL } from "@/lib/navigation";
@@ -31,6 +32,7 @@ export default function MobileNav({ open, onOpenChange }: MobileNavProps) {
       >
         <SheetHeader className="border-b border-border px-5 py-4 text-left">
           <SheetTitle className="font-serif text-lg text-primary">Menu</SheetTitle>
+          <SheetDescription className="sr-only">Site navigation</SheetDescription>
         </SheetHeader>
 
         <div className="flex flex-col gap-1 px-3 py-4">

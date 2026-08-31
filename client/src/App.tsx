@@ -3,6 +3,7 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SkipLink from "@/components/layout/SkipLink";
+import { Toaster } from "@/components/ui/sonner";
 
 // Route-level code splitting: each page is fetched only when visited.
 const Home = lazy(() => import("./pages/home"));
@@ -34,15 +35,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Section components under components/sections/ predate this layout rewrite and
-// still accept isMenuOpen/isDrawerOpen props that controlled font scaling against
-// the old fixed sidebar + announcement drawer. That chrome no longer exists, so
-// every route below is given the "both closed" (spacious) state those components
-// were designed to use at full content width. These pages get their own focused
-// pass to drop the legacy props entirely; tracked in PRODUCTION_READINESS.md.
-const legacySpacious = { isMenuOpen: false, isDrawerOpen: false };
-
-/** Legacy pseudo-navigation shim: several section components still call a
+/** Legacy pseudo-navigation shim: a couple of section components still call a
  * `setCurrentPage("somePage")` callback instead of using react-router-dom
  * directly (a holdover from before real routes existed for them). This maps
  * that call onto a real navigation. */
@@ -63,19 +56,19 @@ export default function App() {
         <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Loading…</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/mission" element={<Mission {...legacySpacious} />} />
-            <Route path="/initiatives" element={<InitiativesPage {...legacySpacious} />} />
-            <Route path="/activities" element={<Activities {...legacySpacious} />} />
+            <Route path="/mission" element={<Mission />} />
+            <Route path="/initiatives" element={<InitiativesPage />} />
+            <Route path="/activities" element={<Activities />} />
             <Route path="/vedas" element={<VedasPage />} />
             <Route path="/vedas/maha-periyavas-message" element={<MahaPeriyavasMessage />} />
-            <Route path="/pariksha" element={<Pariksha {...legacySpacious} />} />
-            <Route path="/gallery" element={<GalleryPage {...legacySpacious} />} />
-            <Route path="/history" element={<History {...legacySpacious} />} />
-            <Route path="/trustees" element={<Trustees {...legacySpacious} />} />
-            <Route path="/donate" element={<DonatePage {...legacySpacious} />} />
-            <Route path="/contact" element={<ContactPage {...legacySpacious} />} />
-            <Route path="/mahotsav" element={<Mahotsav {...legacySpacious} setCurrentPage={goTo} />} />
-            <Route path="/pariksha-result" element={<ParikshaResultPage {...legacySpacious} setCurrentPage={goTo} />} />
+            <Route path="/pariksha" element={<Pariksha />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/trustees" element={<Trustees />} />
+            <Route path="/donate" element={<DonatePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/mahotsav" element={<Mahotsav setCurrentPage={goTo} />} />
+            <Route path="/pariksha-result" element={<ParikshaResultPage setCurrentPage={goTo} />} />
             <Route path="/announcements" element={<AnnouncementsPage />} />
             <Route path="/announcements/:id" element={<AnnouncementsPage />} />
             <Route path="/news" element={<NewsPage />} />
@@ -84,6 +77,7 @@ export default function App() {
         </Suspense>
       </main>
       <Footer />
+      <Toaster />
     </div>
   );
 }

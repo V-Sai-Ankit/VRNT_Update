@@ -43,7 +43,7 @@ export default function HomeSection({
         >
           <div className={cn(image && imageSide === "left" && "md:order-2")}>
             {eyebrow && (
-              <p className="mb-2 font-sans text-xs font-bold uppercase tracking-wider text-accent">
+              <p className="mb-2 font-sans text-xs font-bold uppercase tracking-wider text-accent-strong">
                 {eyebrow}
               </p>
             )}
