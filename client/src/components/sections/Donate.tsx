@@ -123,7 +123,7 @@ export default function DonatePage() {
 
               <div className="flex h-[220px] w-[220px] items-center justify-center overflow-hidden rounded-lg border border-border bg-background p-4 shadow-soft">
                 <img
-                  src="/assets/qr-code.jpg"
+                  src="/assets/qr-code.webp"
                   alt="VRNT donation QR code for scanning with any UPI payment app"
                   loading="lazy"
                   className="h-full w-full object-contain"

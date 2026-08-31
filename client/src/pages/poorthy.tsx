@@ -45,66 +45,66 @@ export default function PoorthyPage({ onBack }: PoorthyProps) {
 
   // --- 1. MARCH 5, 2026 (first gallery) ---
   const g1ImagePaths = [
-    "/poorthy/first gallery/IMG_20260305_111546869_HDR.jpg",
-    "/poorthy/first gallery/IMG_20260305_111559214_HDR.jpg",
-    "/poorthy/first gallery/IMG_20260305_111609657_HDR.jpg"
+    "/poorthy/first gallery/IMG_20260305_111546869_HDR.webp",
+    "/poorthy/first gallery/IMG_20260305_111559214_HDR.webp",
+    "/poorthy/first gallery/IMG_20260305_111609657_HDR.webp"
   ];
-  const g1SlideBgImage = "/poorthy/first gallery/IMG_20260305_111617178_HDR.jpg";
+  const g1SlideBgImage = "/poorthy/first gallery/IMG_20260305_111617178_HDR.webp";
   const g1TotalSlides = g1ImagePaths.length + 1;
 
   // --- 2. AUGUST 31, 2025 (second gallery) ---
   const g2ImagePaths = [
-    "/poorthy/second gallery/20250831_093953.jpg",
-    "/poorthy/second gallery/20250831_094001.jpg",
-    "/poorthy/second gallery/20250831_101817.jpg",
-    "/poorthy/second gallery/IMG_20250831_093631544_HDR.jpg",
-    "/poorthy/second gallery/IMG_20250831_093640112_HDR.jpg"
+    "/poorthy/second gallery/20250831_093953.webp",
+    "/poorthy/second gallery/20250831_094001.webp",
+    "/poorthy/second gallery/20250831_101817.webp",
+    "/poorthy/second gallery/IMG_20250831_093631544_HDR.webp",
+    "/poorthy/second gallery/IMG_20250831_093640412_HDR.webp"
   ];
-  const g2SlideBgImage = "/poorthy/second gallery/IMG_20250831_093917757_HDR.jpg";
+  const g2SlideBgImage = "/poorthy/second gallery/IMG_20250831_093917757_HDR.webp";
   const g2TotalSlides = g2ImagePaths.length + 1;
 
   // --- 3. SEPTEMBER 11–14, 2024 (third gallery) ---
   const g3ImagePaths = [
-    "/poorthy/third gallery/20240911_085056.jpg",
-    "/poorthy/third gallery/20240911_092454.jpg",
-    "/poorthy/third gallery/20240911_092832.jpg",
-    "/poorthy/third gallery/IMG-20240911-WA0021.jpg",
-    "/poorthy/third gallery/IMG20240911085759.jpg"
+    "/poorthy/third gallery/20240911_085056.webp",
+    "/poorthy/third gallery/20240911_092454.webp",
+    "/poorthy/third gallery/20240911_092832.webp",
+    "/poorthy/third gallery/IMG-20240911-WA0021.webp",
+    "/poorthy/third gallery/IMG20240911085759.webp"
   ];
-  const g3SlideBgImage = "/poorthy/third gallery/IMG20240911085805.jpg";
+  const g3SlideBgImage = "/poorthy/third gallery/IMG20240911085805.webp";
   const g3TotalSlides = g3ImagePaths.length + 1;
 
   // --- 4. MARCH 15–17, 2024 (fourth gallery) ---
   const g4ImagePaths = [
-    "/poorthy/fourth gallery/IMG-20240316-WA0033.jpg",
-    "/poorthy/fourth gallery/IMG20240315095416.jpg",
-    "/poorthy/fourth gallery/IMG20240315101639.jpg",
-    "/poorthy/fourth gallery/IMG20240315101735.jpg",
-    "/poorthy/fourth gallery/IMG20240315101739.jpg"
+    "/poorthy/fourth gallery/IMG-20240316-WA0033.webp",
+    "/poorthy/fourth gallery/IMG20240315095416.webp",
+    "/poorthy/fourth gallery/IMG20240315101639.webp",
+    "/poorthy/fourth gallery/IMG20240315101735.webp",
+    "/poorthy/fourth gallery/IMG20240315101739.webp"
   ];
-  const g4SlideBgImage = "/poorthy/fourth gallery/IMG20240316100506.jpg";
+  const g4SlideBgImage = "/poorthy/fourth gallery/IMG20240316100506.webp";
   const g4TotalSlides = g4ImagePaths.length + 1;
 
   // --- 5. SEPTEMBER 22–24, 2023 (fifth gallery) ---
   const g5ImagePaths = [
-    "/poorthy/fifth gallery/IMG-20230924-WA0066.jpg",
-    "/poorthy/fifth gallery/IMG-20230924-WA0069.jpg",
-    "/poorthy/fifth gallery/IMG-20230924-WA0073.jpg",
-    "/poorthy/fifth gallery/IMG-20230924-WA0076.jpg",
-    "/poorthy/fifth gallery/IMG-20230924-WA0077.jpg"
+    "/poorthy/fifth gallery/IMG-20230924-WA0066.webp",
+    "/poorthy/fifth gallery/IMG-20230924-WA0069.webp",
+    "/poorthy/fifth gallery/IMG-20230924-WA0073.webp",
+    "/poorthy/fifth gallery/IMG-20230924-WA0076.webp",
+    "/poorthy/fifth gallery/IMG-20230924-WA0077.webp"
   ];
-  const g5SlideBgImage = "/poorthy/fifth gallery/IMG-20230924-WA0079.jpg";
+  const g5SlideBgImage = "/poorthy/fifth gallery/IMG-20230924-WA0079.webp";
   const g5TotalSlides = g5ImagePaths.length + 1;
 
   // --- 6. AUGUST 13–16, 2022 (sixth gallery) ---
   const g6ImagePaths = [
-    "/poorthy/sixth gallery/IMG20220814094026.jpg",
-    "/poorthy/sixth gallery/IMG20220814070154.jpg",
-    "/poorthy/sixth gallery/IMG20220814070346.jpg",
-    "/poorthy/sixth gallery/IMG20220814090120.jpg",
-    "/poorthy/sixth gallery/IMG20220814095008.jpg"
+    "/poorthy/sixth gallery/IMG20220814094026.webp",
+    "/poorthy/sixth gallery/IMG20220814070154.webp",
+    "/poorthy/sixth gallery/IMG20220814070346.webp",
+    "/poorthy/sixth gallery/IMG20220814090120.webp",
+    "/poorthy/sixth gallery/IMG20220814095008.webp"
   ];
-  const g6SlideBgImage = "/poorthy/sixth gallery/IMG20220814090029.jpg";
+  const g6SlideBgImage = "/poorthy/sixth gallery/IMG20220814090029.webp";
   const g6TotalSlides = g6ImagePaths.length + 1;
 
   return (

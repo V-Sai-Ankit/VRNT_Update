@@ -15,7 +15,7 @@ export default function MahaPeriyavasMessage() {
       <h1 className="mb-6 font-serif text-2xl font-bold text-primary sm:text-3xl">Maha Periyava's Message</h1>
 
       <img
-        src="/assets/generated_images/Maha Periyava messages.png"
+        src="/assets/generated_images/Maha Periyava messages.webp"
         alt="Maha Periyava's written message regarding the protection and preservation of the Vedas"
         loading="lazy"
         className="w-full rounded-lg border border-border object-contain shadow-soft"

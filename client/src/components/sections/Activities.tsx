@@ -76,7 +76,7 @@ export default function Activities() {
               <div className="flex flex-col items-center rounded-xl border-2 border-border bg-background p-3 shadow-soft">
                 <div className="w-full overflow-hidden rounded-lg border border-border">
                   <img
-                    src="/assets/Chandrasekharendra Saraswathi Swamigal examination.jpg"
+                    src="/assets/Chandrasekharendra Saraswathi Swamigal examination.webp"
                     alt="Acharya examining students in examination hall"
                     loading="lazy"
                     className="h-auto max-h-[380px] w-full rounded object-cover"
@@ -114,7 +114,7 @@ export default function Activities() {
                 <div className="flex flex-col items-center rounded-xl border-2 border-border bg-background p-3 shadow-soft">
                   <div className="w-full overflow-hidden rounded-lg border border-border">
                     <img
-                      src="/assets/Acharya certificate.jpg"
+                      src="/assets/Acharya certificate.webp"
                       alt="Graduation समारोह certificate presentation"
                       loading="lazy"
                       className="h-auto max-h-[380px] w-full rounded object-cover"

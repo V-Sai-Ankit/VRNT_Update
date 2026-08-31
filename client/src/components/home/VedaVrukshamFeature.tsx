@@ -31,7 +31,7 @@ export default function VedaVrukshamFeature() {
           </div>
 
           <img
-            src="/images/veda-vruksha-original-new.JPG"
+            src="/images/veda-vruksha-original-new.webp"
             alt="Veda Vruksham — an illustrated diagram of the Vedas as a tree, showing its branches and recensions"
             loading="lazy"
             width={780}

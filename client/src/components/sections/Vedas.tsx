@@ -23,7 +23,7 @@ const ARTICLES: Article[] = [
       "The Vedas (Sabda-Brahman) are co-existent with God and the Universe. At the beginning of the current Sveta-Varaha-Kalpa, (the present span of the Universe), about 6 million years ago, countless, innumerable Vedas (Ananthaha) were divined by Rishis.",
       "The knowledge that makes known what are supersensory is referred to as the Veda. From time immemorial, the descendants of rishis preserved the Veda without the aid of a book, through oral tradition (Sruti).",
     ],
-    image: { src: "/images/periyavar.jpg", alt: "The Sage of Kanchi" },
+    image: { src: "/images/periyavar.webp", alt: "The Sage of Kanchi" },
   },
   {
     id: "rakshanam",
@@ -38,7 +38,7 @@ const ARTICLES: Article[] = [
       "The failure to preserve the Vedas has resulted in 1,121 sakhas (recensions) out of 1,131 that existed 5,000 years ago getting extinct. Verily, watering the roots only will arrest the decay of the tree and its branches.",
       "This Veda Rakshanam by the Grihastas is sought to be shown by offering the necessities of livelihood to the repositories of the Vedas — the Guru and the disciples.",
     ],
-    image: { src: "/images/veda-vruksha-original-new.JPG", alt: "Veda Vriksha — the Vedas illustrated as a tree" },
+    image: { src: "/images/veda-vruksha-original-new.webp", alt: "Veda Vriksha — the Vedas illustrated as a tree" },
   },
   {
     id: "vyasa",

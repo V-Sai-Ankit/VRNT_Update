@@ -74,7 +74,7 @@ export default function SanskritPage({ onBack }: SanskritProps) {
             <div className="rounded-xl border border-border bg-background p-3 shadow-soft flex flex-col items-center">
               <div className="w-full overflow-hidden rounded-lg border border-border">
                 <img
-                  src="/assets/sanskrit.jpg"
+                  src="/assets/sanskrit.webp"
                   alt="Vidyaarthis undergoing oral and written evaluation for the Sanskrit proficiency examination conducted by Chittoor Samskrutha Sabha"
                   loading="lazy"
                   className="w-full h-auto object-cover max-h-[380px]"

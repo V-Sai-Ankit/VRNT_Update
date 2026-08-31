@@ -86,8 +86,8 @@ export default function Mission() {
             <div className="flex flex-col gap-4 rounded-lg border border-border bg-surface p-5 shadow-soft">
               <div className="h-[180px] w-full overflow-hidden rounded-md border border-border">
                 <img
-                  src="/images/vedic-heritage.png"
-                  alt="Ancient palm-leaf Vedic manuscripts representing the Trust's living heritage"
+                  src="/assets/Kanchi_shankaracharyas_1768738006479.webp"
+                  alt="An archival photograph of the Kanchi Kamakoti Peetam Acharyas under whose guidance the Trust operates"
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
@@ -99,7 +99,7 @@ export default function Mission() {
             <div className="flex flex-col gap-4 rounded-lg border border-border bg-surface p-5 shadow-soft">
               <div className="h-[180px] w-full overflow-hidden rounded-md border border-border">
                 <img
-                  src="/images/education.jpg"
+                  src="/images/education.webp"
                   alt="Students engaged in traditional Gurukula-style Vedic education"
                   loading="lazy"
                   className="h-full w-full object-cover"

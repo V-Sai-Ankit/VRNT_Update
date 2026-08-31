@@ -137,7 +137,7 @@ export default function InitiativesPage({
             <div className="flex w-full flex-col items-center rounded-xl border-2 border-border bg-surface p-3 shadow-lifted">
               <div className="w-full overflow-hidden rounded-lg border border-border">
                 <img
-                  src="/assets/HNY.jpg"
+                  src="/assets/HNY.webp"
                   alt="Father teaching son under HNY scheme"
                   loading="lazy"
                   className="h-auto max-h-[420px] w-full object-cover"

@@ -69,8 +69,25 @@ would serve it (minus Vercel's own headers/rewrites — see `vercel.json`).
 npm run test
 ```
 
-Runs the Vitest suite (route rendering, navigation data, the external login URL,
-announcement action rendering — see `client/src/**/*.test.tsx`).
+Runs the Vitest suite: route rendering (including the 404 route), navigation
+data, the external login URL/target/rel, announcement action rendering,
+mobile-menu open/Escape/scroll-lock, and a header contrast/focus-visible
+regression suite — see `client/src/**/*.test.tsx`.
+
+## Image optimization
+
+```powershell
+npm run optimize-images
+```
+
+A one-time development script (`scripts/optimize-images.mjs`, uses `sharp` as
+a devDependency only — never shipped to the browser). It finds every image
+referenced anywhere in `client/src`, and generates a sibling `.webp` next to
+each original at a size/quality appropriate to how large that image is ever
+actually displayed (see the comment at the top of the script for the exact
+rules). **Original files are never modified or deleted** — only run this
+again after adding new images that need optimized versions; it's not part of
+`npm run build` and doesn't need to run on every change.
 
 ## Project structure
 

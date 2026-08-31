@@ -33,7 +33,7 @@ function PoorthySeptCircular() {
       <div className="rounded-xl border border-border bg-surface p-4 shadow-soft">
         <h2 className="mb-3 text-center font-serif text-lg font-bold text-primary">English Notification</h2>
         <img
-          src="/assets/announcement/poorthy-september-en.jpg"
+          src="/assets/announcement/poorthy-september-en.webp"
           alt="Poorthy Pariksha circular, English notification"
           loading="lazy"
           className="w-full rounded-lg border border-border object-contain"
@@ -42,7 +42,7 @@ function PoorthySeptCircular() {
       <div className="rounded-xl border border-border bg-surface p-4 shadow-soft">
         <h2 className="mb-3 text-center font-serif text-lg font-bold text-primary">Tamil Notification (சுற்றறிக்கை)</h2>
         <img
-          src="/assets/announcement/poorthy-september-ta.jpg"
+          src="/assets/announcement/poorthy-september-ta.webp"
           alt="Poorthy Pariksha circular, Tamil notification"
           loading="lazy"
           className="w-full rounded-lg border border-border object-contain"

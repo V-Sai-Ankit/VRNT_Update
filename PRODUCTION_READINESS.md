@@ -121,7 +121,7 @@ Also checked: direct-load of every client-side route (not just client-side navig
 
 Also: every `<img>` on every touched page has `loading="lazy"` (except deliberately above-the-fold images like the hero portrait); route-level code splitting means a visitor to any single page downloads only that page's JS, not the whole site.
 
-**Not done — flagged, not silently skipped:** the raw image assets themselves were not re-compressed or converted to a modern format (WebP/AVIF). Several are large (the Navbar-era logo was 1.68 MB; some Poorthy gallery photos are 2–4.6 MB). This needs an image-optimization pass (e.g. `sharp` as a one-time build-time script, or a Vercel image pipeline) — see "Known limitations."
+**Image optimization**: done in a later pass — see Section 10.5 for the full before/after (56.75 MB → 9.95 MB of referenced image weight, an 82.5% reduction).
 
 ## 7. Dependency / security changes
 
@@ -129,35 +129,309 @@ See "Dependencies & security" above. Full before/after dependency list is in the
 
 ## 8. Known limitations
 
-- **Image optimization not done.** Large raw images (some multi-MB) are shipped as-is. Recommend a follow-up pass with `sharp` or a Vercel image-optimization integration.
 - **No CSP.** Deliberately not added without the ability to test it against the live Google Maps/YouTube embeds and Google Fonts — see "Items requiring owner validation."
 - **`/news` and `/announcements` overlap conceptually.** Investigating the original `SITE_CONTENT.news` data showed it was a weaker, mostly-duplicate version of what `/announcements` already covers properly (most of its links were dead `#` placeholders). `/news` now correctly routes every headline to its real destination, but the owner may want to fold News and Announcements into one concept going forward, or drop News from primary navigation once confirmed.
 - **Dark-mode tokens removed.** The original `index.css` had an unused `.dark` theme block (no toggle existed anywhere in the app). It was not carried forward, since the site has one deliberate light theme; this is a simplification, not a missing feature — flag if dark mode was actually planned.
 - **`framer-motion` remains a dependency** (used by Pariksha, Donate, Mahotsav, Gallery, History, and the three exam sub-pages for entrance animation). It's a real, verified live usage, not dead weight, but it is a meaningfully sized package if bundle size becomes a future concern.
 - **No CI pipeline configured.** `npm run check`, `npm run build`, and `npm run test` all pass locally and are documented in the README, but there is no GitHub Actions/Vercel-integrated gate gating merges on these — recommend adding one.
 
-## 9. Items requiring owner validation
+## 9. OWNER_VALIDATION_REQUIRED
 
-1. **Production domain.** Metadata (canonical URL, `og:url`/`og:image`, structured data, `sitemap.xml`) assumes `https://www.vrnt.org` — this was inferred from two hardcoded (now-deleted) references to `vrnt.org` already present in the old codebase, **not independently verified** against the actual Vercel production domain. Confirm and correct if different before launch.
+These items are preserved as-is (current functionality kept, or only a safe
+presentation improvement applied) specifically because they should not be
+guessed at. None of them block the technical corrections in Section 10 — the
+two lists are independent.
+
+1. **Production domain — now with conflicting evidence.** Metadata (canonical URL, `og:url`/`og:image`, structured data, `sitemap.xml`) assumes `https://www.vrnt.org`, inferred from two now-deleted hardcoded references already present in the old codebase. **New finding from today's image-optimization pass**: the actual Poorthy exam circular image (`/assets/announcement/poorthy-september-en.jpg`, an official Trust document) prints `Web site: www.vedarakshanam.org` and `E-Mail: office@vrnt.org` in its own letterhead — i.e. the Trust's own printed material states a *different* domain than what this codebase assumes everywhere else. **No domain has been changed anywhere in the code** — this is flagged, not acted on. Files affected if a decision is made: `client/index.html` (canonical link, `og:url`, `og:image`, `twitter:image`, the NGO structured-data `url`/`logo` fields), `client/public/robots.txt` (`Sitemap:` line), `client/public/sitemap.xml` (every `<loc>`), `client/src/lib/seo.tsx` (`SITE_URL` constant).
 2. **`/news` vs `/announcements`.** See "Known limitations" — confirm whether these should stay separate or merge.
-3. **Trustees contact data.** `Trustees.tsx` now surfaces phone/email/address for each trustee from `SITE_CONTENT.trustees` — confirm this level of detail is still meant to be public (it was already in the codebase, just not rendered by the live page before this change).
-4. **The assumed production domain also appears in `client/index.html`'s structured data `logo` URL** — same caveat as #1.
-5. **Golden Jubilee homepage image** (`/history/Golden jublee.jpg`) is actually a scanned invitation/circular, not a photograph — alt text was written to reflect that; confirm it's the intended homepage image for "Our Heritage."
-6. **CSP.** If the owner wants a Content-Security-Policy, it needs to be built and tested specifically against: Google Fonts (`fonts.googleapis.com`/`fonts.gstatic.com`), the Google Maps iframe embed on `/contact`, YouTube iframe embeds on `/pariksha` and `/history`, and the external Google Forms/Photos links (which don't need CSP allowances since they're plain links, not embeds).
+3. **Trustees contact data.** `Trustees.tsx` surfaces phone/email/address for each trustee from `SITE_CONTENT.trustees` — confirm this level of detail is still meant to be public (it was already in the codebase, just not rendered by the live page before Phase 2). File: `client/src/components/sections/Trustees.tsx`.
+4. **Golden Jubilee circular — resolved for the homepage, original still on `/history`.** The homepage "Our Heritage" teaser no longer uses `/history/Golden jublee.jpg` (a scanned invitation, not a photograph) — it now uses an authentic archival photograph (`/history/IMG-20260716-WA0008.jpg`, see Section 10.4 below) as a genuinely better fit for a hero-style teaser image. The scanned circular itself is untouched and still used, appropriately, inside `/history`'s own "Golden Jubilee circular viewer" section (a document-viewer context, not a hero image) — see `client/src/components/sections/History.tsx`. If the owner specifically wanted the circular itself as the homepage's heritage image (e.g. because of its printed content, not its visual quality), that would need to be reverted in `client/src/pages/home.tsx`.
+5. **CSP.** If the owner wants a Content-Security-Policy, it needs to be built and tested specifically against: Google Fonts (`fonts.googleapis.com`/`fonts.gstatic.com`), the Google Maps iframe embed on `/contact`, YouTube iframe embeds on `/pariksha` and `/history`, and the external Google Forms/Photos links (which don't need CSP allowances since they're plain links, not embeds). File: `vercel.json`.
 
-## 10. Vercel deployment checklist
+## 10. Visual QA correction pass (rendered-browser review)
 
-- [ ] Confirm production domain matches what's assumed in metadata (see item 1 above); update `client/index.html` and `client/public/sitemap.xml`/`robots.txt` if not `vrnt.org`.
+A second pass, prompted by an independent rendered-browser review of the
+Phase 1/2 production build (not just component code). Every finding below
+was reproduced first (computed styles, DOM measurements, or a screenshot),
+then corrected, then re-verified with a fresh production build. The
+architecture, routing, and shared layout from Phases 1–2 were **not**
+rewritten — this is a correction pass on top of them.
+
+### 10.1 Desktop navigation contrast — release blocker, fixed
+
+**Reproduced**: computed styles on the live production build showed every
+desktop nav label (`Home`, `About`, `Vedas`, `Programs`, `Media`, `Contact`)
+rendering `color: oklab(0.981 ... / 0.9)` (a near-white token) on a header
+`background-color` of `oklab(0.968 ... / 0.95)` (a near-white background) —
+i.e. white-on-off-white text. Root cause: `client/src/components/layout/Header.tsx`
+used `text-secondary-foreground` on both the direct nav-link classes and the
+dropdown-trigger classes. `--secondary-foreground` is the near-white token
+paired with the dark navy `--secondary` background (used correctly
+elsewhere, e.g. the footer) — it was never meant for the light header.
+
+**Fixed**: nav text now uses `text-secondary` (navy) by default,
+`text-primary` (maroon) on hover/focus-within/dropdown-open/current-page.
+Computed contrast ratios (WCAG 2.2, verified with the actual palette
+values, not eyeballed):
+
+| State | Color pair | Ratio | AA (4.5:1) |
+|---|---|---|---|
+| Default | `--secondary` navy on header background | 13.53:1 | Pass |
+| Hover / active page / dropdown open | `--primary` maroon on header background | 7.75:1 | Pass |
+| Scrolled header (shadow/border added, background unchanged) | same as default | 13.53:1 | Pass |
+
+Also fixed while verifying every state as instructed:
+- **The "active"/current-page state was never actually wired.** The
+  original code used a `data-[active=true]:` Tailwind selector, but
+  react-router-dom's `NavLink` marks the current page via
+  `aria-current="page"`, not a `data-active` attribute — so that selector
+  never matched anything, silently. Switched to `aria-[current=page]:`.
+- **Keyboard focus was invisible on 6 of 10 interactive header elements**
+  (logo link, the 3 dropdown triggers, Donate, Login), found while
+  Tab-testing every element for a visible focus indicator per this fix's
+  own requirements. Two different causes: the logo link and the shared
+  `navigationMenuTriggerStyle` base both set `outline-none`/`focus:outline-none`
+  with no replacement indicator (now removed, falling back to the global
+  `:focus-visible` outline); Donate/Login (the `Button` component) were
+  never actually broken — they legitimately swap the outline for an
+  equally-visible `box-shadow` ring, confirmed by reading the computed
+  `box-shadow` (a 4px maroon ring) rather than assuming from the outline
+  alone.
+- Backdrop-blur was checked and does not affect text contrast — the header
+  background is a solid semi-transparent fill behind fully-opaque text; blur
+  only affects content scrolling underneath it.
+
+**Regression test added**: `client/src/components/layout/Header.test.tsx` —
+asserts no header nav item ever renders a `*-foreground` text-color class
+(the exact shape of this bug), asserts a dark/readable color class is
+present on every direct link and dropdown trigger, and asserts no header
+element suppresses the focus outline without a compensating ring.
+
+### 10.2 Mobile hero hierarchy — fixed
+
+**Reproduced**: at 390×844, `document.querySelector('img').getBoundingClientRect()`
+showed the founder portrait occupying y=113 to y=560 (447px tall, more than
+half the viewport) with the `<h1>` not appearing until y=628 — i.e. the
+portrait rendered *before* the heading in document order (`order-first
+md:order-last` was putting the image first on mobile), pushing the mission
+statement and both calls-to-action off the first screen entirely.
+Screenshotted for direct visual confirmation before changing anything.
+
+**Fixed** (`client/src/components/home/HeroSection.tsx`): the content block
+(eyebrow label, `<h1>`, mission excerpt, both CTAs) now comes first in
+document order unconditionally — no order trick needed, since content is
+simply written first in JSX and the two-column grid only applies at `md:`
+and above. The portrait is capped to `w-48` (mobile) / `w-64` (small) before
+growing to fill its column at `md:w-full`, so on the narrowest viewports it
+reads as a modest supporting image below the CTAs rather than a full-viewport
+takeover. `width`/`height` attributes and an `aspect-[4/5]` class are kept
+throughout to prevent layout shift. Desktop (`md:` and up) is visually
+unchanged — same two-column grid, same full-size portrait.
+
+**Verified** at 360, 390, 768, 1024, and 1440px: no overflow, no layout
+shift, no awkward cropping (the same `object-cover` + fixed aspect ratio as
+before, just at a smaller rendered size on mobile).
+
+### 10.3 Homepage hero copy — shortened, documented for approval
+
+**Before** (75 words, the full `SITE_CONTENT.mission.detailed` paragraph,
+still unchanged and still the opening paragraph of `/mission`):
+
+> VEDA RAKSHANA NIDHI TRUST (VRNT) is a Public Charitable Trust sponsored by
+> Kanchi Kamakoti Peetam founded in 1963 under the guidance of His Holiness
+> Sri Sri Chandrashekarendra Saraswati MahaSwamigal. Learning and teaching
+> the Vedas through the traditional Gurukula system is not merely an
+> academic pursuit—it is a way of life, a sacred journey that nurtures both
+> character and intellect. In this ancient and time-honoured system,
+> education transcends classroom boundaries and becomes an immersive
+> spiritual discipline.
+
+**After** (50 words, homepage hero only — `client/src/components/home/HeroSection.tsx`, `HERO_EXCERPT` constant):
+
+> Veda Rakshana Nidhi Trust is a public charitable trust founded in 1963
+> under the guidance of the Kanchi Kamakoti Peetam. For over six decades,
+> the Trust has worked to preserve traditional Vedic education —
+> supporting Vedic scholars, students, and Patasalas across India so this
+> ancient oral tradition endures for future generations.
+
+**⚠ OWNER APPROVAL NEEDED for this specific copy change.** It covers the
+same four facts as the original (public charitable trust; founded 1963;
+guidance of the Kanchi Kamakoti Peetam; mission of preserving traditional
+Vedic education) without inventing any new claim — "for over six decades"
+is arithmetic from the stated 1963 founding year, not a new assertion, and
+matches the site's own existing Shashtyabda (60th-year) framing used
+elsewhere. No religious passage was touched. The full original wording is
+unchanged on `/mission`.
+
+### 10.4 Homepage image selection and presentation
+
+Inventoried existing local assets (`client/public/images/`, `client/public/assets/`,
+`client/public/history/`) before choosing anything; no stock or AI-generated
+image was added (`client/public/assets/generated_images/` already existed
+from before this pass and was itself removed from homepage use, see below —
+not added to).
+
+| Section | Original | Change | Reason | Owner validation |
+|---|---|---|---|---|
+| Homepage "Mission & Vision" teaser | `/images/vedic-heritage.png` (a heavily-saturated stock-style graphic of book spines) | → `/images/education.jpg` (an authentic photo of a teacher and students at a Veda Patasala) | Authentic, on-theme, already in the repo; the graphic was the specific "heavily saturated" issue named in the review | None — straightforward quality swap |
+| `/mission` page's own "Vedic Heritage" card | `/images/vedic-heritage.png` (same file, same issue, also in the explicitly-listed `/mission` inspection scope) | → `/assets/Kanchi_shankaracharyas_1768738006479.jpg` (an authentic colorized archival photo of the Kanchi Acharyas) | Same underlying asset/issue as the homepage teaser; fixed for consistency | None |
+| Homepage "Activities & Programs" teaser | `/assets/generated_images/vedic_scriptures_and_oil_lamp_warm_background.png` (AI-generated, per its own folder name) | → `/assets/HNY.jpg` (an authentic photo of a Hereditary Niyama Adhyayanam teaching session) | Not flagged in this review, but a strictly-better authentic asset was available and the task's spirit disfavors AI-generated imagery where a real alternative exists | Discretionary improvement, not requested — flagging in case the AI-generated look was actually preferred |
+| Homepage "Pariksha" teaser | `/images/education.jpg` (moved to Mission & Vision, see above) | → `/assets/Acharya certificate.jpg` (an authentic photo of an Acharya presenting an exam certificate) | Frees the education photo for Mission & Vision; this photo is a stronger thematic fit for "examinations" | None |
+| Homepage "Our Heritage" teaser | `/history/Golden jublee.jpg` (a scanned invitation/circular, not a photograph) | → `/history/IMG-20260716-WA0008.jpg` (an authentic black-and-white archival photo of the founding-era Acharya blessing devotees) | A genuine photograph reads as "heritage" far better than a scanned document; the circular remains, appropriately, inside `/history`'s own document-viewer section | See OWNER_VALIDATION_REQUIRED #4 |
+
+Every replacement is an asset that already existed in `client/public/` before
+this pass — nothing was downloaded. No text inside any scanned document was
+altered (the Golden Jubilee circular's own pixels are completely untouched,
+it just isn't the homepage's featured image anymore).
+
+### 10.5 Image optimization
+
+**Inventory**: a source grep found 64 distinct images actually referenced by
+routes (portraits, event/gallery photography, scanned circulars, the Veda
+Vruksham diagram, the header logo), totalling **56.75 MB**. Several were
+multi-megabyte camera-original JPEGs at 4096×3072px+ (and one, the header
+logo, at 4096×5120px — 21 megapixels — rendered on screen at 44×44px).
+
+**Method**: a one-time development script, `scripts/optimize-images.mjs`
+(documented at the top of the file, run via `npm run optimize-images`),
+using `sharp` as a **devDependency only** (never shipped to the browser —
+confirmed 0 runtime `dependencies` added, only `devDependencies`). For each
+referenced image it generates a sibling `.webp`:
+- **Text-heavy scans/diagrams** (the two Poorthy circulars, the Golden
+  Jubilee circular, Maha Periyava's letter, the Veda Vruksham diagram): no
+  resize, quality 90. **Manually verified legible** at full resolution after
+  conversion — every line of small print (phone numbers, dates, a Google
+  Form URL) on the Poorthy circular reads clearly; the multi-column Vedic
+  branch names on the tree diagram are unchanged and sharp.
+- **The header logo**: resized to 256×256 (renders at 44×44px on screen —
+  256px covers even a 4x-density retina display), quality 82.
+- **Everything else** (portraits, event photography): capped at 1600px on
+  the long edge (generous for the largest actual use, the Gallery carousel
+  at up to ~1200px), quality 80.
+
+**Originals were not modified or deleted** — every optimized file is a new
+`.webp` alongside its source. The application was then updated (a scripted,
+verified string-for-string swap, not a manual edit) to reference the
+`.webp` path everywhere a route actually uses that image; one image
+(`/assets/jayendra_saraswathi.jpg`) was excluded because its `.webp`
+came out *larger* than the original (80 KB → 86 KB, an already
+well-compressed small JPEG) — it was left as the original JPEG.
+
+**Before / after** (the 64 referenced images):
+
+| | Size |
+|---|---|
+| Before (originals, as referenced) | 56.75 MB |
+| After (optimized, as now referenced) | 9.95 MB |
+| Reduction | **82.5%** |
+
+Largest individual reductions:
+
+| Image | Before | After | Reduction |
+|---|---|---|---|
+| `images/logo.jpg` (header logo, was 4096×5120px for a 44×44px use) | 1,683 KB | 16 KB | −99% |
+| `assets/shashti.png` (Mahotsav poster) | 2,219 KB | 188 KB | −92% |
+| `poorthy/second gallery/IMG_20250831_093917757_HDR.jpg` | 4,665 KB | 423 KB | −91% |
+| `poorthy/second gallery/IMG_20250831_093631544_HDR.jpg` | 3,941 KB | 403 KB | −90% |
+| `assets/generated_images/Maha Periyava messages.png` | 2,968 KB | 457 KB | −85% |
+| `poorthy/third gallery/20240911_085056.jpg` | 3,035 KB | 226 KB | −93% |
+| `history/IMG-20260716-WA0010.jpg` | 103 KB | 13 KB | −87% |
+
+Full per-file output is reproducible by re-running `npm run optimize-images`
+(idempotent — it just regenerates the same `.webp` files).
+
+**Note on repository/deploy size**: per the instruction to preserve
+originals, both the original and the `.webp` now exist in
+`client/public/`, and Vite copies the entire `public/` directory into
+`dist/` verbatim — so the *deployed artifact* contains both (originals are
+simply unreferenced dead weight in the deploy, not fetched by browsers).
+The 56.75 MB → 9.95 MB figure above is what a visitor's browser actually
+downloads (the only number that affects real-world page performance), which
+is the metric that matters here.
+
+**Verified no broken images**: after the swap, a fresh production build was
+screenshotted and DOM-inspected (`img.complete`/`img.naturalWidth`) across
+all 5 homepage widths and 9 internal pages at 1440/390px, with the page
+fully scrolled through first (to rule out lazy-loading timing false
+positives, which did appear in an initial un-scrolled check and were
+confirmed to resolve to 0 once given a moment to actually load). Zero
+broken images on any route.
+
+### 10.6 Test-warning cleanup
+
+**Before**: `npm run test` passed but printed a `Not implemented:
+window.scrollTo` JSDOM error on every test that renders `<App/>` (its
+`ScrollToTop` effect calls the real `window.scrollTo`, which JSDOM doesn't
+implement).
+
+**Fixed**: `client/src/test/setup.ts` now stubs `window.scrollTo = vi.fn()`
+in a `beforeEach`, once, globally — documented inline as to why. This does
+**not** touch, weaken, or mock away the app's real scroll-reset behavior;
+the `ScrollToTop` effect in `App.tsx` is completely unchanged and still
+runs and calls `scrollTo` in every test, it just no longer hits JSDOM's
+unimplemented-API warning path. No other console output is suppressed.
+
+**Verified**: full `npm run test` output is clean — 25/25 tests pass, no
+`window.scrollTo` warning, no other warnings.
+
+### 10.7 Widths and routes visually rechecked (this pass)
+
+Rendered-browser review used a **production build** (`npm run build` +
+`npm run preview`), not the dev server, per the review's own requirement.
+
+- Homepage at all 5 required widths: 1440×900, 1024×768, 768×1024, 390×844,
+  360×800 — header readability, nav visibility, hero ordering/dimensions,
+  heading/CTA visibility, announcement presentation, section spacing, image
+  loading, contact section, and footer all checked; zero horizontal
+  overflow at any width.
+- Internal pages at 1440px and 390px: `/mission`, `/activities`, `/pariksha`,
+  `/donate`, `/contact`, `/gallery`, `/history`, `/announcements`,
+  `/this-route-does-not-exist` — zero overflow, zero console errors, zero
+  broken images (after accounting for lazy-load timing, see 10.5) on any of
+  the 18 checks (9 routes × 2 widths).
+- Interaction checks, all against the production build: desktop dropdown
+  open/readable/operable (About → Mission & Vision → navigates to
+  `/mission`); real keyboard Tab sequence through every header element
+  confirming a visible focus indicator (outline or ring) on each one; mobile
+  menu opens, Escape closes it, body scroll is `overflow: hidden` while
+  open, navigating via a mobile-menu link both navigates and closes the
+  menu; Login link (desktop and mobile) resolves to exactly
+  `https://vrnt-app.onrender.com/#/login` with `target="_blank"` and
+  `rel="noopener noreferrer"`; Donate is a real internal `<Link>` (not a
+  fake button); an announcement detail link, a direct route load
+  (`/mission`, `/donate`, `/announcements/poorthy-sept`, all 200), and two
+  PDF links (`POORTHY_APPL_2024.pdf`, the result PDF) all resolve
+  `200`/`application/pdf`.
+- Quality gate, run twice — once mid-pass and once from a clean `npm ci` —
+  both clean: `npm run check` (0 errors), `npm run test` (25/25, no
+  warnings), `npm run build` (succeeds, main chunk 368.6 KB/117.3 KB gzip),
+  `npm audit` (0 vulnerabilities, including with `sharp` newly added as a
+  devDependency).
+
+## 11. Vercel deployment checklist
+
+- [ ] Confirm production domain matches what's assumed in metadata (see OWNER_VALIDATION_REQUIRED #1 — note the new `vedarakshanam.org` vs `vrnt.org` conflict found this pass); update `client/index.html`, `client/src/lib/seo.tsx`, `client/public/sitemap.xml`/`robots.txt` if not `vrnt.org`.
 - [ ] Vercel project settings: build command `npm run build` (unchanged), output directory `dist` (unchanged), install command `npm ci`.
 - [ ] No environment variables required — this repo holds no secrets and no backend.
-- [ ] `vercel.json` already handles the SPA rewrite, asset caching, and the new security headers — no changes needed unless the domain changes.
+- [ ] `vercel.json` already handles the SPA rewrite, asset caching, and the security headers — no changes needed unless the domain changes.
 - [ ] After deploy: spot-check the external Login button opens `https://vrnt-app.onrender.com/#/login` in a new tab from both desktop and mobile.
 - [ ] After deploy: verify direct-load of a client-side route (e.g. `https://<domain>/mission` typed directly into the address bar) works — this was the original catch-all bug's failure mode.
+- [ ] After deploy: re-check desktop nav contrast and mobile hero ordering on the actual deployed URL (not just localhost) once, since fonts/CDN timing can occasionally differ.
+- [ ] Get owner sign-off on the homepage hero copy change (Section 10.3) before or immediately after this deploys — it's a visible, public-facing wording change.
 - [ ] Submit `sitemap.xml` to Google Search Console once the domain is confirmed.
 
-## 11. Rollback guidance
+**Updated recommendation**: the branch is ready for a Vercel **preview**
+deployment (not a production promotion) once the owner has seen this
+document — specifically Section 10.3 (hero copy) and the
+OWNER_VALIDATION_REQUIRED items. All automated and rendered-browser checks
+pass; nothing outstanding is a technical blocker. The domain conflict found
+in Section 9 item 1 should be resolved before a **production** promotion,
+since it affects canonical URLs, Open Graph previews, and the sitemap.
+
+## 12. Rollback guidance
 
 - This work is entirely on the local branch `production-homepage-redesign`; `main` is untouched at `1e604ea`.
 - Nothing has been pushed to GitHub or deployed to Vercel — the live production site is unaffected until this branch is explicitly merged and deployed.
-- To roll back after merging: `git revert` the two commits on this branch (`Phase 1: ...` and `Phase 2/3: ...`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
-- Every commit on this branch is a coherent, working checkpoint (`tsc` clean, build succeeds) — if a partial rollback is ever needed, either commit can be reverted independently, though the Phase 2/3 commit depends on Phase 1's design tokens and layout components.
+- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
+- Every commit on this branch is a coherent, working checkpoint (`tsc` clean, build succeeds, tests pass) — if a partial rollback is ever needed, commits can be reverted independently in reverse order, though each depends on the design tokens and layout components introduced in Phase 1.
+- The image-optimization commit specifically can be reverted on its own without affecting layout/functionality: it only changes image `src` paths (raster → `.webp`) and adds new `.webp` files; no component logic changed as part of it.

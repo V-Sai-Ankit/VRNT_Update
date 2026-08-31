@@ -66,7 +66,7 @@ export default function CelebrationPage({ setCurrentPage }: CelebrationPageProps
         >
           <div className="flex w-full max-w-2xl justify-center rounded-xl border border-border bg-surface p-4 shadow-soft">
             <img
-              src="/assets/shashti.png"
+              src="/assets/shashti.webp"
               alt="Commemorative poster celebrating 60 glorious years of Veda Rakshana Nidhi Trust"
               loading="lazy"
               className="max-h-[550px] w-full rounded-lg border border-accent/40 object-contain shadow-soft"

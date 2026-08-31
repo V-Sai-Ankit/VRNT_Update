@@ -14,8 +14,17 @@ import { PRIMARY_NAV, DONATE_LINK, LOGIN_URL } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import MobileNav from "./MobileNav";
 
+// Nav text sits on the light header background, so it needs a dark,
+// high-contrast color -- NOT `text-secondary-foreground` (that token is
+// near-white, meant for text on the dark navy `--secondary` background,
+// not for the header itself). `text-secondary` (navy) is verified at
+// 13.5:1 contrast against the header background; `text-primary` (maroon)
+// on hover/active/open is verified at 7.75:1. See Header.test.tsx.
+// Note: react-router-dom's NavLink marks the current page via
+// `aria-current="page"`, not a `data-active` attribute -- the previous
+// `data-[active=true]:` selector here never actually matched anything.
 const linkClasses =
-  "inline-flex h-10 items-center rounded-md px-3 text-sm font-sans font-semibold text-secondary-foreground/90 transition-colors hover:bg-secondary/10 hover:text-secondary data-[active=true]:text-primary";
+  "inline-flex h-10 items-center rounded-md px-3 text-sm font-sans font-semibold text-secondary transition-colors hover:bg-secondary/10 hover:text-primary aria-[current=page]:text-primary aria-[current=page]:bg-primary/5";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -36,9 +45,9 @@ export default function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-wide items-center gap-3 px-4 sm:px-6">
-        <Link to="/" className="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline-none">
+        <Link to="/" className="flex min-w-0 items-center gap-3 rounded-md">
           <img
-            src="/images/logo.jpg"
+            src="/images/logo.webp"
             alt=""
             width={44}
             height={44}
@@ -69,7 +78,7 @@ export default function Header() {
                   </NavigationMenuItem>
                 ) : (
                   <NavigationMenuItem key={group.label}>
-                    <NavigationMenuTrigger className="h-10 bg-transparent px-3 font-sans text-sm font-semibold text-secondary-foreground/90 hover:bg-secondary/10 hover:text-secondary data-[state=open]:bg-secondary/10">
+                    <NavigationMenuTrigger className="h-10 bg-transparent px-3 font-sans text-sm font-semibold text-secondary hover:bg-secondary/10 hover:text-primary data-[state=open]:bg-secondary/10 data-[state=open]:text-primary">
                       {group.label}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>

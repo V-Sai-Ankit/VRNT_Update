@@ -151,13 +151,13 @@ export default function History({
   }, [activeSubView]);
 
   const achievementImages = [
-    "/history/IMG-20260813-WA0003.jpg",
-    "/history/IMG-20260818-WA0002.jpg",
-    "/history/IMG-20260818-WA0003.jpg",
-    "/history/IMG-20260818-WA0004.jpg",
-    "/history/IMG-20260818-WA0005.jpg",
-    "/history/IMG-20260818-WA0006.jpg",
-    "/history/IMG-20260818-WA0007.jpg",
+    "/history/IMG-20260813-WA0003.webp",
+    "/history/IMG-20260818-WA0002.webp",
+    "/history/IMG-20260818-WA0003.webp",
+    "/history/IMG-20260818-WA0004.webp",
+    "/history/IMG-20260818-WA0005.webp",
+    "/history/IMG-20260818-WA0006.webp",
+    "/history/IMG-20260818-WA0007.webp",
   ];
 
   const handleNextAchievement = () => {
@@ -182,7 +182,7 @@ export default function History({
       id: "annadurai",
       title: "ஸ்ரீ அண்ணாதுரை ஐயங்கார்",
       subtitle: "வேத ரக்ஷாமணி",
-      image: "/history/IMG-20260716-WA0010.jpg",
+      image: "/history/IMG-20260716-WA0010.webp",
       previewText: "ஸ்ரீ மஹாபெரியவாளின் ஆணைப்படி வேதங்களைப் பாதுகாப்பதற்காகத் தன் வாழ்க்கையையே அர்ப்பணித்த ஒரு தீவிர பக்தர் மற்றும் கர்ம யோகி...",
       introduction: "ஸ்ரீ அண்ணாதுரை ஐயங்கார் அவர்கள், ஸ்ரீ மஹாபெரியவா (ஸ்ரீ சந்திரசேகரேந்திர சரஸ்வதி ஸ்வாமிகள்) அவர்களின் ஆணைப்படி வேதங்களைப் பாதுகாப்பதற்காகத் தன் வாழ்க்கையையே அர்ப்பணித்த ஒரு தீவிர பக்தர் ஆவார். அவர் ஒரு கர்ம யோகி. மஹாபெரியவா மீது ஆழ்ந்த பக்தி கொண்ட இவர், 1940-ஆம் ஆண்டில் உருவாக்கப்பட்ட 'வேத ரக்ஷண நிதி' அறக்கட்டளையின் முக்கிய பொறுப்பாளராக நியமிக்கப்பட்டார்.",
       highlights: [
@@ -240,11 +240,11 @@ export default function History({
 
           <div className="w-full max-w-3xl bg-background border-4 double border-accent/60 rounded-xl p-3 md:p-6 shadow-soft flex flex-col items-center">
             <img
-              src="/history/Golden jublee.jpg"
+              src="/history/Golden jublee.webp"
               alt="Golden Jubilee Invitation Circular"
               loading="lazy"
               className="w-full h-auto object-contain rounded"
-              onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
+              onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.webp"; }}
             />
           </div>
         </div>
@@ -292,7 +292,7 @@ export default function History({
               alt={`Photo ${currentAchieveIndex + 1} of ${achievementImages.length} from the Trust achievements and honors ceremony at Sri Bhandarakeri Mutt, Raichur`}
               loading="lazy"
               className="max-w-full max-h-[75vh] object-contain rounded shadow-soft"
-              onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
+              onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.webp"; }}
             />
 
             <button
@@ -364,7 +364,7 @@ export default function History({
                 alt={`Portrait of ${selected.title}, ${selected.subtitle}`}
                 loading="lazy"
                 className="w-full h-full object-contain rounded"
-                onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
+                onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.webp"; }}
               />
             </div>
             <div className="flex-grow text-center md:text-left">
@@ -396,7 +396,7 @@ export default function History({
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch my-2">
               <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex items-center justify-center overflow-hidden max-h-[300px]">
                 <img
-                  src="/history/IMG-20260716-WA0008.jpg"
+                  src="/history/IMG-20260716-WA0008.webp"
                   alt="Photograph of Sri Mahaperiyava accompanying the account of Sri Annadurai Iyengar's Vedic service"
                   loading="lazy"
                   className="w-full h-full object-cover rounded"
@@ -405,7 +405,7 @@ export default function History({
               </div>
               <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex items-center justify-center overflow-hidden max-h-[300px]">
                 <img
-                  src="/history/IMG-20260716-WA0009.jpg"
+                  src="/history/IMG-20260716-WA0009.webp"
                   alt="Photograph of Sri Mahaperiyava giving a discourse, accompanying the account of Sri Annadurai Iyengar's Vedic service"
                   loading="lazy"
                   className="w-full h-full object-cover rounded"
@@ -438,7 +438,7 @@ export default function History({
                 </div>
                 <div className="w-40 h-40 bg-background p-1.5 border border-border rounded-lg shrink-0 overflow-hidden shadow-soft flex items-center justify-center">
                   <img
-                    src="/history/IMG-20260716-WA0011.jpg"
+                    src="/history/IMG-20260716-WA0011.webp"
                     alt="Photograph of Sri Mahaperiyava accompanying the account of his blessing to Sri Annadurai Iyengar"
                     loading="lazy"
                     className="w-full h-full object-cover rounded"
@@ -484,7 +484,7 @@ export default function History({
                   alt={`Portrait of ${profile.title}, ${profile.subtitle}`}
                   loading="lazy"
                   className="w-full h-full object-contain"
-                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.webp"; }}
                 />
               </div>
               <div className="flex flex-col">
@@ -531,11 +531,11 @@ export default function History({
                 className="w-full h-52 bg-background border border-border rounded-lg overflow-hidden mb-4 flex items-center justify-center p-2 cursor-pointer group hover:border-accent transition-all shadow-soft"
               >
                 <img
-                  src="/history/Golden jublee.jpg"
+                  src="/history/Golden jublee.webp"
                   alt="Golden Jubilee Celebration circular preview"
                   loading="lazy"
                   className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
-                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.webp"; }}
                 />
               </button>
 
@@ -577,7 +577,7 @@ export default function History({
                   alt="Preview photo from the Trust achievements and honors ceremony at Sri Bhandarakeri Mutt, Raichur"
                   loading="lazy"
                   className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
-                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.png"; }}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/logo.webp"; }}
                 />
               </button>
 

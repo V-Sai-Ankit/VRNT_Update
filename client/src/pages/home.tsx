@@ -21,7 +21,7 @@ export default function Home() {
       <HomeSection
         eyebrow="Our Purpose"
         title="Mission & Vision"
-        image={{ src: "/images/vedic-heritage.png", alt: "Ancient Vedic manuscripts representing the Trust's heritage preservation work" }}
+        image={{ src: "/images/education.webp", alt: "A teacher and students of a Veda Patasala supported by the Trust" }}
         cta={{ label: "Read our full mission", to: "/mission" }}
       >
         <p>{SITE_CONTENT.mission.points[0]}</p>
@@ -34,7 +34,7 @@ export default function Home() {
         tone="muted"
         eyebrow="What We Do"
         title="Activities & Programs"
-        image={{ src: "/assets/generated_images/vedic_scriptures_and_oil_lamp_warm_background.png", alt: "Vedic scriptures beside a traditional oil lamp" }}
+        image={{ src: "/assets/HNY.webp", alt: "A Hereditary Niyama Adhyayanam (HNY) teaching session at the Trust" }}
         imageSide="left"
         cta={{ label: "Explore all activities", to: "/activities" }}
       >
@@ -44,7 +44,7 @@ export default function Home() {
       <HomeSection
         eyebrow="Current Initiative"
         title="Pariksha — Vedic Examinations"
-        image={{ src: "/images/education.jpg", alt: "Students engaged in traditional Vedic education" }}
+        image={{ src: "/assets/Acharya certificate.webp", alt: "An Acharya presenting a certificate to a successful Vedic examination candidate" }}
         cta={{ label: "View exam schedules & results", to: "/pariksha" }}
       >
         <p>
@@ -58,7 +58,7 @@ export default function Home() {
         tone="muted"
         eyebrow="Six Decades of Service"
         title="Our Heritage"
-        image={{ src: "/history/Golden jublee.jpg", alt: "The Trust's Golden Jubilee celebration invitation" }}
+        image={{ src: "/history/IMG-20260716-WA0008.webp", alt: "An archival photograph of the Trust's founding-era Acharya blessing devotees" }}
         imageSide="left"
         cta={{ label: "Read our history", to: "/history" }}
       >

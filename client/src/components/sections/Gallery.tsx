@@ -7,7 +7,7 @@ import { Helmet } from "@/lib/seo";
 const GALLERY_IMAGES = [
   // --- SPIRITUAL LINEAGE ACHARYAS ---
   {
-    url: "/assets/1768738817683.jpg",
+    url: "/assets/1768738817683.webp",
     title: "Adi Shankaracharya",
     category: "Peetham Founder",
     description: "Kanchi Kamakoti Peetham established by Adi Shankaracharya (509 BCE to 477 BCE) 2500 years ago.",
@@ -28,7 +28,7 @@ const GALLERY_IMAGES = [
     albumUrl: null
   },
   {
-    url: "/assets/70_1768742815509.jpg",
+    url: "/assets/70_1768742815509.webp",
     title: "70th Jagadguru Shankaracharya",
     category: "Acharya",
     description: "Sri Shankara Vijayendra Saraswati Mahaswami Ji",
@@ -51,42 +51,42 @@ const GALLERY_IMAGES = [
 
   // --- POORTHY EXAMINATION GALLERIES ---
   {
-    url: "/poorthy/first gallery/IMG_20260305_111546869_HDR.jpg",
+    url: "/poorthy/first gallery/IMG_20260305_111546869_HDR.webp",
     title: "VRNT-POORTHY-SJ26",
     category: "March 5, 2026",
     description: "Official examination proceedings and sabha sessions for VRNT-POORTHY-SJ26.",
     albumUrl: "https://photos.app.goo.gl/44zvTt67hd1FnXQw5"
   },
   {
-    url: "/poorthy/second gallery/20250831_093953.jpg",
+    url: "/poorthy/second gallery/20250831_093953.webp",
     title: "VRNT-VJ-EXAMS-SEP-2025",
     category: "August 31, 2025",
     description: "Vijayadasami Poorthy oral examinations and Vidyaarthi assessments.",
     albumUrl: "https://photos.app.goo.gl/11bg4sbZFyTom2zH9"
   },
   {
-    url: "/poorthy/third gallery/20240911_085056.jpg",
+    url: "/poorthy/third gallery/20240911_085056.webp",
     title: "VRNT VIJAYADASAMI EXAMS SEP 11-14, 2024",
     category: "September 11–14, 2024",
     description: "Annual Vijayadasami examinations across multiple Veda Shaakhas.",
     albumUrl: "https://photos.app.goo.gl/H1WVEG18PUxkorTA7"
   },
   {
-    url: "/poorthy/fourth gallery/IMG-20240316-WA0033.jpg",
+    url: "/poorthy/fourth gallery/IMG-20240316-WA0033.webp",
     title: "VRNT POORTHI EXAM 15-17TH MARCH 2024",
     category: "March 15–17, 2024",
     description: "Spring Poorthy examination sessions supervised by senior Veda Panditas.",
     albumUrl: "https://photos.app.goo.gl/F1mBKjiHR8aBsRRHA"
   },
   {
-    url: "/poorthy/fifth gallery/IMG-20230924-WA0066.jpg",
+    url: "/poorthy/fifth gallery/IMG-20230924-WA0066.webp",
     title: "VRNT POORTHI EXAMS 22-24 SEP 2023",
     category: "September 22–24, 2023",
     description: "Rigorous oral recitations and completion assessments.",
     albumUrl: "https://photos.app.goo.gl/frSGh8xZv4XdrjDo9"
   },
   {
-    url: "/poorthy/sixth gallery/IMG20220814094026.jpg",
+    url: "/poorthy/sixth gallery/IMG20220814094026.webp",
     title: "VRNT Poorthy Exams (Aug 13–16, 2022)",
     category: "August 13–16, 2022",
     description: "Veda Rakshana Nidhi Trust graduation examinations and Parithoshikam.",
@@ -95,7 +95,7 @@ const GALLERY_IMAGES = [
 
   // --- RECENT EVENT ---
   {
-    url: "/assets/vrnt_1768670925029.jpg",
+    url: "/assets/vrnt_1768670925029.webp",
     title: "Veda Rakshana Nidhi Trust Sabha",
     category: "Vedic Event",
     description: "Sacred gatherings and Vidwat Sabha proceedings organized under VRNT.",
