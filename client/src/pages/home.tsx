@@ -1,6 +1,5 @@
 import { Helmet } from "@/lib/seo";
 import HeroSection from "@/components/home/HeroSection";
-import AnnouncementTeaser from "@/components/home/AnnouncementTeaser";
 import HomeSection from "@/components/home/HomeSection";
 import VedaVrukshamFeature from "@/components/home/VedaVrukshamFeature";
 import DonateCTA from "@/components/home/DonateCTA";
@@ -16,7 +15,6 @@ export default function Home() {
       />
 
       <HeroSection />
-      <AnnouncementTeaser />
 
       <HomeSection
         eyebrow="Our Purpose"

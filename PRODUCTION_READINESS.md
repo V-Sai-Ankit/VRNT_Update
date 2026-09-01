@@ -428,10 +428,54 @@ pass; nothing outstanding is a technical blocker. The domain conflict found
 in Section 9 item 1 should be resolved before a **production** promotion,
 since it affects canonical URLs, Open Graph previews, and the sitemap.
 
+## 12a. Post-handoff refinement — announcement above the fold
+
+An explicit owner requirement, requested and confirmed after reviewing the
+first handoff: the featured announcement had to be visible on the homepage
+**without scrolling**, on every required width, since site visitors
+specifically come to check announcements. Three layout options (with
+tradeoffs) were presented for the desktop hero and two for mobile before
+any code changed; the owner picked "announcement stacked above a smaller
+portrait" for desktop and "compact one-line banner" for mobile.
+
+**Change**: `AnnouncementTeaser.tsx` (previously its own full-width section
+directly below the hero, requiring a scroll to reach) was folded into
+`HeroSection.tsx`'s right column, which now stacks the announcement above a
+smaller founder portrait instead of one large image alone. Below the `md:`
+breakpoint the announcement collapses to a single-line banner (title +
+"View →"); at `md:` and up it's the full card (icon, eyebrow, title,
+3-line-clamped summary, both links). The portrait shrank accordingly
+(`w-28`/`w-32` mobile → `max-w-[200px]` desktop, was `w-48`/`w-64` → full
+column) but was kept, not removed, in the hero.
+
+**Verified with `getBoundingClientRect`**, not assumed: the announcement's
+own link element sits fully within the viewport height (`y + height ≤
+viewport height`) at all 5 required widths (1440×900, 1024×768, 768×1024,
+390×844, 360×800), confirmed on a fresh production build.
+
+**Regression caught and fixed during this change**: adding the announcement
+into the grid's second column introduced a real horizontal-overflow bug at
+360px (13px of scroll) — a textbook CSS Grid issue where grid items default
+to `min-width: auto`, so a track won't shrink below its content's intrinsic
+minimum width. Fixed by adding `min-w-0` to both direct grid-item wrappers.
+Re-verified via direct DOM inspection (`scrollWidth` vs every element's
+`getBoundingClientRect().right`) that zero elements exceed the viewport at
+360px, and re-ran the full 5-width overflow/broken-image sweep clean.
+
+**New regression test**: `client/src/components/home/HeroSection.test.tsx`
+asserts the announcement link lives inside the hero's own `<section>`
+(guards against it ever being pulled back out into a separate below-the-fold
+section) and that both the compact and full variants render.
+
+Re-verified after this change: `npm run check` (0 errors), `npm run test`
+(27/27, two new tests), `npm audit` (0 vulnerabilities), production build
+succeeds, zero horizontal overflow and zero console errors at all 5
+homepage widths.
+
 ## 12. Rollback guidance
 
 - This work is entirely on the local branch `production-homepage-redesign`; `main` is untouched at `1e604ea`.
 - Nothing has been pushed to GitHub or deployed to Vercel — the live production site is unaffected until this branch is explicitly merged and deployed.
-- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
+- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`, `Move the announcement above the fold in the homepage hero`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
 - Every commit on this branch is a coherent, working checkpoint (`tsc` clean, build succeeds, tests pass) — if a partial rollback is ever needed, commits can be reverted independently in reverse order, though each depends on the design tokens and layout components introduced in Phase 1.
 - The image-optimization commit specifically can be reverted on its own without affecting layout/functionality: it only changes image `src` paths (raster → `.webp`) and adds new `.webp` files; no component logic changed as part of it.
