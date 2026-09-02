@@ -220,3 +220,45 @@
   border-style: double;
   border-width: 3px;
 }
+
+/*
+ * Homepage hero layout. Uses named grid areas so the same photo and
+ * announcement elements can be repositioned entirely differently between
+ * mobile/tablet and desktop -- without rendering the image twice:
+ *  - Mobile/tablet (below 1024px): photo sits beside the CTA buttons;
+ *    announcement is a full-width horizontal banner below that row. Used
+ *    up to and including 768px-wide tablets, since the 3-column desktop
+ *    arrangement below was too cramped at that width (tried it: nav labels
+ *    and card text wrapped awkwardly with no room to breathe).
+ *  - Desktop (1024px+, matching the header's own mobile/desktop breakpoint):
+ *    photo and announcement become two vertical columns running the full
+ *    height of the hero, next to the text content.
+ * See HeroSection.tsx for the elements assigned to each area.
+ */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "eyebrow eyebrow"
+    "heading heading"
+    "excerpt excerpt"
+    "ctas photo"
+    "announcement announcement";
+  column-gap: 1.25rem;
+  row-gap: 0.875rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1.4fr 0.55fr 0.95fr;
+    grid-template-areas:
+      "eyebrow photo announcement"
+      "heading photo announcement"
+      "excerpt photo announcement"
+      "ctas photo announcement";
+    column-gap: 2.5rem;
+    row-gap: 1.25rem;
+    align-items: center;
+  }
+}

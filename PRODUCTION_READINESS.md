@@ -472,10 +472,59 @@ Re-verified after this change: `npm run check` (0 errors), `npm run test`
 succeeds, zero horizontal overflow and zero console errors at all 5
 homepage widths.
 
+## 12b. Further refinement — hero rearranged into three areas
+
+A follow-up owner request after seeing 12a live: on desktop, the
+announcement should sit **vertically, next to the photo** (not stacked
+above it); on mobile, the photo should sit **next to the Support/Donate
+buttons**, with the announcement as a **horizontal banner below** that row.
+Three desktop options and two mobile options were presented with tradeoffs
+before writing any code; the owner confirmed the arrangement matched their
+intent exactly before implementation.
+
+**Change**: `HeroSection.tsx` was rewritten around a named CSS Grid
+(`.hero-grid` in `index.css`) with six areas — `eyebrow`, `heading`,
+`excerpt`, `ctas`, `photo`, `announcement`. This lets the *same* photo and
+announcement DOM elements occupy completely different positions per
+breakpoint (no image rendered twice):
+- **Mobile/tablet** (below the breakpoint below): `ctas` and `photo` share
+  one row (buttons stacked left, small photo thumbnail right); every other
+  area spans the full width; `announcement` is a full-width horizontal
+  banner in its own row below.
+- **Desktop**: three columns — text content, then `photo`, then
+  `announcement` — each spanning the full height of the hero.
+
+**Breakpoint tuning, found by testing, not assumed**: the first attempt
+used `md:` (768px) for the 3-column switch. At exactly 768px (the required
+tablet-portrait width) this was measurably overflow-free but visually
+cramped — the "ANNOUNCEMENT" eyebrow label and the card's own text wrapped
+onto many narrow lines. Moved the breakpoint to `lg:` (1024px), matching
+the **same breakpoint the header already uses** to switch from its mobile
+hamburger to the desktop nav — so 768px now gets the same comfortable
+mobile-style row (buttons + photo, banner below) as phones, and the true
+3-column layout only activates once there's actually room for it (1024px+).
+Re-screenshotted 768px afterward to confirm it now reads calmly rather than
+cramped.
+
+**Regression caught and fixed**: a single unbreakable word ("ANNOUNCEMENT",
+uppercase with letter-spacing) inside a flex row without `min-width: 0`
+pushed its column wider than the available space at 768px, causing 19px of
+horizontal overflow — the same category of CSS Grid/Flexbox sizing bug as
+the one fixed in Section 12a, just triggered by a different element this
+time. Fixed the same way (`min-w-0` on the constraining elements), plus
+`break-words` as a last-resort safety net on that specific label.
+
+**Verified**: full 5-width overflow/fold sweep on a fresh production build
+(1440×900, 1024×768, 768×1024, 390×844, 360×800) — announcement within the
+fold and zero horizontal overflow at every width, including the corrected
+768px case. `HeroSection.test.tsx` updated to match the new breakpoint.
+`npm run check` (0 errors), `npm run test` (27/27), `npm audit` (0
+vulnerabilities), production build succeeds.
+
 ## 12. Rollback guidance
 
 - This work is entirely on the local branch `production-homepage-redesign`; `main` is untouched at `1e604ea`.
 - Nothing has been pushed to GitHub or deployed to Vercel — the live production site is unaffected until this branch is explicitly merged and deployed.
-- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`, `Move the announcement above the fold in the homepage hero`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
+- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`, `Move the announcement above the fold in the homepage hero`, `Rearrange the hero into three areas: text, photo, announcement`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
 - Every commit on this branch is a coherent, working checkpoint (`tsc` clean, build succeeds, tests pass) — if a partial rollback is ever needed, commits can be reverted independently in reverse order, though each depends on the design tokens and layout components introduced in Phase 1.
 - The image-optimization commit specifically can be reverted on its own without affecting layout/functionality: it only changes image `src` paths (raster → `.webp`) and adds new `.webp` files; no component logic changed as part of it.

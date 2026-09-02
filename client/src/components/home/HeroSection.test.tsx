@@ -48,9 +48,9 @@ describe("HeroSection announcement placement", () => {
 
     const featured = getFeaturedAnnouncement();
 
-    // Compact banner: one link whose whole row (title + "View") is hidden at md:.
+    // Compact banner: one link whose whole row (title + "View") is hidden at lg:.
     const banners = screen.getAllByRole("link", { name: new RegExp(escapeRegExp(featured.title)) });
-    const compact = banners.find((el) => /\bmd:hidden\b/.test(el.className));
+    const compact = banners.find((el) => /\blg:hidden\b/.test(el.className));
     expect(compact).toBeDefined();
     expect(compact!.textContent).toContain("View");
 
