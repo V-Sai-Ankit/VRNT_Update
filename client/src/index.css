@@ -265,3 +265,24 @@
     align-items: center;
   }
 }
+
+/*
+ * A gentle, slow "breathing" glow so the homepage announcement catches the
+ * eye without feeling like a notification badge or an ad. Deliberately
+ * subtle: low opacity, long duration, no scale/position change. Guarded by
+ * prefers-reduced-motion -- reduced-motion users still get the plain
+ * thicker gold border (set directly on the element), just no animation.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes announcement-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(var(--accent) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 0 7px hsl(var(--accent) / 0.1);
+    }
+  }
+  .announcement-glow {
+    animation: announcement-glow 3.5s ease-in-out infinite;
+  }
+}

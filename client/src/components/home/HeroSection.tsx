@@ -81,14 +81,17 @@ export default function HeroSection() {
           {featured && (
             <div
               style={{ gridArea: "announcement" }}
-              className="min-w-0 rounded-lg border border-accent/40 bg-background shadow-soft lg:flex lg:flex-col lg:self-center"
+              className="announcement-glow min-w-0 rounded-lg border-2 border-accent bg-background shadow-soft lg:flex lg:flex-col lg:self-center"
             >
               {/* Horizontal banner (mobile and tablet, below lg) */}
               <Link
                 to={`/announcements/${featured.id}`}
                 className="flex min-h-11 items-center gap-2.5 px-4 py-2.5 lg:hidden"
               >
-                <Bell className="h-4 w-4 shrink-0 text-accent-strong" aria-hidden="true" />
+                <span className="relative shrink-0">
+                  <Bell className="h-4 w-4 text-accent-strong" aria-hidden="true" />
+                  <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true" />
+                </span>
                 <span className="min-w-0 flex-1 truncate font-sans text-sm font-semibold text-foreground">
                   {featured.title}
                 </span>
@@ -98,8 +101,9 @@ export default function HeroSection() {
               {/* Vertical card (lg and up -- matches the header's own desktop breakpoint) */}
               <div className="hidden min-w-0 lg:flex lg:flex-col lg:gap-4 lg:p-8">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent-strong">
+                  <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent-strong">
                     <Bell className="h-5 w-5" aria-hidden="true" />
+                    <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
                     <p className="min-w-0 break-words font-sans text-xs font-bold uppercase tracking-wider text-accent-strong">

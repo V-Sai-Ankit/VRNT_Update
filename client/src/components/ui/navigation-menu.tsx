@@ -18,7 +18,6 @@ const NavigationMenu = React.forwardRef<
     {...props}
   >
     {children}
-    <NavigationMenuViewport />
   </NavigationMenuPrimitive.Root>
 ))
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
@@ -38,7 +37,18 @@ const NavigationMenuList = React.forwardRef<
 ))
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 
-const NavigationMenuItem = NavigationMenuPrimitive.Item
+// Explicitly `relative` so each item's own NavigationMenuContent (positioned
+// `absolute`) anchors under that specific trigger. Without this, Content's
+// nearest positioned ancestor is the NavigationMenu Root itself, so every
+// dropdown renders at the same spot (under the first trigger) regardless of
+// which one is actually open -- a real bug this fixed.
+const NavigationMenuItem = React.forwardRef<
+  React.ElementRef<typeof NavigationMenuPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <NavigationMenuPrimitive.Item ref={ref} className={cn("relative", className)} {...props} />
+))
+NavigationMenuItem.displayName = NavigationMenuPrimitive.Item.displayName
 
 // Deliberately no default text/background color here -- the trigger sits in
 // different contexts (light header, etc.) and the consumer's className
@@ -65,6 +75,10 @@ const NavigationMenuTrigger = React.forwardRef<
 ))
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName
 
+// Positioned relative to its own NavigationMenuItem (see the `relative` fix
+// above) rather than a shared Viewport -- `top-full` sits it directly below
+// its own trigger, and it carries its own background/border/shadow now that
+// there's no Viewport wrapper providing those.
 const NavigationMenuContent = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>
@@ -72,7 +86,7 @@ const NavigationMenuContent = React.forwardRef<
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto ",
+      "left-0 top-full z-dropdown mt-1.5 w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lifted data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto",
       className
     )}
     {...props}
@@ -82,42 +96,6 @@ NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
 const NavigationMenuLink = NavigationMenuPrimitive.Link
 
-const NavigationMenuViewport = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
->(({ className, ...props }, ref) => (
-  <div className={cn("absolute left-0 top-full flex justify-center")}>
-    <NavigationMenuPrimitive.Viewport
-      className={cn(
-        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
-        className
-      )}
-      ref={ref}
-      {...props}
-    />
-  </div>
-))
-NavigationMenuViewport.displayName =
-  NavigationMenuPrimitive.Viewport.displayName
-
-const NavigationMenuIndicator = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Indicator>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Indicator>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.Indicator
-    ref={ref}
-    className={cn(
-      "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in",
-      className
-    )}
-    {...props}
-  >
-    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
-  </NavigationMenuPrimitive.Indicator>
-))
-NavigationMenuIndicator.displayName =
-  NavigationMenuPrimitive.Indicator.displayName
-
 export {
   navigationMenuTriggerStyle,
   NavigationMenu,
@@ -126,6 +104,4 @@ export {
   NavigationMenuContent,
   NavigationMenuTrigger,
   NavigationMenuLink,
-  NavigationMenuIndicator,
-  NavigationMenuViewport,
 }

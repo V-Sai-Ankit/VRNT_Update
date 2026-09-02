@@ -559,10 +559,69 @@ build; `getBoundingClientRect` confirmed the next section is off-screen at
 the new "View details →" label. `npm run check` (0 errors), `npm run test`
 (27/27), `npm audit` (0 vulnerabilities), production build succeeds.
 
+## 12d. Mobile menu length, desktop dropdown position, announcement highlight
+
+Three independent owner-reported issues, each reproduced with measurements
+before fixing, not assumed.
+
+**Mobile menu required scrolling to reach Donate/Login.** Reproduced:
+`dialog.scrollHeight` (918px) exceeded `dialog.clientHeight` (844px) at
+390×844 — 74px of forced scroll, with Donate/Login at the very bottom of
+the scrollable list. Fixed in `MobileNav.tsx`:
+- Donate and Login moved to a pinned row directly below the sheet header
+  (side by side, not stacked) — always visible immediately on opening the
+  menu, never part of the scrollable region.
+- The nav list changed from one column to two (`grid grid-cols-2`), with
+  each group's label (About/Programs/Media) spanning both columns above its
+  sub-links. Single-link items (Home/Vedas/Contact) render full-width for
+  visual hierarchy.
+- Re-measured after the change: `scrollHeight === clientHeight` (844px ==
+  844px) — the entire menu, including Donate/Login, now fits with zero
+  scrolling on this viewport. Scrolling remains available as a fallback
+  (`overflow-y-auto` on the nav list specifically, not the whole sheet) for
+  shorter screens or enlarged text/zoom, per WCAG reflow requirements —
+  Donate/Login stay visible regardless since they're outside that region.
+
+**Desktop dropdown always appeared under "Home" instead of the hovered
+trigger.** Reproduced: hovering "Programs" (`left: 911px`) rendered its
+panel at `left: 696px` — under "About", not "Programs". Root cause:
+`components/ui/navigation-menu.tsx` used Radix's shared `Viewport` pattern
+(designed for an animated mega-menu panel shared across items), whose
+positioning math wasn't tracking the active trigger correctly in this
+setup. Fixed by removing the shared `Viewport` entirely and making each
+`NavigationMenuItem` explicitly `position: relative`, so each
+`NavigationMenuContent` (already `position: absolute`) anchors to its own
+trigger — the standard, simpler Radix pattern for a plain per-item dropdown
+(the shared-viewport pattern is only needed for cross-fading between
+differently-sized mega-menu panels, which this site doesn't have). Content
+regained the background/border/shadow that the removed Viewport used to
+provide. Re-verified: hovering About/Programs/Media each now measures
+`0px` difference between trigger and panel left edges.
+
+**Announcement needed to catch the eye without breaking the site's calm
+tone.** Added, both to the mobile banner and the desktop card:
+- Border thickened and darkened: `border border-accent/40` →
+  `border-2 border-accent`.
+- A small pulsing dot on the bell icon (`motion-safe:animate-pulse`,
+  Tailwind's built-in reduced-motion-aware variant).
+- A slow (3.5s), low-amplitude "breathing" glow ring (`box-shadow`, gold,
+  6–10% opacity) defined as a `@keyframes` in `index.css`, wrapped in
+  `@media (prefers-reduced-motion: no-preference)` so it doesn't exist at
+  all as a rule for reduced-motion users (verified with Playwright's
+  `reducedMotion: 'reduce'` context: `animationName` is `"announcement-glow"`
+  under normal motion and `"none"` under reduced motion). Reduced-motion
+  users still get the static thicker border and pulsing-dot fallback is
+  itself motion-safe-gated, so nothing animates for them, but the
+  announcement still reads as visually distinct.
+
+**Verified**: full 5-width overflow/fold sweep still clean after all three
+changes; `npm run check` (0 errors), `npm run test` (27/27), `npm audit`
+(0 vulnerabilities), production build succeeds.
+
 ## 12. Rollback guidance
 
 - This work is entirely on the local branch `production-homepage-redesign`; `main` is untouched at `1e604ea`.
 - Nothing has been pushed to GitHub or deployed to Vercel — the live production site is unaffected until this branch is explicitly merged and deployed.
-- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`, `Move the announcement above the fold in the homepage hero`, `Rearrange the hero into three areas: text, photo, announcement`, `Make the announcement a genuinely vertical card and fill the first screen`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
+- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`, `Move the announcement above the fold in the homepage hero`, `Rearrange the hero into three areas: text, photo, announcement`, `Make the announcement a genuinely vertical card and fill the first screen`, `Fix mobile menu scrolling, desktop dropdown position, and highlight the announcement`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
 - Every commit on this branch is a coherent, working checkpoint (`tsc` clean, build succeeds, tests pass) — if a partial rollback is ever needed, commits can be reverted independently in reverse order, though each depends on the design tokens and layout components introduced in Phase 1.
 - The image-optimization commit specifically can be reverted on its own without affecting layout/functionality: it only changes image `src` paths (raster → `.webp`) and adds new `.webp` files; no component logic changed as part of it.
