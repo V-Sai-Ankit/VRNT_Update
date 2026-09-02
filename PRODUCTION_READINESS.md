@@ -521,10 +521,48 @@ fold and zero horizontal overflow at every width, including the corrected
 `npm run check` (0 errors), `npm run test` (27/27), `npm audit` (0
 vulnerabilities), production build succeeds.
 
+## 12c. Further refinement — genuinely vertical card, hero fills the first screen
+
+Immediate owner feedback on 12b: the placement (text / photo / announcement,
+side by side) was correct, but the announcement card itself still read as
+compact/horizontal rather than a proper vertical card, and the hero as a
+whole should fill the entire first screen so the next section is only
+reached by scrolling.
+
+**Change** (`HeroSection.tsx`, `index.css`):
+- The hero `<section>` now uses `lg:min-h-[calc(100vh-4rem)]` (4rem = the
+  header's own `h-16`) with its content vertically centered
+  (`lg:items-center`) on desktop — confirmed with `getBoundingClientRect`
+  that the "Mission & Vision" heading of the next section sits well below
+  the viewport (e.g. `top: 1107px` on a 900px-tall viewport) before any
+  scrolling. **Left unchanged on mobile/tablet** — forcing full-viewport
+  height there would leave a large empty gap on short phone screens and
+  work against the earlier "reach the CTA quickly" mobile goal from Section
+  10.2. Flagged for the owner rather than assumed; easy to extend to mobile
+  if that's actually wanted.
+- The desktop grid's column ratio (`.hero-grid` in `index.css`) shifted
+  from `1.4fr / 0.55fr / 0.95fr` to `1.15fr / 0.7fr / 1.05fr` (text /
+  photo / announcement), giving the photo and announcement noticeably more
+  width, and the announcement card's internal padding/typography grew
+  (`p-5`→`p-8`, title `text-base`→`text-2xl`, summary `text-sm`→`text-base`,
+  added a "Published {date}" line and a divider above the action links) so
+  it reads as a substantial vertical card rather than a compact box. The
+  photo dropped its forced `h-full` stretch/crop in favor of a larger fixed
+  width at its natural 4:5 aspect ratio, avoiding an unnaturally elongated
+  crop.
+- No content was invented — the "Published {date}" line uses the same
+  `date` field already in `lib/announcements.ts`.
+
+**Verified**: full 5-width overflow/fold sweep clean on a fresh production
+build; `getBoundingClientRect` confirmed the next section is off-screen at
+1440×900 and 1024×768 before scrolling; `HeroSection.test.tsx` updated for
+the new "View details →" label. `npm run check` (0 errors), `npm run test`
+(27/27), `npm audit` (0 vulnerabilities), production build succeeds.
+
 ## 12. Rollback guidance
 
 - This work is entirely on the local branch `production-homepage-redesign`; `main` is untouched at `1e604ea`.
 - Nothing has been pushed to GitHub or deployed to Vercel — the live production site is unaffected until this branch is explicitly merged and deployed.
-- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`, `Move the announcement above the fold in the homepage hero`, `Rearrange the hero into three areas: text, photo, announcement`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
+- To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`, `Move the announcement above the fold in the homepage hero`, `Rearrange the hero into three areas: text, photo, announcement`, `Make the announcement a genuinely vertical card and fill the first screen`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
 - Every commit on this branch is a coherent, working checkpoint (`tsc` clean, build succeeds, tests pass) — if a partial rollback is ever needed, commits can be reverted independently in reverse order, though each depends on the design tokens and layout components introduced in Phase 1.
 - The image-optimization commit specifically can be reverted on its own without affecting layout/functionality: it only changes image `src` paths (raster → `.webp`) and adds new `.webp` files; no component logic changed as part of it.

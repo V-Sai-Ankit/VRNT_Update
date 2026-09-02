@@ -19,8 +19,14 @@ export default function HeroSection() {
   const featured = ANNOUNCEMENTS.length > 0 ? getFeaturedAnnouncement() : null;
 
   return (
-    <section className="border-b border-border bg-surface">
-      <div className="mx-auto max-w-wide px-4 py-8 sm:px-6 sm:py-12 md:py-16">
+    <section className="border-b border-border bg-surface lg:flex lg:min-h-[calc(100vh-4rem)] lg:items-center">
+      {/* lg:min-h-[calc(100vh-4rem)] (4rem = the header's own h-16) makes the
+          hero fill the first screen on desktop -- the next section only
+          appears once the visitor scrolls. Left as the mobile/tablet default
+          (content-sized, not full-height) so phones keep reaching the CTAs
+          quickly rather than leaving a large empty gap on short screens --
+          flag if you'd like this applied to mobile too. */}
+      <div className="mx-auto w-full max-w-wide px-4 py-8 sm:px-6 sm:py-12 md:py-16 lg:py-16">
         {/* See the ".hero-grid" rule in index.css for how these six areas are
             arranged differently on mobile/tablet vs. desktop (1024px+, same
             breakpoint the header itself switches at) -- both above the
@@ -57,19 +63,20 @@ export default function HeroSection() {
           </div>
 
           {/* Founder portrait -- a compact thumbnail beside the CTAs on
-              mobile, a full-height column next to the text on desktop. */}
-          <div style={{ gridArea: "photo" }} className="w-20 shrink-0 self-start sm:w-24 lg:h-full lg:w-full">
+              mobile, a generously-sized portrait next to the text on
+              desktop (natural 4:5 aspect ratio, not stretched/cropped). */}
+          <div style={{ gridArea: "photo" }} className="w-20 shrink-0 self-start sm:w-24 lg:w-full lg:self-center">
             <img
               src="/images/periyavar.webp"
               alt="His Holiness Sri Sri Chandrashekarendra Saraswati MahaSwamigal, founder-inspiration of Veda Rakshana Nidhi Trust"
               width={640}
               height={720}
-              className="aspect-[4/5] h-full w-full rounded-lg border border-accent/60 object-cover shadow-lifted"
+              className="aspect-[4/5] w-full rounded-lg border border-accent/60 object-cover shadow-lifted"
             />
           </div>
 
           {/* Announcement -- a horizontal banner below the CTA/photo row on
-              mobile, a full-height vertical card next to the photo on
+              mobile, a substantial vertical card next to the photo on
               desktop. Same element either way, just restyled by breakpoint. */}
           {featured && (
             <div
@@ -89,25 +96,28 @@ export default function HeroSection() {
               </Link>
 
               {/* Vertical card (lg and up -- matches the header's own desktop breakpoint) */}
-              <div className="hidden min-w-0 lg:flex lg:flex-col lg:gap-2.5 lg:p-5">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent-strong">
-                    <Bell className="h-4 w-4" aria-hidden="true" />
+              <div className="hidden min-w-0 lg:flex lg:flex-col lg:gap-4 lg:p-8">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent-strong">
+                    <Bell className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <p className="min-w-0 break-words font-sans text-xs font-bold uppercase tracking-wider text-accent-strong">
-                    Announcement
-                  </p>
+                  <div className="min-w-0">
+                    <p className="min-w-0 break-words font-sans text-xs font-bold uppercase tracking-wider text-accent-strong">
+                      Announcement
+                    </p>
+                    <p className="font-sans text-xs text-muted-foreground">Published {featured.date}</p>
+                  </div>
                 </div>
-                <h2 className="min-w-0 font-serif text-base font-bold leading-snug text-primary">{featured.title}</h2>
-                <p className="line-clamp-[8] min-w-0 text-sm leading-relaxed text-foreground/80">{featured.summary}</p>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
+                <h2 className="min-w-0 font-serif text-2xl font-bold leading-snug text-primary">{featured.title}</h2>
+                <p className="line-clamp-[10] min-w-0 text-base leading-relaxed text-foreground/80">{featured.summary}</p>
+                <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4">
                   <Link
                     to={`/announcements/${featured.id}`}
-                    className="font-sans text-sm font-bold text-primary hover:underline"
+                    className="font-sans text-base font-bold text-primary hover:underline"
                   >
-                    View details
+                    View details →
                   </Link>
-                  <Link to="/announcements" className="font-sans text-sm font-semibold text-muted-foreground hover:underline">
+                  <Link to="/announcements" className="font-sans text-base font-semibold text-muted-foreground hover:underline">
                     All announcements
                   </Link>
                 </div>

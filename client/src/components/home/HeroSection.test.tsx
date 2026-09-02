@@ -55,7 +55,7 @@ describe("HeroSection announcement placement", () => {
     expect(compact!.textContent).toContain("View");
 
     // Full card: separate "View details" + "All announcements" links, plus the summary text.
-    expect(screen.getByRole("link", { name: "View details" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /View details/ })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "All announcements" })).toBeInTheDocument();
     expect(screen.getByText(featured.summary)).toBeInTheDocument();
   });
