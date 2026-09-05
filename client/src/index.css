@@ -3,135 +3,286 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * VRNT Design System
+ * A restrained, reverent palette for an established Vedic charitable trust.
+ * Primary: deep maroon (sacred, traditional). Secondary: deep navy (trust, gravitas).
+ * Accent: temple gold (dignified, used sparingly). Background: warm parchment.
+ */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
-  /* Saffron & Earthy Theme Palette */
+
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
-  
+
+  --color-surface: hsl(var(--surface));
+  --color-surface-foreground: hsl(var(--surface-foreground));
+
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
-  
+
   --color-popover: hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
-  
+
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-  
+
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-  
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  
+
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-  
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  
+  /* A darker gold for text/icons directly on light backgrounds, where the
+     base --accent fails WCAG AA (2.4:1). Use --accent only for buttons,
+     borders, and text on dark backgrounds (e.g. the navy footer). */
+  --color-accent-strong: hsl(var(--accent-strong));
+  /* A lighter gold for text on dark backgrounds (the maroon --primary or navy
+     --secondary), where the base --accent (tuned for buttons/borders) is too
+     close in lightness to read reliably at small sizes. */
+  --color-accent-soft: hsl(var(--accent-soft));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  /* Exact Font Matches from Original HTML Template */
-  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-sans: Arial, Helvetica, sans-serif;
-  --font-display: "Times New Roman", Times, serif;
-  
-  --radius: 0.5rem;
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  /* Two type families only: a serif for headings/reading content, a sans for UI chrome. */
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Lato", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --radius: 0.625rem;
+
+  /* Container widths, registered as Tailwind max-w-content / max-w-wide utilities */
+  --container-content: 72rem;
+  --container-wide: 80rem;
+
+  /* A single, centralized z-index scale (z-header / z-dropdown / z-overlay / z-drawer / z-toast) */
+  --z-index-header: 40;
+  --z-index-dropdown: 50;
+  --z-index-overlay: 60;
+  --z-index-drawer: 70;
+  --z-index-toast: 80;
+
+  /* Shadows: soft and shallow, registered as shadow-soft / shadow-lifted utilities */
+  --shadow-soft: 0 2px 8px -2px rgb(20 15 10 / 0.10), 0 1px 2px -1px rgb(20 15 10 / 0.06);
+  --shadow-lifted: 0 8px 24px -6px rgb(20 15 10 / 0.14), 0 2px 6px -2px rgb(20 15 10 / 0.08);
 }
 
 :root {
-  --background: 45 35% 88%;
-  --foreground: 25 25% 12%;
+  /* Warm parchment background, near-black warm text */
+  --background: 42 38% 95%;
+  --foreground: 20 20% 12%;
 
-  --card: 45 30% 92%;
-  --card-foreground: 25 25% 12%;
+  /* Card/surface: slightly lifted off the page background */
+  --surface: 40 32% 98%;
+  --surface-foreground: 20 20% 12%;
+  --card: 40 32% 98%;
+  --card-foreground: 20 20% 12%;
 
-  --popover: 45 30% 92%;
-  --popover-foreground: 25 25% 12%;
+  --popover: 40 32% 98%;
+  --popover-foreground: 20 20% 12%;
 
-  --primary: 35 80% 45%; 
-  --primary-foreground: 45 30% 98%;
+  /* Deep maroon - primary brand colour (matches the trust's established identity) */
+  --primary: 5 62% 34%;
+  --primary-foreground: 42 40% 97%;
 
-  --secondary: 15 55% 30%;
-  --secondary-foreground: 45 30% 98%;
+  /* Deep navy - secondary, used for header/footer chrome */
+  --secondary: 218 55% 18%;
+  --secondary-foreground: 42 40% 97%;
 
-  --muted: 45 25% 80%;
-  --muted-foreground: 25 15% 35%;
+  /* Temple gold - accent, used sparingly for emphasis and dividers */
+  --accent: 38 55% 52%;
+  --accent-foreground: 20 25% 12%;
+  --accent-strong: 38 70% 30%;
+  --accent-soft: 40 65% 66%;
 
-  --accent: 48 60% 75%;
-  --accent-foreground: 25 25% 12%;
+  --muted: 40 20% 90%;
+  --muted-foreground: 20 10% 38%;
 
-  --destructive: 0 70% 35%;
-  --destructive-foreground: 0 0% 98%;
+  --border: 40 22% 82%;
+  --input: 40 22% 82%;
+  --ring: 5 62% 34%;
 
-  --border: 45 20% 75%;
-  --input: 45 20% 75%;
-  --ring: 35 80% 45%;
-}
+  --success: 142 42% 30%;
+  --success-foreground: 0 0% 100%;
 
-.dark {
-  --background: 25 20% 15%;
-  --foreground: 40 30% 90%;
+  --warning: 38 85% 42%;
+  --warning-foreground: 0 0% 100%;
 
-  --card: 25 20% 18%;
-  --card-foreground: 40 30% 90%;
+  --destructive: 0 65% 38%;
+  --destructive-foreground: 0 0% 100%;
 
-  --popover: 25 20% 18%;
-  --popover-foreground: 40 30% 90%;
+  /* Spacing scale (plain custom properties for the few places that need a raw
+     value outside Tailwind's own spacing utilities, e.g. inline styles) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
 
-  --primary: 30 80% 55%;
-  --primary-foreground: 40 30% 98%;
-
-  --secondary: 10 50% 55%;
-  --secondary-foreground: 40 30% 98%;
-
-  --muted: 25 15% 25%;
-  --muted-foreground: 40 20% 65%;
-
-  --accent: 35 50% 25%;
-  --accent-foreground: 40 30% 90%;
-
-  --destructive: 0 60% 45%;
-  --destructive-foreground: 0 0% 98%;
-
-  --border: 25 15% 30%;
-  --input: 25 15% 30%;
-  --ring: 30 80% 55%;
+  /* Motion: short, calm, no bouncing */
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+  --duration-slow: 400ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @layer base {
   * {
     @apply border-border;
   }
-  body {
-    /* Main body background text using exact Georgia setup */
-    @apply font-serif antialiased bg-background text-[#171717];
+
+  html {
+    scroll-behavior: smooth;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply font-serif antialiased bg-background text-foreground;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
+
+  /* A visible, consistent focus ring across every interactive element. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
 }
 
-/* --- Traditional Newspaper Utilities --- */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Visually-hidden until focused: for the skip-to-content link. */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    z-index: var(--z-index-toast);
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-md);
+    transition: top var(--duration-base) var(--ease-standard);
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  .drop-cap-first::first-letter {
+    font-size: 3.5rem;
+    float: left;
+    line-height: 0.8;
+    margin-right: 0.5rem;
+    font-weight: 700;
+    color: hsl(var(--primary));
+  }
+}
+
 @utility border-double-3 {
   border-style: double;
   border-width: 3px;
 }
 
-@layer utilities {
-  .drop-cap-first::first-letter {
-    font-size: 65px;
-    float: left;
-    line-height: 0.8;
-    margin-right: 8px;
-    font-weight: bold;
-    @apply text-[#8b2b22]; /* Match the explicit dark red color from the template */
+/*
+ * Homepage hero layout. Uses named grid areas so the same photo and
+ * announcement elements can be repositioned entirely differently between
+ * mobile/tablet and desktop -- without rendering the image twice:
+ *  - Mobile/tablet (below 1024px): photo sits beside the CTA buttons;
+ *    announcement is a full-width horizontal banner below that row. Used
+ *    up to and including 768px-wide tablets, since the 3-column desktop
+ *    arrangement below was too cramped at that width (tried it: nav labels
+ *    and card text wrapped awkwardly with no room to breathe).
+ *  - Desktop (1024px+, matching the header's own mobile/desktop breakpoint):
+ *    photo and announcement become two dedicated, generously-sized vertical
+ *    columns next to the text content -- the section itself is also sized
+ *    to the viewport height (see the section element's own classes in
+ *    HeroSection.tsx), so all three columns read as a single tall,
+ *    unhurried hero, not a compact row.
+ * See HeroSection.tsx for the elements assigned to each area.
+ */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "eyebrow eyebrow"
+    "heading heading"
+    "excerpt excerpt"
+    "ctas photo"
+    "announcement announcement";
+  column-gap: 1.25rem;
+  row-gap: 0.875rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1.15fr 0.7fr 1.05fr;
+    grid-template-areas:
+      "eyebrow photo announcement"
+      "heading photo announcement"
+      "excerpt photo announcement"
+      "ctas photo announcement";
+    column-gap: 3rem;
+    row-gap: 1.5rem;
+    align-items: center;
+  }
+}
+
+/*
+ * A gentle, slow "breathing" glow so the homepage announcement catches the
+ * eye without feeling like a notification badge or an ad. Deliberately
+ * subtle: low opacity, long duration, no scale/position change. Guarded by
+ * prefers-reduced-motion -- reduced-motion users still get the plain
+ * thicker gold border (set directly on the element), just no animation.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes announcement-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(var(--accent) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 0 7px hsl(var(--accent) / 0.1);
+    }
+  }
+  .announcement-glow {
+    animation: announcement-glow 3.5s ease-in-out infinite;
   }
 }

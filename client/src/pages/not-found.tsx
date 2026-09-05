@@ -1,21 +1,19 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Helmet } from "@/lib/seo";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
-          </div>
-
-          <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
-          </p>
-        </CardContent>
-      </Card>
+    <div className="mx-auto flex max-w-xl flex-col items-center px-4 py-24 text-center sm:px-6">
+      <Helmet title="Page not found" description="The page you are looking for could not be found." />
+      <p className="font-serif text-6xl font-bold text-accent-strong">404</p>
+      <h1 className="mt-4 font-serif text-2xl font-bold text-primary">Page not found</h1>
+      <p className="mt-3 text-muted-foreground">
+        The page you're looking for may have moved or no longer exists.
+      </p>
+      <Button asChild size="lg" className="mt-8">
+        <Link to="/">Return to homepage</Link>
+      </Button>
     </div>
   );
 }

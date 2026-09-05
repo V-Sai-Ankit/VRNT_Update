@@ -1,362 +1,83 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { Routes, Route, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
+import { Suspense, lazy, useCallback, useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import SkipLink from "@/components/layout/SkipLink";
+import { Toaster } from "@/components/ui/sonner";
 
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import NotificationSidebar from './components/layout/NotificationSidebar';
-import Hero from './components/sections/Hero';
-import VedaVruksham from './components/sections/VedaVruksham';
-import Mission from './components/sections/Mission';
-import InitiativesPage from './pages/initiatives';
-import Activities from './components/sections/Activities';
-import VedasPage from './components/sections/Vedas';
-import Pariksha from './components/sections/Pariksha';
-import Trustees from './components/sections/Trustees';
-import DonatePage from './components/sections/Donate';
-import ContactPage from './components/sections/Contact';
-import Mahotsav from './components/sections/Mahotsav';
-import ParikshaResultPage from './components/sections/ParikshaResult';
-import Announcement from './components/sections/Announcement';
-import GalleryPage from './components/sections/Gallery';
-import History from './components/sections/History';
+// Route-level code splitting: each page is fetched only when visited.
+const Home = lazy(() => import("./pages/home"));
+const Mission = lazy(() => import("./components/sections/Mission"));
+const InitiativesPage = lazy(() => import("./pages/initiatives"));
+const Activities = lazy(() => import("./components/sections/Activities"));
+const VedasPage = lazy(() => import("./components/sections/Vedas"));
+const MahaPeriyavasMessage = lazy(() => import("./pages/MahaPeriyavasMessage"));
+const Pariksha = lazy(() => import("./components/sections/Pariksha"));
+const GalleryPage = lazy(() => import("./components/sections/Gallery"));
+const History = lazy(() => import("./components/sections/History"));
+const Trustees = lazy(() => import("./components/sections/Trustees"));
+const DonatePage = lazy(() => import("./components/sections/Donate"));
+const ContactPage = lazy(() => import("./components/sections/Contact"));
+const Mahotsav = lazy(() => import("./components/sections/Mahotsav"));
+const ParikshaResultPage = lazy(() => import("./components/sections/ParikshaResult"));
+const AnnouncementsPage = lazy(() => import("./pages/AnnouncementsPage"));
+const NewsPage = lazy(() => import("./pages/NewsPage"));
+const NotFound = lazy(() => import("./pages/not-found"));
+
+/** Scrolls to the top of the page on every route change (but not on hash navigation). */
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+  return null;
+}
+
+/** Legacy pseudo-navigation shim: a couple of section components still call a
+ * `setCurrentPage("somePage")` callback instead of using react-router-dom
+ * directly (a holdover from before real routes existed for them). This maps
+ * that call onto a real navigation. */
+function useLegacyNavigate() {
+  const navigate = useNavigate();
+  return useCallback((page: string) => navigate(page === "home" ? "/" : `/${page}`), [navigate]);
+}
 
 export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // Standard breakpoint check for Mobile (<1024px)
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // Scroll listener strictly active for mobile viewports
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerWidth < 1024 && window.scrollY > 30) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Track screen resize & orientation
-  useEffect(() => {
-    const handleResize = () => {
-      const mobileCheck = window.innerWidth < 1024;
-      setIsMobile(mobileCheck);
-
-      if (!mobileCheck) {
-        setIsScrolled(false);
-        setIsMenuOpen(true); // Open menu drawer by default on desktop
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Smart Scroll Management: Resets to top on explicit refresh, restores position on back-navigation
-  useLayoutEffect(() => {
-    const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
-    const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
-
-    if (isReload) {
-      // Clear position cache for current path on manual refresh and force scroll to top
-      sessionStorage.removeItem(`scroll_${location.pathname}`);
-      window.scrollTo(0, 0);
-    } else {
-      const savedPos = sessionStorage.getItem(`scroll_${location.pathname}`);
-      if (savedPos !== null) {
-        window.scrollTo(0, parseInt(savedPos, 10));
-      } else {
-        window.scrollTo(0, 0);
-      }
-    }
-  }, [location.pathname]);
-
-  // Handle navigation & save scroll state
-  const handleNavigate = (page: string) => {
-    // Store current scroll position for current path before navigating away
-    sessionStorage.setItem(`scroll_${location.pathname}`, window.scrollY.toString());
-
-    if (page === 'poorthy-circular') {
-      navigate('/announcements?view=poorthy-sept');
-    } else if (page === 'home') {
-      navigate('/');
-    } else {
-      navigate(`/${page}`);
-    }
-    if (isMobile) {
-      setIsMenuOpen(false);
-    }
-  };
-
-  const isCurrentPage = (path: string) => {
-    if (path === 'home' && location.pathname === '/') return true;
-    return location.pathname === `/${path}`;
-  };
+  const goTo = useLegacyNavigate();
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-serif p-0 md:px-5 md:pb-5 overflow-x-hidden w-full">
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
-
-      {/* Navbar receives scroll state only on mobile */}
-      <Navbar isScrolled={isMobile && isScrolled} />
-
-      {/* ------------------------------------------------------------- */}
-      {/* 1. MOBILE SIDEBAR (< 1024px)                                  */}
-      {/* ------------------------------------------------------------- */}
-      {isMobile ? (
-        <aside 
-          className={`fixed left-0 z-[1300] flex flex-col items-stretch bg-[#0e2245] border-r border-[#bf953f]/40 shadow-2xl transition-all duration-500 ease-in-out ${
-            isScrolled
-              ? 'top-[60px] h-[calc(100vh-60px)]'
-              : 'top-[160px] sm:top-[190px] h-[calc(100vh-160px)] sm:h-[calc(100vh-190px)]'
-          } ${isMenuOpen ? 'w-[120px]' : 'w-[44px]'}`}
-        >
-          {/* Toggle Button Header */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="w-full bg-[#08152b] hover:bg-[#132c54] text-[#fcf6ba] border-b border-[#bf953f]/30 py-2 px-1 flex items-center justify-center gap-1.5 font-sans font-bold uppercase transition-all duration-200 cursor-pointer shrink-0"
-            aria-label="Toggle Menu"
-          >
-            <span className="text-xs">{isMenuOpen ? '☰' : '☰'}</span>
-            {isMenuOpen && <span className="text-[10px] tracking-wider">MENU</span>}
-          </button>
-
-          {/* Closed State for MENU */}
-          {!isMenuOpen && (
-            <div className="flex-grow flex flex-col items-center justify-start gap-3 py-2 select-none px-0.5">
-              <div 
-                onClick={() => setIsMenuOpen(true)}
-                className="cursor-pointer text-[#fcf6ba]/90 hover:text-[#fcf6ba] transition-colors text-center"
-              >
-                <span className="text-[9px] font-sans font-extrabold tracking-tight uppercase block leading-none">
-                  MENU
-                </span>
-              </div>
-
-              <button 
-                onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
-                className="bg-[#ff7f5c] hover:bg-[#ff9173] text-white border-none rounded px-1.5 py-2 text-[9px] leading-[1.1] font-sans font-black uppercase cursor-pointer shadow-md transition-all flex flex-col items-center justify-center text-center tracking-normal active:scale-95"
-              >
-                <span>L</span>
-                <span>O</span>
-                <span>G</span>
-                <span>I</span>
-                <span>N</span>
-                <span className="my-1 text-[4px] opacity-0">-</span>
-                <span>H</span>
-                <span>E</span>
-                <span>R</span>
-                <span>E</span>
-              </button>
-            </div>
-          )}
-          
-          {/* Expanded State */}
-          {isMenuOpen && (
-            <>
-              <div className="shrink-0 border-b border-[#08152b] p-1.5 bg-[#0b1b38]">
-                <button 
-                  onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
-                  className="bg-[#ff7f5c] hover:bg-[#ff9173] text-[#e2e8f0] hover:text-white text-center no-underline font-sans font-bold uppercase rounded py-1.5 text-[10px] px-1 transition-all border-none cursor-pointer flex items-center justify-center w-full shadow"
-                >
-                  Login Here
-                </button>
-              </div>
-              
-              <div className="flex flex-col gap-0.5 p-1 pb-6 overflow-y-auto no-scrollbar max-h-[calc(100vh-140px)] flex-grow">
-                <button onClick={() => handleNavigate('home')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('home') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Home</button>
-                <button onClick={() => handleNavigate('mission')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('mission') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Mission</button>
-                <button onClick={() => handleNavigate('activities')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('activities') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Activities</button>
-                <button onClick={() => handleNavigate('vedas')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('vedas') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Vedas</button>
-                <button onClick={() => handleNavigate('pariksha')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('pariksha') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Pariksha</button>
-                <button onClick={() => handleNavigate('gallery')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('gallery') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Gallery</button>
-                <button onClick={() => handleNavigate('history')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('history') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>History</button>
-                <button onClick={() => handleNavigate('trustees')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('trustees') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Trustees</button>
-                <button onClick={() => handleNavigate('donate')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('donate') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Donate</button>
-                <button onClick={() => handleNavigate('contact')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('contact') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Contact</button>
-                <button onClick={() => handleNavigate('announcements')} className={`block text-left w-full no-underline py-1 px-1.5 font-sans font-bold text-[10px] rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('announcements') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Announcements</button>
-              </div>
-            </>
-          )}
-        </aside>
-      ) : (
-        /* ------------------------------------------------------------- */
-        /* 2. DESKTOP SIDEBAR (>= 1024px)                                */
-        /* ------------------------------------------------------------- */
-        <aside 
-          className={`fixed left-0 z-[1300] flex flex-col items-stretch bg-[#0e2245] border-r border-[#bf953f]/40 shadow-2xl transition-all duration-300 ease-out 
-            top-[200px] h-[calc(100vh-200px)] ${isMenuOpen ? 'w-[220px]' : 'w-[88px]'}`}
-        >
-          {/* Top Toggle Header Button */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="w-full bg-[#08152b] hover:bg-[#132c54] text-[#fcf6ba] border-b border-[#bf953f]/30 py-3 px-2 flex items-center justify-center gap-2 font-sans font-bold uppercase transition-all duration-200 cursor-pointer shrink-0"
-            aria-label="Toggle Menu"
-          >
-            <span className="text-base">{isMenuOpen ? '✕' : '☰'}</span>
-            <span className="text-xs tracking-wider">MENU</span>
-          </button>
-
-          {/* CLOSED STATE */}
-          {!isMenuOpen ? (
-            <div className="flex-grow flex items-start justify-center pt-2.5 p-1.5 select-none w-full box-border">
-              <button 
-                onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
-                className="bg-[#ff7f5c] hover:bg-[#ff9173] text-white text-center no-underline font-sans font-extrabold uppercase rounded py-3.5 px-1 text-sm tracking-wide transition-all border-none cursor-pointer flex items-center justify-center w-full shadow-md leading-tight"
-              >
-                Login Here
-              </button>
-            </div>
-          ) : (
-            /* OPEN STATE */
-            <>
-              <div className="shrink-0 border-b border-[#08152b] p-2 bg-[#0b1b38]">
-                <button 
-                  onClick={() => window.open('https://vrnt-app.onrender.com/#/login', '_blank', 'noopener,noreferrer')}
-                  className="bg-[#ff7f5c] hover:bg-[#ff9173] text-white text-center no-underline font-sans font-bold uppercase rounded py-2 text-sm px-2 transition-all border-none cursor-pointer flex items-center justify-center w-full shadow-sm"
-                >
-                  Login Here
-                </button>
-              </div>
-              
-              <div className="flex flex-col gap-1 p-2 pb-6 overflow-y-auto no-scrollbar flex-grow">
-                <button onClick={() => handleNavigate('home')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('home') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Home</button>
-                <button onClick={() => handleNavigate('mission')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('mission') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Mission</button>
-                <button onClick={() => handleNavigate('activities')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('activities') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Activities</button>
-                <button onClick={() => handleNavigate('vedas')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('vedas') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Vedas</button>
-                <button onClick={() => handleNavigate('pariksha')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('pariksha') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Pariksha</button>
-                <button onClick={() => handleNavigate('gallery')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('gallery') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Gallery</button>
-                <button onClick={() => handleNavigate('history')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('history') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>History</button>
-                <button onClick={() => handleNavigate('trustees')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('trustees') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Trustees</button>
-                <button onClick={() => handleNavigate('donate')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('donate') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Donate</button>
-                <button onClick={() => handleNavigate('contact')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('contact') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Contact</button>
-                <button onClick={() => handleNavigate('announcements')} className={`block text-left w-full no-underline py-2 px-3 font-sans font-bold text-base rounded cursor-pointer transition-colors whitespace-nowrap bg-transparent border-none ${isCurrentPage('announcements') ? 'bg-[#203c70] text-white' : 'text-[#b0c4de] hover:text-white hover:bg-white/5'}`}>Announcements</button>
-              </div>
-            </>
-          )}
-        </aside>
-      )}
-
-      {/* Floating Notification Bell Button */}
-      <button 
-        onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#1a365d] text-white border border-[#222] cursor-pointer z-[1200] text-base md:text-xl rounded-full h-10 w-10 md:h-14 md:w-14 flex items-center justify-center shadow-2xl hover:bg-[#224273] hover:scale-105 transition-all duration-200"
-      >
-        🔔
-      </button>
-
-      {/* Main Page Content Wrapper */}
-      <div 
-        className={`w-full max-w-[1440px] mx-auto box-border transition-all duration-500 ease-in-out ${
-          isMobile 
-            ? (isMenuOpen 
-                ? (isScrolled ? 'pt-[70px] pl-[124px] pr-2' : 'pt-[170px] sm:pt-[200px] pl-[124px] pr-2') 
-                : (isScrolled ? 'pt-[70px] pl-[48px] pr-2' : 'pt-[170px] sm:pt-[200px] pl-[48px] pr-2'))
-            : (isMenuOpen 
-                ? 'pt-[200px] pl-[220px] pr-0' 
-                : 'pt-[200px] pl-[88px] pr-0')
-        }`}
-        style={{ 
-          paddingRight: !isMobile ? (isDrawerOpen ? '398px' : '19px') : undefined
-        }}
-      >
-        <main className="w-full max-w-full overflow-x-hidden pt-0 transition-all duration-300">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <SkipLink />
+      <Header />
+      <ScrollToTop />
+      <main id="main-content" className="flex-1">
+        <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Loading…</div>}>
           <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
-                <VedaVruksham isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />
-              </>
-            } />
-            <Route 
-              path="/mission" 
-              element={
-                <Mission 
-                  isMenuOpen={isMenuOpen} 
-                  isDrawerOpen={isDrawerOpen} 
-                  setCurrentPage={handleNavigate} 
-                />
-              } 
-            />
-            <Route 
-              path="/initiatives" 
-              element={
-                <InitiativesPage 
-                  isMenuOpen={isMenuOpen} 
-                  isDrawerOpen={isDrawerOpen} 
-                />
-              } 
-            />
-            <Route path="/activities" element={<Activities isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
-            <Route path="/vedas" element={
-              <VedasPage 
-                isMenuOpen={isMenuOpen} 
-                isDrawerOpen={isDrawerOpen} 
-                subView={searchParams.get('view') || 'list'}
-                setSubView={(val) => setSearchParams(val ? { view: val } : {})}
-              />
-            } />
-            <Route path="/pariksha" element={<Pariksha isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
-            <Route path="/gallery" element={<GalleryPage isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
-            <Route path="/history" element={<History isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
-            <Route path="/trustees" element={<Trustees isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
-            <Route path="/donate" element={<DonatePage isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
-            <Route path="/contact" element={<ContactPage isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />} />
-            <Route path="/mahotsav" element={
-              <Mahotsav 
-                isMenuOpen={isMenuOpen} 
-                isDrawerOpen={isDrawerOpen} 
-                setCurrentPage={handleNavigate}
-              />
-            } />
-            <Route path="/pariksha-result" element={
-              <ParikshaResultPage 
-                isMenuOpen={isMenuOpen} 
-                isDrawerOpen={isDrawerOpen} 
-                setCurrentPage={handleNavigate} 
-              />
-            } />
-            <Route path="/announcements" element={
-              <Announcement 
-                isMenuOpen={isMenuOpen} 
-                isDrawerOpen={isDrawerOpen} 
-                setCurrentPage={handleNavigate} 
-                subView={searchParams.get('view')}
-                setSubView={(val) => setSearchParams(val ? { view: val } : {})}
-              />
-            } />
-            <Route path="*" element={
-              <>
-                <Hero />
-                <VedaVruksham isMenuOpen={isMenuOpen} isDrawerOpen={isDrawerOpen} />
-              </>
-            } />
+            <Route path="/" element={<Home />} />
+            <Route path="/mission" element={<Mission />} />
+            <Route path="/initiatives" element={<InitiativesPage />} />
+            <Route path="/activities" element={<Activities />} />
+            <Route path="/vedas" element={<VedasPage />} />
+            <Route path="/vedas/maha-periyavas-message" element={<MahaPeriyavasMessage />} />
+            <Route path="/pariksha" element={<Pariksha />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/trustees" element={<Trustees />} />
+            <Route path="/donate" element={<DonatePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/mahotsav" element={<Mahotsav setCurrentPage={goTo} />} />
+            <Route path="/pariksha-result" element={<ParikshaResultPage setCurrentPage={goTo} />} />
+            <Route path="/announcements" element={<AnnouncementsPage />} />
+            <Route path="/announcements/:id" element={<AnnouncementsPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
-        </main>
-
-        <NotificationSidebar 
-          isOpen={isDrawerOpen} 
-          onClose={() => setIsDrawerOpen(false)}
-          setCurrentPage={handleNavigate} 
-        />
-      </div>
-
+        </Suspense>
+      </main>
       <Footer />
+      <Toaster />
     </div>
   );
 }

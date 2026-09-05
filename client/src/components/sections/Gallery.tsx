@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-interface GalleryPageProps {
-  isMenuOpen?: boolean;
-  isDrawerOpen?: boolean;
-}
+import { Helmet } from "@/lib/seo";
 
 const GALLERY_IMAGES = [
   // --- SPIRITUAL LINEAGE ACHARYAS ---
   {
-    url: "/assets/1768738817683.jpg",
+    url: "/assets/1768738817683.webp",
     title: "Adi Shankaracharya",
     category: "Peetham Founder",
     description: "Kanchi Kamakoti Peetham established by Adi Shankaracharya (509 BCE to 477 BCE) 2500 years ago.",
@@ -32,7 +28,7 @@ const GALLERY_IMAGES = [
     albumUrl: null
   },
   {
-    url: "/assets/70_1768742815509.jpg",
+    url: "/assets/70_1768742815509.webp",
     title: "70th Jagadguru Shankaracharya",
     category: "Acharya",
     description: "Sri Shankara Vijayendra Saraswati Mahaswami Ji",
@@ -55,42 +51,42 @@ const GALLERY_IMAGES = [
 
   // --- POORTHY EXAMINATION GALLERIES ---
   {
-    url: "/poorthy/first gallery/IMG_20260305_111546869_HDR.jpg",
+    url: "/poorthy/first gallery/IMG_20260305_111546869_HDR.webp",
     title: "VRNT-POORTHY-SJ26",
     category: "March 5, 2026",
     description: "Official examination proceedings and sabha sessions for VRNT-POORTHY-SJ26.",
     albumUrl: "https://photos.app.goo.gl/44zvTt67hd1FnXQw5"
   },
   {
-    url: "/poorthy/second gallery/20250831_093953.jpg",
+    url: "/poorthy/second gallery/20250831_093953.webp",
     title: "VRNT-VJ-EXAMS-SEP-2025",
     category: "August 31, 2025",
     description: "Vijayadasami Poorthy oral examinations and Vidyaarthi assessments.",
     albumUrl: "https://photos.app.goo.gl/11bg4sbZFyTom2zH9"
   },
   {
-    url: "/poorthy/third gallery/20240911_085056.jpg",
+    url: "/poorthy/third gallery/20240911_085056.webp",
     title: "VRNT VIJAYADASAMI EXAMS SEP 11-14, 2024",
     category: "September 11–14, 2024",
     description: "Annual Vijayadasami examinations across multiple Veda Shaakhas.",
     albumUrl: "https://photos.app.goo.gl/H1WVEG18PUxkorTA7"
   },
   {
-    url: "/poorthy/fourth gallery/IMG-20240316-WA0033.jpg",
+    url: "/poorthy/fourth gallery/IMG-20240316-WA0033.webp",
     title: "VRNT POORTHI EXAM 15-17TH MARCH 2024",
     category: "March 15–17, 2024",
     description: "Spring Poorthy examination sessions supervised by senior Veda Panditas.",
     albumUrl: "https://photos.app.goo.gl/F1mBKjiHR8aBsRRHA"
   },
   {
-    url: "/poorthy/fifth gallery/IMG-20230924-WA0066.jpg",
+    url: "/poorthy/fifth gallery/IMG-20230924-WA0066.webp",
     title: "VRNT POORTHI EXAMS 22-24 SEP 2023",
     category: "September 22–24, 2023",
     description: "Rigorous oral recitations and completion assessments.",
     albumUrl: "https://photos.app.goo.gl/frSGh8xZv4XdrjDo9"
   },
   {
-    url: "/poorthy/sixth gallery/IMG20220814094026.jpg",
+    url: "/poorthy/sixth gallery/IMG20220814094026.webp",
     title: "VRNT Poorthy Exams (Aug 13–16, 2022)",
     category: "August 13–16, 2022",
     description: "Veda Rakshana Nidhi Trust graduation examinations and Parithoshikam.",
@@ -99,7 +95,7 @@ const GALLERY_IMAGES = [
 
   // --- RECENT EVENT ---
   {
-    url: "/assets/vrnt_1768670925029.jpg",
+    url: "/assets/vrnt_1768670925029.webp",
     title: "Veda Rakshana Nidhi Trust Sabha",
     category: "Vedic Event",
     description: "Sacred gatherings and Vidwat Sabha proceedings organized under VRNT.",
@@ -107,10 +103,18 @@ const GALLERY_IMAGES = [
   }
 ];
 
-export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }: GalleryPageProps) {
-  const expanded = !isMenuOpen && !isDrawerOpen;
+/** Builds specific, descriptive alt text for the current slide's image. */
+function getSlideAlt(image: (typeof GALLERY_IMAGES)[number]) {
+  if (image.albumUrl) {
+    return `Photograph from the Poorthy examination album: ${image.title} (${image.category})`;
+  }
+  return `${image.title} — ${image.description}`;
+}
+
+export default function GalleryPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -139,20 +143,35 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
     setCurrentIndex((prevIndex) => (prevIndex + newDirection + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
   };
 
+  const paginateRef = useRef(paginate);
+  paginateRef.current = paginate;
+
+  // Auto-advance every 6s, unless the viewer prefers reduced motion or is
+  // currently hovering/focusing the carousel (paused via isPaused).
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion || isPaused) {
+      return;
+    }
     const timer = setInterval(() => {
-      paginate(1);
+      paginateRef.current(1);
     }, 6000);
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, [currentIndex, isPaused]);
+
+  const currentImage = GALLERY_IMAGES[currentIndex];
 
   return (
-    <div className={`min-h-screen bg-background text-foreground font-sans transition-all duration-300 ${expanded ? 'p-6' : 'p-0'}`}>
-      <main className="pt-[20px] pb-24 min-h-[calc(100vh-80px)] overflow-hidden">
-        <div className="container mx-auto px-4 max-w-5xl">
-          
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <Helmet
+        title="Photo Gallery"
+        description="A photo gallery of the Kanchi Kamakoti Peetham's acharya lineage and Veda Rakshana Nidhi Trust's Poorthy examination archives."
+      />
+      <main className="pt-5 pb-24 min-h-[calc(100vh-80px)] overflow-hidden">
+        <div className="mx-auto max-w-wide px-4 sm:px-6">
+
           <div className="text-center mb-16">
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-secondary mb-4 underline decoration-primary decoration-4 underline-offset-8 inline-block">
+            <h1 className="font-serif text-4xl md:text-5xl font-bold text-secondary mb-4 underline decoration-primary decoration-4 underline-offset-8 inline-block">
               Our Spiritual Lineage & Photo Gallery
             </h1>
             <p className="text-lg text-muted-foreground font-serif mt-8 max-w-2xl mx-auto italic">
@@ -160,7 +179,16 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
             </p>
           </div>
 
-          <div className="relative w-full h-[500px] md:h-[600px] group">
+          <div
+            className="relative w-full h-[500px] md:h-[600px] group"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onFocus={() => setIsPaused(true)}
+            onBlur={() => setIsPaused(false)}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Spiritual lineage and photo gallery"
+          >
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={currentIndex}
@@ -186,10 +214,11 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
                 }}
                 className="absolute inset-0 w-full h-full"
               >
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-md border border-[#222]/80 bg-[#f7f4eb]">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-lifted border border-border bg-surface">
                   <img
-                    src={GALLERY_IMAGES[currentIndex].url}
-                    alt={GALLERY_IMAGES[currentIndex].title}
+                    src={currentImage.url}
+                    alt={getSlideAlt(currentImage)}
+                    loading="lazy"
                     className="w-full h-full object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -209,28 +238,29 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
                     >
                       {/* Left Side Heading & Info */}
                       <div className="max-w-xl">
-                        <span className="text-[#FFD700] text-xs md:text-sm font-bold uppercase tracking-widest mb-1 block">
-                          {GALLERY_IMAGES[currentIndex].category}
+                        <span className="text-accent text-xs md:text-sm font-bold uppercase tracking-widest mb-1 block">
+                          {currentImage.category}
                         </span>
                         <h2 className="text-white font-serif text-2xl md:text-3xl font-bold mb-1.5 drop-shadow-md">
-                          {GALLERY_IMAGES[currentIndex].title}
+                          {currentImage.title}
                         </h2>
                         <p className="text-white/90 text-sm md:text-base font-serif italic drop-shadow-xs m-0 line-clamp-2">
-                          {GALLERY_IMAGES[currentIndex].description}
+                          {currentImage.description}
                         </p>
                       </div>
 
                       {/* Right Side Google Photos Link Button */}
-                      {GALLERY_IMAGES[currentIndex].albumUrl && (
+                      {currentImage.albumUrl && (
                         <div className="shrink-0">
                           <a
-                            href={GALLERY_IMAGES[currentIndex].albumUrl}
+                            href={currentImage.albumUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline inline-flex items-center gap-2 bg-[#ff7f5c] hover:bg-[#ff9173] text-white font-sans font-bold text-xs md:text-sm py-2.5 px-4 rounded-xl shadow-lg transition-all hover:scale-105 active:scale-95"
+                            className="no-underline min-h-11 inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-sans font-bold text-xs md:text-sm py-2.5 px-4 rounded-xl shadow-lifted transition-all hover:scale-105 active:scale-95"
                           >
                             <span>For More Images</span>
-                            <ExternalLink className="w-4 h-4" />
+                            <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                            <span className="sr-only"> (opens the {currentImage.title} album on Google Photos in a new tab)</span>
                           </a>
                         </div>
                       )}
@@ -245,36 +275,40 @@ export default function GalleryPage({ isMenuOpen = false, isDrawerOpen = false }
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-[#1a365d]/80 hover:bg-[#1a365d] text-white h-12 w-12 border-none shadow-md cursor-pointer"
+                className="rounded-full bg-secondary/80 hover:bg-secondary text-secondary-foreground h-12 w-12 border-none shadow-lifted cursor-pointer"
                 onClick={() => paginate(-1)}
+                aria-label="Previous slide"
               >
-                <ChevronLeft className="h-8 w-8" />
+                <ChevronLeft className="h-8 w-8" aria-hidden="true" />
               </Button>
             </div>
             <div className="absolute inset-y-0 right-4 flex items-center z-10">
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-[#1a365d]/80 hover:bg-[#1a365d] text-white h-12 w-12 border-none shadow-md cursor-pointer"
+                className="rounded-full bg-secondary/80 hover:bg-secondary text-secondary-foreground h-12 w-12 border-none shadow-lifted cursor-pointer"
                 onClick={() => paginate(1)}
+                aria-label="Next slide"
               >
-                <ChevronRight className="h-8 w-8" />
+                <ChevronRight className="h-8 w-8" aria-hidden="true" />
               </Button>
             </div>
 
             {/* Pagination Indicators */}
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 max-w-[90%] overflow-x-auto py-1">
-              {GALLERY_IMAGES.map((_, index) => (
+              {GALLERY_IMAGES.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => {
                     setDirection(index > currentIndex ? 1 : -1);
                     setCurrentIndex(index);
                   }}
+                  aria-label={`Go to slide ${index + 1}: ${image.title}`}
+                  aria-current={index === currentIndex}
                   className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer shrink-0 ${
-                    index === currentIndex 
-                      ? "bg-[#8b2b22] w-8" 
-                      : "bg-[#1a365d]/40 hover:bg-[#1a365d]/70 w-2.5"
+                    index === currentIndex
+                      ? "bg-primary w-8"
+                      : "bg-secondary/40 hover:bg-secondary/70 w-2.5"
                   }`}
                 />
               ))}
